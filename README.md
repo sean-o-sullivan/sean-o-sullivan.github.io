@@ -1,1 +1,52 @@
-# sean-o-sullivan.github.io
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My GitHub Pages Site</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .left, .right {
+            width: 100%;
+        }
+        .left {
+            height: 50%;
+            overflow: hidden;
+        }
+        .right {
+            height: 50%;
+            overflow: auto;
+            background-color: #f0f0f0;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media (min-width: 769px) {
+            body {
+                flex-direction: row;
+            }
+            .left, .right {
+                height: 100%;
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="left">
+        <iframe src="https://www.thingiverse.com/liminil/designs"></iframe>
+    </div>
+    <div class="right">
+        <h1>Welcome to My GitHub Pages Site</h1>
+        <p>Here you can find some content...</p>
+        <!-- Add your additional content here -->
+    </div>
+</body>
+</html>
