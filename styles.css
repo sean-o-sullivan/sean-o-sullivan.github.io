@@ -58,14 +58,14 @@ nav {
 .projects {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Distribute cards equally across the row */
+    justify-content: space-between;
     padding: 20px;
-    max-width: 1000px; /* Control the width to keep it centered */
-    margin: 0 auto; /* Center the row of cards on the page */
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .project-card {
-    width: 48%; /* Two cards per row */
+    width: 48%;
     margin-bottom: 20px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -81,6 +81,7 @@ nav {
 .project-card img {
     width: 100%;
     height: auto;
+    display: block;
 }
 
 .project-card h3 {
@@ -150,3 +151,4 @@ footer {
         margin-bottom: 20px;
     }
 }
+
