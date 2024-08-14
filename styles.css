@@ -65,13 +65,18 @@ nav {
 }
 
 .project-card {
-    width: 48%;
+    flex: 1 1 calc(50% - 20px); /* Take up half the container width minus margin */
     margin-bottom: 20px;
+    margin-right: 20px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
+}
+
+.project-card:nth-child(2n) {
+    margin-right: 0; /* Remove right margin for every second card in the row */
 }
 
 .project-card:hover {
@@ -139,16 +144,15 @@ footer {
 /* Tablets and medium screens */
 @media (max-width: 768px) {
     .project-card {
-        width: 100%; /* One card per row on tablets */
-        margin-bottom: 20px;
+        flex: 1 1 100%; /* Full width for single card per row */
+        margin-right: 0;
     }
 }
 
 /* Small screens and mobile devices */
 @media (max-width: 480px) {
     .project-card {
-        width: 100%; /* One card per row on small screens */
-        margin-bottom: 20px;
+        flex: 1 1 100%; /* Full width for single card per row */
+        margin-right: 0;
     }
 }
-
