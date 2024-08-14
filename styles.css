@@ -42,27 +42,28 @@ nav {
     font-size: 13px;
     padding-bottom: 5px;
     position: relative;
-    transition: color 0.3s ease-in-out; /* For the darkening effect */
-}
-
-.nav-links li a:hover {
-    color: #555555; /* Slightly darken the text on hover */
 }
 
 .nav-links li a::after {
     content: '';
     display: block;
-    height: 2px;
-    background-color: #000000;
+    height: 0; /* No underline */
+    background-color: transparent; /* Invisible underline */
     width: 0;
-    transition: width 0.3s ease-in-out;
     position: absolute;
     bottom: 0;
     left: 0;
 }
 
 .nav-links li a.active::after {
-    width: 100%; /* Only underline the current page */
+    content: '';
+    display: block;
+    height: 2px;
+    background-color: #000000; /* Black underline for active link */
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 header {
