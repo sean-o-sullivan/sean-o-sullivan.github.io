@@ -20,7 +20,7 @@ nav {
 }
 
 .nav-name {
-    font-size: 13px; /* Explicitly setting font size */
+    font-size: 13px;
     font-weight: bold;
     color: #000000;
 }
@@ -39,7 +39,7 @@ nav {
 .nav-links li a {
     color: #000000;
     text-decoration: none;
-    font-size: 13px; /* Explicitly setting font size */
+    font-size: 13px;
     padding-bottom: 5px;
     position: relative;
 }
@@ -58,13 +58,15 @@ nav {
 .projects {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between; /* Distribute cards equally across the width */
     padding: 20px;
+    max-width: 1200px; /* Max width for the entire row of cards */
+    margin: 0 auto; /* Center the row of cards on the page */
 }
 
 .project-card {
-    width: 30%;
-    margin: 15px;
+    width: 32%; /* Three cards per row with equal distribution */
+    margin-bottom: 20px; /* Space between rows */
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
@@ -86,7 +88,7 @@ nav {
     padding: 15px;
     background-color: #f4f4f4;
     margin: 0;
-    font-size: 13px; /* Explicitly setting font size */
+    font-size: 13px;
 }
 
 header {
@@ -96,12 +98,12 @@ header {
 }
 
 header h1 {
-    font-size: 2.5em; /* Adjust as needed for the header, not 13px */
+    font-size: 2.5em;
     margin: 0;
 }
 
 header p {
-    font-size: 13px; /* Explicitly setting font size */
+    font-size: 13px;
     margin: 10px 0 0;
 }
 
@@ -111,12 +113,12 @@ section {
 }
 
 section h2 {
-    font-size: 1.8em; /* Adjust as needed for section headings */
+    font-size: 1.8em;
     margin-bottom: 20px;
 }
 
 section p {
-    font-size: 13px; /* Explicitly setting font size */
+    font-size: 13px;
     line-height: 1.6;
     max-width: 600px;
     margin: 0 auto;
@@ -127,7 +129,7 @@ footer {
     color: #000000;
     padding: 20px 0;
     margin-top: 50px;
-    font-size: 13px; /* Explicitly setting font size */
+    font-size: 13px;
     text-align: center;
 }
 
@@ -136,8 +138,8 @@ footer {
 /* Tablets and medium screens */
 @media (max-width: 768px) {
     .project-card {
-        width: 45%; /* Two cards per row on tablets */
-        margin: 10px;
+        width: 48%; /* Two cards per row on tablets */
+        margin-bottom: 20px;
     }
 }
 
@@ -145,7 +147,6 @@ footer {
 @media (max-width: 480px) {
     .project-card {
         width: 100%; /* One card per row on small screens */
-        margin: 10px 0;
+        margin-bottom: 20px;
     }
 }
-
