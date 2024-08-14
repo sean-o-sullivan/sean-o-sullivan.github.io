@@ -65,7 +65,7 @@ nav {
 }
 
 .project-card {
-    flex-basis: calc(50% - 10px); /* Adjusted to account for the gap */
+    flex-basis: calc(50% - 10px);
     margin-bottom: 20px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -92,15 +92,13 @@ nav {
     width: 100%;
     height: auto;
     object-fit: cover;
-    flex: 1 0 auto; /* This allows the image to grow but not shrink */
 }
 
 .project-card h3 {
-    text-align: center;
     padding: 15px;
-    background-color: #f4f4f4;
     margin: 0;
     font-size: 13px;
+    background-color: #f4f4f4;
 }
 
 header {
@@ -147,16 +145,14 @@ footer {
 
 /* Responsive Design for Project Cards */
 
-/* Tablets and medium screens */
 @media (max-width: 768px) {
     .project-card {
-        flex-basis: 100%; /* Full width for single card per row */
+        flex-basis: 100%;
     }
 }
 
-/* Small screens and mobile devices */
 @media (max-width: 480px) {
     .project-card {
-        flex-basis: 100%; /* Full width for single card per row */
+        flex-basis: 100%;
     }
 }
