@@ -42,6 +42,11 @@ nav {
     font-size: 13px;
     padding-bottom: 5px;
     position: relative;
+    transition: color 0.3s ease-in-out; /* For the darkening effect */
+}
+
+.nav-links li a:hover {
+    color: #555555; /* Slightly darken the text on hover */
 }
 
 .nav-links li a::after {
@@ -56,9 +61,8 @@ nav {
     left: 0;
 }
 
-.nav-links li a:hover::after,
 .nav-links li a.active::after {
-    width: 100%;
+    width: 100%; /* Only underline the current page */
 }
 
 header {
