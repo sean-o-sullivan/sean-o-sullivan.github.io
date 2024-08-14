@@ -44,15 +44,12 @@ nav {
     position: relative;
 }
 
+.nav-links li a:hover::after {
+    content: none; /* Remove the pseudo-element on hover */
+}
+
 .nav-links li a::after {
-    content: '';
-    display: block;
-    height: 0; /* No underline */
-    background-color: transparent; /* Invisible underline */
-    width: 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    content: none; /* Ensure no underline or element exists */
 }
 
 .nav-links li a.active::after {
@@ -106,4 +103,3 @@ footer {
     margin-top: 50px;
     font-size: 13px;
 }
-
