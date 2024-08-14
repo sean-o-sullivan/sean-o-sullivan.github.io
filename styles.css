@@ -20,7 +20,7 @@ nav {
 }
 
 .nav-name {
-    font-size: 13px;
+    font-size: 13px; /* Explicitly setting font size */
     font-weight: bold;
     color: #000000;
 }
@@ -39,28 +39,54 @@ nav {
 .nav-links li a {
     color: #000000;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 13px; /* Explicitly setting font size */
     padding-bottom: 5px;
     position: relative;
-}
-
-.nav-links li a:hover::after {
-    content: none; /* Remove the pseudo-element on hover */
-}
-
-.nav-links li a::after {
-    content: none; /* Ensure no underline or element exists */
 }
 
 .nav-links li a.active::after {
     content: '';
     display: block;
     height: 2px;
-    background-color: #000000; /* Black underline for active link */
+    background-color: #000000;
     width: 100%;
     position: absolute;
     bottom: 0;
     left: 0;
+}
+
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.project-card {
+    width: 30%;
+    margin: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+}
+
+.project-card img {
+    width: 100%;
+    height: auto;
+}
+
+.project-card h3 {
+    text-align: center;
+    padding: 15px;
+    background-color: #f4f4f4;
+    margin: 0;
+    font-size: 13px; /* Explicitly setting font size */
 }
 
 header {
@@ -70,27 +96,27 @@ header {
 }
 
 header h1 {
-    font-size: 2.5em;
+    font-size: 2.5em; /* Adjust as needed for the header, not 13px */
     margin: 0;
 }
 
 header p {
-    font-size: 1.2em;
+    font-size: 13px; /* Explicitly setting font size */
     margin: 10px 0 0;
 }
 
 section {
     padding: 50px 20px;
-    background-color: #ffffff; /* Ensuring consistent background */
+    background-color: #ffffff;
 }
 
 section h2 {
-    font-size: 1.8em;
+    font-size: 1.8em; /* Adjust as needed for section headings */
     margin-bottom: 20px;
 }
 
 section p {
-    font-size: 13px;
+    font-size: 13px; /* Explicitly setting font size */
     line-height: 1.6;
     max-width: 600px;
     margin: 0 auto;
@@ -101,5 +127,25 @@ footer {
     color: #000000;
     padding: 20px 0;
     margin-top: 50px;
-    font-size: 13px;
+    font-size: 13px; /* Explicitly setting font size */
+    text-align: center;
 }
+
+/* Responsive Design for Project Cards */
+
+/* Tablets and medium screens */
+@media (max-width: 768px) {
+    .project-card {
+        width: 45%; /* Two cards per row on tablets */
+        margin: 10px;
+    }
+}
+
+/* Small screens and mobile devices */
+@media (max-width: 480px) {
+    .project-card {
+        width: 100%; /* One card per row on small screens */
+        margin: 10px 0;
+    }
+}
+
