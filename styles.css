@@ -65,9 +65,8 @@ nav {
 }
 
 .project-card {
-    flex-basis: calc(50% - 20px); /* Ensures each card takes up half the width minus the margin */
+    flex-basis: calc(50% - 10px); /* Adjusted to account for the gap */
     margin-bottom: 20px;
-    margin-right: 20px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
@@ -77,18 +76,23 @@ nav {
     flex-direction: column;
 }
 
-.project-card:nth-child(2n) {
-    margin-right: 0; /* Remove right margin for every second card */
-}
-
 .project-card:hover {
     transform: scale(1.05);
+}
+
+.project-card a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
 }
 
 .project-card img {
     width: 100%;
     height: auto;
-    display: block;
+    object-fit: cover;
+    flex: 1 0 auto; /* This allows the image to grow but not shrink */
 }
 
 .project-card h3 {
@@ -97,7 +101,6 @@ nav {
     background-color: #f4f4f4;
     margin: 0;
     font-size: 13px;
-    flex-grow: 1; /* Allow the title to grow to fit the remaining space */
 }
 
 header {
@@ -148,7 +151,6 @@ footer {
 @media (max-width: 768px) {
     .project-card {
         flex-basis: 100%; /* Full width for single card per row */
-        margin-right: 0;
     }
 }
 
@@ -156,6 +158,5 @@ footer {
 @media (max-width: 480px) {
     .project-card {
         flex-basis: 100%; /* Full width for single card per row */
-        margin-right: 0;
     }
 }
