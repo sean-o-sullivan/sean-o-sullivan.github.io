@@ -1,49 +1,51 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #ffffff;
+    color: #000000;
     text-align: center;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: #ffffff;
+    color: #000000;
     padding: 50px 0;
 }
 
 header h1 {
-    font-size: 3em;
+    font-size: 2.5em;
     margin: 0;
 }
 
 header p {
-    font-size: 1.5em;
+    font-size: 1.2em;
     margin: 10px 0 0;
 }
 
 nav {
-    background-color: #444;
+    background-color: #ffffff;
     padding: 10px 0;
+    text-align: right;
 }
 
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
+    display: inline-block;
 }
 
 nav ul li {
+    display: inline;
     margin: 0 15px;
 }
 
 nav ul li a {
-    color: #fff;
+    color: #000000;
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 13px;
     padding-bottom: 5px;
     position: relative;
 }
@@ -52,7 +54,7 @@ nav ul li a::after {
     content: '';
     display: block;
     height: 2px;
-    background-color: #fff;
+    background-color: #000000;
     width: 0;
     transition: width 0.3s ease-in-out;
     position: absolute;
@@ -70,21 +72,22 @@ section {
 }
 
 section h2 {
-    font-size: 2.5em;
+    font-size: 1.8em;
     margin-bottom: 20px;
 }
 
 section p {
-    font-size: 1.2em;
+    font-size: 13px;
     line-height: 1.6;
     max-width: 600px;
     margin: 0 auto;
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #ffffff;
+    color: #000000;
     padding: 20px 0;
     margin-top: 50px;
+    font-size: 13px;
 }
 
