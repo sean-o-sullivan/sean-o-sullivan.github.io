@@ -56,45 +56,34 @@ nav {
     left: 0;
 }
 
-/* Projects Section Centered, 50% Width, 2 Divs per Row */
+/* Projects Section with Dynamic Grid Layout */
 .projects-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns, each taking equal space */
-    gap: 20px; /* Space between the items */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Create columns that fill the container */
+    gap: 20px; /* Space between grid items */
+    grid-auto-flow: row dense; /* Ensure items fill rows efficiently, minimizing empty spaces */
     width: 50%; /* Container takes 50% of the page width */
-    margin: 0 auto; /* Center the container horizontally */
+    margin: 0 auto; /* Center the container */
     padding: 20px;
-    box-sizing: border-box; /* Include padding in width calculation */
-    align-items: start; /* Allow items to have independent heights */
+    box-sizing: border-box; /* Include padding in the width */
 }
 
 .project-card {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
+    background-color: #e0e0e0;
+    padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
-    background-color: #fff; /* Ensure background is white */
-}
-
-.project-card:hover {
-    transform: scale(1.05);
-}
-
-.project-card a {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    text-decoration: none;
-    color: inherit;
+    width: 100%;
+    height: auto; /* Allow height to adjust based on content */
 }
 
 .project-card img {
     width: 100%;
     height: auto;
     object-fit: cover;
+    border-radius: 8px 8px 0 0; /* Round the top corners of the image */
 }
 
 .project-card h3 {
@@ -102,6 +91,12 @@ nav {
     margin: 0;
     font-size: 13px;
     background-color: #f4f4f4;
+    flex: 1;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
 }
 
 header {
