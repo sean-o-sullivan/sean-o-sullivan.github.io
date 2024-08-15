@@ -56,12 +56,11 @@ nav {
     left: 0;
 }
 
-/* Projects Section with Dynamic Grid Layout */
+/* Projects Section with 50% Width Divs and 20px Spacing */
 .projects-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Create columns that fill the container */
+    grid-template-columns: repeat(2, calc(50% - 10px)); /* Two columns, each half the width minus half of the gap */
     gap: 20px; /* Space between grid items */
-    grid-auto-flow: row dense; /* Ensure items fill rows efficiently, minimizing empty spaces */
     width: 50%; /* Container takes 50% of the page width */
     margin: 0 auto; /* Center the container */
     padding: 20px;
