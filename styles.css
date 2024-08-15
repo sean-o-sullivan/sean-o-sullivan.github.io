@@ -56,17 +56,20 @@ nav {
     left: 0;
 }
 
-/* Projects Section with Dynamic Grid Layout */
+/* Projects Section Centered, 50% Width, 2 Divs per Row */
 .projects-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Flexible column widths */
+    grid-template-columns: repeat(2, 1fr); /* Two columns, each taking equal space */
     gap: 20px; /* Space between the items */
+    width: 50%; /* Container takes 50% of the page width */
+    margin: 0 auto; /* Center the container horizontally */
     padding: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .project-card {
+    width: 100%; /* Each card takes full width of its grid cell */
+    height: auto; /* Height is determined by content */
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
@@ -147,6 +150,7 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     .projects-container {
+        width: 100%; /* Full width on smaller screens */
         grid-template-columns: 1fr; /* Single column on smaller screens */
     }
 }
