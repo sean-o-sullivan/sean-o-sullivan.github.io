@@ -65,11 +65,10 @@ nav {
     margin: 0 auto; /* Center the container horizontally */
     padding: 20px;
     box-sizing: border-box; /* Include padding in width calculation */
+    align-items: start; /* Allow items to have independent heights */
 }
 
 .project-card {
-    width: 100%; /* Each card takes full width of its grid cell */
-    height: auto; /* Height is determined by content */
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
