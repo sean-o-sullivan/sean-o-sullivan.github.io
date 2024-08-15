@@ -14,6 +14,19 @@ nav {
     border-bottom: 1px solid #e0e0e0;
 }
 
+/* Status Icons */
+.grid-item[data-status="completed"] h3::before {
+    content: "✔️"; /* Unicode checkmark for completed */
+    margin-right: 10px;
+    color: green; /* Icon color for completed */
+}
+
+.grid-item[data-status="wip"] h3::before {
+    content: "⚙️"; /* Unicode gear for work in progress */
+    margin-right: 10px;
+    color: orange; /* Icon color for WIP */
+}
+
 .nav-container {
     display: flex;
     justify-content: space-between;
