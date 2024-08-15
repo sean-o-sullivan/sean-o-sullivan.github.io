@@ -59,8 +59,8 @@ nav {
 /* Projects Section using CSS Grid with 2 Boxes per Row */
 .projects {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 columns, each taking 50% of the width */
-    gap: 20px; /* Space between the items */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns, each taking 1 fraction of the available space */
+    gap: 20px;
     padding: 20px;
     max-width: 1000px;
     margin: 0 auto;
