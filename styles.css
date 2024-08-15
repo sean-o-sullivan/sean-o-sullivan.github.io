@@ -56,15 +56,14 @@ nav {
     left: 0;
 }
 
-/* Projects Section using CSS Grid with Natural Flow */
+/* Projects Section with Natural Flow */
 .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Flexible column sizing */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Each card takes minimum 300px and fills available space */
     gap: 20px; /* Space between the items */
     padding: 20px;
     max-width: 1000px;
     margin: 0 auto;
-    grid-auto-flow: dense; /* Allows items to fill in available space naturally */
 }
 
 .project-card {
@@ -75,6 +74,7 @@ nav {
     transition: transform 0.2s;
     display: flex;
     flex-direction: column;
+    width: 100%; /* Ensures card takes full available width */
 }
 
 .project-card:hover {
