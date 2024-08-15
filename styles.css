@@ -69,6 +69,8 @@ nav {
 .grid-sizer, .grid-item {
     width: calc(50% - 10px); /* Each item takes half of the grid width, minus the gap */
     margin-bottom: 20px;
+    margin-left:20px;
+    margin-right:20px;
 }
 
 .grid-item {
