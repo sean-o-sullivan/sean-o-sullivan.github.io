@@ -1,5 +1,3 @@
-
-
 body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 13px;
@@ -60,7 +58,8 @@ nav {
 
 .projects {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Create 2 equal-width columns */
+    grid-template-rows: repeat(3, auto); /* Create 3 rows */
+    grid-auto-flow: column; /* Fill rows first, then move to the next column */
     gap: 20px; /* Space between grid items */
     padding: 20px;
     max-width: 1000px;
