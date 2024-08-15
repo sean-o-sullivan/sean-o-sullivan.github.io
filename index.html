@@ -62,6 +62,21 @@
             </a>
         </div>
         <!-- Add more project cards as needed -->
+
+
+
+        
     </section>
+
+        <script>
+        // Initialize Masonry
+        var elem = document.querySelector('.projects-container');
+        var msnry = new Masonry(elem, {
+            itemSelector: '.project-card',
+            columnWidth: '.project-card',
+            percentPosition: true
+        });
+    </script>
+    
 </body>
 </html>
