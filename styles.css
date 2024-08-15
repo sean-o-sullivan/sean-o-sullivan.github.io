@@ -14,59 +14,12 @@ nav {
     border-bottom: 1px solid #e0e0e0;
 }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-name {
-    font-size: 13px;
-    font-weight: bold;
-    color: #000000;
-}
-
-.nav-links {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.nav-links li {
-    margin-left: 20px;
-}
-
-.nav-links li a {
-    color: #000000;
-    text-decoration: none;
-    font-size: 13px;
-    padding-bottom: 5px;
-    position: relative;
-}
-
-.nav-links li a.active::after {
-    content: '';
-    display: block;
-    height: 2px;
-    background-color: #000000;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-/* Projects Section with Masonry-style Grid */
+/* Projects Section */
 .projects-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Flexible columns */
-    gap: 20px; /* Space between grid items */
-    grid-auto-flow: dense; /* Fill in gaps more efficiently */
     width: 50%; /* Container takes 50% of the page width */
     margin: 0 auto; /* Center the container */
     padding: 20px;
-    box-sizing: border-box; /* Include padding in the width */
-    align-items: start; /* Ensure grid items align to the top */
+    box-sizing: border-box;
 }
 
 .project-card {
@@ -74,18 +27,18 @@ nav {
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto; /* Allow height to adjust based on content */
-    box-sizing: border-box; /* Include padding in height calculation */
+    margin-bottom: 20px; /* Ensure spacing between items */
+    width: calc(50% - 10px); /* Two cards per row */
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .project-card img {
     width: 100%;
     height: auto;
     object-fit: cover;
-    border-radius: 8px 8px 0 0; /* Round the top corners of the image */
+    border-radius: 8px 8px 0 0;
 }
 
 .project-card h3 {
@@ -93,7 +46,6 @@ nav {
     margin: 0;
     font-size: 13px;
     background-color: #f4f4f4;
-    flex: 1;
 }
 
 .project-card:hover {
@@ -107,31 +59,9 @@ header {
     padding: 50px 20px;
 }
 
-header h1 {
-    font-size: 2.5em;
-    margin: 0;
-}
-
-header p {
-    font-size: 13px;
-    margin: 10px 0 0;
-}
-
 section {
     padding: 50px 20px;
     background-color: #ffffff;
-}
-
-section h2 {
-    font-size: 1.8em;
-    margin-bottom: 20px;
-}
-
-section p {
-    font-size: 13px;
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto;
 }
 
 footer {
@@ -143,10 +73,12 @@ footer {
     text-align: center;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .projects-container {
-        width: 100%; /* Full width on smaller screens */
-        grid-template-columns: 1fr; /* Single column on smaller screens */
+        width: 100%;
+    }
+
+    .project-card {
+        width: calc(100% - 20px); /* Full width for mobile */
     }
 }
