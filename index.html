@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects</title>
     <link rel="stylesheet" href="./styles.css">
+    <!-- Masonry.js -->
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <!-- imagesLoaded.js -->
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 </head>
 <body>
     <nav>
@@ -19,64 +23,41 @@
         </div>
     </nav>
 
-    <section class="projects-container">
-        <div class="project-card">
-            <a href="projects/forceField.html">
-                <img src="images/forceField/reflow.png" alt="forceField">
-                <h3>ForceField - An Impact Detecting Device for Hurling</h3>
-            </a>
+    <section class="grid">
+        <div class="grid-item">
+            <img src="images/forceField/reflow.png" alt="ForceField">
+            <h3>ForceField - An Impact Detecting Device for Hurling</h3>
         </div>
-        
-        <div class="project-card">
-            <a href="projects/reflow.html">
-                <img src="images/forceField/reflow.png" alt="reflow oven">
-                <h3>DIY PID Controlled Reflow Oven</h3>
-            </a>
+        <div class="grid-item">
+            <img src="images/forceField/reflow.png" alt="Reflow Oven">
+            <h3>DIY PID Controlled Reflow Oven</h3>
         </div>
-
-        <div class="project-card">
-            <a href="projects/catFeeder.html">
-                <img src="images/clock.jpg" alt="cat feeder">
-                <h3>RFID Cat Feeder</h3>
-            </a>
+        <div class="grid-item">
+            <img src="images/clock.jpg" alt="Clock">
+            <h3>7 Segment Mechanical Clock Display</h3>
         </div>
-
-        <div class="project-card">
-            <a href="projects/clock.html">
-                <img src="images/clock.webp" alt="clock">
-                <h3>7 Segment Mechanical Clock Display</h3>
-            </a>
+        <div class="grid-item">
+            <img src="images/spudnik.png" alt="Spudnik">
+            <h3>Spudnik - Team Ireland CanSat European Finals 2023</h3>
         </div>
-
-        <div class="project-card">
-            <a href="projects/spudnik.html">
-                <img src="images/spudnik.png" alt="spudnik">
-                <h3>Spudnik - Team Ireland CanSat European Finals 2023</h3>
-            </a>
+        <div class="grid-item">
+            <img src="images/charger.png" alt="Charger">
+            <h3>Bike Dynamo Rear Light & USB Charger</h3>
         </div>
-
-        <div class="project-card">
-            <a href="projects/charager.html">
-                <img src="images/charger.png" alt="charger">
-                <h3>Bike Dynamo Rear Light & USB Charger</h3>
-            </a>
-        </div>
-        <!-- Add more project cards as needed -->
-
-
-
-        
+        <!-- Add more grid items as needed -->
     </section>
 
-        <script>
-        // Initialize Masonry
-        var elem = document.querySelector('.projects-container');
-        var msnry = new Masonry(elem, {
-            itemSelector: '.project-card',
-            columnWidth: '.project-card',
+    <script>
+        var grid = document.querySelector('.grid');
+        var msnry = new Masonry(grid, {
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-item',
             percentPosition: true
         });
+
+        imagesLoaded(grid, function() {
+            msnry.layout();
+        });
     </script>
-    
 </body>
 </html>
