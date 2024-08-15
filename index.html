@@ -24,7 +24,7 @@
     </nav>
 
     <section class="grid">
-        <div class="grid-sizer"></div> <!-- Add this for Masonry column sizing -->
+        <div class="grid-sizer"></div> <!-- Sizer element for Masonry -->
         <div class="grid-item">
             <img src="images/forceField/reflow.png" alt="ForceField">
             <h3>ForceField - An Impact Detecting Device for Hurling</h3>
@@ -52,7 +52,8 @@
         var grid = document.querySelector('.grid');
         var msnry = new Masonry(grid, {
             itemSelector: '.grid-item',
-            columnWidth: '.grid-sizer', // Use the grid-sizer for column width
+            columnWidth: '.grid-sizer',
+            gutter: 20, // Optional, for spacing between items
             percentPosition: true
         });
 
