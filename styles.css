@@ -77,7 +77,7 @@ nav {
     background-color: #ffffff;
     padding: 1px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow intensity */
-    border-radius: 8px;
+    border-radius: 0px;
     box-sizing: border-box;
 }
 
