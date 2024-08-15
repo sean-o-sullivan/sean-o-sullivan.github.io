@@ -41,6 +41,13 @@ nav {
 }
 
 
+#content {
+  margin-top: 15px;
+  float: left;
+  width: 500px;
+}
+
+
 
 .nav-container {
     display: flex;
