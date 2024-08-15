@@ -96,8 +96,8 @@ nav {
 }
 
 .grid-item:hover {
-    transform: scale(1.02); /* Reduced the scale effect on hover */
-    transition: transform 0.2s;
+    transform: scale(1.005); /* Reduced the scale effect on hover */
+    transition: transform 0.1s;
 }
 
 /* Responsive Design */
