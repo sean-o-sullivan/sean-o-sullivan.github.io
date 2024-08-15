@@ -8,6 +8,24 @@ body {
     color: #000000;
 }
 
+bodyIndex {
+    font-family: "Myriad Pro", "Helvetica Neue", Helvetica;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    visibility: hidden;
+    background-color: white; /* Set background color to white */
+}
+
+/* Class to show the content */
+bodyIndex.loaded {
+    visibility: visible;
+    transition: visibility 0s 0s, opacity 0.5s linear; /* Optional fade-in effect */
+    opacity: 1;
+}
+
+
 nav {
     background-color: #ffffff;
     padding: 10px 20px;
