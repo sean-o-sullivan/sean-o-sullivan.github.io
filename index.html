@@ -11,6 +11,8 @@
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 </head>
 <body>
+        <div id="navbar-container"></div>
+
     <nav>
         <div class="nav-container">
             <div class="nav-name">Seán O'Sullivan</div>
@@ -129,6 +131,15 @@
 
 
     <script>
+
+                // Function to load the navigation bar from navbar.html
+        fetch('/navbar.html') // Note the absolute path here
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+
+        
         var grid = document.querySelector('.grid');
         var msnry = new Masonry(grid, {
             itemSelector: '.grid-item',
@@ -140,6 +151,9 @@
         imagesLoaded(grid, function() {
             msnry.layout();
         });
+
+
+    
     </script>
 </body>
 </html>
