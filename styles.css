@@ -72,8 +72,8 @@ nav {
 }
 
 .grid-item {
-    background-color: #f4f4f4;
-    padding: 10px;
+    background-color: #ffffff;
+    padding: 1px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     box-sizing: border-box;
