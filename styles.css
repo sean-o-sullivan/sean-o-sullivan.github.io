@@ -27,7 +27,9 @@ nav {
     margin-left: 10px;
     color: orange; /* Icon color for WIP */
     float: right;
+    font-size: calc(100% + 2px); /* Increase font size by 2px */
 }
+
 
 .nav-container {
     display: flex;
