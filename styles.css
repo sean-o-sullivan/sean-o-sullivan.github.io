@@ -59,7 +59,7 @@ nav {
 /* Masonry Grid */
 .grid {
     width: 80%;
-    max-width: 800px; /* Adjust this to control the grid width */
+    max-width: 85%; /* Adjust this to control the grid width */
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
