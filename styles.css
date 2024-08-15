@@ -56,17 +56,19 @@ nav {
     left: 0;
 }
 
-/* Projects Section using CSS Grid with 2 Boxes per Row */
+/* Projects Section using Flexbox */
 .projects {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 columns, each taking 50% of the width */
-    gap: 20px; /* Space between the items */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     padding: 20px;
     max-width: 1000px;
     margin: 0 auto;
 }
 
 .project-card {
+    flex-basis: calc(50% - 10px);
+    margin-bottom: 0; /* Remove margin-bottom to let gap handle spacing */
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
@@ -145,7 +147,7 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .projects {
-        grid-template-columns: 1fr; /* Single column on smaller screens */
+    .project-card {
+        flex-basis: 100%;
     }
 }
