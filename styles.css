@@ -16,7 +16,7 @@ nav {
 
 /* Status Icons */
 .grid-item[data-status="completed"] h3::after {
-    content: "✔️"; /* Unicode checkmark for completed */
+    content: "✓"; /* Unicode checkmark for completed */
     margin-left: 10px;
     color: green; /* Icon color for completed */
     float: right;
