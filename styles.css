@@ -58,21 +58,23 @@ nav {
 
 /* Masonry Grid */
 .grid {
-    width: 50%; /* Container width */
+    width: 80%; /* Set the container width to 80% of the page width */
+    max-width: 1000px; /* Limit the max width to keep the content centered */
     margin: 0 auto; /* Center the grid */
     padding: 20px;
 }
 
+.grid-sizer, .grid-item {
+    width: calc(50% - 10px); /* Two items per row, minus the gap */
+    margin-bottom: 20px; /* Spacing between items */
+}
+
 .grid-item {
-    background-color: #e0e0e0;
+    background-color: #f4f4f4;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    margin-bottom: 20px;
-    width: calc(50% - 10px); /* Two items per row, minus the gap */
     box-sizing: border-box;
-    display: inline-block;
-    vertical-align: top;
 }
 
 .grid-item img {
@@ -83,10 +85,10 @@ nav {
 }
 
 .grid-item h3 {
-    padding: 10px;
+    padding: 15px 10px;
     margin: 0;
     font-size: 16px;
-    background-color: #f4f4f4;
+    color: #333;
 }
 
 .grid-item:hover {
@@ -100,7 +102,7 @@ nav {
         width: 100%;
     }
 
-    .grid-item {
+    .grid-sizer, .grid-item {
         width: calc(100% - 20px); /* Full width for mobile */
     }
 }
