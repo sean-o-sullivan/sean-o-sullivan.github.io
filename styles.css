@@ -67,17 +67,17 @@ nav {
 
 /* Ensure grid items take half the container width */
 .grid-sizer, .grid-item {
-    width: calc(50% - 7.5%); /* Each item takes half of the grid width, minus the gap */
-    margin-bottom: 7.5%;
-    margin-left: 3.25%;
-    margin-left: 3.25%;
+    width: calc(50% - 4%); /* Each item takes half of the grid width, minus the gap */
+    margin-bottom: 2%;
+    margin-left: 2%;
+    margin-left: 2%;
 }
 
 .grid-item {
     background-color: #ffffff;
     padding: 1px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow intensity */
-    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Reduced shadow intensity */
+    border-radius: 0px;
     box-sizing: border-box;
 }
 
@@ -85,7 +85,7 @@ nav {
     width: 100%;
     height: auto;
     object-fit: cover;
-    border-radius: 8px 8px 0 0;
+    border-radius: 0px 0px 0 0;
 }
 
 .grid-item h3 {
