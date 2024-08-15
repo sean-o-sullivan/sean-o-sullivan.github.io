@@ -23,7 +23,7 @@ nav {
 }
 
 .grid-item[data-status="wip"] h3::after {
-    content: "⚙️"; /* Unicode gear for work in progress */
+    content: "⚙"; /* Unicode gear for work in progress */
     margin-left: 10px;
     color: orange; /* Icon color for WIP */
     float: right;
