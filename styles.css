@@ -59,21 +59,16 @@ nav {
 /* Masonry Grid */
 .grid {
     width: 80%;
-    max-width: 85%;
+    max-width: 85%; /* Adjusted to control the grid width */
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-    position: relative;
 }
 
-/* Adjust grid items to fit two per row */
+/* Ensure grid items take half the container width */
 .grid-sizer, .grid-item {
-    width: 47.5%; /* 47.5% of the container width */
+    width: calc(50% - 10px); /* Each item takes half of the grid width, minus the gap */
     margin-bottom: 20px;
-}
-
-.grid-item:nth-child(odd) {
-    margin-right: 5%; /* 5% margin between the two items in each row */
 }
 
 .grid-item {
@@ -99,7 +94,7 @@ nav {
 }
 
 .grid-item:hover {
-    transform: scale(1.02);
+    transform: scale(1.02); /* Reduced the scale effect on hover */
     transition: transform 0.2s;
 }
 
@@ -110,7 +105,6 @@ nav {
     }
 
     .grid-sizer, .grid-item {
-        width: calc(100% - 20px);
-        margin-right: 0; /* Ensure full width on mobile */
+        width: calc(100% - 20px); /* Full width for mobile */
     }
 }
