@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: "Myriad Pro", "Helvetica Neue", Helvetica;
     font-size: 13px;
     margin: 0;
     padding: 0;
@@ -119,8 +119,9 @@ nav {
 .grid-item h3 {
     padding: 15px 10px;
     margin: 0;
-    font-size: 16px;
-    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #000000;
 }
 
 .grid-item:hover {
