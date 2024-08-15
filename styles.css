@@ -56,10 +56,10 @@ nav {
     left: 0;
 }
 
-/* Projects Section with Natural Flow */
-.projects {
+/* Projects Section with Dynamic Grid Layout */
+.projects-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Each card takes minimum 300px and fills available space */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Flexible column widths */
     gap: 20px; /* Space between the items */
     padding: 20px;
     max-width: 1000px;
@@ -74,7 +74,7 @@ nav {
     transition: transform 0.2s;
     display: flex;
     flex-direction: column;
-    width: 100%; /* Ensures card takes full available width */
+    background-color: #fff; /* Ensure background is white */
 }
 
 .project-card:hover {
@@ -146,7 +146,7 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .projects {
+    .projects-container {
         grid-template-columns: 1fr; /* Single column on smaller screens */
     }
 }
