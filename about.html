@@ -16,7 +16,16 @@
     <section>
          <p>Description</p>
     </section>
-       
+
+            
+    <script>
+        // Function to load the navigation bar from navbar.html
+        fetch('/navbar.html') // Note the absolute path here
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
 
 </body>
 </html>
