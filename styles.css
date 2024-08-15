@@ -56,14 +56,15 @@ nav {
     left: 0;
 }
 
-/* Projects Section using CSS Grid with 2 Boxes per Row */
+/* Projects Section using CSS Grid with Natural Flow */
 .projects {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns, each taking 1 fraction of the available space */
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Flexible column sizing */
+    gap: 20px; /* Space between the items */
     padding: 20px;
     max-width: 1000px;
     margin: 0 auto;
+    grid-auto-flow: dense; /* Allows items to fill in available space naturally */
 }
 
 .project-card {
