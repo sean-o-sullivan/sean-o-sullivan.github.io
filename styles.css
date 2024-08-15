@@ -19,7 +19,7 @@ body {
 .loading-protection.loaded {
     visibility: visible;
     opacity: 1;
-    transition: opacity 0.5s linear; /* Optional fade-in effect */
+    transition: opacity 0.3s ease; /* Optional fade-in effect */
 }
 
 
