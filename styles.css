@@ -67,8 +67,10 @@ nav {
 
 /* Ensure grid items take half the container width */
 .grid-sizer, .grid-item {
-    width: calc(50% - 10px); /* Each item takes half of the grid width, minus the gap */
-    margin-bottom: 20px;
+    width: calc(50% - 7.5%); /* Each item takes half of the grid width, minus the gap */
+    margin-bottom: 7.5%;
+    margin-left: 3.25%;
+    margin-left: 3.25%;
 }
 
 .grid-item {
