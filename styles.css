@@ -65,6 +65,7 @@ nav {
     margin: 0 auto; /* Center the container */
     padding: 20px;
     box-sizing: border-box; /* Include padding in the width */
+    align-items: start; /* Ensure grid items align to the top */
 }
 
 .project-card {
@@ -76,6 +77,7 @@ nav {
     flex-direction: column;
     width: 100%;
     height: auto; /* Allow height to adjust based on content */
+    box-sizing: border-box; /* Include padding in height calculation */
 }
 
 .project-card img {
