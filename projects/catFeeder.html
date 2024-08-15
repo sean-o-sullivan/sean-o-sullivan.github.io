@@ -11,24 +11,24 @@
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <div class="nav-name">Seán O'Sullivan</div>
-    <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../services.html">Services</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-    </ul>
-            
-        </div>
-    </nav>
+    <div id="navbar-container"></div>
+
 
     <section>
         <h2>RFID Cat Feeder</h2>
         <p>Details about cat feeder...</p>
     </section>
 
+            <script>
+        // Function to load the navigation bar from navbar.html
+        fetch('/navbar.html') // Note the absolute path here
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+
+    
    </body>
 </html>
 
