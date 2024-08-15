@@ -59,13 +59,13 @@ nav {
 /* Masonry Grid */
 .grid {
     width: 80%;
-    max-width: 85%; /* Adjust this to control the grid width */
+    max-width: 85%; /* Adjusted to control the grid width */
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* Make sure grid items take half the container width */
+/* Ensure grid items take half the container width */
 .grid-sizer, .grid-item {
     width: calc(50% - 10px); /* Each item takes half of the grid width, minus the gap */
     margin-bottom: 20px;
@@ -74,7 +74,7 @@ nav {
 .grid-item {
     background-color: #ffffff;
     padding: 1px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow intensity */
     border-radius: 8px;
     box-sizing: border-box;
 }
@@ -94,7 +94,7 @@ nav {
 }
 
 .grid-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.02); /* Reduced the scale effect on hover */
     transition: transform 0.2s;
 }
 
