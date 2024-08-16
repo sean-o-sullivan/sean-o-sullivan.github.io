@@ -203,6 +203,25 @@ li {
     margin-bottom: 5px;
 }
 
+/* Indented text section */
+.indented-text {
+    margin-left: 20px;
+    padding-left: 15px;
+    border-left: 2px solid #e0e0e0;
+}
+
+/* Minimalist adjustments */
+body {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.project-content {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .grid {
@@ -211,5 +230,13 @@ li {
 
     .grid-sizer, .grid-item {
         width: 100%;
+    }
+    
+    body {
+        padding: 10px;
+    }
+    
+    .project-content {
+        padding: 15px;
     }
 }

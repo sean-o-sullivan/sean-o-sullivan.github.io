@@ -5,25 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Ireland CanSat - Spudnik Project</title>
     <link rel="stylesheet" href="../styles.css">
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 </head>
 <body>
-    <div id="navbar-container"></div>
+    <nav id="navbar-container"></nav>
     
-    <header class="project-header">
-        <h1 class="project-title">Team Ireland CanSat - Spudnik</h1>
-        <p class="project-subtitle">Exploring the Atmosphere with Potato-Powered Innovation</p>
+    <header>
+        <h1>Team Ireland CanSat - Spudnik</h1>
+        <p class="subtitle">Exploring the Atmosphere with Potato-Powered Innovation</p>
     </header>
 
-    <main class="project-content">
-        <section class="project-section">
+    <main>
+        <section>
             <h2>Project Overview</h2>
-            <img src="path/to/spudnik-overview.jpg" alt="Spudnik CanSat Overview" class="project-image">
+            <img src="path/to/spudnik-overview.jpg" alt="Spudnik CanSat Overview">
             <p>Spudnik is an innovative CanSat project developed by Team Ireland for the European Space Agency's CanSat competition. Our mission is to design, build, and launch a small satellite capable of collecting atmospheric data using potato-based technology.</p>
         </section>
 
-        <section class="project-section">
+        <section>
             <h2>Technical Specifications</h2>
             <ul>
                 <li>Dimensions: 66mm diameter, 115mm height</li>
@@ -34,7 +32,7 @@
             </ul>
         </section>
 
-        <section class="project-section">
+        <section>
             <h2>Mission Objectives</h2>
             <ol>
                 <li>Collect atmospheric data during descent</li>
@@ -44,13 +42,13 @@
             </ol>
         </section>
 
-        <section class="project-section">
+        <section>
             <h2>Project Timeline</h2>
-            <img src="path/to/project-timeline.png" alt="Spudnik Project Timeline" class="project-image">
+            <img src="path/to/project-timeline.png" alt="Spudnik Project Timeline">
             <p>Our project spanned over six months, from initial concept to final launch. Key milestones included prototype development, sensor integration, and rigorous testing phases.</p>
         </section>
 
-        <section class="project-section">
+        <section>
             <h2>Team Members</h2>
             <ul>
                 <li>Jane Doe - Project Manager</li>
@@ -62,7 +60,6 @@
     </main>
 
     <script>
-        // Function to load the navigation bar from navbar.html
         fetch('/navbar.html')
             .then(response => response.text())
             .then(data => {
