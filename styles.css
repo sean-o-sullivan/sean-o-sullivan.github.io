@@ -120,7 +120,7 @@ nav {
 .grid-item {
     background-color: #ffffff;
     padding: 1px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.0);
     border-radius: 0px;
     box-sizing: border-box;
 }
