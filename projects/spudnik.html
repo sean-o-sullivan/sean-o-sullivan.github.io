@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects</title>
     <link rel="stylesheet" href="../styles.css">
+    <!-- Masonry.js -->
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <!-- imagesLoaded.js -->
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 </head>
-<body>
+<body class="loading-protection">
+
     
        <div id="navbar-container"></div>
     
@@ -40,6 +45,12 @@
             .then(data => {
                 document.getElementById('navbar-container').innerHTML = data;
             });
+        
+                window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    
+
     </script>
 </body>
 </html>
