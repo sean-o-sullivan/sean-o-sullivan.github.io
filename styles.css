@@ -239,6 +239,23 @@ body {
     color: #ffffff;
 }
 
+        /* Hyperlink styles */
+        a {
+            color: #66ccff;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #99e6ff;
+            text-decoration: underline;
+        }
+        a:active {
+            color: #33b5e5;
+        }
+        a:visited {
+            color: #80d4ff;
+        }
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .grid {
