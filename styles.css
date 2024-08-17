@@ -110,7 +110,7 @@ nav {
 /* Masonry Grid */
 .grid {
     width: 100%;
-    max-width: 1200px;
+    max-width: 90%;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
@@ -227,7 +227,7 @@ li {
 
 /* Minimalist adjustments */
 body {
-    max-width: 1000px;
+    max-width: 90%;
     margin: 0 auto;
     padding: 20px;
 }
