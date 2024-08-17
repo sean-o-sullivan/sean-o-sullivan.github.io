@@ -29,7 +29,7 @@ nav {
 }
 
 /* Status Icons */
-.grid-item[data-status="completed"] h3::after {
+/* .grid-item[data-status="completed"] h3::after {
     content: "✓";
     margin-left: 10px;
     color: black;
@@ -42,7 +42,7 @@ nav {
     color: black;
     float: right;
     font-size: calc(100% + 3px);
-}
+} */
 
 .grid-item a {
     text-decoration: none;
@@ -221,7 +221,6 @@ body {
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .grid {
@@ -230,6 +229,9 @@ body {
 
     .grid-sizer, .grid-item {
         width: 100%;
+        margin-left: 0; /* Remove left margin */
+        padding-left: 10px; /* Add padding for equal left and right spacing */
+        padding-right: 10px; /* Add padding for equal left and right spacing */
     }
     
     body {
