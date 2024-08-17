@@ -14,7 +14,9 @@ body {
 /* Conditional loading protection */
 .loading-protection {
     visibility: hidden;
-    background-color: white;
+/*     background-color: white;*/
+    background-color: #000000; /* Match with the body background */
+
     opacity: 0;
 }
 
