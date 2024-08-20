@@ -131,6 +131,24 @@
         imagesLoaded(grid, function() {
             msnry.layout();
         });
+
+        // Throttle function to limit the rate of layout recalculations
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const context = this, args = arguments;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            };
+        }
+
+        // Throttle layout updates during window resize
+        window.addEventListener('resize', throttle(function() {
+            msnry.layout();
+        }, 130)); // Adjust the throttle limit (in milliseconds) as needed
     </script>
 </body>
 </html>
