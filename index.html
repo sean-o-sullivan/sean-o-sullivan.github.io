@@ -112,7 +112,7 @@
 
     const sizes = [
         { columns: 1, gutter: 0 },  // Mobile first
-        { mq: '768px', columns: 2, gutter: 10 }  // Tablet and Desktop
+        { mq: '768px', columns: 2, gutter: 20 }  // Tablet and Desktop
     ];
 
     const instance = Bricks({
@@ -125,12 +125,11 @@
         instance.resize(true).pack();  // Initial packing of the grid
     });
 
-    // Debounce the resize event to avoid too many repacks
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            instance.resize(true).pack();  // Explicitly trigger resize and pack on resize
+            instance.resize(true).pack();  // Trigger resize and repack
         }, 200);
     });
 
