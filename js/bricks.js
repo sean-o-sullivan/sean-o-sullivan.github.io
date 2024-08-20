@@ -1,4 +1,5 @@
-import knot from 'knot.js'
+import knot from './knot.js';
+
 
 const bricks = (options = {}) => {
   // privates
