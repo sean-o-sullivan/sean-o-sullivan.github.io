@@ -108,29 +108,19 @@ nav {
     left: 0;
 }
 
-/* Masonry Grid */
 .grid {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.grid-sizer, .grid-item {
-    width: calc(50% - 4%);
-    margin-bottom: 2%;
-    margin-left: 2%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
 }
 
 .grid-item {
     background-color: #000000;
     padding: 1px;
-    box-shadow: 0 1px 0 #000000; /* This creates a 1px solid black line at the bottom */
+    box-shadow: 0 1px 0 #000000;
     border-radius: 0px;
     box-sizing: border-box;
 }
-
 
 .grid-item img {
     width: 100%;
@@ -147,11 +137,11 @@ nav {
     color: #ffffff;
 }
 
-.grid-item:hover {
-    transform: scale(1.0025);
-    transition: transform 0.1s;
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
 }
-
 /* Project-specific styles */
 /* .project-header {
     text-align: center;
