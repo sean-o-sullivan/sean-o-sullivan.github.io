@@ -195,20 +195,15 @@ a:visited {
 .image-column img:last-child {
     margin-bottom: 0;
 }
-
 /* Responsive Design */
 @media (max-width: 768px) {
-    .grid {
-        width: 100%;
+    .grid-item {
+        width: 100%;  /* Full width for mobile screens */
+        margin-bottom: 10px;
+        padding-left: 0;
+        padding-right: 0;
     }
 
-    .grid-sizer, .grid-item {
-        width: 100%;
-        margin-left: 0;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-    
     body {
         padding: 10px;
     }
@@ -216,13 +211,27 @@ a:visited {
     .project-content {
         padding: 15px;
     }
-    
+
     .container {
         flex-direction: column;
+        padding-left: 0;
+        padding-right: 0;
     }
-    
+
     .column {
         width: 100%;
         padding-right: 0;
+    }
+}
+
+@media (min-width: 769px) {
+    .grid-item {
+        width: calc(50% - 10px); /* Two columns with minimal gutter */
+        margin-bottom: 15px;
+    }
+
+    .container {
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }
