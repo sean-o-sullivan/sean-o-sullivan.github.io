@@ -111,19 +111,21 @@
         import Bricks from './js/bricks.js';
         
         const sizes = [
-            { columns: 2, gutter: 10 },
-            { mq: '768px', columns: 1, gutter: 15 },
-            { mq: '1024px', columns: 2, gutter: 20 }
+            { columns: 1, gutter: 0 },                   // Mobile first
+            { mq: '768px', columns: 2, gutter: 15 },      // Tablet
+            { mq: '1024px', columns: 2, gutter: 20 }      // Desktop
         ];
 
         const instance = Bricks({
-            container: '.container',
+            container: '.grid',  // This should target the grid container
             packed: 'data-packed',
             sizes: sizes
         });
 
-        document.addEventListener("DOMContentLoaded", function() {
-            instance.resize(true).pack();  // Rebuild on window resize and pack the grid items
+        document.addEventListener('DOMContentLoaded', function() {
+            instance
+                .resize(true)  // Rebuild on window resize
+                .pack();       // Pack the grid items initially
         });
 
         window.onload = function() {
