@@ -111,7 +111,7 @@
 
 <script type="module">
     import bricks from './js/bricks.js';
-        
+    
     document.addEventListener("DOMContentLoaded", function() {
         var gridBricks = bricks({
             container: '.grid',
@@ -126,7 +126,6 @@
         gridBricks.resize(true);  // Rebuild on window resize
         gridBricks.pack();  // Apply the layout
     });
-
         // Function to load the navigation bar from navbar.html
         fetch('/navbar.html') // Note the absolute path here
             .then(response => response.text())
