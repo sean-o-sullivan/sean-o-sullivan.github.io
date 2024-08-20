@@ -15,7 +15,7 @@
         <div class="nav-container">
             <div class="nav-name">Seán O'Sullivan</div>
             <ul class="nav-links">
-                <li><a href="index.html"class="active">My Projects</a></li>
+                <li><a href="index.html" class="active">My Projects</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="cv.html">CV</a></li>
                 <li><a href="about.html">About</a></li>
@@ -46,7 +46,6 @@
         </a>
     </div>
 
-    
     <div class="grid-item" data-status="wip">
         <a href="projects/rfid-cat-feeder.html">
             <img src="images/feeder2.png" alt="feeder">
@@ -67,7 +66,6 @@
             <h3>3D Scanner App using Depth-Anything-V2</h3>
         </a>
     </div>
-
     
     <div class="grid-item" data-status="completed">
         <a href="projects/clock.html">
@@ -76,7 +74,7 @@
         </a>
     </div>
 
-        <div class="grid-item" data-status="completed">
+    <div class="grid-item" data-status="completed">
         <a href="projects/reflow-oven.html">
             <img src="images/elderCare.png" alt="elderCare board">
             <h3>ElderCare-AI - Non-Invasive Senior Monitoring</h3>
@@ -96,7 +94,6 @@
             <h3>Investigating the Viability of Micro-Level Wind Generation | BTYSTE 2023</h3>
         </a>
     </div>
-
     
     <div class="grid-item" data-status="completed">
         <a href="projects/shiningALight.html">
@@ -104,7 +101,6 @@
             <h3>Shining a Light on COVID-19 School Cleaning Protocols | BTYSTE 2021</h3>
         </a>
     </div>
-
 
     <div class="grid-item" data-status="completed">
         <a href="projects/bike-dynamo.html">
@@ -117,27 +113,13 @@
 </section>
 <section>
     <p>I also have a Thingiverse account that I use to share some of my smaller 3D printing projects. <a href="https://www.thingiverse.com/liminil/designs">https://www.thingiverse.com/liminil/designs</a></p>
-    
-</content>
 </section>
 
-
-
     <script>
- 
-        // Function to load the navigation bar from navbar.html
-        fetch('/navbar.html') // Note the absolute path here
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-            });
-
-        
-                window.onload = function() {
+        window.onload = function() {
             document.body.classList.add('loaded');
         };
-    
-        
+
         var grid = document.querySelector('.grid');
         var msnry = new Masonry(grid, {
             itemSelector: '.grid-item',
@@ -150,7 +132,23 @@
             msnry.layout();
         });
 
+        // Throttle function to limit the rate of layout recalculations
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const context = this, args = arguments;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            };
+        }
 
+        // Throttle layout updates during window resize
+        window.addEventListener('resize', throttle(function() {
+            msnry.layout();
+        }, 100)); // Adjust the throttle limit (in milliseconds) as needed
     </script>
 </body>
 </html>
