@@ -108,32 +108,37 @@
     </section>
     
    <script type="module">
-        import Bricks from './js/bricks.js';
+    import Bricks from './js/bricks.js';
 
-        const sizes = [
-            { columns: 1, gutter: 0 },  // Mobile first
-            { mq: '768px', columns: 2, gutter: 10 },  // Tablet and Desktop
-            { mq: '1024px', columns: 2, gutter: 10 }  // Desktop
-        ];
+    const sizes = [
+        { columns: 1, gutter: 0 },  // Mobile first
+        { mq: '768px', columns: 2, gutter: 10 }  // Tablet and Desktop
+    ];
 
-        const instance = Bricks({
-            container: '.grid',  // Target the grid container
-            packed: 'data-packed',
-            sizes: sizes
-        });
+    const instance = Bricks({
+        container: '.grid',  // Target the grid container
+        packed: 'data-packed',
+        sizes: sizes
+    });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            instance.resize(true).pack();  // Pack the grid items initially
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+        instance.resize(true).pack();  // Pack the grid items initially
+    });
 
-        // Repack on window resize to avoid layout issues
-        window.addEventListener('resize', () => {
+    // Debounce the resize event to avoid too many repacks
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
             instance.pack();
-        });
+        }, 200);
+    });
 
-        window.onload = function() {
-            document.body.classList.add('loaded');
-        };
-    </script>
+    window.onload = function() {
+        document.body.classList.add('loaded');
+    };
+</script>
+
+    
 </body>
 </html>
