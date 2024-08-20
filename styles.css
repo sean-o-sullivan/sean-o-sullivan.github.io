@@ -30,16 +30,17 @@ nav {
 }
 
 .grid {
-    display: grid;
-    gap: 20px; /* Space between grid items */
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
     margin: 0 auto;
-    grid-template-columns: 1fr; /* Default to 1 column */
 }
 
 .grid-item {
     background-color: #000000;
     box-sizing: border-box;
+    margin-bottom: 20px;
+    flex: 1 1 100%;  /* Full width by default */
 }
 
 .grid-item img {
@@ -58,8 +59,16 @@ nav {
 
 /* Responsive Design */
 @media (min-width: 768px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr); /* Two columns on tablets and up */
+    .grid-item {
+        flex: 1 1 calc(50% - 10px); /* Two columns with a 10px gutter */
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .grid-item {
+        flex: 1 1 100%;  /* Full width for screens below 768px */
+        margin-bottom: 10px;
     }
 }
 
