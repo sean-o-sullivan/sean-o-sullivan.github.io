@@ -68,7 +68,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+}e
 
 .nav-name {
     font-size: 13px;
@@ -112,39 +112,21 @@ nav {
 .grid {
     display: flex;
     flex-wrap: wrap;
+    gap: 20px; /* This replaces the need for margin and ensures proper spacing */
+    margin: 20px 0;
     justify-content: space-between;
 }
 
-
-/* Masonry Grid */
-/* .grid {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-} */
-
-.grid-sizer, .grid-item {
-    width: calc(50% - 4%);
-    margin-bottom: 2%;
-    margin-left: 2%;
-}
-
 .grid-item {
+    flex: 1 1 calc(50% - 20px); /* Adjust to 50% width minus gap for two columns */
     background-color: #000000;
-    padding: 1px;
-    box-shadow: 0 1px 0 #000000; /* This creates a 1px solid black line at the bottom */
-    border-radius: 0px;
     box-sizing: border-box;
 }
-
 
 .grid-item img {
     width: 100%;
     height: auto;
     object-fit: cover;
-    border-radius: 0px 0px 0 0;
 }
 
 .grid-item h3 {
@@ -155,9 +137,16 @@ nav {
     color: #ffffff;
 }
 
-.grid-item:hover {
-    transform: scale(1.0025);
-    transition: transform 0.1s;
+@media (min-width: 768px) {
+    .grid-item {
+        flex: 1 1 calc(100% - 20px); /* 1 column on tablets and above */
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-item {
+        flex: 1 1 calc(50% - 20px); /* 2 columns on larger screens */
+    }
 }
 
 /* Project-specific styles */
