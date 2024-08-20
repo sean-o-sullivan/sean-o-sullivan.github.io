@@ -147,10 +147,6 @@ nav {
     color: #ffffff;
 }
 
-.grid-item:hover {
-    transform: scale(1.0025);
-    transition: transform 0.1s;
-}
 
 /* Project-specific styles */
 /* .project-header {
