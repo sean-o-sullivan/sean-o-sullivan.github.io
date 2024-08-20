@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects</title>
+    <title>My Projects - DIY Reflow Oven</title>
     <link rel="stylesheet" href="../styles.css">
     <!-- Masonry.js -->
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
@@ -12,30 +12,46 @@
 </head>
 <body class="loading-protection">
 
-
-       <div id="navbar-container"></div>
+    <div id="navbar-container"></div>
     
     <header>
-        <p><b>Shining a Light on COVID-19 School Cleaning Protocols</b></p>
-        <p class="subtitle">Assessed effectiveness via UV desk analysis, surveys, and observations, revealing insights and areas needing improvement.</p>
+        <p><b>DIY Reflow Oven for PCB Assembly</b></p>
+        <p class="subtitle">I designed and built a DIY reflow oven using a 500W halogen flood lamp, thermocouple, and PID control for precise PCB assembly.</p>
     </header>
 
     <main>
         <section>
-            <p><b>Description</b><p>
-            <p>Our project aimed to assess the effectiveness of Covid-19 cleaning protocols in our school. We utilized a mixed methods approach: First, we analysed 106 student desks under UV light after cleaning with Glo Germ powder, measuring touched areas and the effectiveness of the cleaning using digital grids. Second, we surveyed 26 teachers and 180 students to gather their opinions on Covid-19 and the cleaning procedures. Lastly, we observed student cleaning behaviors, finding that they cleaned the desk’s internal area more thoroughly than the perimeter. This comprehensive analysis provided insights into the cleaning protocols' effectiveness and areas needing improvement.</p>
+            <p><b>Description</b></p>
+            <p>I created this DIY reflow oven as a cost-effective solution for small-scale PCB assembly. The oven features a 500W halogen flood lamp as the heating element, temperature monitoring via a thermocouple, and precise control through a PID loop. The setup is managed with an LCD display for real-time feedback.</p>
         </section>
 
         <section>
-            <p><b>Outcome</b><p>
-            <p>First Place in the Junior Chemical Physical and Mathematical Sciences Category and a Special Award from The Irish Research Council at BTYSTE 2021</p>
+            <p><b>Outcome</b></p>
+            <p>The reflow oven has successfully completed multiple PCB assemblies, providing a reliable and consistent process. It offers a great alternative to expensive commercial reflow ovens, enabling precise control over the soldering process.</p>
         </section>
 
         <section>
-            <p><b>Attachments</b><p>
-            <p>First Place in the Junior Chemical Physical and Mathematical Sciences Category and a Special Award from The Irish Research Council at BTYSTE 2021</p>
-            <img src="path/to/project-timeline.png" alt="glowgerm powder">
+            <p><b>Attachments</b></p>
+            <ul>
+                <li><a href="#">Design Files (Coming Soon)</a></li>
+                <li><a href="#">Circuit Schematic (Coming Soon)</a></li>
+                <li><a href="#">Temperature Profile Data (Coming Soon)</a></li>
+            </ul>
 
+            <img src="../images/reflow_oven1.jpg" alt="DIY Reflow Oven" style="height: 30vh; width: auto;">
+            <img src="../images/reflow_oven2.jpg" alt="Control Circuit" style="height: 30vh; width: auto;">
+            <img src="../images/reflow_oven3.jpg" alt="PCB Assembly" style="height: 30vh; width: auto;">
+            
+            <video style="height: 30vh; width: auto;" controls>
+                <source src="../videos/reflow_oven_demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <br>
+            <img src="../images/reflow_oven_build1.jpg" alt="Reflow Oven Build Process" style="height: 30vh; width: auto;">
+            <img src="../images/reflow_oven_build2.jpg" alt="PID Control Setup" style="height: 30vh; width: auto;">
+            <img src="../images/reflow_oven_build3.jpg" alt="Final Assembly" style="height: 30vh; width: auto;">
+            <img src="../images/reflow_oven_result.jpg" alt="Reflowed PCB" style="height: 30vh; width: auto;">
         </section>
     </main>
 
@@ -45,12 +61,10 @@
             .then(data => {
                 document.getElementById('navbar-container').innerHTML = data;
             });
-
-                window.onload = function() {
+        
+        window.onload = function() {
             document.body.classList.add('loaded');
         };
-    
-
     </script>
 </body>
 </html>
