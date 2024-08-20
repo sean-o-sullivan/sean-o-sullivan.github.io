@@ -309,4 +309,14 @@ body {
     .project-content {
         padding: 15px;
     }
+    
+    /* Stack the columns vertically on smaller screens */
+    .container {
+        flex-direction: column;
+    }
+    
+    .column {
+        width: 100%;
+        padding-right: 0; /* Remove padding on smaller screens */
+    }
 }
