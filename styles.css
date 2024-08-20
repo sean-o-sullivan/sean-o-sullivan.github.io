@@ -7,6 +7,7 @@ body {
     background-color: #000000;
     color: #ffffff;
     line-height: 1.6;
+    max-width: 100%;
 }
 
 /* Conditional loading protection */
@@ -29,17 +30,17 @@ nav {
 }
 
 .grid {
-    margin: 0 auto;
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .grid-item {
     background-color: #000000;
     box-sizing: border-box;
     margin-bottom: 20px;
-    width: 100%;  /* Full width by default, updated by Bricks.js */
+    flex: 1 1 100%;  /* Full width by default */
 }
 
 .grid-item img {
@@ -59,14 +60,14 @@ nav {
 /* Responsive Design */
 @media (min-width: 768px) {
     .grid-item {
-        width: calc(50% - 10px); /* Two columns with a 10px gutter */
+        flex: 1 1 calc(50% - 10px); /* Two columns with a 10px gutter */
         margin-bottom: 15px;
     }
 }
 
 @media (max-width: 767px) {
     .grid-item {
-        width: 100%;  /* Full width for screens below 768px */
+        flex: 1 1 100%;  /* Full width for screens below 768px */
         margin-bottom: 10px;
     }
 }
@@ -146,12 +147,6 @@ li {
 }
 
 /* Minimalist adjustments */
-body {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-}
-
 .project-content {
     background-color: #000000;
     box-shadow: 0 0 10px rgba(255,255,255,0.05);
