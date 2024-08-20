@@ -12,59 +12,57 @@
 </head>
 <body class="loading-protection">
 
-
-       <div id="navbar-container"></div>
+    <div id="navbar-container"></div>
     
     <header>
-        <p><b>Shining a Light on COVID-19 School Cleaning Protocols</b></p>
-        <p class="subtitle">Assessed effectiveness via UV desk analysis, surveys, and observations, revealing insights and areas needing improvement.</p>
+        <p><b>Swimming Timer Pacer for Goggle Attachment</b></p>
+        <p class="subtitle">I developed a compact, magnet-attachable timer to assist swimmers with pacing during training and competitions.</p>
     </header>
 
     <main>
         <section>
-            <p><b>Description</b><p>
-            <p>Our project aimed to assess the effectiveness of Covid-19 cleaning protocols in our school. We utilized a mixed methods approach: First, we analysed 106 student desks under UV light after cleaning with Glo Germ powder, measuring touched areas and the effectiveness of the cleaning using digital grids. Second, we surveyed 26 teachers and 180 students to gather their opinions on Covid-19 and the cleaning procedures. Lastly, we observed student cleaning behaviors, finding that they cleaned the desk’s internal area more thoroughly than the perimeter. This comprehensive analysis provided insights into the cleaning protocols' effectiveness and areas needing improvement.</p>
+            <p><b>Description</b></p>
+            <p>My project aims to create a swimming timer pacer that attaches to goggles using a magnet. This small device features a minute timer that swimmers can use to pace themselves during training or competitions. The compact design ensures it doesn't interfere with the swimmer's performance while providing valuable timing information at a glance.</p>
         </section>
 
         <section>
-            <p><b>Outcome</b><p>
-            <p>First order has been placed. I hope to test this with my friends and other fellow swimmers.</p>
+            <p><b>Current Status</b></p>
+            <p>I've placed the first order. I plan to test this with my friends and fellow swimmers to gather feedback and make necessary improvements.</p>
         </section>
 
         <section>
             <p><b>Attachments</b></p>
-        <ul>
-            <li><a href="https://www.thingiverse.com/thing:6209691">Design Files</a></li>
-            <li><a href="https://drive.google.com/file/d/1v1vo5BgLbhMx7TnjzkkBNYoekiAJ2Hm6/view?usp=sharing">Final Report</a></li>
-            <li><a href="https://www.rte.ie/kids/news2day/2023/0623/1390843-news2day-23-june-2023/">RTE News2Day Interview</a></li>
-        </ul>
+            <ul>
+                <li><a href="#">Design Files (Coming Soon)</a></li>
+                <li><a href="#">Project Report (In Progress)</a></li>
+                <li><a href="#">Size Reference Images (To Be Added)</a></li>
+            </ul>
 
-                 <p><b>V2.0 - Using STM32Lo Microcontroller & LED Matrix Driver</b></p>
+            <p><b>V2.0 - Using STM32Lo Microcontroller & LED Matrix Driver</b></p>
 
-            <img src="../images/pace.png" alt="SpudnikSatelliteModel" style="height: 40vh; width: auto;">
-<img src="../images/pace/currentSchematic.png" alt="SpudnikSatelliteModel" style="height: 40vh; width: auto;">
+            <img src="../images/pace.png" alt="Swimming Timer Pacer V2" style="height: 40vh; width: auto;">
+            <img src="../images/pace/currentSchematic.png" alt="Current Schematic" style="height: 40vh; width: auto;">
             
-             <p><b>V1.0 - Using purely discreet components</b></p> 
+            <p><b>V1.0 - Using purely discrete components</b></p> 
             
-            <p>This iteration used eight daisy-chained shifting registers, driven by a quartz crystal oscillator. Additionally it featured a latching circuit which would create the intial 'bit' in the first register that would then cycle through and provide the cycling LED.</p>
+            <p>My initial iteration used eight daisy-chained shift registers, driven by a quartz crystal oscillator. It also featured a latching circuit to create the initial 'bit' in the first register that would then cycle through and provide the cycling LED.</p>
 
-            <p>I ultimately decided to leave this iteration due to its sheer complexity and cost of production.</p>
-<img src="../images/pace/oldie.png" alt="oldView" style="height: 40vh; width: auto;">
-<img src="../images/pace/oldSche.jpeg" alt="HoldingSpudnikSatellite" style="height: 50vh; width: auto;">
-<br>
-<p><b>Initial-pulse-generating latching circuit:</b> This circuit provides the initial input 'bit' to the first shifting register and latches to zero after the first clock pulse. The second video is an example of <b>daisy-chained shifting registers</b>.</p>
+            <p>I ultimately decided to move away from this iteration due to its complexity and production costs.</p>
+
+            <img src="../images/pace/oldie.png" alt="V1 Design" style="height: 40vh; width: auto;">
+            <img src="../images/pace/oldSche.jpeg" alt="V1 Schematic" style="height: 50vh; width: auto;">
+            <br>
+            <p><b>Initial pulse-generating latching circuit:</b> This circuit provides the initial input 'bit' to the first shift register and latches to zero after the first clock pulse. The second video demonstrates daisy-chained shift registers.</p>
             
-<video style="height: 40vh; width: auto;" controls>
-  <source src="../images/pace/latching.mov" type="video/quicktime">
-  Your browser does not support the video tag.
-</video>
+            <video style="height: 40vh; width: auto;" controls>
+              <source src="../images/pace/latching.mov" type="video/quicktime">
+              Your browser does not support the video tag.
+            </video>
 
-<video style="height: 40vh; width: auto;" controls>
-  <source src="../images/pace/shiftReg.mov" type="video/quicktime">
-  Your browser does not support the video tag.
-</video>
-
-                        
+            <video style="height: 40vh; width: auto;" controls>
+              <source src="../images/pace/shiftReg.mov" type="video/quicktime">
+              Your browser does not support the video tag.
+            </video>
         </section>
     </main>
 
@@ -75,11 +73,9 @@
                 document.getElementById('navbar-container').innerHTML = data;
             });
 
-                window.onload = function() {
+        window.onload = function() {
             document.body.classList.add('loaded');
         };
-    
-
     </script>
 </body>
 </html>
