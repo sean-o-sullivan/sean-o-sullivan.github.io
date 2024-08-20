@@ -256,6 +256,39 @@ body {
         }
 
 
+
+
+
+/* Container for the columns */
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Column styles */
+.column {
+    width: 48%; /* Adjust width as needed */
+}
+
+/* Text column specific styles */
+.text-column {
+    padding-right: 20px;
+}
+
+/* Image column specific styles */
+.image-column img {
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.image-column img:last-child {
+    margin-bottom: 0;
+}
+
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .grid {
