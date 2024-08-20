@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./js/bricks.js"></script>
+    <!-- Change the script to be loaded as a module -->
+    <script type="module" src="./js/bricks.js"></script>
 </head>
 <body class="loading-protection">
     <nav>
@@ -124,7 +125,6 @@
             bricks.pack();  // Apply the layout
         });
 
- 
         // Function to load the navigation bar from navbar.html
         fetch('/navbar.html') // Note the absolute path here
             .then(response => response.text())
@@ -132,27 +132,9 @@
                 document.getElementById('navbar-container').innerHTML = data;
             });
 
-        
-                window.onload = function() {
+        window.onload = function() {
             document.body.classList.add('loaded');
         };
-    
-        
-        // var grid = document.querySelector('.grid');
-        // var msnry = new Masonry(grid, {
-        //     itemSelector: '.grid-item',
-        //     columnWidth: '.grid-sizer',
-        //     gutter: 20, // Optional, for spacing between items
-        //     percentPosition: true
-        // });
-
-        // imagesLoaded(grid, function() {
-        //     msnry.layout();
-        // });
-
- 
-
-    
     </script>
 </body>
 </html>
