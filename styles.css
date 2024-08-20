@@ -4,8 +4,6 @@ body {
     font-size: 13px;
     margin: 0;
     padding: 0;
-/*     background-color: #ffffff;
-    color: #000000; */
     background-color: #000000;
     color: #ffffff;
     line-height: 1.6;
@@ -14,7 +12,6 @@ body {
 /* Conditional loading protection */
 .loading-protection {
     visibility: hidden;
-/*     background-color: white;*/
     background-color: #000000;
     opacity: 0;
 }
@@ -31,84 +28,7 @@ nav {
     border-bottom: 1px solid #ffffff;
 }
 
-/* Status Icons */
-/* .grid-item[data-status="completed"] h3::after {
-    content: "✓";
-    margin-left: 10px;
-    color: white;
-    float: right;
-}
-
-.grid-item[data-status="wip"] h3::after {
-    content: "⚙";
-    margin-left: 10px;
-    color: white;
-    float: right;
-    font-size: calc(100% + 3px);
-} */
-
-.grid-item a {
-    text-decoration: none;
-    color: #ffffff;
-    display: block;
-}
-
-
-.grid-item a:hover {
-    text-decoration: none;
-}
-
-#content {
-    margin-top: 25px;
-    float: left;
-    width: 500px;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}e
-
-.nav-name {
-    font-size: 13px;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.nav-links {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.nav-links li {
-    margin-left: 20px;
-}
-
-.nav-links li a {
-/*     color: #000000; */
-    color: #ffffff; 
-    text-decoration: none;
-    font-size: 13px;
-    padding-bottom: 5px;
-    position: relative;
-}
-
-.nav-links li a.active::after {
-    content: '';
-    display: block;
-    height: 2px;
-    /*background-color: #000000;*/
-    background-color: #ffffff;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-
+/* Grid Styles */
 .grid {
     display: flex;
     flex-wrap: wrap;
@@ -149,48 +69,48 @@ nav {
     }
 }
 
-/* Project-specific styles */
-/* .project-header {
-    text-align: center;
-    padding: 40px 0;
-    background-color: #000000;
+/* Navigation Styles */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.project-title {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+.nav-name {
+    font-size: 13px;
+    font-weight: bold;
     color: #ffffff;
 }
 
-.project-subtitle {
-    font-size: 1.2em;
-    color: #ffffff;
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
 
-.project-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #000000;
-    color: #ffffff;
+.nav-links li {
+    margin-left: 20px;
 }
 
-.project-section {
-    margin-bottom: 40px;
+.nav-links li a {
+    color: #ffffff; 
+    text-decoration: none;
+    font-size: 13px;
+    padding-bottom: 5px;
+    position: relative;
 }
 
-.project-section h2 {
-    border-bottom: 2px solid #ffffff;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    color: #ffffff;
+.nav-links li a.active::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background-color: #ffffff;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
-
-.project-image {
-    max-width: 100%;
-    height: auto;
-    margin: 20px 0;
-} */
 
 /* Typography improvements */
 p {
@@ -236,23 +156,24 @@ body {
     color: #ffffff;
 }
 
-        /* Hyperlink styles */
-        a {
-            color: #66ccff;
-            text-decoration: none;
-        }
-        a:hover {
-            color: #99e6ff;
-            text-decoration: underline;
-        }
-        a:active {
-            color: #33b5e5;
-        }
-        a:visited {
-            color: #80d4ff;
-        }
+/* Hyperlink styles */
+a {
+    color: #66ccff;
+    text-decoration: none;
+}
 
+a:hover {
+    color: #99e6ff;
+    text-decoration: underline;
+}
 
+a:active {
+    color: #33b5e5;
+}
+
+a:visited {
+    color: #80d4ff;
+}
 
 /* Container for the columns */
 .container {
@@ -272,13 +193,6 @@ body {
 }
 
 /* Image column specific styles */
-/* .image-column img {
-    width: 100%;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-} */
-
 .image-column img:last-child {
     margin-bottom: 0;
 }
