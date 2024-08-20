@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects</title>
     <link rel="stylesheet" href="./styles.css">
-    <!-- Change the script to be loaded as a module -->
-    <script type="module" src="./js/bricks.js"></script>
 </head>
 <body class="loading-protection">
     <nav>
@@ -20,7 +18,7 @@
             </ul>
         </div>
     </nav>
-    <section class="grid">
+    <section class="grid container">
         <div class="grid-item" data-status="wip" data-tags="CAD, PCB">
             <a href="projects/pace-timer.html">
                 <img src="images/pace.png" alt="pace timer">
@@ -109,29 +107,24 @@
         <p>I also have a Thingiverse account that I use to share some of my smaller 3D printing projects. <a href="https://www.thingiverse.com/liminil/designs">https://www.thingiverse.com/liminil/designs</a></p>
     </section>
 
-<script type="module">
-    import bricks from './js/bricks.js';
-    
-    document.addEventListener("DOMContentLoaded", function() {
-        var gridBricks = bricks({
-            container: '.grid',
+    <script type="module">
+        import Bricks from './js/bricks.js';
+        
+        const sizes = [
+            { columns: 2, gutter: 10 },
+            { mq: '768px', columns: 3, gutter: 25 },
+            { mq: '1024px', columns: 4, gutter: 50 }
+        ];
+
+        const instance = Bricks({
+            container: '.container',
             packed: 'data-packed',
-            sizes: [
-                { columns: 2, gutter: 20 },
-                { mq: '768px', columns: 1, gutter: 15 },
-                { mq: '1024px', columns: 2, gutter: 20 }
-            ]
+            sizes: sizes
         });
 
-        gridBricks.resize(true);  // Rebuild on window resize
-        gridBricks.pack();  // Apply the layout
-    });
-        // Function to load the navigation bar from navbar.html
-        fetch('/navbar.html') // Note the absolute path here
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-            });
+        document.addEventListener("DOMContentLoaded", function() {
+            instance.resize(true).pack();  // Rebuild on window resize and pack the grid items
+        });
 
         window.onload = function() {
             document.body.classList.add('loaded');
