@@ -47,6 +47,16 @@ nav {
     font-size: calc(100% + 3px);
 } */
 
+.grid-item a {
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+}
+
+
+.grid-item a:hover {
+    text-decoration: none;
+}
 
 #content {
     margin-top: 25px;
@@ -98,30 +108,49 @@ nav {
     left: 0;
 }
 
+/* Masonry Grid */
 .grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.grid-sizer, .grid-item {
+    width: calc(50% - 4%);
+    margin-bottom: 2%;
+    margin-left: 2%;
 }
 
 .grid-item {
-    width: calc(50% - 10px); /* 50% width minus gutter for 2 columns */
-    margin-bottom: 20px;
-}
-
-@media (min-width: 768px) {
-    .grid-item {
-        width: calc(33.33% - 10px); /* 3 columns layout */
-    }
-}
-
-@media (min-width: 1024px) {
-    .grid-item {
-        width: calc(25% - 10px); /* 4 columns layout */
-    }
+    background-color: #000000;
+    padding: 1px;
+    box-shadow: 0 1px 0 #000000; /* This creates a 1px solid black line at the bottom */
+    border-radius: 0px;
+    box-sizing: border-box;
 }
 
 
+.grid-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0px 0px 0 0;
+}
+
+.grid-item h3 {
+    padding: 15px 10px;
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.grid-item:hover {
+    transform: scale(1.0025);
+    transition: transform 0.1s;
+}
 
 /* Project-specific styles */
 /* .project-header {
