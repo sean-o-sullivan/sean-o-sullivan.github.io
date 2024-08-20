@@ -276,12 +276,12 @@ body {
 }
 
 /* Image column specific styles */
-.image-column img {
+/* .image-column img {
     width: 100%;
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-}
+} */
 
 .image-column img:last-child {
     margin-bottom: 0;
