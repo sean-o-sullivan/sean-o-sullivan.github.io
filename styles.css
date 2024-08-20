@@ -27,18 +27,19 @@ nav {
     padding: 10px 20px;
     border-bottom: 1px solid #ffffff;
 }
-
 .grid {
-    margin: 0px auto;
-    max-width: 90%;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
     display: flex;
-    flex-wrap: wrap; /* To ensure items flow correctly */
+    flex-wrap: wrap; /* Ensure items flow correctly */
 }
 
 .grid-item {
     background-color: #000000;
     box-sizing: border-box;
     margin-bottom: 20px;
+    width: 100%;  /* Full width by default, updated by Bricks.js */
 }
 
 .grid-item img {
@@ -48,12 +49,14 @@ nav {
 }
 
 .grid-item h3 {
-    padding: 0px 0px;
+    padding: 0;
     margin: 0;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 13px;
     color: #ffffff;
 }
+
+
 
 /* Navigation Styles */
 .nav-container {
@@ -182,43 +185,37 @@ a:visited {
 .image-column img:last-child {
     margin-bottom: 0;
 }
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .grid-item {
         width: 100%;  /* Full width for mobile screens */
         margin-bottom: 10px;
-        padding-left: 0;
-        padding-right: 0;
     }
 
     body {
         padding: 10px;
     }
-    
-    .project-content {
-        padding: 0px;
-    }
 
     .container {
-        flex-direction: column;
         padding-left: 0;
         padding-right: 0;
     }
 
-    .column {
-        width: 100%;
-        padding-right: 0;
+    .project-content {
+        padding: 0;
     }
 }
 
 @media (min-width: 769px) {
     .grid-item {
-        width: calc(50% - 10px); /* Two columns with minimal gutter */
+        width: calc(50% - 5px); /* Two columns with minimal gutter */
         margin-bottom: 15px;
     }
 
     .container {
-        padding-left: 0px;
-        padding-right: 0px;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
