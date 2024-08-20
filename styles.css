@@ -257,12 +257,11 @@ body {
 
 
 
-
-
 /* Container for the columns */
 .container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping of columns */
 }
 
 /* Column styles */
@@ -287,8 +286,6 @@ body {
     margin-bottom: 0;
 }
 
-
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .grid {
@@ -308,5 +305,15 @@ body {
     
     .project-content {
         padding: 15px;
+    }
+    
+    /* Stack the columns vertically on smaller screens */
+    .container {
+        flex-direction: column;
+    }
+    
+    .column {
+        width: 100%;
+        padding-right: 0; /* Remove padding on smaller screens */
     }
 }
