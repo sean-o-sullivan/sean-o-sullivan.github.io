@@ -1,4 +1,4 @@
- /* General Styles */
+/* General Styles */
 body {
     font-family: "Myriad Pro", "Helvetica Neue", Helvetica;
     font-size: 13px;
@@ -27,11 +27,12 @@ nav {
     padding: 10px 20px;
     border-bottom: 1px solid #ffffff;
 }
+
 .grid {
     margin: 0 auto;
     width: 100%;
     display: flex;
-    flex-wrap: wrap; /* Ensure items flow correctly */
+    flex-wrap: wrap;
 }
 
 .grid-item {
@@ -55,7 +56,20 @@ nav {
     color: #ffffff;
 }
 
+/* Responsive Design */
+@media (min-width: 768px) {
+    .grid-item {
+        width: calc(50% - 10px); /* Two columns with a 10px gutter */
+        margin-bottom: 15px;
+    }
+}
 
+@media (max-width: 767px) {
+    .grid-item {
+        width: 100%;  /* Full width for screens below 768px */
+        margin-bottom: 10px;
+    }
+}
 
 /* Navigation Styles */
 .nav-container {
@@ -161,60 +175,4 @@ a:active {
 
 a:visited {
     color: #80d4ff;
-}
-
-/* Container for the columns */
-.container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-/* Column styles */
-.column {
-    width: 48%; 
-}
-
-/* Text column specific styles */
-.text-column {
-    padding-right: 20px;
-}
-
-/* Image column specific styles */
-.image-column img:last-child {
-    margin-bottom: 0;
-}
-
-
-/* Responsive Design */
-@media (max-width: 1000px) {
-    .grid-item {
-        width: 100%;  /* Full width for mobile screens */
-        margin-bottom: 10px;
-    }
-
-    body {
-        padding: 10px;
-    }
-
-    .container {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .project-content {
-        padding: 0;
-    }
-}
-
-@media (min-width: 1001px) {
-    .grid-item {
-        width: calc(50% - 5px); /* Two columns with minimal gutter */
-        margin-bottom: 15px;
-    }
-
-    .container {
-        padding-left: 0;
-        padding-right: 0;
-    }
 }
