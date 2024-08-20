@@ -106,26 +106,29 @@
     <section>
         <p>I also have a Thingiverse account that I use to share some of my smaller 3D printing projects. <a href="https://www.thingiverse.com/liminil/designs">https://www.thingiverse.com/liminil/designs</a></p>
     </section>
-
-    <script type="module">
+    
+   <script type="module">
         import Bricks from './js/bricks.js';
-        
+
         const sizes = [
-            { columns: 1, gutter: 0 },                   // Mobile first
-            { mq: '768px', columns: 2, gutter: 0 },      // Tablet
-            { mq: '1024px', columns: 2, gutter: 0 }      // Desktop
+            { columns: 1, gutter: 0 },  // Mobile first
+            { mq: '768px', columns: 2, gutter: 10 },  // Tablet and Desktop
+            { mq: '1024px', columns: 2, gutter: 10 }  // Desktop
         ];
 
         const instance = Bricks({
-            container: '.grid',  // This should target the grid container
+            container: '.grid',  // Target the grid container
             packed: 'data-packed',
             sizes: sizes
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            instance
-                .resize(true)  // Rebuild on window resize
-                .pack();       // Pack the grid items initially
+            instance.resize(true).pack();  // Pack the grid items initially
+        });
+
+        // Repack on window resize to avoid layout issues
+        window.addEventListener('resize', () => {
+            instance.pack();
         });
 
         window.onload = function() {
