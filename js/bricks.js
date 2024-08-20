@@ -1,7 +1,7 @@
 import knot from './knot.js';
 
 
-const bricks = (options = {}) => {
+const Bricks = (options = {}) => {
   // privates
 
   let persist           // packing new elements, or all elements?
@@ -202,4 +202,4 @@ const bricks = (options = {}) => {
   }
 }
 
-export default bricks
+export default Bricks
