@@ -8,7 +8,7 @@
     <!-- Masonry.js -->
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <!-- imagesLoaded.js -->
-    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="./js/bricks.js"></script>
 </head>
 <body class="loading-protection">
     <nav>
@@ -138,19 +138,33 @@
         };
     
         
-        var grid = document.querySelector('.grid');
-        var msnry = new Masonry(grid, {
-            itemSelector: '.grid-item',
-            columnWidth: '.grid-sizer',
-            gutter: 20, // Optional, for spacing between items
-            percentPosition: true
+        // var grid = document.querySelector('.grid');
+        // var msnry = new Masonry(grid, {
+        //     itemSelector: '.grid-item',
+        //     columnWidth: '.grid-sizer',
+        //     gutter: 20, // Optional, for spacing between items
+        //     percentPosition: true
+        // });
+
+        // imagesLoaded(grid, function() {
+        //     msnry.layout();
+        // });
+
+            document.addEventListener("DOMContentLoaded", function() {
+        var bricks = Bricks({
+            container: '.grid',
+            packed: 'data-packed',
+            sizes: [
+                { columns: 2, gutter: 20 },
+                { mq: '768px', columns: 3, gutter: 15 },
+                { mq: '1024px', columns: 4, gutter: 20 }
+            ]
         });
 
-        imagesLoaded(grid, function() {
-            msnry.layout();
-        });
-
-
+        bricks.resize(true);  // Rebuild on window resize
+        bricks.pack();  // Apply the layout
+    });
+        
     </script>
 </body>
 </html>
