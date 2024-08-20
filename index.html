@@ -115,14 +115,47 @@
                 packed: 'data-packed',
                 sizes: [
                     { columns: 2, gutter: 20 },
-                    { mq: '768px', columns: 3, gutter: 15 },
-                    { mq: '1024px', columns: 4, gutter: 20 }
+                    { mq: '768px', columns: 1, gutter: 15 },
+                    { mq: '1024px', columns: 2, gutter: 20 }
                 ]
             });
 
             bricks.resize(true);  // Rebuild on window resize
             bricks.pack();  // Apply the layout
         });
+
+ 
+        // Function to load the navigation bar from navbar.html
+        fetch('/navbar.html') // Note the absolute path here
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+
+        
+                window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    
+        
+        // var grid = document.querySelector('.grid');
+        // var msnry = new Masonry(grid, {
+        //     itemSelector: '.grid-item',
+        //     columnWidth: '.grid-sizer',
+        //     gutter: 20, // Optional, for spacing between items
+        //     percentPosition: true
+        // });
+
+        // imagesLoaded(grid, function() {
+        //     msnry.layout();
+        // });
+
+        bricks.resize(true);  // Rebuild on window resize
+        bricks.pack();  // Apply the layout
+    });
+    
+
+    
     </script>
 </body>
 </html>
