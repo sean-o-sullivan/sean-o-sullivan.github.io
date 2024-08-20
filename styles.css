@@ -55,19 +55,6 @@ nav {
     color: #ffffff;
 }
 
-/* Responsive Design */
-@media (min-width: 768px) {
-    .grid-item {
-        width: calc(50% - 10px); /* Adjusted for the gutter */
-    }
-}
-
-@media (min-width: 1024px) {
-    .grid-item {
-        width: calc(33.33% - 10px); /* Adjusted for the gutter */
-    }
-}
-
 /* Navigation Styles */
 .nav-container {
     display: flex;
@@ -209,7 +196,7 @@ a:visited {
     }
     
     .project-content {
-        padding: 15px;
+        padding: 0px;
     }
 
     .container {
@@ -231,7 +218,7 @@ a:visited {
     }
 
     .container {
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
