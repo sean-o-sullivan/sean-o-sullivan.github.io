@@ -108,10 +108,9 @@ nav {
     left: 0;
 }
 
-
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 20px;
 }
 
@@ -138,9 +137,9 @@ nav {
     color: #ffffff;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
