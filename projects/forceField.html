@@ -13,7 +13,10 @@
 <body class="loading-protection">
 
     <div id="navbar-container"></div>
-    
+
+        <div class="container">
+        <div class="column text-column">
+            
     <header>
         <p><b>ForceField: Impact Detection Sensors for Hurling/Camogie</b></p>
         <p class="subtitle">Developing innovative technology to monitor and reduce concussion risks in hurling and camogie.</p>
@@ -99,16 +102,15 @@
                 <li><a href="https://www.linkedin.com/in/se%C3%A1n-o-sullivan-b267b12a7/">LinkedIn Profile</a></li>
             </ul>
         </section>
-        
+        </div>
+        <div class="column image-column">
         <section>
             <p><b>Attachments</b></p>
-            <p><strong>Photos:</strong></p>
             <div class="photo-gallery">
                 <img src="path_to_image1.jpg" alt="ForceField Sensor" style="width: 300px; height: auto;">
                 <img src="path_to_image2.jpg" alt="ForceField App Interface" style="width: 300px; height: auto;">
                 <img src="path_to_image3.jpg" alt="Testing in Action" style="width: 300px; height: auto;">
             </div>
-            <p><strong>Videos:</strong></p>
             <div class="video-gallery">
                 <video width="320" height="240" controls>
                     <source src="path_to_video1.mp4" type="video/mp4">
@@ -120,10 +122,11 @@
                 </video>
             </div>
         </section>
-
-
     </main>
 
+        </div>
+    </div>
+    
     <script>
         fetch('/navbar.html')
             .then(response => response.text())
