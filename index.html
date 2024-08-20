@@ -107,7 +107,7 @@
         <p>I also have a Thingiverse account that I use to share some of my smaller 3D printing projects. <a href="https://www.thingiverse.com/liminil/designs">https://www.thingiverse.com/liminil/designs</a></p>
     </section>
     
-   <script type="module">
+<script type="module">
     import Bricks from './js/bricks.js';
 
     const sizes = [
@@ -122,7 +122,7 @@
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-        instance.resize(true).pack();  // Pack the grid items initially
+        instance.resize(true).pack();  // Initial packing of the grid
     });
 
     // Debounce the resize event to avoid too many repacks
@@ -130,7 +130,7 @@
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            instance.pack();
+            instance.resize(true).pack();  // Explicitly trigger resize and pack on resize
         }, 200);
     });
 
@@ -138,6 +138,7 @@
         document.body.classList.add('loaded');
     };
 </script>
+
 
     
 </body>
