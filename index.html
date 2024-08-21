@@ -116,7 +116,7 @@
     <p>I also have a Thingiverse account that I use to share some of my smaller 3D printing projects. <a href="https://www.thingiverse.com/liminil/designs">https://www.thingiverse.com/liminil/designs</a></p>
 </section>
 
-    <script>
+   <script>
         window.onload = function() {
             document.body.classList.add('loaded');
         };
@@ -149,7 +149,7 @@
         // Throttle layout updates during window resize
         window.addEventListener('resize', throttle(function() {
             msnry.layout();
-        }, 0)); // Adjust the throttle limit (in milliseconds) as needed
+        }, 200)); // Adjust the throttle limit (in milliseconds) as needed
 
         // Progressive image loading
         document.addEventListener("DOMContentLoaded", function() {
@@ -166,7 +166,7 @@
 
                 // Create a low-res placeholder using the canvas
                 const tempImg = new Image();
-                tempImg.src = img.src;
+                tempImg.src = img.dataset.src; // Use the data-src attribute
                 tempImg.onload = function() {
                     ctx.drawImage(tempImg, 0, 0, canvas.width, canvas.height);
                     img.src = canvas.toDataURL(); // Set the img src to the canvas data URL
@@ -174,7 +174,7 @@
 
                 // Load the full image in the background
                 const fullImg = new Image();
-                fullImg.src = img.getAttribute('data-src') || img.src; // Fallback to the original src
+                fullImg.src = img.dataset.src; // Use the data-src attribute
                 fullImg.onload = function() {
                     img.src = fullImg.src; // Replace the placeholder with the full image
                 };
