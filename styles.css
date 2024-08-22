@@ -105,16 +105,16 @@ nav {
     bottom: 0;
     left: 0;
 }
-
 /* CSS Grid Layout */
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Default to 2 equal columns */
-    grid-gap: 20px; /* Space between grid items */
-    width: 100%;
-    margin: 0 auto;
+    grid-gap: 30px; /* Space between grid items */
+    max-width: 1200px; /* Set a max-width to center the grid */
+    margin: 0 auto; /* Center the grid on the page */
     padding: 10px;
     box-sizing: border-box;
+    justify-content: center; /* Ensures grid items are centered if fewer columns are present */
 }
 
 .grid-item {
@@ -144,7 +144,6 @@ nav {
         grid-template-columns: 1fr; /* Single column layout for screens smaller than 768px */
     }
 }
-
 
 
 
