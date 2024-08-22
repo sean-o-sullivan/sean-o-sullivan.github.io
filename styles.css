@@ -110,7 +110,7 @@ nav {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Default to 2 equal columns */
     grid-gap: 0px; /* Space between grid items */
-    max-width: 1200px; /* Set a max-width to center the grid */
+    width: 100%;
     margin: 0 auto; /* Center the grid on the page */
     padding: 0px;
     box-sizing: border-box;
@@ -119,7 +119,7 @@ nav {
 
 .grid-item {
     width: 100%;
-     padding: 0px;
+     padding: 3px;
 
     background-color: #ffffff;
     box-sizing: border-box;
