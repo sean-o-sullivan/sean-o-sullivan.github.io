@@ -110,7 +110,7 @@ nav {
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Default to 2 equal columns */
-    grid-gap: 10px; /* Space between grid items */
+    grid-gap: 20px; /* Space between grid items */
     width: 100%;
     margin: 0 auto;
     padding: 10px;
