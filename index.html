@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects</title>
     <link rel="stylesheet" href="./styles.css">
-    <!-- Masonry.js -->
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <!-- imagesLoaded.js -->
-    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 </head>
 <body class="loading-protection">
     <nav>
@@ -22,9 +18,7 @@
             </ul>
         </div>
     </nav>
-<section class="grid">
-    <div class="grid-sizer"></div> <!-- Sizer element for Masonry -->
-
+<section class="grid masonry">
     <div class="grid-item" data-status="wip" data-tags="CAD, PCB">
         <a href="projects/pace-timer.html">
             <img src="images/pace_low.jpg" data-src="images/pace.png" alt="pace timer" class="progressive-image">
@@ -120,18 +114,6 @@
             document.body.classList.add('loaded');
         };
 
-        var grid = document.querySelector('.grid');
-        var msnry = new Masonry(grid, {
-            itemSelector: '.grid-item',
-            columnWidth: '.grid-sizer',
-            gutter: 20, // Optional, for spacing between items
-            percentPosition: true
-        });
-
-        imagesLoaded(grid, function() {
-            msnry.layout();
-        });
-
         // Lazy load high-quality images
         function lazyLoad() {
             var images = document.querySelectorAll('.progressive-image');
@@ -146,25 +128,6 @@
         }
 
         window.addEventListener('load', lazyLoad);
-
-        // Throttle function to limit the rate of layout recalculations
-        function throttle(func, limit) {
-            let inThrottle;
-            return function() {
-                const context = this, args = arguments;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            };
-        }
-
-        // Throttle layout updates during window resize
-        window.addEventListener('resize', throttle(function() {
-            msnry.layout();
-        }, 200)); // Adjust the throttle limit (in milliseconds) as needed
-       
     </script>
 </body>
 </html>
