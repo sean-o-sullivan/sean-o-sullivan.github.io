@@ -6,15 +6,12 @@ body {
     padding: 0;
     background-color: #ffffff;
     color: #000000;
-/*     background-color: #000000;
-    color: #ffffff; */
     line-height: 1.6;
 }
 
-/* Conditional loading protection */e
+/* Conditional loading protection */
 .loading-protection {
     visibility: hidden;
-/*     background-color: white;*/
     background-color: #ffffff;
     opacity: 0;
 }
@@ -31,28 +28,11 @@ nav {
     border-bottom: 1px solid #000000;
 }
 
-/* Status Icons */
-/* .grid-item[data-status="completed"] h3::after {
-    content: "✓";
-    margin-left: 10px;
-    color: white;
-    float: right;
-}
-
-.grid-item[data-status="wip"] h3::after {
-    content: "⚙";
-    margin-left: 10px;
-    color: white;
-    float: right;
-    font-size: calc(100% + 3px);
-} */
-
 .grid-item a {
     text-decoration: none;
     color: #000000;
     display: block;
 }
-
 
 .grid-item a:hover {
     text-decoration: none;
@@ -107,28 +87,22 @@ nav {
 }
 
 /* Masonry Grid */
-.grid {
-    width: 100%;
-    max-width: 100%;
+.grid.masonry {
+    display: masonry;
+    masonry-template-tracks: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: 1rem;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
 }
 
-.grid-sizer, .grid-item {
-    width: calc(50% - 4%);
-    margin-bottom: 2%;
-    margin-left: 2%;
-}
-
 .grid-item {
     background-color: #ffffff;
     padding: 1px;
-    box-shadow: 0 1px 0 #ffffff; /* This creates a 1px solid black line at the bottom */
+    box-shadow: 0 1px 0 #ffffff;
     border-radius: 0px;
     box-sizing: border-box;
 }
-
 
 .grid-item img {
     width: 100%;
@@ -145,51 +119,6 @@ nav {
     color: #000000;
 }
 
-
-/* Project-specific styles */
-/* .project-header {
-    text-align: center;
-    padding: 40px 0;
-    background-color: #000000;
-}
-
-.project-title {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    color: #ffffff;
-}
-
-.project-subtitle {
-    font-size: 1.2em;
-    color: #ffffff;
-}
-
-.project-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #000000;
-    color: #ffffff;
-}
-
-.project-section {
-    margin-bottom: 40px;
-}
-
-.project-section h2 {
-    border-bottom: 2px solid #ffffff;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    color: #ffffff;
-}
-
-.project-image {
-    max-width: 100%;
-    height: auto;
-    margin: 20px 0;
-} */
-
-/* Typography improvements */
 p {
     margin-bottom: 15px;
     color: #000000;
@@ -212,84 +141,13 @@ li {
     color: #000000;
 }
 
-/* Indented text section */
-.indented-text {
-    margin-left: 20px;
-    padding-left: 15px;
-    border-left: 2px solid #000000;
-    color: #000000;
-}
-
-/* Minimalist adjustments */
-body {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.project-content {
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(255,255,255,0.05);
-    color: #000000;
-}
-
-        /* Hyperlink styles */
-/*         a {
-            color: #66ccff;
-            text-decoration: none;
-        }
-        a:hover {
-            color: #99e6ff;
-            text-decoration: underline;
-        }
-        a:active {
-            color: #33b5e5;
-        }
-        a:visited {
-            color: #80d4ff;
-        }
-
- */
-
-
-
-/* Container for the columns */
-.container {
-    display: flex;
-    justify-content: space-between;
-}
-
-/* Column styles */
-.column {
-    width: 48%; /* Adjust width as needed */
-}
-
-/* Text column specific styles */
-.text-column {
-    padding-right: 20px;
-}
-
-/* Image column specific styles */
-/* .image-column img {
-    width: 100%;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-} */
-
-.image-column img:last-child {
-    margin-bottom: 0;
-}
-
-
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .grid {
         width: 100%;
     }
 
-    .grid-sizer, .grid-item {
+    .grid-item {
         width: 100%;
         margin-left: 0;
         padding-left: 10px;
@@ -304,38 +162,21 @@ body {
         padding: 15px;
     }
     
-    /* Stack the columns vertically on smaller screens */
     .container {
         flex-direction: column;
     }
     
     .column {
         width: 100%;
-        padding-right: 0; /* Remove padding on smaller screens */
+        padding-right: 0;
     }
 }
-
-
-        /* Default styles for larger screens */
-        .textcontainer {
-            width: 50%;
-            float: left;
-            margin-left: 10%;
-        }
-
-        /* Media query for screens narrower than 768px (common breakpoint for mobile devices) */
-        @media (max-width: 767px) {
-            .textcontainer {
-                width: 100%;
-                float: none;
-                margin-left: 0;
-            }
-        }
 
 .progressive-image {
     transition: opacity 0.13s ease-in-out;
     opacity: 1;
 }
+
 .progressive-image.loaded {
     opacity: 1;
 }
