@@ -105,10 +105,11 @@ nav {
     bottom: 0;
     left: 0;
 }
+
 /* CSS Grid Layout */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Flexible columns with a minimum width of 250px */
+    grid-template-columns: repeat(2, 1fr); /* Default to 2 equal columns */
     grid-gap: 20px; /* Space between grid items */
     max-width: 100%;
     margin: 0 auto;
@@ -145,6 +146,8 @@ nav {
         grid-template-columns: 1fr; /* Single column layout for screens smaller than 768px */
     }
 }
+
+
 
 
 /* Project-specific styles */
