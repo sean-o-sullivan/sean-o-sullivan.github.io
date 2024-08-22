@@ -117,6 +117,7 @@
 
    <script>
         window.onload = function() {
+            msnry.layout();
             document.body.classList.add('loaded');
         };
 
@@ -128,9 +129,9 @@
             percentPosition: true
         });
 
-        imagesLoaded(grid, function() {
-            msnry.layout();
-        });
+        // imagesLoaded(grid, function() {
+        //     msnry.layout();
+        // });
 
         // Lazy load high-quality images
         function lazyLoad() {
