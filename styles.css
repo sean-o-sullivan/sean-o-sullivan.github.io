@@ -11,7 +11,7 @@ body {
     line-height: 1.6;
 }
 
-/* Conditional loading protection */
+/* Conditional loading protection */e
 .loading-protection {
     visibility: hidden;
 /*     background-color: white;*/
@@ -106,45 +106,44 @@ nav {
     left: 0;
 }
 
-
-.grid-layout {
-    background-color: var(--grey);
-    width: 700px;
-    columns: 5;
-    gap: 10px;
-    border: 2px solid var(--blue);
-    padding: 10px;
-    margin: 0 auto; // change margin for non supported browsers
+/* Masonry Grid */
+.grid {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.grid-layout > * {
-    break-inside: avoid;
-    margin-bottom: 10px; // change margin for non supported browsers
+.grid-sizer, .grid-item {
+    width: calc(50% - 4%);
+    margin-bottom: 2%;
+    margin-left: 2%;
 }
 
-@supports (grid-template-columns: masonry) {
-    .grid-layout {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: masonry;
-        align-tracks: stretch;
-    }
-
-    .grid-layout > * {
-        margin-bottom: 0; // reset margin    
-  }
-}
-
-.item {
-    background-color: var(--white);
-    border: 2px solid var(--lemon);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.grid-item {
+    background-color: #ffffff;
+    padding: 1px;
+    box-shadow: 0 1px 0 #ffffff; /* This creates a 1px solid black line at the bottom */
+    border-radius: 0px;
+    box-sizing: border-box;
 }
 
 
+.grid-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0px 0px 0 0;
+}
 
+.grid-item h3 {
+    padding: 15px 10px;
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #000000;
+}
 
 
 /* Project-specific styles */
