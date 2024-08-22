@@ -137,6 +137,46 @@
             });
         }
 
+       document.addEventListener("DOMContentLoaded", function() {
+    var images = document.querySelectorAll('.progressive-image');
+
+    if ('IntersectionObserver' in window) {
+        let observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    let image = entry.target;
+                    let img = new Image();
+                    img.src = image.getAttribute('data-src');
+                    img.onload = function() {
+                        image.src = img.src;
+                        image.classList.add('loaded');
+                    };
+                    observer.unobserve(image);
+                }
+            });
+        });
+
+        images.forEach(function(image) {
+            observer.observe(image);
+        });
+    } else {
+        // Fallback for older browsers
+        lazyLoadFallback(images);
+    }
+});
+
+function lazyLoadFallback(images) {
+    images.forEach(function(image) {
+        let img = new Image();
+        img.src = image.getAttribute('data-src');
+        img.onload = function() {
+            image.src = img.src;
+            image.classList.add('loaded');
+        };
+    });
+}
+
+
         window.addEventListener('load', lazyLoad);
 
         // Throttle function to limit the rate of layout recalculations
