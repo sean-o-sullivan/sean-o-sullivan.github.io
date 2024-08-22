@@ -112,14 +112,14 @@ nav {
     grid-gap: 0px; /* Space between grid items */
     max-width: 1200px; /* Set a max-width to center the grid */
     margin: 0 auto; /* Center the grid on the page */
-    padding: 10px;
+    padding: 0px;
     box-sizing: border-box;
     justify-content: center; /* Ensures grid items are centered if fewer columns are present */
 }
 
 .grid-item {
     width: 100%;
-     padding: 3px;
+     padding: 0px;
 
     background-color: #ffffff;
     box-sizing: border-box;
