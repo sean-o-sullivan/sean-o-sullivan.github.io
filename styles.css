@@ -107,45 +107,34 @@ nav {
 }
 
 
-/* Grid Layout */
-.grid {
-    column-count: 2; /* 2 columns for large screens */
-    column-gap: 20px; /* Space between columns */
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+/* Wrapper for the grid layout */
+.wrapper {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, 48%); /* Two columns, each 48% wide */
+  grid-auto-rows: auto; /* Adjust row height based on content */
+  grid-auto-flow: column; /* Fill by columns, but ensure items are placed in a row-major order */
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-.grid-item {
-    width: 50%; /* Ensure grid items take full width of their column */
-    break-inside: avoid;
-    margin-bottom: 20px;
-    background-color: #fffff;
-    padding: 10px;
+/* General styling for grid items */
+.wrapper div {
+  background: red;
+  padding: 10px;
 }
 
-/* Image Styling */
-.grid-item img {
-    width: 100%;
-    height: auto;
-    display: block;
+/* Make an item span two columns */
+.two {
+  grid-column-end: span 2;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .grid {
-        column-count: 2; /* 2 columns for medium screens */
-    }
-}
-
+/* Responsive Design for Mobile Devices */
 @media (max-width: 768px) {
-    .grid {
-        column-count: 1; /* 1 column for mobile devices */
-    }
-    
-.grid-item {
-    width: 100%; /* Ensure grid items take full width of their column */
-}
+  .wrapper {
+    grid-template-columns: 100%; /* Single column layout for smaller screens */
+    grid-auto-flow: row; /* Switch to row flow on smaller screens */
+  }
 }
 
 
