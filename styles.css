@@ -334,7 +334,7 @@ body {
 
 .progressive-image {
     transition: opacity 0.3s ease-in-out;
-    opacity: 0.5;
+    opacity: 0;
 }
 .progressive-image.loaded {
     opacity: 1;
