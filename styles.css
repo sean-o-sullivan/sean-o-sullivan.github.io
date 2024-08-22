@@ -1,4 +1,4 @@
-/* General Styles */
+ /* General Styles */
 body {
     font-family: "Myriad Pro", "Helvetica Neue", Helvetica;
     font-size: 13px;
@@ -106,25 +106,29 @@ nav {
     left: 0;
 }
 
-
-/* CSS Grid Layout */
+/* Masonry Grid */
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Flexible columns */
-    grid-gap: 20px; /* Space between items */
+    width: 100%;
     max-width: 100%;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
 }
 
+.grid-sizer, .grid-item {
+    width: calc(50% - 4%);
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+
 .grid-item {
     background-color: #ffffff;
     padding: 1px;
-    box-shadow: 0 1px 0 #ffffff; /* This creates a 1px solid white line at the bottom */
+    box-shadow: 0 1px 0 #ffffff; /* This creates a 1px solid black line at the bottom */
     border-radius: 0px;
     box-sizing: border-box;
 }
+
 
 .grid-item img {
     width: 100%;
@@ -140,6 +144,7 @@ nav {
     font-size: 13px;
     color: #000000;
 }
+
 
 /* Project-specific styles */
 /* .project-header {
