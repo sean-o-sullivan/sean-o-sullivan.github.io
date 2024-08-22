@@ -107,35 +107,43 @@ nav {
 }
 
 
-/* Wrapper for the grid layout */
-.wrapper {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(2, 48%); /* Two columns, each 48% wide */
-  grid-auto-rows: auto; /* Adjust row height based on content */
-  grid-auto-flow: column; /* Fill by columns, but ensure items are placed in a row-major order */
-  max-width: 100%;
-  margin: 0 auto;
+.grid-layout {
+    background-color: var(--grey);
+    width: 700px;
+    columns: 5;
+    gap: 10px;
+    border: 2px solid var(--blue);
+    padding: 10px;
+    margin: 0 auto; // change margin for non supported browsers
 }
 
-/* General styling for grid items */
-.wrapper div {
-  background: red;
-  padding: 10px;
+.grid-layout > * {
+    break-inside: avoid;
+    margin-bottom: 10px; // change margin for non supported browsers
 }
 
-/* Make an item span two columns */
-.two {
-  grid-column-end: span 2;
-}
+@supports (grid-template-columns: masonry) {
+    .grid-layout {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: masonry;
+        align-tracks: stretch;
+    }
 
-/* Responsive Design for Mobile Devices */
-@media (max-width: 768px) {
-  .wrapper {
-    grid-template-columns: 100%; /* Single column layout for smaller screens */
-    grid-auto-flow: row; /* Switch to row flow on smaller screens */
+    .grid-layout > * {
+        margin-bottom: 0; // reset margin    
   }
 }
+
+.item {
+    background-color: var(--white);
+    border: 2px solid var(--lemon);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 
 
