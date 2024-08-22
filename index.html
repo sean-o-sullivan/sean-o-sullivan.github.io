@@ -6,9 +6,9 @@
     <title>My Projects</title>
     <link rel="stylesheet" href="./styles.css">
     <!-- Masonry.js -->
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<!--     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script> -->
     <!-- imagesLoaded.js -->
-    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<!--     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script> -->
 </head>
 <body class="loading-protection">
     <nav>
@@ -116,55 +116,56 @@
 </section>
 
    <script>
-        window.onload = function() {
-            document.body.classList.add('loaded');
-        };
+ window.onload = function() {
+    document.body.classList.add('loaded');
+    lazyLoad(); // Ensure lazy load is triggered after page load
+};
 
-        var grid = document.querySelector('.grid');
-        var msnry = new Masonry(grid, {
+// Lazy load high-quality images
+function lazyLoad() {
+    var images = document.querySelectorAll('.progressive-image');
+    images.forEach(function(image) {
+        var img = new Image();
+        img.src = image.getAttribute('data-src');
+        img.onload = function() {
+            image.src = img.src;
+            image.classList.add('loaded');
+        };
+    });
+}
+
+// If still using Masonry.js, ensure it re-calculates layout after images are loaded
+if (typeof Masonry !== 'undefined') {
+    imagesLoaded('.grid', function() {
+        var msnry = new Masonry('.grid', {
             itemSelector: '.grid-item',
             columnWidth: '.grid-sizer',
-            gutter: 20, // Optional, for spacing between items
             percentPosition: true
         });
+        msnry.layout();
+    });
+}
 
-        imagesLoaded(grid, function() {
-            msnry.layout();
-        });
-
-        // Lazy load high-quality images
-        function lazyLoad() {
-            var images = document.querySelectorAll('.progressive-image');
-            images.forEach(function(image) {
-                var img = new Image();
-                img.src = image.getAttribute('data-src');
-                img.onload = function() {
-                    image.src = img.src;
-                    image.classList.add('loaded');
-                };
-            });
+// Throttle function to limit the rate of layout recalculations
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const context = this, args = arguments;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
         }
+    };
+}
 
-        window.addEventListener('load', lazyLoad);
+// Throttle layout updates during window resize
+window.addEventListener('resize', throttle(function() {
+    if (typeof Masonry !== 'undefined') {
+        msnry.layout();
+    }
+}, 200)); // Adjust the throttle limit (in milliseconds) as needed
 
-        // Throttle function to limit the rate of layout recalculations
-        function throttle(func, limit) {
-            let inThrottle;
-            return function() {
-                const context = this, args = arguments;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            };
-        }
-
-        // Throttle layout updates during window resize
-        window.addEventListener('resize', throttle(function() {
-            msnry.layout();
-        }, 200)); // Adjust the throttle limit (in milliseconds) as needed
-       
     </script>
 </body>
 </html>
