@@ -105,30 +105,24 @@ nav {
     bottom: 0;
     left: 0;
 }
-
-/* Masonry Grid */
+/* CSS Grid Layout */
 .grid {
-    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Flexible columns with a minimum width of 250px */
+    grid-gap: 20px; /* Space between grid items */
     max-width: 100%;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
 }
 
-.grid-sizer, .grid-item {
-    width: calc(50% - 4%);
-    margin-bottom: 2%;
-    margin-left: 2%;
-}
-
 .grid-item {
     background-color: #ffffff;
     padding: 1px;
-    box-shadow: 0 1px 0 #ffffff; /* This creates a 1px solid black line at the bottom */
+    box-shadow: 0 1px 0 #ffffff; /* 1px solid line at the bottom */
     border-radius: 0px;
     box-sizing: border-box;
 }
-
 
 .grid-item img {
     width: 100%;
@@ -143,6 +137,13 @@ nav {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 13px;
     color: #000000;
+}
+
+/* Responsive Design for Mobile Devices */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr; /* Single column layout for screens smaller than 768px */
+    }
 }
 
 
