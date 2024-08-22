@@ -111,72 +111,34 @@
     <p>I also have a Thingiverse account that I use to share some of my smaller 3D printing projects. <a href="https://www.thingiverse.com/liminil/designs">https://www.thingiverse.com/liminil/designs</a></p>
 </section>
 
-     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var grid = document.querySelector('.grid');
-            var msnry = new Masonry(grid, {
-                itemSelector: '.grid-item',
-                columnWidth: '.grid-sizer',
-                gutter: 20,
-                percentPosition: true
-            });
 
-            var images = document.querySelectorAll('.progressive-image');
-
-
-
-            document.addEventListener("DOMContentLoaded", function() {
-    var grid = document.querySelector('.grid');
-    var msnry = new Masonry(grid, {
-        itemSelector: '.grid-item',
-        columnWidth: '.grid-sizer',
-        gutter: 20,
-        percentPosition: true
-    });
-
-    var images = document.querySelectorAll('.progressive-image');
-
-    if ('IntersectionObserver' in window) {
-        let observer = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    let image = entry.target;
-                    let img = new Image();
-                    img.src = image.getAttribute('data-src');
-                    img.onload = function() {
-                        image.src = img.src;
-                        image.classList.add('loaded');
-                        msnry.layout(); // Recalculate layout after image loads
-                    };
-                    observer.unobserve(image);
-                }
-            });
-        });
-
-        images.forEach(function(image) {
-            observer.observe(image);
-        });
-    } else {
-        // Fallback for older browsers
-        lazyLoadFallback(images);
-    }
-});
-
-function lazyLoadFallback(images) {
-    images.forEach(function(image) {
-        let img = new Image();
-        img.src = image.getAttribute('data-src');
-        img.onload = function() {
-            image.src = img.src;
-            image.classList.add('loaded');
-            msnry.layout(); // Recalculate layout after image loads
-        };
-    });
-}
-            
+   <script>
         window.onload = function() {
             document.body.classList.add('loaded');
         };
+
+        var grid = document.querySelector('.grid');
+        var msnry = new Masonry(grid, {
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-sizer',
+            gutter: 20, // Optional, for spacing between items
+            percentPosition: true
+        });
+
+        // Lazy load high-quality images
+        function lazyLoad() {
+            var images = document.querySelectorAll('.progressive-image');
+            images.forEach(function(image) {
+                var img = new Image();
+                img.src = image.getAttribute('data-src');
+                img.onload = function() {
+                    image.src = img.src;
+                    image.classList.add('loaded');
+                };
+            });
+        }
+
+        window.addEventListener('load', lazyLoad);
 
         // Throttle function to limit the rate of layout recalculations
         function throttle(func, limit) {
@@ -194,7 +156,8 @@ function lazyLoadFallback(images) {
         // Throttle layout updates during window resize
         window.addEventListener('resize', throttle(function() {
             msnry.layout();
-        }, 200));
+        }, 200)); // Adjust the throttle limit (in milliseconds) as needed
+       
     </script>
 
     
