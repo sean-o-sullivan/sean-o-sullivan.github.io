@@ -123,44 +123,57 @@
 
             var images = document.querySelectorAll('.progressive-image');
 
-            if ('IntersectionObserver' in window) {
-                let observer = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            let image = entry.target;
-                            let img = new Image();
-                            img.src = image.getAttribute('data-src');
-                            img.onload = function() {
-                                image.src = img.src;
-                                image.classList.add('loaded');
-                                msnry.layout(); // Recalculate layout after image loads
-                            };
-                            observer.unobserve(image);
-                        }
-                    });
-                });
 
-                images.forEach(function(image) {
-                    observer.observe(image);
-                });
-            } else {
-                // Fallback for older browsers
-                lazyLoadFallback(images);
-            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+    var grid = document.querySelector('.grid');
+    var msnry = new Masonry(grid, {
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-sizer',
+        gutter: 20,
+        percentPosition: true
+    });
+
+    var images = document.querySelectorAll('.progressive-image');
+
+    if ('IntersectionObserver' in window) {
+        let observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    let image = entry.target;
+                    let img = new Image();
+                    img.src = image.getAttribute('data-src');
+                    img.onload = function() {
+                        image.src = img.src;
+                        image.classList.add('loaded');
+                        msnry.layout(); // Recalculate layout after image loads
+                    };
+                    observer.unobserve(image);
+                }
+            });
         });
 
-        function lazyLoadFallback(images) {
-            images.forEach(function(image) {
-                let img = new Image();
-                img.src = image.getAttribute('data-src');
-                img.onload = function() {
-                    image.src = img.src;
-                    image.classList.add('loaded');
-                    msnry.layout(); // Recalculate layout after image loads
-                };
-            });
-        }
+        images.forEach(function(image) {
+            observer.observe(image);
+        });
+    } else {
+        // Fallback for older browsers
+        lazyLoadFallback(images);
+    }
+});
 
+function lazyLoadFallback(images) {
+    images.forEach(function(image) {
+        let img = new Image();
+        img.src = image.getAttribute('data-src');
+        img.onload = function() {
+            image.src = img.src;
+            image.classList.add('loaded');
+            msnry.layout(); // Recalculate layout after image loads
+        };
+    });
+}
+            
         window.onload = function() {
             document.body.classList.add('loaded');
         };
