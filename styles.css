@@ -106,44 +106,35 @@ nav {
     left: 0;
 }
 
-/* Masonry Grid */
 .grid {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.grid-sizer, .grid-item {
-    width: calc(50% - 4%);
-    margin-bottom: 2%;
-    margin-left: 2%;
+    column-count: 2; /* Adjust the number of columns */
+    column-gap: 20px; /* Space between columns */
+    width: 100%; /* Full width of the container */
+    max-width: 1200px; /* Optional: max width for larger screens */
+    margin: 0 auto; /* Center the grid */
 }
 
 .grid-item {
-    background-color: #ffffff;
-    padding: 1px;
-    box-shadow: 0 1px 0 #ffffff; /* This creates a 1px solid black line at the bottom */
-    border-radius: 0px;
-    box-sizing: border-box;
+    break-inside: avoid; /* Prevent items from breaking across columns */
+    margin-bottom: 20px; /* Space between items vertically */
+    background-color: #f2f2f2; /* Example background color */
+    padding: 10px; /* Padding inside items */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add some shadow for better appearance */
 }
 
-
-.grid-item img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 0px 0px 0 0;
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .grid {
+        column-count:2;
+    }
 }
 
-.grid-item h3 {
-    padding: 15px 10px;
-    margin: 0;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    color: #000000;
+@media (max-width: 768px) {
+    .grid {
+        column-count: 1;
+    }
 }
+
 
 
 /* Project-specific styles */
