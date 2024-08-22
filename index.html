@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects</title>
     <link rel="stylesheet" href="./styles.css">
-    <!-- Masonry.js -->
-    <script src="./js/masonry.pkgd.min.js"></script>
-    <!-- imagesLoaded.js -->
-    <script src="./js/imagesloaded.pkgd.min.js"></script>
 </head>
 <body class="loading-protection">
     <nav>
@@ -117,7 +113,6 @@
 
    <script>
         window.onload = function() {
-            msnry.layout();
             document.body.classList.add('loaded');
         };
 
@@ -128,10 +123,6 @@
             gutter: 20, // Optional, for spacing between items
             percentPosition: true
         });
-
-        // imagesLoaded(grid, function() {
-        //     msnry.layout();
-        // });
 
         // Lazy load high-quality images
         function lazyLoad() {
