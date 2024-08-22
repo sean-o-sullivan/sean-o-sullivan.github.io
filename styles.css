@@ -336,11 +336,11 @@ body {
                 margin-left: 0;
             }
         }
-
 .progressive-image {
-    transition: opacity 0.13s ease-in-out;
-    opacity: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
+
 .progressive-image.loaded {
     opacity: 1;
 }
