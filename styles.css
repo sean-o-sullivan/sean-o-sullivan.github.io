@@ -109,7 +109,7 @@ nav {
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Default to 2 equal columns */
-    grid-gap: 0px; /* Space between grid items */
+    grid-gap: 13px; /* Space between grid items */
     width: 100%;
     margin: 0 auto; /* Center the grid on the page */
     padding: 0px;
@@ -127,6 +127,8 @@ nav {
 
 .grid-item img {
     width: 100%;
+      padding: 3px;
+
     height: auto;
     object-fit: cover;
     border-radius: 0px 0px 0 0;
