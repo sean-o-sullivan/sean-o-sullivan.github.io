@@ -11,7 +11,7 @@ body {
     line-height: 1.6;
 }
 
-/* Conditional loading protection */e
+/* Conditional loading protection */ee
 .loading-protection {
     visibility: hidden;
 /*     background-color: white;*/
@@ -106,32 +106,44 @@ nav {
     left: 0;
 }
 
+
+/* Grid Layout */
 .grid {
-    column-count: 2; /* Adjust the number of columns */
+    column-count: 2; /* 2 columns for large screens */
     column-gap: 20px; /* Space between columns */
-    width: 100%; /* Full width of the container */
-    max-width: 1200px; /* Optional: max width for larger screens */
-    margin: 0 auto; /* Center the grid */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .grid-item {
-    break-inside: avoid; /* Prevent items from breaking across columns */
-    margin-bottom: 20px; /* Space between items vertically */
-    background-color: #f2f2f2; /* Example background color */
-    padding: 10px; /* Padding inside items */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add some shadow for better appearance */
+    width: 100%; /* Ensure grid items take full width of their column */
+    break-inside: avoid;
+    margin-bottom: 20px;
+    background-color: #f2f2f2;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
+/* Image Styling */
+.grid-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px; /* Optional: rounded corners for images */
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
     .grid {
-        column-count:2;
+        column-count: 2; /* 2 columns for medium screens */
     }
 }
 
 @media (max-width: 768px) {
     .grid {
-        column-count: 1;
+        column-count: 1; /* 1 column for mobile devices */
     }
 }
 
