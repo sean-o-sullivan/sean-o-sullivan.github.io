@@ -117,7 +117,7 @@ nav {
 }
 
 .grid-item {
-    width: 100%; /* Ensure grid items take full width of their column */
+    width: 50%; /* Ensure grid items take full width of their column */
     break-inside: avoid;
     margin-bottom: 20px;
     background-color: #fffff;
@@ -142,6 +142,10 @@ nav {
     .grid {
         column-count: 1; /* 1 column for mobile devices */
     }
+    
+.grid-item {
+    width: 100%; /* Ensure grid items take full width of their column */
+}
 }
 
 
