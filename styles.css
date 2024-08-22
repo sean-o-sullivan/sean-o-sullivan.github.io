@@ -125,15 +125,6 @@ nav {
     box-sizing: border-box;
 }
 
-.grid-item img {
-    width: 100%;
-      padding: 3px;
-
-    height: auto;
-    object-fit: cover;
-    border-radius: 0px 0px 0 0;
-}
-
 .grid-item h3 {
     padding: 15px 10px;
     margin: 0;
