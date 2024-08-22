@@ -125,6 +125,15 @@ nav {
     box-sizing: border-box;
 }
 
+.grid-item img {
+    width: 100%;
+      padding: 3px;
+
+    height: auto;
+    object-fit: cover;
+    border-radius: 0px 0px 0 0;
+}
+
 .grid-item h3 {
     padding: 15px 10px;
     margin: 0;
@@ -327,12 +336,11 @@ body {
                 margin-left: 0;
             }
         }
-
 .progressive-image {
-    transition: filter 0.3s ease-in-out;
-    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .progressive-image.loaded {
-    filter: blur(0);
+    opacity: 1;
 }
