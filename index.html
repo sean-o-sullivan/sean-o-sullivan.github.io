@@ -6,7 +6,7 @@
     <title>My Projects</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
-<body class="loading-protection">
+<body>
     <nav>
         <div class="nav-container">
             <div class="nav-name">Seán O'Sullivan</div>
@@ -20,148 +20,24 @@
     </nav>
     <br>
     <br>
-<section class="grid">
-    <div class="grid-item" data-status="wip" data-tags="CAD, PCB">
-        <a href="projects/pace-timer.html">
-            <img src="images/pace_low.jpg" data-src="images/pace.png" alt="pace timer" class="progressive-image">
-            <h3>Pace - A Minute Timer for Swimmers</h3>
-        </a>
-    </div>
-
-    <div class="grid-item" data-status="completed">
-        <a href="projects/forceField.html">
-            <img src="images/forceField/thumbnail_low.jpg" data-src="images/forceField/thumbnail.png" alt="ForceField" class="progressive-image">
-            <h3>ForceField - An Impact Detecting Device for Hurling</h3>
-        </a>
-    </div>
-
-    <div class="grid-item" data-status="completed">
-        <a href="projects/reflow-oven.html">
-            <img src="images/forceField/reflow_low.jpg" data-src="images/forceField/reflow.png" alt="Reflow Oven" class="progressive-image">
-            <h3>DIY PID Controlled Reflow Oven</h3>
-        </a>
-    </div>
-
-    <div class="grid-item" data-status="wip">
-        <a href="projects/rfid-cat-feeder.html">
-            <img src="images/feeder2_low.jpg" data-src="images/feeder2.png" alt="feeder" class="progressive-image">
-            <h3>RFID Cat Feeder</h3>
-        </a>
-    </div>
-    
-    <div class="grid-item" data-status="completed">
-        <a href="projects/forceField.html">
-            <img src="images/forceField/thumbnail_low.jpg" data-src="images/forceField/thumbnail.png" alt="ForceField" class="progressive-image">
-            <h3>On-Device Facial Recognition Door Lock</h3>
-        </a>
-    </div>
-
-    <div class="grid-item" data-status="completed">
-        <a href="projects/reflow-oven.html">
-            <img src="images/depth_low.jpg" data-src="images/depth.png" alt="Reflow Oven" class="progressive-image">
-            <h3>3D Scanner App using Depth-Anything-V2</h3>
-        </a>
-    </div>
-    
-    <div class="grid-item" data-status="completed">
-        <a href="projects/clock.html">
-            <img src="images/clock_low.jpg" data-src="images/clock.webp" alt="Clock" class="progressive-image">
-            <h3>7 Segment Mechanical Clock Display</h3>
-        </a>
-    </div>
-
-    <div class="grid-item" data-status="completed">
-        <a href="projects/reflow-oven.html">
-            <img src="images/elderCare_low.jpg" data-src="images/elderCare.png" alt="elderCare board" class="progressive-image">
-            <h3>ElderCare-AI - Non-Invasive Senior Monitoring</h3>
-        </a>
-    </div>
-
-    <div class="grid-item" data-status="completed">
-        <a href="projects/spudnik.html">
-            <img src="images/spudnik_low.jpg" data-src="images/spudnik.png" alt="Spudnik" class="progressive-image">
-            <h3>Spudnik - Rigid Origami Solar Array | CanSat 2023</h3>
-        </a>
-    </div>
-
-    <div class="grid-item" data-status="completed">
-        <a href="projects/reflow-oven.html">
-            <img src="images/forceField/reflow_low.jpg" data-src="images/forceField/reflow.png" alt="Reflow Oven" class="progressive-image">
-            <h3>Investigating the Viability of Micro-Level Wind Generation | BTYSTE 2023</h3>
-        </a>
-    </div>
-    
-    <div class="grid-item" data-status="completed">
-        <a href="projects/shiningALight.html">
-            <img src="images/forceField/reflow_low.jpg" data-src="images/forceField/reflow.png" alt="Reflow Oven" class="progressive-image">
-            <h3>Shining a Light on COVID-19 School Cleaning Protocols | BTYSTE 2021</h3>
-        </a>
-    </div>
-
-    <div class="grid-item" data-status="completed">
-        <a href="projects/bike-dynamo.html">
-            <img src="images/charger_low.jpg" data-src="images/charger.png" alt="Charger" class="progressive-image">
-            <h3>Bike Dynamo Rear Light & USB Charger</h3>
-        </a>
-    </div>
-    <!-- Add more grid items as needed -->
-
-</section>
-<section>
-    <p>I also have a Thingiverse account that I use to share some of my smaller 3D printing projects. <a href="https://www.thingiverse.com/liminil/designs">https://www.thingiverse.com/liminil/designs</a></p>
-</section>
-
-
-   <script>
-        window.onload = function() {
-            document.body.classList.add('loaded');
-        };
-
-        var grid = document.querySelector('.grid');
-        var msnry = new Masonry(grid, {
-            itemSelector: '.grid-item',
-            columnWidth: '.grid-sizer',
-            gutter: 20, // Optional, for spacing between items
-            percentPosition: true
-        });
-
-function lazyLoad() {
-    var images = document.querySelectorAll('.progressive-image');
-    images.forEach(function(image) {
-        var img = new Image();
-        img.src = image.getAttribute('data-src');
-        img.onload = function() {
-            image.src = img.src;
-            image.classList.add('loaded');
-        };
-        img.onerror = function() {
-            console.error("Image failed to load:", img.src);
-        };
-    });
-}
-
-        window.addEventListener('load', lazyLoad);
-
-        // Throttle function to limit the rate of layout recalculations
-        function throttle(func, limit) {
-            let inThrottle;
-            return function() {
-                const context = this, args = arguments;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            };
-        }
-
-        // Throttle layout updates during window resize
-        window.addEventListener('resize', throttle(function() {
-            msnry.layout();
-        }, 200)); // Adjust the throttle limit (in milliseconds) as needed
-       
-    </script>
-
-    
+    <section class="textcontainer">
+        <ul>
+            <li><a href="projects/pace-timer.html">Pace - A Minute Timer for Swimmers</a></li>
+            <li><a href="projects/forceField.html">ForceField - An Impact Detecting Device for Hurling</a></li>
+            <li><a href="projects/reflow-oven.html">DIY PID Controlled Reflow Oven</a></li>
+            <li><a href="projects/rfid-cat-feeder.html">RFID Cat Feeder</a></li>
+            <li><a href="projects/forceField.html">On-Device Facial Recognition Door Lock</a></li>
+            <li><a href="projects/reflow-oven.html">3D Scanner App using Depth-Anything-V2</a></li>
+            <li><a href="projects/clock.html">7 Segment Mechanical Clock Display</a></li>
+            <li><a href="projects/reflow-oven.html">ElderCare-AI - Non-Invasive Senior Monitoring</a></li>
+            <li><a href="projects/spudnik.html">Spudnik - Rigid Origami Solar Array | CanSat 2023</a></li>
+            <li><a href="projects/reflow-oven.html">Investigating the Viability of Micro-Level Wind Generation | BTYSTE 2023</a></li>
+            <li><a href="projects/shiningALight.html">Shining a Light on COVID-19 School Cleaning Protocols | BTYSTE 2021</a></li>
+            <li><a href="projects/bike-dynamo.html">Bike Dynamo Rear Light & USB Charger</a></li>
+        </ul>
+    </section>
+    <section>
+        <p>I also have a Thingiverse account that I use to share some of my smaller 3D printing projects. <a href="https://www.thingiverse.com/liminil/designs">https://www.thingiverse.com/liminil/designs</a></p>
+    </section>
 </body>
 </html>
