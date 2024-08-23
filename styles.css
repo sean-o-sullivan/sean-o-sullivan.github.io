@@ -343,3 +343,8 @@ body {
 .progressive-image.loaded {
     opacity: 1;
 }
+
+.project-link {
+    color: #0864c7;
+    text-decoration: underline; /* Ensure underline is kept */
+}
