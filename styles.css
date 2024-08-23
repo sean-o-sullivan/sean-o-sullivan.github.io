@@ -87,8 +87,8 @@ nav {
 }
 
 .nav-links li a {
-    color: #000000; 
-    text-decoration: none;
+    color: #007bff; /* Standard blue color for links */
+    text-decoration: underline; /* Underline by default */
     font-size: 13px;
     padding-bottom: 5px;
     position: relative;
