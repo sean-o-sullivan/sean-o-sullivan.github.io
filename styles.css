@@ -94,7 +94,7 @@ nav {
     position: relative;
 }
 
-.nav-links li a.active::after {
+/* .nav-links li a.active::after {
     content: '';
     display: block;
     height: 2px;
@@ -103,7 +103,7 @@ nav {
     position: absolute;
     bottom: 0;
     left: 0;
-}
+} */
 /* CSS Grid Layout */
 .grid {
     display: grid;
