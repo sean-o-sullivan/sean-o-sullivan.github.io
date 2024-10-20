@@ -93,21 +93,15 @@ Hopefully this will be the last major iteration of making Pace.
         </div>
 
             
-            <p><b>V2.0 - Using STM32Lo Microcontroller & LED Matrix Driver - Schematic</b></p>
+            <p><b>V2.0 - Using STM32Lo Microcontroller & LED Matrix Driver - Schematic        V1.0 - Using only discrete components - Schematic</b></p>
             <img src="../../images/pace/currentSchematic.jpg" alt="Current Schematic" style="height: 43vh; width: auto;">
-
-
-            <p><b>V1.0 - Using only discrete components - Schematic</b></p> 
-    
+            <img src="../../images/pace/oldSche.jpg" alt="V1 Schematic" style="height: 45vh; width: auto;">
             <p>My initial iteration used eight daisy-chained shift registers, driven by a quartz crystal oscillator. It also featured a latching circuit to create the initial 'bit' in the first register that would then cycle through and provide the cycling LED.</p>
-
             <p>I ultimately decided to move away from this iteration due to its sheer complexity and production costs.</p>
 
-            <img src="../../images/pace/oldSche.jpg" alt="V1 Schematic" style="height: 45vh; width: auto;">
             <br>
             <br>
-
-
+            
             <p><b>Initial pulse-generating latching circuit:</b> This circuit provides the initial input 'bit' to the first shift register and latches to zero after the first clock pulse. The second video demonstrates daisy-chained shift registers.</p>
             
             <video style="height: 40vh; width: auto;" controls>
