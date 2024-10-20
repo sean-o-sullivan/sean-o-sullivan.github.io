@@ -351,33 +351,38 @@ body {
 
 
 
-
-
 .video-container {
     display: flex;
     justify-content: space-between;
     gap: 20px;
     margin-bottom: 20px;
 }
+
 .video-wrapper {
     flex: 1;
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
+    height: 30vh; /* Set height to 30% of viewport height */
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
     overflow: hidden;
 }
+
 .video-wrapper iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 30vh;
+    height: 100%;
+    object-fit: cover; /* Ensure the iframe covers the area without distortion */
 }
 
 @media (max-width: 768px) {
     .video-container {
         flex-direction: column;
     }
+    
+    .video-wrapper {
+        width: 100%; /* Full width on smaller screens */
+        height: auto; /* Height will be determined by aspect ratio */
+        padding-top: 56.25%; /* 16:9 Aspect Ratio (9 / 16 = 0.5625) */
+    }
 }
-
-
