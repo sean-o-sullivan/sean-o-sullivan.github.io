@@ -39,7 +39,10 @@
         </section>
         
         <section>
-            <p><b>Diary</b></p>
+            <br>
+<br>
+
+            <p><b></b></p>
 <p>   
 After our pool closed, I stated making Pace - a goggle-mounted minute timer, the size of a dime, to help swimmers like me keep pace when training alone.
 </br>
@@ -52,16 +55,18 @@ After our pool closed, I stated making Pace - a goggle-mounted minute timer, the
 My overcomplicated design got a slating review and I despaired at how expensive it would be to make.
 
 <br>
+<br>
 <b>v2 Programmable: </b>STM32Lo microcontroller, controlling the LED array with a matrix driver. Due to space constraints, I switched from wireless charging to direct with a storage case.
             <br>
             <br>
 After a full redesign, ready to order, I realised that JLCPCB doesn't support buried vias. These vias alone would cost hundreds of euros. I was crushed. 
 <br>
+<br>
 
 <b>v3 </b>now consists of two stackable boards, a significantly cheaper, simpler solution.
             <br>
             <br>
-Hopefully this will be the last major iteration of making Pace.
+Hopefully this will be the last major iteration of making Pace!
         </p>
 <!--             <ul>
                 <li><a href="#">Design Files (Coming Soon)</a></li>
@@ -74,15 +79,13 @@ Hopefully this will be the last major iteration of making Pace.
 <!-- 
             <img src="../../images/#.png" alt="Device Mounted on Goggles & Device Beside 1c coin" style="height: 40vh; width: auto;"> -->
             <p><b>V2.0 - Using STM32Lo Microcontroller & LED Matrix Driver</b></p>
-            <img src="../../images/pace.png" alt="Swimming Timer Pacer V2" style="height: 43vh; width: auto;">
+            <img src="../../images/pace.png" alt="Swimming Timer Pacer V2" style="height: 45vh; width: auto;">
+            <img src="../../images/pace/currentSchematic-2 2.jpg" alt="Current Schematic" style="height: 40vh; width: auto;">
+
                     </div>
         </div>
 
-            
-            <p><b>V2.0 - Using STM32Lo Microcontroller & LED Matrix Driver - Schematic        
-            <img src="../../images/pace/currentSchematic.jpg" alt="Current Schematic" style="height: 43vh; width: auto;">
-                
-            V1.0 - Using only discrete components - Schematic</b></p>
+            <p><b>V1.0 - Using only discrete components - Schematic</b></p>
             <img src="../../images/pace/oldie.jpg" alt="V1 Design" style="height: 45vh; width: auto;">
             <img src="../../images/pace/oldSche.jpg" alt="V1 Schematic" style="height: 45vh; width: auto;">
             <p>My initial iteration used eight daisy-chained shift registers, driven by a quartz crystal oscillator. It also featured a latching circuit to create the initial 'bit' in the first register that would then cycle through and provide the cycling LED.</p>
