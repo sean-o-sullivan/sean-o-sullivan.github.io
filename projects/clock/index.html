@@ -4,42 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects</title>
-    <link rel="stylesheet" href="../styles.css">
-
-    <!-- Masonry.js -->
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <!-- imagesLoaded.js -->
-    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <link rel="stylesheet" href="../../static/styles.css">
 </head>
 <body class="loading-protection">
+    <nav>
+        <div class="nav-container">
+            <div class="nav-name"><b>Seán O'Sullivan</b></div>
+            <ul class="nav-links">
+                <li><a href="../../projects">My Projects</a></li>
+                <li><a href="../../contact">Contact</a></li>
+<!--                 <li><a href="../../cv">CV</a></li> -->
+                <li><a href="../../about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+</body>
 
 
+            <div class="container">
+        <div class="column text-column">
 
-
-    
-       <div id="navbar-container"></div>
-    
+            
     <header>
-        <p><b>Shining a Light on COVID-19 School Cleaning Protocols</b></p>
-        <p class="subtitle">Assessed effectiveness via UV desk analysis, surveys, and observations, revealing insights and areas needing improvement.</p>
+        <p><b>Pace</b></p>
+        <p class="subtitle">I am developing a compact, magnet-attachable timer to assist swimmers with pacing during training and competitions.</p>
     </header>
-
     <main>
+
+            
         <section>
-            <p><b>Description</b><p>
-            <p>Our project aimed to assess the effectiveness of Covid-19 cleaning protocols in our school. We utilized a mixed methods approach: First, we analysed 106 student desks under UV light after cleaning with Glo Germ powder, measuring touched areas and the effectiveness of the cleaning using digital grids. Second, we surveyed 26 teachers and 180 students to gather their opinions on Covid-19 and the cleaning procedures. Lastly, we observed student cleaning behaviors, finding that they cleaned the desk’s internal area more thoroughly than the perimeter. This comprehensive analysis provided insights into the cleaning protocols' effectiveness and areas needing improvement.</p>
+            <p><b>Description</b></p>
+            <p>My project aims to create a swimming timer pacer that attaches to goggles using a magnet. This small device features a minute timer that swimmers can use to pace themselves during training or competitions. The compact design ensures it doesn't interfere with the swimmer's performance while providing valuable timing information at a glance.</p>
         </section>
-
+        
         <section>
-            <p><b>Outcome</b><p>
-            <p>First Place in the Junior Chemical Physical and Mathematical Sciences Category and a Special Award from The Irish Research Council at BTYSTE 2021</p>
-        </section>
+            <p><b>Diary</b></p>
+<p>   
+After our pool closed, I stated making Pace - a goggle-mounted minute timer, the size of a dime, to help swimmers like me keep pace when training alone.
+</br>
+<br>
 
-        <section>
-            <p><b>Attachments</b><p>
-            <p>First Place in the Junior Chemical Physical and Mathematical Sciences Category and a Special Award from The Irish Research Council at BTYSTE 2021</p>
-            <img src="path/to/project-timeline.png" alt="glowgerm powder">
+<b>v1 Discrete components:</b> 8 daisy-chained shifting registers, a 1Hz pulse oscillator, and a delayed latching circuit which provides the first input.
+<br>
+<br>
 
+My overcomplicated design got a slating review and I despaired at how expensive it would be to make.
+
+<br>
+<b>v2 Programmable: </b>STM32Lo microcontroller, controlling the LED array with a matrix driver. Due to space constraints, I switched from wireless charging to direct with a storage case.
+            <br>
+            <br>
+After a full redesign, ready to order, I realised that JLCPCB doesn't support buried vias. These vias alone would cost hundreds of euros. I was crushed. 
+<br>
+
+<b>v3 </b>now consists of two stackable boards, a significantly cheaper, simpler solution.
+            <br>
+            <br>
+Hopefully this will be the last major iteration of making Pace.
+        </p>
+<!--             <ul>
+                <li><a href="#">Design Files (Coming Soon)</a></li>
+                <li><a href="#">Project Report (In Progress)</a></li>
+                <li><a href="#">Size Reference Images (To Be Added)</a></li>
+            </ul> -->
+        </div>
+        <div class="column image-column">
+            <br>
+<!-- 
+            <img src="../../images/#.png" alt="Device Mounted on Goggles & Device Beside 1c coin" style="height: 40vh; width: auto;"> -->
+            <p><b>V2.0 - Using STM32Lo Microcontroller & LED Matrix Driver</b></p>
+            <img src="../../images/pace.png" alt="Swimming Timer Pacer V2" style="height: 43vh; width: auto;">
+                    </div>
+        </div>
+
+            
+            <p><b>V2.0 - Using STM32Lo Microcontroller & LED Matrix Driver - Schematic        
+            <img src="../../images/pace/currentSchematic.jpg" alt="Current Schematic" style="height: 43vh; width: auto;">
+                
+            V1.0 - Using only discrete components - Schematic</b></p>
+            <img src="../../images/pace/oldie.jpg" alt="V1 Design" style="height: 45vh; width: auto;">
+            <img src="../../images/pace/oldSche.jpg" alt="V1 Schematic" style="height: 45vh; width: auto;">
+            <p>My initial iteration used eight daisy-chained shift registers, driven by a quartz crystal oscillator. It also featured a latching circuit to create the initial 'bit' in the first register that would then cycle through and provide the cycling LED.</p>
+            <p>I ultimately decided to move away from this iteration due to its sheer complexity and production costs.</p>
+
+            <br>
+            <p><b>Initial pulse-generating latching circuit:</b> This circuit provides the initial input 'bit' to the first shift register and latches to zero after the first clock pulse. The second video demonstrates daisy-chained shift registers.</p>
+            
+            <video style="height: 40vh; width: auto;" controls>
+              <source src="../../images/pace/latching.mov" type="video/quicktime">
+              Your browser does not support the video tag.
+            </video>
+
+            <video style="height: 40vh; width: auto;" controls>
+              <source src="../../images/pace/shiftReg.mov" type="video/quicktime">
+              Your browser does not support the video tag.
+            </video>
         </section>
     </main>
 
@@ -50,11 +110,9 @@
                 document.getElementById('navbar-container').innerHTML = data;
             });
 
-                window.onload = function() {
+        window.onload = function() {
             document.body.classList.add('loaded');
         };
-    
-
     </script>
 </body>
 </html>
