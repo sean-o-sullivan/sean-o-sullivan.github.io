@@ -6,18 +6,37 @@
     <title>My Projects</title>
     <link rel="stylesheet" href="../../static/styles.css">
      <style>
+
+
+
+         .main-content {
+    position: relative;
+    padding-bottom: 50vh; /* Adjust this value to control how much space is left at the bottom */
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0; /* Remove bottom margin */
+}
+
+.column {
+    flex: 1;
+    min-width: 300px; /* Adjust as needed */
+}
+
 .image-column {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
 }
 
 .video-container {
     position: relative;
     width: 85%;
-/*     padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0; 
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
     overflow: hidden;
     max-width: 800px; /* Adjust this value to set the maximum width of the video */
     margin: 0 auto;
@@ -30,6 +49,39 @@
     width: 100%;
     height: 80%;
 }
+
+.image-gallery {
+    position: absolute;
+    top: 100%; /* Position it right after the container */
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f0f0f0; /* Optional: adds a background to separate it visually */
+}
+
+.image-gallery img {
+    height: 30vh;
+    width: auto;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-bottom: 100vh; /* Increase padding for mobile devices */
+    }
+    
+    .image-gallery {
+        position: static; /* Stack normally on mobile */
+        margin-top: 2rem;
+    }
+}
+
+         
+         
          
     </style> 
 </head>
@@ -44,7 +96,9 @@
             </ul>
         </div>
     </nav>
-    
+
+    <div class="main-content">
+        
     <div class="container">
         <div class="column text-column">
             <header>
@@ -73,27 +127,30 @@ Please find aditional photographs below
                     
                 </section>
             </main>
+
+                    <!-- Your existing text content here -->
         </div>
+        <div class="column image-column">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/eApguRE6Orc" title="Mechanical Seven Segment Display Clock Timelapse" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 
-<div class="column image-column">
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/eApguRE6Orc" title="Mechanical Seven Segment Display Clock Timelapse" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    </div>
+<div class="image-gallery">
+    <img src="fin.jpg" alt="Final">
+    <img src="close.jpeg" alt="Close-up">
+    <img src="bLeft.jpeg" alt="Bottom Left">
+    <img src="bed2.jpg" alt="Bed 2">
+    <img src="bed.jpg" alt="Bed">
+    <img src="bed3.jpg" alt="Bed 3">
+    <img src="colour.jpg" alt="Color">
+    <img src="lowfor.jpg" alt="Low Forward">
+    <img src="edsl2.jpg" alt="EDSL 2">
+    <img src="lowrit.jpg" alt="Low Right">
+    <img src="screwdriver.jpg" alt="Screwdriver">
 </div>
-
-         <img src="fin.jpg" alt="Final" style="height: 30vh; width: auto;">
-         <img src="close.jpeg" alt="Final" style="height: 30vh; width: auto;">
-         <img src="bLeft.jpeg" alt="Final" style="height: 30vh; width: auto;">
-         <img src="bed2.jpg" alt="Final" style="height: 30vh; width: auto;">
-         <img src="bed.jpg" alt="Final" style="height: 30vh; width: auto;">
-         <img src="bed3.jpg" alt="Final" style="height: 30vh; width: auto;">
-         <img src="colour.jpg" alt="Final" style="height: 30vh; width: auto;">
-         <img src="lowfor.jpg" alt="Final" style="height: 30vh; width: auto;">
-         <img src="edsl2.jpg" alt="Final" style="height: 30vh; width: auto;">
-         <img src="lowrit.jpg" alt="Final" style="height: 30vh; width: auto;">
-         <img src="screwdriver.jpg" alt="Final" style="height: 30vh; width: auto;">
-
+    
         <script>
         fetch('/navbar.html')
             .then(response => response.text())
