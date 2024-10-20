@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Projects</title>
     <link rel="stylesheet" href="../../static/styles.css">
+    <style>
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body class="loading-protection">
     <nav>
@@ -13,103 +29,60 @@
             <ul class="nav-links">
                 <li><a href="../../projects">My Projects</a></li>
                 <li><a href="../../contact">Contact</a></li>
-<!--                 <li><a href="../../cv">CV</a></li> -->
                 <li><a href="../../about">About</a></li>
             </ul>
         </div>
     </nav>
-
-</body>
-
-
-            <div class="container">
+    
+    <div class="container">
         <div class="column text-column">
+            <header>
+                <p><b>7-Segment Mechanical Clock</b></p>
+                <p class="subtitle">I created this clock for our school canteen. The time is indicated by the servo-arm positions. </p>
+            </header>
+            <main>
+                <section>
+                    <p><b>Description</b></p>
+                I have worked on this project for the last two years (part-time). Instead of hiding the wires, I chose to display them, creating this flowing, visual effect.
+                </section>
+                
+                <section>                         
+                    <br>
+                    <br>
+                    
+This clock was based on work from Michael Klements at the DIY-Life. 
 
-            
-    <header>
-        <p><b>Pace</b></p>
-        <p class="subtitle">I am developing a compact, magnet-attachable timer to assist swimmers with pacing during training and competitions.</p>
-    </header>
-    <main>
+I designed the laser-cut backing board, modified the software for moving the segments between time changes and accounted for Irish daylight savings. 
 
-            
-        <section>
-            <p><b>Description</b></p>
-            <p>My project aims to create a swimming timer pacer that attaches to goggles using a magnet. This small device features a minute timer that swimmers can use to pace themselves during training or competitions. The compact design ensures it doesn't interfere with the swimmer's performance while providing valuable timing information at a glance.</p>
-        </section>
-        
-        <section>
-            <br>
-<br>
-
-            <p><b></b></p>
-<p>   
-After our pool closed, I stated making Pace - a goggle-mounted minute timer, the size of a dime, to help swimmers like me keep pace when training alone.
-</br>
-<br>
-
-<b>v1 Discrete components:</b> 8 daisy-chained shifting registers, a 1Hz pulse oscillator, and a delayed latching circuit which provides the first input.
-<br>
-<br>
-
-My overcomplicated design got a slating review and I despaired at how expensive it would be to make.
-
-<br>
-<br>
-<b>v2 Programmable: </b>STM32Lo microcontroller, controlling the LED array with a matrix driver. Due to space constraints, I switched from wireless charging to direct with a storage case.
-            <br>
-            <br>
-After a full redesign, ready to order, I realised that JLCPCB doesn't support buried vias. These vias alone would cost hundreds of euros. I was crushed. 
-<br>
-<br>
-
-<b>v3 </b>now consists of two stackable boards, a significantly cheaper, simpler solution.
-            <br>
-            <br>
-Hopefully this will be the last major iteration of making Pace!
-        </p>
-<!--             <ul>
-                <li><a href="#">Design Files (Coming Soon)</a></li>
-                <li><a href="#">Project Report (In Progress)</a></li>
-                <li><a href="#">Size Reference Images (To Be Added)</a></li>
-            </ul> -->
+The segments are made from neon-green PETG, spray-painted black.
+                  <br>
+                    <br>
+In the ten days before Christmas, the clock now displays a countdown.
+ 
+                    <p><b></b></p>
+                    <p>   
+                Clock
+                    </p>
+                </section>
+            </main>
         </div>
-<div class="column image-column">
-    <br>
-    <p><b>Timelapse</b></p>
-    <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/eApguRE6Orc" frameborder="0" allowfullscreen></iframe>
-    </div>
-</div>
-
-            <p><b>V1.0 - Using only discrete components - Schematic</b></p>
-            <img src="../../images/pace/oldie.jpg" alt="V1 Design" style="height: 45vh; width: auto;">
-            <img src="../../images/pace/oldSche.jpg" alt="V1 Schematic" style="height: 45vh; width: auto;">
-            <p>My initial iteration used eight daisy-chained shift registers, driven by a quartz crystal oscillator. It also featured a latching circuit to create the initial 'bit' in the first register that would then cycle through and provide the cycling LED.</p>
-            <p>I ultimately decided to move away from this iteration due to its sheer complexity and production costs.</p>
-
+        <div class="column image-column">
             <br>
-            <p><b>Initial pulse-generating latching circuit:</b> This circuit provides the initial input 'bit' to the first shift register and latches to zero after the first clock pulse. The second video demonstrates daisy-chained shift registers.</p>
-            
-            <video style="height: 40vh; width: auto;" controls>
-              <source src="../../images/pace/latching.mov" type="video/quicktime">
-              Your browser does not support the video tag.
-            </video>
+            <p><b>Timelapse</b></p>
+            <div class="video-wrapper">
+    <iframe width="1022" height="575" src="https://www.youtube.com/embed/eApguRE6Orc" title="Mechanical Seven Segment Display Clock Timelapse" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 
-            <video style="height: 40vh; width: auto;" controls>
-              <source src="../../images/pace/shiftReg.mov" type="video/quicktime">
-              Your browser does not support the video tag.
-            </video>
-        </section>
-    </main>
-
+    
+    
     <script>
         fetch('/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar-container').innerHTML = data;
             });
-
         window.onload = function() {
             document.body.classList.add('loaded');
         };
