@@ -19,6 +19,39 @@
         </div>
     </nav>
 
+
+    <style>
+.video-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.video-wrapper {
+    flex: 1;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .video-container {
+        flex-direction: column;
+    }
+}
+</style>
+
+    
 </body>
 
 
@@ -93,16 +126,17 @@ Hopefully this will be the last major iteration of making Pace!
 
             <br>
             <p><b>Initial pulse-generating latching circuit:</b> This circuit provides the initial input 'bit' to the first shift register and latches to zero after the first clock pulse. The second video demonstrates daisy-chained shift registers.</p>
-            
-            <video style="height: 40vh; width: auto;" controls>
-              <source src="../../images/pace/latching.mov" type="video/quicktime">
-              Your browser does not support the video tag.
-            </video>
 
-            <video style="height: 40vh; width: auto;" controls>
-              <source src="../../images/pace/shiftReg.mov" type="video/quicktime">
-              Your browser does not support the video tag.
-            </video>
+<div class="video-container">
+    <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/EGyOlwZSVYM" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/kINsgQOseBI" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+            
         </section>
     </main>
 
