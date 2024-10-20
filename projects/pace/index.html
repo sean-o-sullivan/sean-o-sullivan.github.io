@@ -30,8 +30,9 @@
         <p><b>Pace</b></p>
         <p class="subtitle">I am developing a compact, magnet-attachable timer to assist swimmers with pacing during training and competitions.</p>
     </header>
-
     <main>
+
+            
         <section>
             <p><b>Description</b></p>
             <p>My project aims to create a swimming timer pacer that attaches to goggles using a magnet. This small device features a minute timer that swimmers can use to pace themselves during training or competitions. The compact design ensures it doesn't interfere with the swimmer's performance while providing valuable timing information at a glance.</p>
@@ -82,25 +83,26 @@ Hopefully this will be the last major iteration of making Pace.
             <br>
 <!-- 
             <img src="../../images/#.png" alt="Device Mounted on Goggles & Device Beside 1c coin" style="height: 40vh; width: auto;"> -->
+            <p><b>V2.0 - Using STM32Lo Microcontroller & LED Matrix Driver</b></p>
+            <img src="../../images/pace.png" alt="Swimming Timer Pacer V2" style="height: 43vh; width: auto;">
 
-            
+            <p><b>V1.0 - Using only discrete components</b></p> 
+            <img src="../../images/pace/oldie.jpg" alt="V1 Design" style="height: 45vh; width: auto;">
+
                     </div>
         </div>
 
             
-            <p><b>V2.0 - Using STM32Lo Microcontroller & LED Matrix Driver</b></p>
-
-            <img src="../../images/pace.png" alt="Swimming Timer Pacer V2" style="height: 43vh; width: auto;">
+            <p><b>V2.0 - Using STM32Lo Microcontroller & LED Matrix Driver - Schematic</b></p>
             <img src="../../images/pace/currentSchematic.jpg" alt="Current Schematic" style="height: 43vh; width: auto;">
 
 
-            <p><b>V1.0 - Using purely discrete components</b></p> 
-            
+            <p><b>V1.0 - Using only discrete components - Schematic</b></p> 
+    
             <p>My initial iteration used eight daisy-chained shift registers, driven by a quartz crystal oscillator. It also featured a latching circuit to create the initial 'bit' in the first register that would then cycle through and provide the cycling LED.</p>
 
             <p>I ultimately decided to move away from this iteration due to its sheer complexity and production costs.</p>
 
-            <img src="../../images/pace/oldie.jpg" alt="V1 Design" style="height: 45vh; width: auto;">
             <img src="../../images/pace/oldSche.jpg" alt="V1 Schematic" style="height: 45vh; width: auto;">
             <br>
             <br>
