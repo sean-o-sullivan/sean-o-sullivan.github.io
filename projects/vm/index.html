@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <link rel="stylesheet" href="../../static/styles.css">
+</head>
+<body class="loading-protection">
+    <nav>
+        <div class="nav-container">
+            <div class="nav-name"><b>Pace</b></div>
+            <ul class="nav-links">
+                <li><a href="../../projects">My Projects</a></li>
+                <li><a href="../../contact" class="active">Contact</a></li>
+                <li><a href="../../cv">CV</a></li>
+                <li><a href="../../about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header>
+        <p>Swimming Timer Pacer for Goggle Attachment</p>
+        <p class="subtitle">I am developing a compact, magnet-attachable timer to assist swimmers with pacing during training and competitions.</p>
+    </header>
+    
+    <main id="content">
+        <!-- The content of graph.html will be loaded here -->
+    </main>
+    
+    <script>
+        // Load the navbar
+        fetch('/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+
+        // Load the content of graph.html
+        fetch('graph.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('content').innerHTML = data;
+            });
+
+        window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    </script>
+</body>
+</html>
