@@ -336,9 +336,9 @@ body {
         }
 
 .textIcontainer {
-    width: 100%;
-     margin-left: 10%;
-     margin-right: 2%;
+    width: 88%;  /* 100% minus the left and right margins */
+    margin-left: 10%;
+    margin-right: 2%;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
