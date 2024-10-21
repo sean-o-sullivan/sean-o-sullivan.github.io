@@ -337,7 +337,8 @@ body {
 
 .textIcontainer {
     width: 100%;
-    max-width: 100%;
+     margin-left: 10%;
+     margin-left: 2%;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
