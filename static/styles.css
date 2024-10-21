@@ -337,21 +337,15 @@ body {
 
 .textIcontainer {
     width: 100%;
-    margin-left: 10%;
-    margin-right: 2%;
-    overflow: hidden;  /* Prevents overflow */
+    max-width: 100%;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    overflow: hidden;
 }
 
 .textIcontainer > * {
     flex: 1 1 auto;
-    max-width: 100%;  /* Ensures content doesn't exceed container width */
-}
-
-.textIcontainer img {
-    object-fit: contain;
+    max-width: 100%;
 }
 
 
