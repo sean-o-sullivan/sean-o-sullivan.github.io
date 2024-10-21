@@ -342,6 +342,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
+    gap: 1em;  /* Adds spacing between flex items */
 }
 
         /* Media query for screens narrower than 768px (common breakpoint for mobile devices) */
