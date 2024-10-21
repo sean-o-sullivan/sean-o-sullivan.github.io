@@ -338,17 +338,11 @@ body {
 .textIcontainer {
     width: 100%;
      margin-left: 10%;
-     margin-left: 2%;
+     margin-right: 2%;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
 }
-
-.textIcontainer > * {
-    flex: 1 1 auto;
-    max-width: 100%;
-}
-
 
         /* Media query for screens narrower than 768px (common breakpoint for mobile devices) */
         @media (max-width: 767px) {
