@@ -273,9 +273,11 @@ body {
     width: 48%; /* Adjust width as needed */
 }
 
+
 /* Text column specific styles */
 .text-column {
-    padding-right: 20px;
+         float: left;
+         margin-left: 10%;
 }
 
 /* Image column specific styles */
