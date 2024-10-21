@@ -337,9 +337,10 @@ body {
 
         /* Default styles for larger screens */
         .textIcontainer {
-            width: 80%;
+            width: 100%;
             float: left;
             margin-left: 10%;
+            margin-right: 10%;
         }
 
 
