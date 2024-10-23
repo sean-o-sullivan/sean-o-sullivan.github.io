@@ -6,7 +6,6 @@
     <title>VerifyMe · Seán O'Sullivan</title>
     <link rel="stylesheet" href="../../static/styles.css">
 </head>
-
 <body class="loading-protection">
     <nav>
         <div class="nav-container">
@@ -18,42 +17,42 @@
             </ul>
         </div>
     </nav>
-
-    <div class="main-content">
-        
-    <div class="container">
-        <div class="column text-column">
-            <header>
-                <h3>VerifyMe</h3>
-                <p class="subtitle"> - Learned Embedding Space Interactive Visualisation</p>
-            </header>
-            <main>
-                <section>
-                    <p><b>Description</b></p>
-Here are 4500 samples from the project gutenberg corpus from authors ranging from                </section>
-                
-                <section>    
-                    
-    <main id="content">
-        <!-- The content of graph.html will be loaded here -->
-    </main>
     
-    <script>
-        // Load the navbar
-        fetch('/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-            });
+    <div class="main-content">
+        <div class="container">
+            <div class="column text-column">
+                <header>
+                    <h3>VerifyMe</h3>
+                    <p class="subtitle"> - Learned Embedding Space Interactive Visualisation</p>
+                </header>
+                <main>
+                    <section>
+                        <p><b>Description</b></p>
+                        <p>Here are 4500 samples from the project gutenberg corpus from authors ranging from</p>
+                    </section>
+                    
+                    <div id="plot-content">
+                        <!-- The content of plot.html will be loaded here -->
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
 
-        // Load the content of graph.html
+    <script>
+        // Load the plot content
         fetch('plot.html')
             .then(response => response.text())
             .then(data => {
-                document.getElementById('content').innerHTML = data;
+                document.getElementById('plot-content').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading plot:', error);
             });
 
+        // Add loaded class when everything is ready
         window.onload = function() {
+            document.body.classList.remove('loading-protection');
             document.body.classList.add('loaded');
         };
     </script>
