@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VerifyMe · Seán O'Sullivan</title>
     <link rel="stylesheet" href="../../static/styles.css">
+    <style>
+        /* Debug styles */
+        #plot-content {
+            border: 2px solid red; /* Makes the container visible */
+            min-height: 100px;     /* Ensures minimum height */
+            margin: 20px 0;        /* Adds some spacing */
+        }
+        
+        #plot-debug-info {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body class="loading-protection">
     <nav>
@@ -31,6 +46,11 @@
                         <p>This graph contains 4,493, ≈10K character samples written by 995 authors from The Project Gutenberg Corpus.</p>
                     </section>
                     
+                    <div id="plot-debug-info">
+                        Plot container dimensions: <span id="debug-dimensions"></span><br>
+                        Plot content status: <span id="debug-status">Loading...</span>
+                    </div>
+
                     <div id="plot-content">
                         <!-- The content of plot.html will be loaded here -->
                         <p id="loading-status">Loading plot...</p>
@@ -41,17 +61,18 @@
     </div>
 
     <script>
-        // Add console logging for debugging
         console.log('Script started');
         
-        // Function to check if we're running on a local file system
-        function isLocalFile() {
-            return window.location.protocol === 'file:';
+        function updateDebugInfo() {
+            const plotContainer = document.getElementById('plot-content');
+            const debugDimensions = document.getElementById('debug-dimensions');
+            const rect = plotContainer.getBoundingClientRect();
+            debugDimensions.textContent = `Width: ${rect.width}px, Height: ${rect.height}px`;
         }
 
-        // Load the plot content with better error handling and debugging
         async function loadPlot() {
             const loadingStatus = document.getElementById('loading-status');
+            const debugStatus = document.getElementById('debug-status');
             
             try {
                 console.log('Attempting to fetch plot.html');
@@ -74,13 +95,23 @@
                 plotContent.innerHTML = data;
                 loadingStatus.remove();
                 console.log('Plot content inserted into DOM');
+                
+                // Check the actual content after insertion
+                debugStatus.textContent = `Content inserted. Inner HTML length: ${plotContent.innerHTML.length}`;
+                updateDebugInfo();
+
+                // Log the first 500 characters of the inserted content
+                console.log('First 500 chars of inserted content:', plotContent.innerHTML.substring(0, 500));
+                
+                // Check if any scripts need to be executed
+                const scripts = plotContent.getElementsByTagName('script');
+                console.log('Number of scripts found:', scripts.length);
+                Array.from(scripts).forEach((script, index) => {
+                    console.log(`Script ${index + 1} content:`, script.textContent.substring(0, 100));
+                });
             } catch (error) {
                 console.error('Error loading plot:', error);
-                if (isLocalFile()) {
-                    loadingStatus.textContent = 'Error: Cannot load plot when running locally. Please use a web server.';
-                } else {
-                    loadingStatus.textContent = 'Error loading plot. Check console for details.';
-                }
+                debugStatus.textContent = 'Error: ' + error.message;
             }
         }
 
@@ -92,7 +123,11 @@
             document.body.classList.remove('loading-protection');
             document.body.classList.add('loaded');
             console.log('Page fully loaded');
+            updateDebugInfo();
         };
+
+        // Update debug info on window resize
+        window.addEventListener('resize', updateDebugInfo);
     </script>
 </body>
 </html>
