@@ -42,6 +42,11 @@
             font-family: monospace;
         }
 
+        /* Add spacing after the note section */
+        .note-section {
+            margin-bottom: 2rem;  /* Adds space after the note */
+        }
+
         /* Mobile optimization */
         @media (max-width: 768px) {
             .plot-container-wrapper {
@@ -87,9 +92,9 @@
                         <p>This graph contains 4,493, ≈10K character samples written by 995 authors from The Project Gutenberg Corpus.</p>
                         <p>Each point represents a text passage that was cleaned, converted to a stylometric embedding, then normalized using z-scores by feature and percentile-normalized using corpus statistics, processed through EmbeddingNet (the transformer-encoder-based model within my siamese network), and finally reduced from 128 to 3 dimensions using UMAP.</p>                        
                     </section>
-                    <section>
+                    <section class="note-section">
                         <span>Project <a href="https://github.com/sean-o-sullivan/" target="_blank" aria-label="GitHub">code</a></span>
-                        <p><b>Note:</b> Click the dropdown to colour samples by author.</br></p>
+                        <p><b>Note:</b> Click the dropdown to colour samples by author.</p>
                     </section>
                 </main>
             </div>
@@ -103,7 +108,6 @@
     </div>
 
     <script>
-        // Rest of your JavaScript remains exactly the same
         console.log('Script started');
         
         function updateDebugInfo() {
