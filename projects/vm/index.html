@@ -8,20 +8,30 @@
     <!-- Add Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
     <style>
+        /* Container for the entire plot section */
+        .plot-container-wrapper {
+            width: 90%;  /* Take up 90% of viewport width */
+            margin: 0 auto;  /* Center horizontally */
+            padding: 20px 0;  /* Add some vertical padding */
+            position: relative;
+        }
+
         #plot-content {
-            height: 80vh; /* Changed from auto to fixed height */
+            height: 90vh;  /* Take up 90% of viewport height */
             width: 100%;
-            max-width: 100%;
-            position: relative; /* Added for proper positioning */
+            position: relative;
             margin: 0 auto;
-            overflow: visible; /* Changed from hidden to allow proper interaction */
+            overflow: visible;
+            display: flex;  /* Enable flexbox for centering */
+            justify-content: center;  /* Center horizontally */
+            align-items: center;  /* Center vertically */
         }
         
         /* Ensure the plot can receive scroll events */
         .js-plotly-plot {
             width: 100% !important;
             height: 100% !important;
-            touch-action: manipulation; /* Better touch handling */
+            touch-action: manipulation;
         }
         
         /* Debug info styling preserved */
@@ -34,10 +44,21 @@
 
         /* Mobile optimization */
         @media (max-width: 768px) {
+            .plot-container-wrapper {
+                width: 95%;  /* Slightly wider on mobile */
+            }
+            
             #plot-content {
-                height: 70vh;
+                height: 80vh;  /* Slightly shorter on mobile */
                 -webkit-overflow-scrolling: touch;
             }
+        }
+
+        /* Ensure the main content area doesn't conflict with plot */
+        .main-content {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px 0;
         }
     </style>
 </head>
@@ -75,17 +96,14 @@
         </div>
     </div>
 
-    <!--<div id="plot-debug-info">
-        Plot container dimensions: <span id="debug-dimensions"></span><br>
-        Plot content status: <span id="debug-status">Loading...</span>
-    </div>-->
-
-    <div id="plot-content">
-        <!-- The content of plot.html will be loaded here -->
-        <p id="loading-status">Loading plot...</p>
+    <div class="plot-container-wrapper">
+        <div id="plot-content">
+            <p id="loading-status">Loading plot...</p>
+        </div>
     </div>
 
     <script>
+        // Rest of your JavaScript remains exactly the same
         console.log('Script started');
         
         function updateDebugInfo() {
@@ -98,7 +116,6 @@
         }
 
         function executeScripts(element) {
-            // Execute scripts inside the loaded content
             const scripts = element.getElementsByTagName('script');
             Array.from(scripts).forEach(oldScript => {
                 const newScript = document.createElement('script');
@@ -135,13 +152,10 @@
                 plotContent.innerHTML = data;
                 loadingStatus.remove();
                 
-                // Execute any scripts in the loaded content
                 executeScripts(plotContent);
                 
-                // Add event listeners for plot interaction
                 const plotElement = plotContent.querySelector('.js-plotly-plot');
                 if (plotElement) {
-                    // Prevent default touch behavior on mobile
                     plotElement.addEventListener('touchstart', (e) => {
                         if (e.target.closest('.drag-layer, .zoom-layer')) {
                             e.preventDefault();
@@ -154,7 +168,6 @@
                         }
                     }, { passive: false });
 
-                    // Configure Plotly for better interaction
                     if (window.Plotly) {
                         window.Plotly.setPlotConfig({
                             scrollZoom: true,
@@ -178,7 +191,6 @@
             }
         }
 
-        // Make sure Plotly is loaded before loading the plot
         if (typeof Plotly === 'undefined') {
             console.error('Plotly not loaded! Adding script...');
             const script = document.createElement('script');
