@@ -5,36 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VerifyMe · Seán O'Sullivan</title>
     <link rel="stylesheet" href="../../static/styles.css">
+    <!-- Add Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
     <style>
-        /* Reset container styles */
         #plot-content {
-            position: relative;
+            height: 80vh; /* Changed from auto to fixed height */
             width: 100%;
-            height: 80vh; /* Fixed height instead of auto */
+            max-width: 100%;
+            position: relative; /* Added for proper positioning */
             margin: 0 auto;
-            padding: 0;
-            overflow: visible; /* Changed from hidden */
+            overflow: visible; /* Changed from hidden to allow proper interaction */
         }
-
+        
         /* Ensure the plot can receive scroll events */
         .js-plotly-plot {
             width: 100% !important;
             height: 100% !important;
-            touch-action: none; /* Prevents default touch actions */
+            touch-action: manipulation; /* Better touch handling */
+        }
+        
+        /* Debug info styling preserved */
+        #plot-debug-info {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
         }
 
-        /* Add specific mobile handling */
+        /* Mobile optimization */
         @media (max-width: 768px) {
             #plot-content {
                 height: 70vh;
-                -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+                -webkit-overflow-scrolling: touch;
             }
-        }
-
-        /* Prevent body scroll when interacting with plot */
-        body.plot-active {
-            overflow: hidden;
         }
     </style>
 </head>
@@ -61,77 +64,123 @@
                     <section>
                         <p><b>Description</b></p>
                         <p>This graph contains 4,493, ≈10K character samples written by 995 authors from The Project Gutenberg Corpus.</p>
-<p>Each point represents a text passage that was cleaned, converted to a stylometric embedding, then normalized using z-scores by feature and percentile-normalized using corpus statistics, processed through EmbeddingNet (the transformer-encoder-based model within my siamese network), and finally reduced from 128 to 3 dimensions using UMAP.</p>                        
+                        <p>Each point represents a text passage that was cleaned, converted to a stylometric embedding, then normalized using z-scores by feature and percentile-normalized using corpus statistics, processed through EmbeddingNet (the transformer-encoder-based model within my siamese network), and finally reduced from 128 to 3 dimensions using UMAP.</p>                        
                     </section>
                     <section>
-    <span>Project <a href="https://github.com/sean-o-sullivan/" target="_blank" aria-label="GitHub">code</a></span>
-
+                        <span>Project <a href="https://github.com/sean-o-sullivan/" target="_blank" aria-label="GitHub">code</a></span>
                         <p><b>Note:</b> Click the dropdown to colour samples by author.</p>
                     </section>
-
+                </main>
             </div>
         </div>
     </div>
 
-<!--                     <div id="plot-debug-info">
-                        Plot container dimensions: <span id="debug-dimensions"></span><br>
-                        Plot content status: <span id="debug-status">Loading...</span>
-                    </div> -->
+    <!--<div id="plot-debug-info">
+        Plot container dimensions: <span id="debug-dimensions"></span><br>
+        Plot content status: <span id="debug-status">Loading...</span>
+    </div>-->
 
     <div id="plot-content">
+        <!-- The content of plot.html will be loaded here -->
         <p id="loading-status">Loading plot...</p>
     </div>
 
     <script>
-        function loadPlot() {
-            const loadingStatus = document.getElementById('loading-status');
-            const plotContent = document.getElementById('plot-content');
-
-            try {
-                fetch('plot.html')
-                    .then(response => {
-                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                        return response.text();
-                    })
-                    .then(data => {
-                        plotContent.innerHTML = data;
-                        loadingStatus.remove();
-
-                        // Add event listeners for plot interaction
-                        const plotElement = plotContent.querySelector('.js-plotly-plot');
-                        if (plotElement) {
-                            plotElement.addEventListener('mouseenter', () => {
-                                document.body.classList.add('plot-active');
-                            });
-
-                            plotElement.addEventListener('mouseleave', () => {
-                                document.body.classList.remove('plot-active');
-                            });
-
-                            // Prevent default touch behavior on mobile
-                            plotElement.addEventListener('touchstart', (e) => {
-                                e.preventDefault();
-                            }, { passive: false });
-
-                            // Enable proper touch events for Plotly
-                            plotElement.addEventListener('touchmove', (e) => {
-                                e.preventDefault();
-                            }, { passive: false });
-                        }
-
-                        // Notify Plotly to resize
-                        if (window.Plotly) {
-                            window.Plotly.Plots.resize(plotElement);
-                        }
-                    });
-            } catch (error) {
-                console.error('Error loading plot:', error);
-                loadingStatus.textContent = 'Error loading plot: ' + error.message;
+        console.log('Script started');
+        
+        function updateDebugInfo() {
+            const plotContainer = document.getElementById('plot-content');
+            const debugDimensions = document.getElementById('debug-dimensions');
+            const rect = plotContainer.getBoundingClientRect();
+            if (debugDimensions) {
+                debugDimensions.textContent = `Width: ${rect.width}px, Height: ${rect.height}px`;
             }
         }
 
-        // Load plot when Plotly is ready
+        function executeScripts(element) {
+            // Execute scripts inside the loaded content
+            const scripts = element.getElementsByTagName('script');
+            Array.from(scripts).forEach(oldScript => {
+                const newScript = document.createElement('script');
+                Array.from(oldScript.attributes).forEach(attr => {
+                    newScript.setAttribute(attr.name, attr.value);
+                });
+                newScript.textContent = oldScript.textContent;
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            });
+        }
+
+        async function loadPlot() {
+            const loadingStatus = document.getElementById('loading-status');
+            const debugStatus = document.getElementById('debug-status');
+            
+            try {
+                console.log('Attempting to fetch plot.html');
+                const response = await fetch('plot.html');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                console.log('Successfully fetched plot.html');
+                const data = await response.text();
+                console.log('Plot data length:', data.length);
+                
+                if (data.trim().length === 0) {
+                    loadingStatus.textContent = 'Error: Plot file is empty';
+                    return;
+                }
+
+                const plotContent = document.getElementById('plot-content');
+                plotContent.innerHTML = data;
+                loadingStatus.remove();
+                
+                // Execute any scripts in the loaded content
+                executeScripts(plotContent);
+                
+                // Add event listeners for plot interaction
+                const plotElement = plotContent.querySelector('.js-plotly-plot');
+                if (plotElement) {
+                    // Prevent default touch behavior on mobile
+                    plotElement.addEventListener('touchstart', (e) => {
+                        if (e.target.closest('.drag-layer, .zoom-layer')) {
+                            e.preventDefault();
+                        }
+                    }, { passive: false });
+
+                    plotElement.addEventListener('touchmove', (e) => {
+                        if (e.target.closest('.drag-layer, .zoom-layer')) {
+                            e.preventDefault();
+                        }
+                    }, { passive: false });
+
+                    // Configure Plotly for better interaction
+                    if (window.Plotly) {
+                        window.Plotly.setPlotConfig({
+                            scrollZoom: true,
+                            displayModeBar: true,
+                            modeBarButtonsToRemove: ['autoScale2d']
+                        });
+                    }
+                }
+                
+                if (debugStatus) {
+                    debugStatus.textContent = `Content inserted. Inner HTML length: ${plotContent.innerHTML.length}`;
+                }
+                updateDebugInfo();
+
+                console.log('First 500 chars of inserted content:', plotContent.innerHTML.substring(0, 500));
+            } catch (error) {
+                console.error('Error loading plot:', error);
+                if (debugStatus) {
+                    debugStatus.textContent = 'Error: ' + error.message;
+                }
+            }
+        }
+
+        // Make sure Plotly is loaded before loading the plot
         if (typeof Plotly === 'undefined') {
+            console.error('Plotly not loaded! Adding script...');
             const script = document.createElement('script');
             script.src = 'https://cdn.plot.ly/plotly-2.35.0.min.js';
             script.onload = loadPlot;
@@ -140,8 +189,15 @@
             document.addEventListener('DOMContentLoaded', loadPlot);
         }
 
-        // Handle window resize
+        window.onload = function() {
+            document.body.classList.remove('loading-protection');
+            document.body.classList.add('loaded');
+            console.log('Page fully loaded');
+            updateDebugInfo();
+        };
+
         window.addEventListener('resize', () => {
+            updateDebugInfo();
             const plotElement = document.querySelector('.js-plotly-plot');
             if (plotElement && window.Plotly) {
                 window.Plotly.Plots.resize(plotElement);
