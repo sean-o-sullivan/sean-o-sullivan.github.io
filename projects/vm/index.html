@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Previous head content remains the same -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VerifyMe · Seán O'Sullivan</title>
@@ -8,33 +9,45 @@
     <!-- Add Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
     <style>
-        /* Container for the entire plot section */
+        /* Previous styles remain the same */
         .plot-container-wrapper {
-            width: 90%;  /* Take up 90% of viewport width */
-            margin: 0 auto;  /* Center horizontally */
-            padding: 20px 0;  /* Add some vertical padding */
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px 0;
             position: relative;
         }
 
         #plot-content {
-            height: 90vh;  /* Take up 90% of viewport height */
+            height: 90vh;
             width: 100%;
             position: relative;
             margin: 0 auto;
             overflow: visible;
-            display: flex;  /* Enable flexbox for centering */
-            justify-content: center;  /* Center horizontally */
-            align-items: center;  /* Center vertically */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
-        /* Ensure the plot can receive scroll events */
+        /* Add new loading status style */
+        #loading-status {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            margin: 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.9);  /* Semi-transparent background */
+            border-radius: 4px;
+            font-size: 14px;
+            z-index: 1000;  /* Ensure it's above other elements */
+        }
+
+        /* Previous styles continue */
         .js-plotly-plot {
             width: 100% !important;
             height: 100% !important;
             touch-action: manipulation;
         }
         
-        /* Debug info styling preserved */
         #plot-debug-info {
             background: #f0f0f0;
             padding: 10px;
@@ -42,32 +55,30 @@
             font-family: monospace;
         }
 
-        /* Add spacing after the note section */
         .note-section {
-            margin-bottom: 2rem;  /* Adds space after the note */
+            margin-bottom: 2rem;
         }
 
-        /* Mobile optimization */
         @media (max-width: 768px) {
             .plot-container-wrapper {
-                width: 95%;  /* Slightly wider on mobile */
+                width: 95%;
             }
             
             #plot-content {
-                height: 80vh;  /* Slightly shorter on mobile */
+                height: 80vh;
                 -webkit-overflow-scrolling: touch;
             }
         }
 
-        /* Ensure the main content area doesn't conflict with plot */
         .main-content {
-            width: 80%;
+            width: 90%;
             margin: 0 auto;
             padding: 20px 0;
         }
     </style>
 </head>
 <body class="loading-protection">
+    <!-- Rest of the HTML remains exactly the same -->
     <nav>
         <div class="nav-container">
             <div class="nav-name">Seán O'Sullivan</div>
@@ -107,6 +118,7 @@
         </div>
     </div>
 
+    <!-- JavaScript remains exactly the same -->
     <script>
         console.log('Script started');
         
