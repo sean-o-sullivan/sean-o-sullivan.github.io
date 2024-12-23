@@ -17,7 +17,7 @@ h3 {
 }
 
 body {
-  cursor: url('cursor.png'), auto;
+  cursor: url('cursor.png') 16 16, auto;
 }
 
 /* Conditional loading protection */
