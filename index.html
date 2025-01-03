@@ -14,11 +14,11 @@
             100% { transform: translateY(0) scale(1) rotate(0deg); }
         }
 
-        .random-link {
+        .nav-links .random-link {
             color: #006400;
             font-weight: bold;
             font-size: 1.5rem;
-            text-decoration: none;
+            text-decoration: none !important;
             transition: transform 0.2s ease;
             display: inline-block;
             padding: 0.2rem;
@@ -147,7 +147,18 @@
                 <li><a href="../../projects">My Projects</a></li>
                 <li><a href="../../contact">Contact</a></li>
                 <li><a href="../../about">About</a></li>
-                <li><a href="https://www.wikihow.com/Special:Randomizer" class="random-link" target="_blank">?</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Special:Random" 
+                    id="randomLink" 
+                    target="_blank" 
+                    style="
+                        color: #006400; 
+                        font-weight: bold; 
+                        font-size: 1.5rem; 
+                        text-decoration: none !important; 
+                        display: inline-block; 
+                        padding: 0.2rem; 
+                        transform-origin: bottom center;
+                    ">?</a></li>
             </ul>
         </div>
     </nav>
@@ -199,6 +210,28 @@
 
         window.onload = function() {
             document.body.classList.add('loaded');
+            
+            // Set up random link functionality
+            const randomLink = document.getElementById('randomLink');
+            const wikiUrl = 'https://en.wikipedia.org/wiki/Special:Random';
+            const wikiHowUrl = 'https://www.wikihow.com/Special:Randomizer';
+            
+            randomLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                const randomChoice = Math.random() < 0.5 ? wikiUrl : wikiHowUrl;
+                window.open(randomChoice, '_blank');
+            });
+
+            // Add hover animation
+            randomLink.addEventListener('mouseenter', function() {
+                this.style.animation = 'jump 0.6s cubic-bezier(.2,-0.3,.7,1.3) forwards';
+                this.style.color = '#008000';
+            });
+            
+            randomLink.addEventListener('mouseleave', function() {
+                this.style.animation = '';
+                this.style.color = '#006400';
+            });
         };
 
         const overlay = document.getElementById('fullscreen-overlay');
