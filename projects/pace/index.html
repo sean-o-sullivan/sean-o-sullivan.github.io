@@ -120,6 +120,20 @@ Hopefully this will be the last major iteration of making Pace!        </p>
     </main>
 
     <script>
+
+        // Set up random link functionality
+const randomLink = document.getElementById('randomLink');
+const randomSites = [
+    'https://en.wikipedia.org/wiki/Special:Random',
+    'https://www.wikihow.com/special:randomizer'
+];
+
+randomLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
+    window.open(randomSite, '_blank');
+});
+        
         fetch('/navbar.html')
             .then(response => response.text())
             .then(data => {
