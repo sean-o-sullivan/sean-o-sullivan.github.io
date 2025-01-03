@@ -29,6 +29,19 @@
 <br>   
 <p>Email: <a href="mailto:seangerardosullivan@gmail.com">seangerardosullivan@gmail.com</a></p></body>
     </section>
+
+    <script>// Set up random link functionality
+const randomLink = document.getElementById('randomLink');
+const randomSites = [
+    'https://en.wikipedia.org/wiki/Special:Random',
+    'https://www.wikihow.com/special:randomizer'
+];
+
+randomLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
+    window.open(randomSite, '_blank');
+});</script>
 </html>
 
 
