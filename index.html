@@ -3,22 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home · Seán O'Sullivan</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Clock · Seán O'Sullivan</title>
+    <link rel="stylesheet" href="../../static/styles.css">
+     <style>
+
+
+.main-content {
+    position: relative;
+    padding-bottom:0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0; 
+}
+
+.column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.image-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-container {
+    position: relative;
+    width: 85%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    max-width: 800px; 
+    margin: 0 auto;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85%;
+}
+
+.image-gallery {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f0f0f0; 
+}
+
+.image-gallery img {
+    height: 30vh;
+    width: auto;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-bottom: 100vh; 
+    }
+    
+    .image-gallery {
+        position: static; 
+        margin-top: 2rem;
+    }
+}
+ 
+    </style> 
 </head>
-<body>
+<body class="loading-protection">
     <nav>
         <div class="nav-container">
             <div class="nav-name">Seán O'Sullivan</div>
             <ul class="nav-links">
-                <li><a href="/projects" class="active">My Projects</a></li>
-                <li><a href="/contact">Contact</a></li>
-<!--                 <li><a href="/cv">CV</a></li>
- -->
-                
-                <li><a href="/about">About</a></li>
+                <li><a href="../../projects">My Projects</a></li>
+                <li><a href="../../contact">Contact</a></li>
+                <li><a href="../../about">About</a></li>
             </ul>
         </div>
     </nav>
+
+    <div class="main-content">
+        
+    <div class="container">
+        <div class="column text-column">
+            <main>
+                <section>
+                    <p>Hello! This is my personal webpage, below is some content which I find useful.</p>
+                </section>
+            </main>
+                    <!-- existing text content here -->
+        </div>
+        <br>
+        <section class="textIcontainer">
+            
+    <img src="./static/inserts.jpg" alt="threaded inserts" style="height: 30vh; width: auto;">
+            
+<span style="display: inline-block; height: 30vh; width: calc(30vh * 16 / 9); max-width: 100%; vertical-align: top;">
+    <iframe 
+        src="https://www.youtube.com/watch?v=x4AXFkLeOdM&list=PLgtaaXNjB3YicEUUsQwkjEUbLROhLPaFU" 
+        title="️‍🔥" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen
+        style="width: 100%; height: 100%;"
+    ></iframe>
+</span>
+            
+        </section> 
+        <script>
+        fetch('/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+        window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    </script>
 </body>
 </html>
+
