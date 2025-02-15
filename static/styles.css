@@ -451,6 +451,7 @@ body {
     }
 
     .left-half, .right-half {
+        padding-top: 10vh;
         flex: 0 0 50%; /* Lock each to exactly 50% */
         max-width: 50%; /* Prevent expansion beyond 50% */
         box-sizing: border-box;
