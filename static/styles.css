@@ -80,7 +80,7 @@ nav {
 }
 
 .nav-container {
-    width: 85%; 
+    width: 80%; 
     max-width: 1200px;
     display: flex;
     justify-content: space-between;
@@ -288,6 +288,7 @@ body {
 
 
 
+
 .progressive-image {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -301,6 +302,7 @@ body {
     color: #0864c7;
     text-decoration: underline; /* Ensure underline is kept */
 }
+
 
 
 
@@ -437,40 +439,31 @@ body {
 
 
 
-/* About page specific styles */
+
+
+
+/* Layout for the about content */
 .about-content {
     display: flex;
-    width: 100%;
-    margin-top: 2rem;
+    width: 80%;
+    margin: 0 auto;  /* Center the container */
+    gap: 2rem;  /* Add space between the halves */
 }
 
+/* Styles for the two halves */
 .left-half, .right-half {
-    flex: 1;
-    padding: 20px;
-    box-sizing: border-box;
+    flex: 1;  /* Each takes up equal space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center content horizontally */
 }
 
 .left-half {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    text-align: center;  /* Center the text content */
 }
 
-.right-half {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.profile-image {
-    width: 175px;
-    height: 175px;
-    border-radius: 3%;
-    object-fit: cover;
-    margin-bottom: 20px;
-}
-
-.computer-image {
+/* Adjust profile and computer images */
+.profile-image, .computer-image {
     width: 175px;
     height: 175px;
     border-radius: 3%;
@@ -480,13 +473,12 @@ body {
 
 /* Make it responsive */
 @media (max-width: 768px) {
-    .about-content {
-        flex-direction: column;
+    .textContainer {
+        width: 95%;  /* Use more width on mobile */
     }
 
-    .left-half, .right-half {
-        flex: none;
-        width: 100%;
-        padding: 10px;
+    .about-content {
+        flex-direction: column;  /* Stack vertically on mobile */
+        gap: 1rem;  /* Reduce gap on mobile */
     }
 }
