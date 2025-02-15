@@ -463,33 +463,47 @@ body {
 
 
 
-
-
 #fullscreen-overlay {
+    /* Fixed positioning ensures the overlay covers the entire viewport */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    
+    /* Semi-transparent black background */
     background-color: rgba(0, 0, 0, 0.9);
-    display: none;
+    
+    /* Use flex display when visible for centering */
+    display: none; /* This will be changed to 'flex' when visible */
+    
+    /* These flex properties center the content both horizontally and vertically */
     justify-content: center;
     align-items: center;
+    
+    /* Ensure overlay appears above other content */
     z-index: 1000;
     cursor: pointer;
 }
 
 #fullscreen-image {
+    /* Maintain aspect ratio while fitting within bounds */
     max-width: 90%;
     max-height: 90vh;
     object-fit: contain;
+    
+    /* Add a subtle shadow to help the image stand out against the dark background */
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
 }
 
 .clickable-image {
     cursor: pointer;
+    /* Smooth transition for hover effect */
     transition: transform 0.2s ease-in-out;
 }
 
 .clickable-image:hover {
+    /* Slight scale up on hover */
     transform: scale(1.05);
 }
+
