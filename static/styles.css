@@ -457,7 +457,8 @@ body {
     flex: 1;  /* Each takes up equal space */
     display: flex;
     flex-direction: column;
-    align-items: center;  /* Center content horizontally */
+    align-items: center;
+    width: 100%; /* Ensure the container takes full width */
 }
 
 .left-half {
@@ -514,14 +515,6 @@ body {
     width: 24px;
     height: 24px;
     fill: currentColor;
-}
-
-/* Left half container adjustments */
-.left-half {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%; /* Ensure the container takes full width */
 }
 
 /* Ensure the paragraph is also centered */
