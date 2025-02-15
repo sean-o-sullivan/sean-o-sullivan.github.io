@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
+    <div id="navbar-container"></div>
 
     <div class="textcontainer">
-                <div class="left-half">
-
-                    <img src="profile.jpg" alt="profile-picture" class="profile-image">
+        <div class="about-content">
+            <div class="left-half">
+                <img src="profile.jpg" alt="profile-picture" class="profile-image">
                 <p>Limerick, Ireland</p>
                 <div class="social-icons">
                     <a href="https://github.com/sean-o-sullivan" target="_blank" aria-label="GitHub">
@@ -37,83 +38,31 @@
                 </div>
                     <div class="right-half"
                     <img src="computer.jpeg" alt="computer" class="computer-image">
-                    </div>
-    </div>        
-
-<style>
-
-        .computer-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 3%;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-    
-        .profile-image {
-            width: 175px;
-            height: 175px;
-            border-radius: 3%;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-
-.social-icons {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-    align-items: center;
-}
-
-.social-icons a {
-    color: #333;
-    transition: color 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.social-icons a:hover {
-    color: #007bff;
-}
-
-.social-icons svg {
-    display: block;
-    width: 24px;
-    height: 24px;
-}
-
-.thingiverse-icon {
-    position: relative;
-    left: -2px; /* Adjust this value as needed */
-}
-
-
-</style>
+                    </div>               
+            </div>
             
+            <div class="right-half">
+                <img src="computer.jpeg" alt="computer" class="computer-image">
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/nav-loader.js"></script>   
+ 
     <script>
 
-        // Set up random link functionality
-const randomLink = document.getElementById('randomLink');
-const randomSites = [
-    'https://en.wikipedia.org/wiki/Special:Random',
-    'https://www.wikihow.com/special:randomizer'
-];
+    const randomLink = document.getElementById('randomLink');
+    const randomSites = [
+        'https://en.wikipedia.org/wiki/Special:Random',
+        'https://www.wikihow.com/special:randomizer'
+    ];
+    
+    randomLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
+        window.open(randomSite, '_blank');
+    });
 
-randomLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
-    window.open(randomSite, '_blank');
-});
-
-        
-        // Function to load the navigation bar from navbar.html
-        fetch('/navbar.html') // Note the absolute path here
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-            });
     </script>
 
 </body>
