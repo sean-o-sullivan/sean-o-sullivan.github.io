@@ -264,7 +264,6 @@ body {
             width: 50%;
             float: left;
             margin-left: 10%;
-
   }
 
 .textIcontainer {
@@ -447,8 +446,11 @@ body {
 .about-content {
     display: flex;
     width: 80%;
-    margin: 0 auto;  /* Center the container */
-    padding: 5rem;  /* Add space between the halves */
+    margin: 0 auto;
+    /* Remove the padding and replace with a fixed top margin */
+    margin-top: 80px; /* or whatever fixed value works best with your navbar height */
+    gap: 2rem;
+    position: relative; /* Add this to ensure stable positioning */
 }
 
 /* Styles for the two halves */
