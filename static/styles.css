@@ -446,9 +446,7 @@ body {
         }
 
 
-    .split-container {
-       display: flex;
-    }
+ 
 
     .left-half, .right-half {
         padding-top: 10vh;
