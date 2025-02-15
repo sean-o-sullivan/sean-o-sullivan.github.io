@@ -259,12 +259,12 @@ body {
 
 
         /* Default styles for larger screens */
-        .textcontainer {
+      .textcontainer {
             padding-top: 5vh:
             width: 50%;
             float: left;
             margin-left: 10%;
-        }
+       }
 
 .textIcontainer {
     width: 88%;  /* 100% minus the left and right margins */
