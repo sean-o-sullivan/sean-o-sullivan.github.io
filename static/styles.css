@@ -449,7 +449,7 @@ body {
     width: 80%;
     padding-top:10vh;
     margin: 0 auto;  /* Center the container */
-    gap: 2rem;  /* Add space between the halves */
+    padding: 5rem;  /* Add space between the halves */
 }
 
 /* Styles for the two halves */
