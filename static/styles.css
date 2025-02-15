@@ -100,7 +100,7 @@ nav {
 
 .nav-container {
     height: 50px; 
-    width: 61%; 
+    width: 31%; 
     max-width: 1200px;
     display: flex;
     justify-content: space-between;
@@ -464,7 +464,7 @@ body {
 
 .about-content {
     display: flex;
-    width: 61%;
+    width: 31%;
     margin: 0 auto;
     gap: 2rem;
     padding-top: 70px; /* Match the navbar height */
@@ -554,7 +554,7 @@ body {
 
 /* Main content container styles */
 .home-content {
-    width: 61%;
+    width: 31%;
     margin: 70px auto 0; /* Top margin matches navbar height */
     display: flex;
     flex-direction: column;
