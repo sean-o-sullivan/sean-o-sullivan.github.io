@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home · Seán O'Sullivan</title>
-    <link rel="stylesheet" href="../../static/styles.css">
+    <!-- Fix the paths to use consistent absolute paths from root -->
+    <link rel="stylesheet" href="/static/styles.css">
     <script src="/static/js/nav-loader.js"></script>
-
 </head>
 <body>
-
+    <!-- Remove the navbar fetch script since nav-loader.js handles this -->
     <div class="textContainer">
         <div class="container">
             <div class="column text-column">
@@ -25,65 +25,20 @@
             </div>
             <br>
             <section class="textIcontainer">
-                
-                <img src="./static/home/Earth.jpg" alt="Planet Earth - Appolo 17" style="height: 30vh; width: auto;" class="clickable-image">
-                <img src="./static/home/deep 3.jpg" alt="Farthest back look into time - James Webb" style="height: 30vh; width: auto;" class="clickable-image">
-                <img src="./static/home/cool.jxl" alt="pretty cool" style="height: 30vh; width: auto;" class="clickable-image">
-
-                
-            </section> 
+                <!-- Fix image paths to use absolute paths -->
+                <img src="/static/home/Earth.jpg" alt="Planet Earth - Appolo 17" style="height: 30vh; width: auto;" class="clickable-image">
+                <img src="/static/home/deep 3.jpg" alt="Farthest back look into time - James Webb" style="height: 30vh; width: auto;" class="clickable-image">
+                <img src="/static/home/cool.jxl" alt="pretty cool" style="height: 30vh; width: auto;" class="clickable-image">
+            </section>
         </div>
-
-        
     </div>
 
-    <script>
-        fetch('/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-            });
+    <!-- Add the fullscreen overlay HTML that was missing -->
+    <div id="fullscreen-overlay" style="display: none;">
+        <img id="fullscreen-image" src="" alt="">
+    </div>
 
-        window.onload = function() {
-            document.body.classList.add('loaded');
-            
-            // Set up random link functionality
-            const randomLink = document.getElementById('randomLink');
-            const randomSites = [
-                'https://en.wikipedia.org/wiki/Special:Random',
-                'https://www.wikihow.com/special:randomizer'
-            ];
-            
-            randomLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
-                window.open(randomSite, '_blank');
-            });
-        };
-
-        const overlay = document.getElementById('fullscreen-overlay');
-        const fullscreenImg = document.getElementById('fullscreen-image');
-        
-        document.querySelectorAll('img:not(#fullscreen-image)').forEach(img => {
-            img.addEventListener('click', function() {
-                fullscreenImg.src = this.src;
-                fullscreenImg.alt = this.alt;
-                overlay.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        overlay.addEventListener('click', function() {
-            overlay.style.display = 'none';
-            document.body.style.overflow = '';
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && overlay.style.display === 'block') {
-                overlay.style.display = 'none';
-                document.body.style.overflow = '';
-            }
-        });
-    </script>
+    <!-- Move all JavaScript to a separate file -->
+    <script src="/static/js/image-handler.js"></script>
 </body>
 </html>
