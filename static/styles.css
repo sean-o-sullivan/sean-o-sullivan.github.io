@@ -548,3 +548,59 @@ body {
     width: 100%;
     margin: 0 0 15px 0; /* Consistent margin */
 }
+
+
+
+
+/* Main content container styles */
+.home-content {
+    width: 80%;
+    margin: 70px auto 0; /* Top margin matches navbar height */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Welcome section styles */
+.welcome-section {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.welcome-section p {
+    margin: 0.5rem 0;
+}
+
+/* Image gallery styles */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+/* Individual gallery image styles */
+.gallery-image {
+    height: 30vh;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .home-content {
+        width: 95%;
+        margin-top: 60px;
+    }
+
+    .gallery-image {
+        height: 25vh; /* Slightly smaller on mobile */
+    }
+
+    .image-gallery {
+        gap: 1rem;
+    }
+}
