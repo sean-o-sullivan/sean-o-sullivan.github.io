@@ -260,6 +260,7 @@ body {
 
         /* Default styles for larger screens */
         .textcontainer {
+            padding-top: 5vh:
             width: 50%;
             float: left;
             margin-left: 10%;
