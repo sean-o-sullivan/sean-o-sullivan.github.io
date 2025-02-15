@@ -1,6 +1,9 @@
 // nav-loader.js
 document.addEventListener('DOMContentLoaded', async function() {
 
+
+    document.body.classList.add('content-loaded');
+
     try {
         const response = await fetch('/static/navbar.html');
         if (!response.ok) {
