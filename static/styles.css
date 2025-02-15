@@ -264,6 +264,7 @@ body {
             width: 50%;
             float: left;
             margin-left: 10%;
+
   }
 
 .textIcontainer {
@@ -446,6 +447,7 @@ body {
 .about-content {
     display: flex;
     width: 80%;
+    padding-top:10vh;
     margin: 0 auto;  /* Center the container */
     gap: 2rem;  /* Add space between the halves */
 }
