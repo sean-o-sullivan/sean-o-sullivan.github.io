@@ -487,32 +487,46 @@ body {
 
 
 
-/* Base styles for the social icons container */
+/* Style for the social icons section */
 .social-icons {
     display: flex;
     gap: 15px;
     margin-bottom: 20px;
     align-items: center;
+    justify-content: center; /* Center the icons horizontally */
+    width: 100%; /* Take up full width of parent */
 }
 
-/* Style for the social icon links */
+/* Container for each individual icon */
 .social-icons a {
-    color: #000000;  /* Set the color to black */
+    color: #000000;
     transition: color 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Remove any default margins that might affect centering */
+    margin: 0;
 }
 
-/* Keep the hover state but make it slightly lighter black for subtle feedback */
-.social-icons a:hover {
-    color: #333333;  /* A slightly lighter shade when hovering */
-}
-
-/* Ensure SVG elements inherit the color properly */
+/* The SVG icons themselves */
 .social-icons svg {
     display: block;
     width: 24px;
     height: 24px;
-    fill: currentColor;  /* This ensures the SVG inherits the color from its parent link */
+    fill: currentColor;
+}
+
+/* Left half container adjustments */
+.left-half {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Ensure the container takes full width */
+}
+
+/* Ensure the paragraph is also centered */
+.left-half p {
+    text-align: center;
+    width: 100%;
+    margin: 0 0 15px 0; /* Consistent margin */
 }
