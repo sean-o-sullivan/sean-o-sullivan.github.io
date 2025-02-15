@@ -447,7 +447,6 @@ body {
 .about-content {
     display: flex;
     width: 80%;
-    padding-top:10vh;
     margin: 0 auto;  /* Center the container */
     padding: 5rem;  /* Add space between the halves */
 }
