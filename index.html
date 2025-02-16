@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home · Seán O'Sullivan</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <main class="home-content">
+        <!-- Introduction section -->
+        <section class="intro-section">
+            <p class="intro-text">
+                Hello! I'm a software developer based in Limerick, crafting elegant solutions to complex problems.
+            </p>
+        </section>
+
+        <!-- Career Timeline section -->
+        <section class="timeline-section">
+            <!-- Left column with timeline -->
+            <div class="timeline-col">
+                <div class="timeline-line">
+                    <div class="fade-line"></div>
+                </div>
+                <div class="timeline-markers">
+                    <div class="marker">2024</div>
+                    <div class="marker">2023</div>
+                    <div class="marker">2022</div>
+                </div>
+            </div>
+
+            <!-- Right column with experience details -->
+            <div class="timeline-content">
+                <div class="experience-entry">
+                    <h3>Software Engineer</h3>
+                    <p>Leading development of web applications and exploring new technologies.</p>
+                </div>
+                <div class="experience-entry">
+                    <h3>Junior Developer</h3>
+                    <p>Frontend development and performance optimization.</p>
+                </div>
+                <div class="experience-entry">
+                    <h3>Engineering Intern</h3>
+                    <p>Hands-on experience with modern development practices.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Gallery section -->
+        <section class="image-gallery">
+            <img src="/static/home/Earth.jpg" 
+                 alt="Planet Earth - Appolo 17" 
+                 class="gallery-image clickable-image">
+            <img src="/static/home/deep 3.jpg" 
+                 alt="Farthest back look into time - James Webb" 
+                 class="gallery-image clickable-image">
+            <img src="/static/home/cool.jxl" 
+                 alt="pretty cool" 
+                 class="gallery-image clickable-image">
+        </section>
+    </main>
+
+    <!-- Fullscreen overlay for images -->
+    <div id="fullscreen-overlay">
+        <img id="fullscreen-image" src="" alt="">
+    </div>
+
+    <script src="/static/js/nav-loader.js"></script>
+    <script src="/static/js/image-handler.js"></script>
+</body>
+</html>
