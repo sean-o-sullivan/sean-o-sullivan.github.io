@@ -108,7 +108,7 @@ nav {
 
 .nav-container {
     height: 55px; 
-    width: 850px; 
+    width: 55%; 
     display: flex;
     justify-content: space-between;
     align-items: center;
