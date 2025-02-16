@@ -58,4 +58,28 @@ document.addEventListener('DOMContentLoaded', async function() {
         document.body.style.visibility = 'visible';
         document.body.classList.add('content-loaded');
     }
+
+    let lastScrollTop = 0;
+    let navbarHidden = false;
+    const navbar = document.getElementById('navbar-container');
+    const threshold = 1; // Adjust this value to set the sensitivity
+  
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Check if we're scrolling down by more than the threshold
+      if (scrollTop - lastScrollTop > threshold) {
+        navbar.style.top = "-70px"; // Hide the navbar (adjust the value to match your navbar's height)
+        navbarHidden = true;
+      }
+      // Only show the navbar if a significant upward scroll occurs
+      else if (lastScrollTop - scrollTop > threshold && navbarHidden) {
+        navbar.style.top = "0";
+        navbarHidden = false;
+      }
+      
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For mobile or negative scrolling
+    });
 });
+
+

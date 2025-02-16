@@ -1,41 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects · Seán O'Sullivan</title>
-    <link rel="stylesheet" href="../static/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects · Seán O'Sullivan</title>
+  <link rel="stylesheet" href="/static/styles.css">
+
 </head>
-
-    
+<style>
+    html, body {
+      overflow: hidden; /* Disables both vertical and horizontal scrolling */
+    }
+  </style>
 <body>
-    <nav>
-        <div class="nav-container">
-            <div class="nav-name">Seán Gerard O'Sullivan</div>
-            <ul class="nav-links">
-                <li><a href="../../">Home</a></li>
+  <div id="navbar-container"></div>
 
-                <li><a href="/projects" class="active">My Projects</a></li>
-                <li><a href="/contact">Contact</a></li>
-<!--                 <li><a href="/cv">CV</a></li> -->
-                <li><a href="/about">About</a></li>
-                                <li><a href="#" class="random-link" id="randomLink">?</a></li>
+  <div class="vspacer"></div>
+  <div class="aboout-content">
 
-            </ul>
-        </div>
-    </nav>
-    <br>
-    <br>
-    <section class="textcontainer">
-<br>
-<br>
-<br>     
+<section class="textcontainer" style="padding-top: 0vh">
+  
 <p><b>Hello!</b></p>
-<p>Below are three additional projects I've worked on<span class="tooltip">*
-  <span class="tooltiptext">My other projects have been unlisted, as I shared them with you in my application</span>
+<p>Below are three additional projects I've worked on.</p>
 </span></p>
-
-        
         
 <p><a href="/projects/pace/" style="color: #0864c7; text-decoration: underline;">Pace</a> - A Minute Timer for Swimmers</p>
 <p><a href="/projects/clock/" style="color: #0864c7; text-decoration: underline;">Clock</a> - A Mechanical 7-Segment Display</p>
@@ -78,6 +65,9 @@
     -->
     </section>
 
+</div>
+</div>
+
     <script>// Set up random link functionality
 const randomLink = document.getElementById('randomLink');
 const randomSites = [
@@ -90,5 +80,14 @@ randomLink.addEventListener('click', function(e) {
     const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
     window.open(randomSite, '_blank');
 });</script>
+
+
+  <!-- Fullscreen overlay for images -->
+  <div id="fullscreen-overlay">
+    <img id="fullscreen-image" src="" alt="">
+  </div>
+
+  <script src="/static/js/nav-loader.js"></script>
+  <script src="/static/js/image-handler.js"></script>
 </body>
 </html>

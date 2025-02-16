@@ -3,95 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV</title>
-    <link rel="stylesheet" href="../static/styles.css">
+    <title>CV · Seán O'Sullivan</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <div class="nav-name">Seán O'Sullivan</div>
-            <ul class="nav-links">
-                <li><a href="../../">Home</a></li>
-                <li><a href="../projects">My Projects</a></li>
-                <li><a href="../contact" class="active">Contact</a></li>
-                <li><a href="../cv">CV</a></li>
-                <li><a href="../about">About</a></li>
-                                <li><a href="#" class="random-link" id="randomLink">?</a></li>
-
-            </ul>
-        </div>
-    </nav>
+<div id="navbar-container"></div>
+<div class="home-content">
+<div class="textcontainer">
+    <header>
+      <h1>Curriculum Vitae</h1>
+      <h2>Seán O'Sullivan</h2>
+    </header>
     
-
-<!--     <header>
-        <p><strong>CV</strong></p>
-    </header> -->
+    <!-- Personal Statement -->
+    <div>
+      <h3>Personal Statement</h3>
+      <p>
+        I am a hard-working, passionate student currently studying at Coláiste Chiaráin Secondary School. My interests include 3D printing, programming, electrical engineering, circuit design, mechanical engineering, and mathematics. I am dedicated to pursuing a career in electrical engineering and technology—with long-term goals in research and R&D. A full portfolio of my projects is available <a href="index.html">here</a>.
+      </p>
+    </div>
     
-<section class="textcontainer">
-<br>
-<br>
-<br>
-    <section>
-        <p><strong>Personal Statement:</strong></p>
-        <p>I am a hard-working, passionate student, currently studying at Coláiste Chiaráin Secondary School. My interests include 3D printing, programming, electrical engineering, circuit design, home networking, mechanical engineering, and mathematics. I am dedicated to pursuing a career in electrical engineering and technology, with long-term goals of moving into research or R&D. A full portfolio of my past projects can be found <a href="index.html">here</a>.</p>
+    <!-- Core Skills -->
+    <div>
+      <h3>Core Skills</h3>
+      <ul>
+        <li>Computer and ICT service &amp; repair</li>
+        <li>Programming: C, C++, C#, Python, HTML, CSS, JavaScript</li>
+        <li>CAD (Fusion 360, Solidworks, Blender, nTop) for 3D printing &amp; metal construction</li>
+        <li>PCB design (EasyEDA), manufacture, soldering, and testing</li>
+        <li>Operation, maintenance, and repair of FDM 3D printers</li>
+        <li>Proficient in rapid prototyping and functional design.</li>
+        <li>Video and audio editing (Da Vinci Resolve)</li>
+        <li>Strong communication, teamwork, and collaboration</li>
+        <li>Strong problem solving and time managament</li>
+        <li>Operation of machine tools (lathe, laser-cutter, pillar drill)</li>
+        <li>Conversational proficiency in French (B2) and Irish</li>
+        <li>Poster design (Canva, Quark)</li>
+        <li>Research report creation with LaTeX (Overleaf)</li>
+        <li>Piano (intermediate, RIAM Grade V)</li>
+        <li>Public speaking</li>
+      </ul>
+    </div>
+    
+    <!-- Qualifications and Achievements -->
+    <div>
+      <h3>Qualifications &amp; Achievements</h3>
+      <ul>
+        <li>Portfolio of projects available <a href="../index.html">here</a></li>
+        <li>BT Young Scientist and Technologist of the Year 2024</li>
+        <li>Representing Ireland at the EUCYS 2024 in Poland</li>
+        <li>Head Engineer for the Irish CanSat Team, 2023 European Finals</li>
+        <li>Numerous awards in science and technology competitions (SciFest, BD STEM Stars)</li>
+        <li>Poetry Competitions:
+          <ul>
+            <li>First place, Junior category – Poetry Aloud National Competition 2020</li>
+            <li>Second place, Under 16 Poetry Recital – Feile Luimnigh 2019</li>
+            <li>First place, Under 18 Poetry Recital – Feile Luimnigh 2023</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Research & Projects -->
+    <div>
+      <h3>Research &amp; Projects</h3>
+      <ul>
+        <li>
+          <strong>VerifyMe:</strong> An AI authorship verification system, robust to AI mimicry, that uses stylometry to detect shifts in writing style and verify authenticity.
+        </li>
+        <li>
+          <strong>ForceField:</strong> A wearable concussion detection device for hurling, featuring custom PCB design, sensor integration, and dedicated software.
+        </li>
+        <li>
+          <strong>Wind Turbine Research:</strong> Conducted wind tunnel tests in the University of Limerick on 16 turbine configurations to optimize design efficiency and performance for micro-level wind generation.
+        </li>
+        <li>
+          <strong>RFID Cat Feeder:</strong> Developed and iterated over four versions of an RFID-controlled feeder, enhancing reliability and user interaction.
+        </li>
+        <li>
+          <strong>ClimateActionHow.com:</strong> Co-developed a website promoting climate action, featuring interactive educational resources.
+        </li>
+        <li>
+          <strong>Spudnik (CanSat Competition):</strong> Designed critical components—including 3D-printed enclosures, parachute, PCBs, and a rigid origami solar array—leading to a win at the 2023 Irish National Finals.
+        </li>
+        <li>
+          <strong>Pace:</strong> Developed a minute timer for swimmers, which mounts onto the goggles with a magnet. Currently in third iteration.
+        </li>
+        <li>
+          <strong>Clock:</strong> Engineered a mechanical 7-segment display clock and mounted it in school GP area.
+        </li>
+      </ul>
+      
+    </div>
+    
+    <!-- Work Experience -->
+    <div>
+      <h3>Work Experience</h3>
+      <ul>
+        <li>
+        <strong>BT Young Scientist - Public Speaking</strong><br>
+        <em>2024</em><br>
+        Delivered presentations as part of the BT Young Scientist and Technologist Exhibition, speaking at over 20 venues—including, the University of Limerick, Farmleigh House, Leinster House, Europol, EY and Project Management Ireland corporate events—and served as Grand Marshal in Limerick. This role honed my public speaking skills while representing Ireland’s young scientific talent.
+      </li>
+        <li>
+          <strong>Dogpatch Labs – Patch Youth Accelerator (Team ForceField)</strong><br>
+          <em>Jul 3, 2024 – Aug 16, 2024 (50 hrs/week)</em><br>
+          Hardware engineer developing a wearable concussion detection device for hurling (PCB design, diy reflow oven from 500w halogen floodlamp, 3D-printed enclosure).
+        </li>
+        <li>
+          <strong>SomTek – 3D Printer Repair Technician</strong><br>
+          <em>Jun 20, 2023 – Aug 28, 2023 (45 hrs/week)</em><br>
+          Maintained 37 Ender-3 printers—restoring 40% from non-operational status, refurbished an Ender-5, and developed custom firmware for standardized thermal runaway protection.
+        </li>
+        <li>
+          <strong>ElektroTek – Assembly Line Aid</strong><br>
+          <em>Aug 14, 2023 – Aug 18, 2023 (36 hrs/week)</em><br>
+          Applied labels and built a semi-automated label applicator for device enclosures.
+        </li>
+        <li>
+          <strong>Family Construction Project – Labourer</strong><br>
+          <em>Jul 13, 2023 – Jul 25, 2023 (35 hrs/week)</em><br>
+          Assisted in converting a garage into an apartment (sewage pipe relaying, blockwork, plastering, insulation, dry lining).
+        </li>
+        <li>
+          <strong>Auberge de l'Armailli – Restaurant Assistant</strong><br>
+          <em>Jun 30, 2023 – Jul 11, 2023 (45 hrs/week)</em><br>
+          Managed front-of-house duties, served meals, and assisted with food preparation at a Swiss Alps hostel/restaurant while improving French.
+        </li>
+        <li>
+          <strong>Benchspace Cork – Volunteer 3D Printing Specialist</strong><br>
+          <em>Apr 10, 2020 – May 2, 2020 (30 hrs/week)</em><br>
+          Produced ~200 3D-printed face-shield visor frames during COVID-19, contributing to a national effort that produced ~50,000 shields.
+        </li>
+      </ul>
+    </div>
+</div>
+</div>
 
-        <p><strong>Core Skills:</strong></p>
-        <ul>
-            <li>Computer and ICT service and repair</li>
-            <li>Programming experience in C, C++, C#, Python, and JavaScript</li>
-            <li>Experience with CAD software (Fusion 360) for 3D printing and metal construction</li>
-            <li>Knowledge of circuit design principles, techniques, and software (EasyEDA)</li>
-            <li>Circuit manufacture, soldering, and testing</li>
-            <li>Experience using and maintaining FDM 3D printers</li>
-            <li>Intermediate video and audio editing skills</li>
-            <li>Strong communication, teamwork, and collaboration skills</li>
-            <li>Experience using machine tools for mechanical manufacture (lathe)</li>
-            <li>Playing piano at an intermediate level</li>
-            <li>Conversational proficiency in French/Irish</li>
-            <li>Poster Design - Canva</li>
-            <li>Research Report Books - LateX</li>
-        </ul>
+</div>
 
-        <p><strong>Qualifications and Achievements:</strong></p>
-        <ul>
-            <li>Portfolio of projects <a href="index.html">here</a></li>
-            <li>BT Young Scientist and Technologist of the Year 2024</li>
-            <li>Representing Ireland at the EUCYS 2024 in Poland</li>
-            <li>Head Engineer for the Irish CanSat Team, 2023 European Finals</li>
-            <li>Numerous awards in science and technology competitions, including SciFest and BD STEM Stars</li>
-            <li>Success in poetry competitions, including:
-                <ul>
-                    <li>First place in the Junior category at the Poetry Aloud National Competition 2020</li>
-                    <li>Second place in the Under 16 Poetry Recital at Feile Luimnigh 2019</li>
-                    <li>First place in the Under 18 Poetry Recital at Feile Luimnigh 2023</li>
-                </ul>
-            </li>
-        </ul>
-
-        <p><strong>Work Experience:</strong></p>
-        <ul>
-            <li><strong>SomTek / Elektrotek (Summer 2023):</strong>
-                <ul>
-                    <li>Maintained and repaired 37 Ender 3D printers, restoring 40% from out-of-order status</li>
-                    <li>Restored an Ender 5 printer to full functionality</li>
-                    <li>Developed a prototype automation system for labeling processes using stepper motors</li>
-                </ul>
-            </li>
-            <li><strong>Benchspace Open Source PPE Project (2020):</strong>
-                <ul>
-                    <li>Produced over 350 PPE visors during the COVID-19 pandemic using three 3D printers</li>
-                    <li>Contributed to a project that manufactured approximately 50,000 face shields and raised €50,000</li>
-                </ul>
-            </li>
-            <li><strong>Auberge de l'Armailli (Seasonal Work):</strong>
-                <ul>
-                    <li>Served beverages and meals, prepared foods, and assisted patrons at a hostel and restaurant in the Swiss Alps</li>
-                    <li>Improved French language skills and gained experience in hospitality</li>
-                </ul>
-            </li>
-        </ul>
-    </section>
-    </section>
-
-</body>
-</html>
+    <!-- Fullscreen overlay for images -->
+    <div id="fullscreen-overlay">
+        <img id="fullscreen-image" src="" alt="">
+      </div>
+      <script src="/static/js/nav-loader.js"></script>
+      <script src="/static/js/image-handler.js"></script>
+    </body>
+    </html>
+    
