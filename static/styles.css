@@ -464,7 +464,7 @@ body {
 
 .about-content {
     display: flex;
-    width: 31%;
+    width: 85%;
     margin: 0 auto;
     gap: 2rem;
     padding-top: 70px; /* Match the navbar height */
