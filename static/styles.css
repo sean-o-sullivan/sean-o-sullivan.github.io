@@ -638,3 +638,166 @@ body {
   visibility: visible;
   opacity: 1;
 }
+
+
+
+/* Main content container */
+.home-content {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 80px; /* Accounts for fixed navbar */
+}
+
+/* Introduction section */
+.intro-section {
+    text-align: center;
+    margin-bottom: 60px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.intro-text {
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Timeline section */
+.timeline-section {
+    display: flex;
+    gap: 60px;
+    margin-bottom: 80px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+/* Timeline column */
+.timeline-col {
+    width: 100px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.fade-line {
+    width: 1px;
+    height: 100%;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0),
+        rgba(0,0,0,0.75),
+        rgba(0,0,0,0)
+    );
+}
+
+.timeline-markers {
+    position: relative;
+    z-index: 1;
+}
+
+.marker {
+    padding: 40px 0;
+    text-align: right;
+    font-size: 13px;
+    position: relative;
+}
+
+.marker::after {
+    content: '';
+    position: absolute;
+    right: -29px;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    background: #000;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+/* Timeline content */
+.timeline-content {
+    flex-grow: 1;
+}
+
+.experience-entry {
+    padding: 40px 0;
+}
+
+.experience-entry h3 {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.experience-entry p {
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Image gallery */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.gallery-image {
+    height: 30vh;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .home-content {
+        width: 90%;
+        padding-top: 60px;
+    }
+
+    .timeline-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .timeline-col {
+        width: 100%;
+    }
+
+    .marker {
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .marker::after {
+        left: -3px;
+        right: auto;
+    }
+
+    .gallery-image {
+        height: 25vh;
+    }
+}
