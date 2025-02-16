@@ -29,27 +29,10 @@
         }
     
 </style>
-<body class="loading-protection">
-    <nav>
-        <div class="nav-container">
-            <div class="nav-name">Seán O'Sullivan</div>
-            <ul class="nav-links">
-                <li><a href="../../">Home</a></li>
-                <li><a href="../../projects">My Projects</a></li>
-                <li><a href="../../contact">Contact</a></li>
-<!--                 <li><a href="../../cv">CV</a></li> -->
-                <li><a href="../../about">About</a></li>
-                <li><a href="#" class="random-link" id="randomLink">?</a></li>
 
-            </ul>
-        </div>
-    </nav>
-
+<body>
+ <div id="navbar-container"></div>
     
-    
-       <div id="navbar-container"></div>
-
-
       <div class="container">
         <div class="column text-column">
             
@@ -233,5 +216,10 @@ randomLink.addEventListener('click', function(e) {
     
 
     </script>
-</body>
-</html>
+    <div id="fullscreen-overlay">
+        <img id="fullscreen-image" src="" alt="">
+      </div>
+      <script src="/static/js/nav-loader.js"></script>
+      <script src="/static/js/image-handler.js"></script>
+    </body>
+    </html>
