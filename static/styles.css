@@ -406,7 +406,7 @@ body {
         .video-container {
             position: relative;
             width: 85%;
-            padding-bottom: 56.25%; 
+            padding-bottom: 30%;
             height: 0;
             overflow: hidden;
             max-width: 800px; 
@@ -948,3 +948,33 @@ hr {
         }
       }
       
+
+.content-loaded {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+
+#footer-container {
+    width: 100%;
+    clear: both;  /* This is important - it ensures footer stays below floated content */
+}
+
+.footer {
+    padding-top: 30px;
+    margin-top: 30px;
+    padding-bottom: 5px;
+}
+
+.footer p {
+    margin-left: 20%;
+    margin-bottom: 0;
+    text-align: left;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
