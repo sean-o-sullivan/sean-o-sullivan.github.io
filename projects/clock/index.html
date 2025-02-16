@@ -182,36 +182,37 @@ In the ten days before Christmas, the clock now displays a countdown. They don't
     <img src="Flows.jpg" alt="Code-Execution Flowchart" style="height: 30vh; width: auto;">
 
         </section> 
-        <script>
-        fetch('/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-            });
-        window.onload = function() {
-            document.body.classList.add('loaded');
-        };
+<script>
+  fetch('../../static/navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
 
-            // Set up random link functionality
-const randomLink = document.getElementById('randomLink');
-const randomSites = [
+  window.onload = function() {
+    document.body.classList.add('loaded');
+  };
+
+  // Set up random link functionality
+  const randomLink = document.getElementById('randomLink');
+  const randomSites = [
     'https://en.wikipedia.org/wiki/Special:Random',
     'https://www.wikihow.com/special:randomizer'
-];
+  ];
 
-randomLink.addEventListener('click', function(e) {
+  randomLink.addEventListener('click', function(e) {
     e.preventDefault();
     const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
     window.open(randomSite, '_blank');
-});
-    </script>
+  });
+</script>
 
-    <!-- Fullscreen overlay for images -->
-    <div id="fullscreen-overlay">
-        <img id="fullscreen-image" src="" alt="">
-      </div>
-        
-      <script src="/static/js/nav-loader.js"></script>
-      <script src="/static/js/image-handler.js"></script>
+<div id="fullscreen-overlay">
+  <img id="fullscreen-image" src="" alt="">
+</div>
+
+<script src="../../static/js/nav-loader.js"></script>
+<script src="../../static/js/image-handler.js"></script>
+
     </body>
     </html>
