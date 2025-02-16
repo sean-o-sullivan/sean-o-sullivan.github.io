@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VerifyMe · Seán O'Sullivan</title>
     <link rel="stylesheet" href="../../static/styles.css">
-    <!-- Add Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
+
+    <script src="/static/js/nav-loader.js"></script>
+    <script src="/static/js/image-handler.js"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
 <script>
@@ -19,6 +21,31 @@
 </script>
 
     <style>
+
+body {
+      /* Force body to be visible no matter what */
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: none !important;
+    }
+
+    /* Also override the .loading-protection class if it’s applied */
+    body.loading-protection {
+      visibility: visible !important;
+      opacity: 1 !important;
+      transition: none !important;
+    }
+    #navbar-container * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+  }
+
+    /* If the script toggles .loaded, that’s fine, but let’s ensure it stays visible. */
+    body.loaded {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
         /* Container for the entire plot section */
         .plot-container-wrapper {
             width: 90%;  /* Take up 90% of viewport width */
@@ -88,9 +115,13 @@
             margin: 0 auto;
             padding: 20px 0;
         }
+
+
+
     </style>
+
 </head>
-<body>
+<body class="loading-protection"> 
     <div id="navbar-container"></div>
 
     
@@ -122,9 +153,15 @@
         </div>
     </div>
 
+
+    
     <script>
+
+    const nax = document.getElementById('navbar-container');
+        nax.style.opacity=1;
+
         console.log('Script started');
-        
+
         function updateDebugInfo() {
             const plotContainer = document.getElementById('plot-content');
             const debugDimensions = document.getElementById('debug-dimensions');
@@ -147,10 +184,16 @@
         }
 
         async function loadPlot() {
+
+            document.body.style.opacity = 1;
+            nax.style.opacity=1;
+
+
             const loadingStatus = document.getElementById('loading-status');
             const debugStatus = document.getElementById('debug-status');
             
             try {
+                document.body.style.opacity = 1;
                 console.log('Attempting to fetch plot.html');
                 const response = await fetch('plot.html');
                 
@@ -252,11 +295,6 @@ randomLink.addEventListener('click', function(e) {
 
 
   <!-- Fullscreen overlay for images -->
-  <div id="fullscreen-overlay">
-    <img id="fullscreen-image" src="" alt="">
-  </div>
 
-  <script src="/static/js/nav-loader.js"></script>
-  <script src="/static/js/image-handler.js"></script>
 </body>
 </html>
