@@ -84,12 +84,14 @@
     </div>
   </section>
 
-  <script>
-    fetch('/navbar.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('navbar-container').innerHTML = data;
-      });
+
+<script>
+  fetch('../../static/navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
+</script>
       
     window.onload = function() {
       document.body.classList.add('loaded');
@@ -112,7 +114,9 @@
   <div id="fullscreen-overlay">
     <img id="fullscreen-image" src="" alt="">
   </div>
-  <script src="/static/js/nav-loader.js"></script>
-  <script src="/static/js/image-handler.js"></script>
+  
+<script src="../../static/js/nav-loader.js"></script>
+<script src="../../static/js/image-handler.js"></script>
+
 </body>
 </html>
