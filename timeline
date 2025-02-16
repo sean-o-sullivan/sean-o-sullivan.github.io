@@ -1,0 +1,119 @@
+    <div class="timeline-container">
+        <!-- Timeline Section -->
+    <div id="history" class="container">
+      
+      <!-- BT Young Scientist & Technology Exhibition 2024 -->
+      <div class="entry row">
+        <div class="timespan">
+          Jan 2024 - Jan 2025
+        </div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <img src="/images/ys.jpg" alt="BT Young Scientist Logo" class="unified-image" />
+        </div>
+        <div class="desc">
+          Won BT Young Scientist 2024 and placed 2nd at EUCYS. Presented at 20+ venues (including the University of Limerick, Europol and EY) and served as Grand Marshal in Limerick St. Patrick's Day Parade. ISEF 2025 qualifier.
+        </div>
+      </div>
+
+      <!-- Dogpatch Labs – Patch Youth Accelerator (Team ForceField) -->
+      <div class="entry row">
+        <div class="timespan">
+          Jul 2024 – Aug 2024
+        </div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <img src="images/patch.jpeg" alt="Dogpatch Labs Logo" class="unified-image" />
+        </div>
+        <div class="desc">
+          Hardware engineer for Team ForceField at the Patch Summer Accelerator. Developed a wearable device for hurling concussions via PCB design, a DIY reflow oven, and a 3D-printed enclosure.
+        </div>
+      </div>
+
+      <!-- SomTek – 3D Printer Repair Technician -->
+      <div class="entry row">
+        <div class="timespan">
+          Jun 2023 – Aug 2023
+        </div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <img src="images/somtek.jpeg" alt="SomTek Logo" class="unified-image" />
+        </div>
+        <div class="desc">
+          3D Printer Repair Technician at SomTek. Restored 37 Ender-3 printers, refurbished an Ender-5, and developed custom firmware for standardized thermal protection.
+        </div>
+      </div>
+
+      <!-- ElektroTek – Assembly Line Aid -->
+      <div class="entry row">
+        <div class="timespan">
+          Aug 2023 – Aug 2023
+        </div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <img src="images/elektrotek.jpg" alt="ElektroTek Logo" class="unified-image" />
+        </div>
+        <div class="desc">
+          Assembly Line Aid at ElektroTek. Labeled enclosures and prototyped a semi-automated label applicator to increase efficiency.
+        </div>
+      </div>
+
+      <!-- Family – Labourer -->
+      <div class="entry row">
+        <div class="timespan">
+          Juj 2023 – Aug 2023
+        </div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <img src="images/home.png" alt="Family Project" class="unified-image" />
+        </div>
+        <div class="desc">
+          Labourer. Helped convert a garage into an apartment, laying blockwork, drilling, cutting and securing foam stud panel insulation.
+        </div>
+      </div>
+
+      <!-- Auberge de l'Armailli – Restaurant Assistant -->
+      <div class="entry row">
+        <div class="timespan">
+          Jun 2023 – Jul 2023
+        </div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <img src="images/arm.png" alt="Auberge de l'Armailli Logo" class="unified-image" />
+        </div>
+        <div class="desc">
+          Summer Restaurant Assistant, l'Auberge D'Armaillié. Handled front-of-house duties and assisted with meal prep while improving French.
+        </div>
+      </div>
+
+      <!-- CanSat Irish National Finals Winner 2023 -->
+      <div class="entry row">
+        <div class="timespan">
+          Apr 2023 - Jun 2023
+        </div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <img src="images/can.jpeg" alt="CanSat Logo" class="unified-image" />
+        </div>
+        <div class="desc">
+          Winner at the CanSat Irish National Finals 2023—designed 3D-printed enclosures, parachute, PCBs, and a rigid origami solar array.
+        </div>
+      </div>
+
+      <!-- Benchspace Cork – Volunteer 3D Printing Specialist (PPE Visor Production) -->
+      <div class="entry row">
+        <div class="timespan">
+          Apr 2020 – May 2020
+        </div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <img src="images/bencj.jpeg" alt="Benchspace Cork Logo" class="unified-image" />
+        </div>
+        <div class="desc">
+          Volunteer 3D Printing Specialist, Benchspace. Produced ~200 face-shield visor frames for COVID-19 PPE efforts.
+        </div>
+
+      </div>
+
+    </div>
+</div>
