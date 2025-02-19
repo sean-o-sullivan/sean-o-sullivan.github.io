@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <link rel="stylesheet" href="../../styles.css">
+        <!-- Masonry.js -->
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <!-- imagesLoaded.js -->
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+</head>
+<body class="loading-protection">
+        <div class="nav-container">
+            <div class="nav-name">Seán O'Sullivan</div>
+            <ul class="nav-links">
+                <li><a href="/projects" class="active">My Projects</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/cv">CV</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+
+    
+    <header>
+        <p><b>RFID Cat Feeder</b></p>
+        <p class="subtitle">Subtitle</p>
+    </header>
+
+    <main>
+        <section>
+            <p><b>Description</b><p>
+            <p>Lots of words</p>
+        </section>
+
+        <section>
+            <p><b>Outcome</b><p>
+            <p>fed cats</p>
+        </section>
+
+        <section>
+            <p><b>Attachments</b><p>
+            <p>paragraph here</p>
+            <img src="path/to/project-timeline.png" alt="glowgerm powder">
+
+        </section>
+    </main>
+
+    <script>
+        fetch('/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+
+                window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    
+
+    </script>
+</body>
+</html>

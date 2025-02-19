@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Masonry.js -->
+    <script src="https://unpkeg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <!-- imagesLoaded.js -->
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+</head>
+<body class="loading-protection">
+
+    <div id="navbar-container"></div>
+
+        <div class="container">
+        <div class="column text-column">
+            
+    <header>
+        <p><b>ForceField: Impact Detection Sensors for Hurling/Camogie</b></p>
+        <p class="subtitle">Developed a device and accompanying system to monitor and reduce concussion risks in hurling and camogie.</p>
+    </header>
+
+    <main>
+        <section>
+            <p><b>The Problem</b></p>
+            <ul>
+                <li>2.23 potentially concussive events per inter-county hurling match</li>
+                <li>Over 75% of players displaying concussive symptoms not removed from the game</li>
+                <li>3 times more potentially concussive events in hurling than in rugby</li>
+            </ul>
+        </section>
+
+        <section>
+            <p><b>Our Solution: ForceField</b></p>
+            <p>An impact detection sensor combined with an app for continuous monitoring of players' head impacts. The data collected is transformed into actionable information for real-time decision-making regarding player well-being.</p>
+        </section>
+
+        <section>
+            <p><b>System Workflow</b></p>
+            <ol>
+                <li><strong>Data Collection:</strong> The sensors on players' helmets, equipped with IMUs and ADXL375 high G force accelerometers, continuously monitor and collect impact data.</li>
+                <li><strong>ESP-NOW Communication:</strong> Using the ESP32 C3 microcontroller, each sensor transmits its data using ESP-NOW, a protocol designed for direct device-to-device communication. This allows for quick, low-power data transfer between sensors.</li>
+                <li><strong>Access Point Node:</strong> An access point node, positioned on the side of the pitch, receives data from all active sensors using ESP-NOW.</li>
+                <li><strong>WiFi Transmission:</strong> The access point node connects to the user's phone over WiFi, establishing a bridge between the ESP-NOW network and the mobile device.</li>
+                <li><strong>Web Socket Communication:</strong> Once connected to the phone, the access point uses web sockets to send the aggregated sensor data to our mobile app in real-time.</li>
+                <li><strong>Data Processing and Display:</strong> Our custom-developed mobile app receives the data, processes it, and displays it graphically in real-time. This allows coaches, medics, or parents to monitor impact events as they occur.</li>
+                <li><strong>Decision Support:</strong> Based on the processed data, the app provides actionable information to support decisions about player safety, such as recommending when a player should be assessed for potential concussion.</li>
+            </ol>
+        </section>
+
+        <section>
+            <p><b>Technical Details</b></p>
+            <ul>
+                <li>Custom PCB design with ESP32 C3 microcontroller</li>
+                <li>Onboard IMUs and ADXL375 high G force accelerometers</li>
+                <li>Wireless charging circuitry using Texas Instruments battery charge discharge IC</li>
+                <li>Data transmission using ESP-NOW protocol and WiFi</li>
+                <li>Custom mobile app for real-time data visualization</li>
+            </ul>
+        </section>
+
+        <section>
+            <p><b>Development Process</b></p>
+            <ul>
+                <li>Custom PCB design and assembly using a DIY reflow oven</li>
+                <li>3D printed custom cases based on our own 3D scans of hurling helmets</li>
+                <li>Developed custom transition protocols</li>
+                <li>Rigorous testing, including throwing the device on tarmacadam and trialing in a competitive club camogie match</li>
+            </ul>
+        </section>
+
+        <section>
+            <p><b>Current Status and Future Plans</b></p>
+            <ul>
+                <li>Successfully tested in a competitive club match</li>
+                <li>Planning to approach county development squads for more rigorous testing</li>
+                <li>Engaging with manufacturers like the Advanced Manufacturing Institute for mass production</li>
+                <li>Reaching out to high-performance coaches to integrate technology into senior club and inter-county squads</li>
+            </ul>
+        </section>
+
+        <section>
+            <p><b>Why ForceField?</b></p>
+            <ul>
+                <li>Addresses a critical need in hurling and camogie</li>
+                <li>Adaptable to the unique shape of hurling helmets</li>
+                <li>More accessible price point compared to existing solutions</li>
+                <li>Potential for integration with GAA regulations, similar to World Rugby's approach</li>
+            </ul>
+        </section>
+
+        <section>
+            <p><b>Links and Resources</b></p>
+            <ul>
+                <li><a href="https://drive.google.com/file/d/1cEcoP3RIKveRi86rTyH0_x2pOPqR2dNA/view?usp=sharing">ForceField Design</a></li>
+                <li><a href="#">App Source Code (Coming Soon)</a></li>
+                <li><a href="#">Device Source Code (Coming Soon)</a></li>
+                <li><a href="#">ForceField Presentation</a></li>
+            </ul>
+        </section>
+        </div>
+        <div class="column image-column">
+        <section>
+<br>
+            <div class="photo-gallery">
+                <img src="path_to_image1.jpg" alt="ForceField Sensor" style="width: 300px; height: auto;">
+                <img src="path_to_image2.jpg" alt="ForceField App Interface" style="width: 300px; height: auto;">
+                <img src="path_to_image3.jpg" alt="Testing in Action" style="width: 300px; height: auto;">
+            </div>
+            <div class="video-gallery">
+                <video width="320" height="240" controls>
+                    <source src="path_to_video1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <video width="320" height="240" controls>
+                    <source src="path_to_video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+    </main>
+
+        </div>
+    </div>
+    
+    <script>
+        fetch('/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+
+        window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    </script>
+</body>
+</html>
