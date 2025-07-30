@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerifyMe - Style Explorer · Seán O'Sullivan</title>
+    <link rel="stylesheet" href="../../static/styles.css">
+    <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
+
+    <script src="/static/js/nav-loader.js"></script>
+    <script src="/static/js/image-handler.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3CZHEVW6C');
+</script>
+
+    <style>
+
+body {
+      /* Force body to be visible no matter what */
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: none !important;
+    }
+
+    /* Also override the .loading-protection class if it’s applied */
+    body.loading-protection {
+      visibility: visible !important;
+      opacity: 1 !important;
+      transition: none !important;
+    }
+    #navbar-container * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+  }
+
+    /* If the script toggles .loaded, that’s fine, but let’s ensure it stays visible. */
+    body.loaded {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+        /* Container for the entire plot section */
+        .plot-container-wrapper {
+            width: 90%;  /* Take up 90% of viewport width */
+            margin: 0 auto;  /* Center horizontally */
+            padding: 20px 0;  /* Add some vertical padding */
+            position: relative;
+        }
+
+        #plot-content {
+            height: 90vh;  /* Take up 90% of viewport height */
+            width: 100%;
+            position: relative;
+            margin: 0 auto;
+            overflow: visible;
+            display: flex;  /* Enable flexbox for centering */
+            justify-content: center;  /* Center horizontally */
+            align-items: center;  /* Center vertically */
+        }
+        
+        /* Ensure the plot can receive scroll events */
+        .js-plotly-plot {
+            width: 100% !important;
+            height: 100% !important;
+            touch-action: manipulation;
+        }
+        
+        /* Debug info styling preserved */
+        #plot-debug-info {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+
+        /* Add spacing after the note section */
+        .note-section {
+            margin-bottom: 4rem;  /* Adds space after the note */
+        }
+
+        #loading-status {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    margin: 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1000;
+}
+
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .plot-container-wrapper {
+                width: 95%;  /* Slightly wider on mobile */
+            }
+            
+            #plot-content {
+                height: 80vh;  /* Slightly shorter on mobile */
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        /* Ensure the main content area doesn't conflict with plot */
+        .main-content {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+
+
+    </style>
+
+</head>
+<body class="loading-protection"> 
+    <div id="navbar-container"></div>
+
+    
+    <div class="main-content">
+        <div class="container">
+            <div class="column text-column">
+                <header>
+                    <h3>VerifyMe - Style Explorer</h3>
+                    <p class="subtitle"> - Learned Embedding Space Interactive Visualisation</p>
+                </header>
+                <main>
+                    <section>
+                        <p><b>Description</b></p>
+                        <p>This graph contains 4,493, samples written by 995 authors from The Project Gutenberg Corpus. Each ≈10K characters.</p>
+                        <p>This plot includes both the training and testing author partitions of the corpus.*</p>
+                        <p>Each point represents a cleaned text passage that was converted into a stylometric embedding, normalized, and processed through my authorship verification model. The embeddings were then reduced to three dimensions using UMAP, resulting in the plot you see.</p>
+                    </section>
+                    <section class="note-section">
+                        <span>Project <a href="https://github.com/sean-o-sullivan/vm/blob/main/embeddingGen/working/embeddings/normalisedandready/vis.py" target="_blank" aria-label="GitHub">code</a></span>
+                        <p><b>Note:</b> Click the dropdown to colour samples by author.</p>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <div class="plot-container-wrapper">
+        <div id="plot-content">
+            <p id="loading-status">Loading plot...</p>
+        </div>
+    </div>
+
+
+    
+    <script>
+
+    const nax = document.getElementById('navbar-container');
+        nax.style.opacity=1;
+
+        console.log('Script started');
+
+        function updateDebugInfo() {
+            const plotContainer = document.getElementById('plot-content');
+            const debugDimensions = document.getElementById('debug-dimensions');
+            const rect = plotContainer.getBoundingClientRect();
+            if (debugDimensions) {
+                debugDimensions.textContent = `Width: ${rect.width}px, Height: ${rect.height}px`;
+            }
+        }
+
+        function executeScripts(element) {
+            const scripts = element.getElementsByTagName('script');
+            Array.from(scripts).forEach(oldScript => {
+                const newScript = document.createElement('script');
+                Array.from(oldScript.attributes).forEach(attr => {
+                    newScript.setAttribute(attr.name, attr.value);
+                });
+                newScript.textContent = oldScript.textContent;
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            });
+        }
+
+        async function loadPlot() {
+
+            document.body.style.opacity = 1;
+            nax.style.opacity=1;
+
+
+            const loadingStatus = document.getElementById('loading-status');
+            const debugStatus = document.getElementById('debug-status');
+            
+            try {
+                document.body.style.opacity = 1;
+                console.log('Attempting to fetch plot.html');
+                const response = await fetch('plot.html');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                console.log('Successfully fetched plot.html');
+                const data = await response.text();
+                console.log('Plot data length:', data.length);
+                
+                if (data.trim().length === 0) {
+                    loadingStatus.textContent = 'Error: Plot file is empty';
+                    return;
+                }
+
+                const plotContent = document.getElementById('plot-content');
+                plotContent.innerHTML = data;
+                loadingStatus.remove();
+                
+                executeScripts(plotContent);
+                
+                const plotElement = plotContent.querySelector('.js-plotly-plot');
+                if (plotElement) {
+                    plotElement.addEventListener('touchstart', (e) => {
+                        if (e.target.closest('.drag-layer, .zoom-layer')) {
+                            e.preventDefault();
+                        }
+                    }, { passive: false });
+
+                    plotElement.addEventListener('touchmove', (e) => {
+                        if (e.target.closest('.drag-layer, .zoom-layer')) {
+                            e.preventDefault();
+                        }
+                    }, { passive: false });
+
+                    if (window.Plotly) {
+                        window.Plotly.setPlotConfig({
+                            scrollZoom: true,
+                            displayModeBar: true,
+                            modeBarButtonsToRemove: ['autoScale2d']
+                        });
+                    }
+                }
+                
+                if (debugStatus) {
+                    debugStatus.textContent = `Content inserted. Inner HTML length: ${plotContent.innerHTML.length}`;
+                }
+                updateDebugInfo();
+
+                console.log('First 500 chars of inserted content:', plotContent.innerHTML.substring(0, 500));
+            } catch (error) {
+                console.error('Error loading plot:', error);
+                if (debugStatus) {
+                    debugStatus.textContent = 'Error: ' + error.message;
+                }
+            }
+        }
+
+        if (typeof Plotly === 'undefined') {
+            console.error('Plotly not loaded! Adding script...');
+            const script = document.createElement('script');
+            script.src = 'https://cdn.plot.ly/plotly-2.35.0.min.js';
+            script.onload = loadPlot;
+            document.head.appendChild(script);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadPlot);
+        }
+
+        window.onload = function() {
+            document.body.classList.remove('loading-protection');
+            document.body.classList.add('loaded');
+            console.log('Page fully loaded');
+            updateDebugInfo();
+        };
+
+        window.addEventListener('resize', () => {
+            updateDebugInfo();
+            const plotElement = document.querySelector('.js-plotly-plot');
+            if (plotElement && window.Plotly) {
+                window.Plotly.Plots.resize(plotElement);
+            }
+        });
+
+        // Set up random link functionality
+const randomLink = document.getElementById('randomLink');
+const randomSites = [
+    'https://en.wikipedia.org/wiki/Special:Random',
+    'https://www.wikihow.com/special:randomizer'
+];
+
+randomLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
+    window.open(randomSite, '_blank');
+});
+
+    </script>
+
+
+  <!-- Fullscreen overlay for images -->
+
+  <div id="footer-container"></div>
+  <script src="/static/js/footer-loader.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pace · Seán O'Sullivan</title>
+  <link rel="stylesheet" href="../../static/styles.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P3CZHEVW6C');
+  </script>
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <div class="container">
+    <div class="column text-column">
+      <header>
+        <h3>Pace</h3>
+        <p class="subtitle">- A Minute Timer for Swimmers</p>
+      </header>
+      <main>
+        <section>
+          <p><b>Description</b></p>
+          <p>
+            I am developing a compact, magnet-attachable timer to assist swimmers with pacing during training and competitions, it's the size of a 1¢ coin (19mm).
+          </p>
+        </section>
+        
+        <section>
+          <p><b>Progress</b></p>
+          <p>
+            After our pool closed, I started making Pace - a goggle-mounted minute timer, the size of a dime, to help swimmers like me keep pace when training alone.<br><br>
+            <i>v1 Discrete components:</i> 8 daisy-chained shifting registers, a 1Hz pulse oscillator, and a delayed latching circuit which provides the first input. My overcomplicated design got a slating review and I despaired at how expensive it would be to make.<br><br>
+            <i>v2 Programmable:</i> STM32Lo microcontroller, controlling the LED array with a matrix driver. Due to space constraints, I switched from wireless charging to direct with a storage case. After a full redesign, ready to order, I realised that JLCPCB doesn't support buried vias. These vias alone would cost hundreds of euros. I was crushed.<br><br>
+            <i>v3:</i> now consists of two stackable boards, a significantly cheaper, simpler solution. Pace is still a 6 layer PCB, but it will be significantly less dense.<br><br>
+            Hopefully this will be the last major iteration of making Pace!
+          </p>
+          <br>
+          <br>
+        </section>
+      </main>
+    </div>
+    
+    <div class="column image-column" style="margin-top:5vh;">
+      <br>
+      <p><b>V2.0 - Using STM32Lo microcontroller & LED matrix driver</b></p>
+      <img src="../../images/pace/pace-5.jpg" alt="Swimming Timer Pacer V2" style="height: 37vh; width: auto;">
+      <img src="../../images/pace/currentSchematic-2 2-2-2.jpg" alt="Current Schematic" style="height: 36vh; width: auto;">
+    </div>
+  </div>
+
+  <section class="textcontainer" style="padding-top:1vh;">
+    <p><b>V1.0 - Built with non-programmable discrete components</b></p>
+  </section>
+
+  <section class="textIcontainer">
+    <img src="../../images/pace/oldie.jpg" alt="V1 Design" style="height: 45vh; width: auto;">
+    <img src="../../images/pace/oldSche.jpg" alt="V1 Schematic" style="height: 45vh; width: auto;">
+  </section>
+
+  <section class="textcontainer">
+    <p>
+      My initial iteration used eight daisy-chained shift registers, driven by a quartz crystal oscillator. It also featured a latching circuit to create the initial 'bit' in the first register that would then cycle through and provide the cycling LED.
+    </p>
+    <p>
+      I ultimately decided to move away from this iteration due to its sheer complexity and production costs.
+    </p>
+    <p>
+      <b>Initial pulse-generating latching circuit:</b> This circuit provides the initial input 'bit' to the first shift register and latches to zero after the first clock pulse. The second video demonstrates daisy-chained shift registers.
+    </p>
+    
+    <div class="video-container">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/EGyOlwZSVYM" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/kINsgQOseBI" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+  fetch('../../static/navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
+    
+  window.onload = function() {
+    document.body.classList.add('loaded');
+  };
+
+  // Set up random link functionality
+  const randomLink = document.getElementById('randomLink');
+  const randomSites = [
+    'https://en.wikipedia.org/wiki/Special:Random',
+    'https://www.wikihow.com/special:randomizer'
+  ];
+
+  randomLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
+    window.open(randomSite, '_blank');
+  });
+</script>
+  
+
+  <div id="fullscreen-overlay">
+    <img id="fullscreen-image" src="" alt="">
+  </div>
+  
+<script src="../../static/js/nav-loader.js"></script>
+<script src="../../static/js/image-handler.js"></script>
+
+
+<div id="footer-container"></div>
+<script src="/static/js/footer-loader.js"></script>
+
+
+</body>
+</html>

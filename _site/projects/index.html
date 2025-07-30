@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects · Seán O'Sullivan</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-P3CZHEVW6C');
+    </script>
+    <style>
+        .row {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            margin-bottom: 1.5em;
+        }
+
+        .timespan {
+            grid-column: span 1;
+            font-size: 13px;
+            text-align: right;
+            margin-right: 5px;
+            color: #bbb;
+        }
+
+        .ico {
+            grid-column: span 1;
+            vertical-align: top;
+            border-left: 2px solid #cfcfcf;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .desc {
+            grid-column: span 10;
+            vertical-align: top;
+            font-size: 13px;
+            padding-left: 20px;
+            padding-bottom: 0px;
+        }
+
+        .entry-dot {
+            position: absolute;
+            top: 0px;
+            left: -8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 7px;
+            background-color: #cfcfcf;
+            border: 2px solid white;
+        }
+
+        .unified-image {
+            width: 75px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 4%;
+            display: block;
+            margin-top: 7.5px;
+        }
+
+        .project-link {
+            color: #0864c7;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .project-description {
+            display: inline;
+            margin-left: 0.5em;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="navbar-container"></div>
+
+
+
+    <div class="fullscreen" id="project">
+        <!-- Projects Section with Fixed Height -->
+        <div class="projects-container" style="padding-top: 2vh;">
+          <div class="home-content">
+            <div class="textcontainer" style="padding-top: 0">
+              <div class="timeline-container">
+                <div id="projects-list" class="container">
+                  <p><b>Featured Projects</b></p>
+                  <!-- Active Projects -->
+                  <div class="entry row">
+                    <div class="timespan">10/2024</div>
+                    <div class="ico">
+                      <div class="entry-dot"></div>
+                      <img src="/thumbnails/pace2.jpeg" alt="Pace Icon" class="unified-image" />
+                    </div>
+                    <div class="desc">
+                      <a href="/projects/pace/" class="project-link">Pace</a>
+                      <span class="project-description">A Minute Timer for Swimmers</span>
+                    </div>
+                  </div>
+    
+                  <div class="entry row">
+                    <div class="timespan">07/2024</div>
+                    <div class="ico">
+                      <div class="entry-dot"></div>
+                      <img src="/thumbnails/clouds3.jpeg" alt="VerifyMe Icon" class="unified-image" />
+                    </div>
+                    <div class="desc">
+                      <a href="/projects/vm/" class="project-link">Style</a>
+                      <span class="project-description">Learned Embedding Space Interactive Visualisation</span>
+                    </div>
+                  </div>
+    
+                  <div class="entry row">
+                    <div class="timespan">05/2024</div>
+                    <div class="ico">
+                      <div class="entry-dot"></div>
+                      <img src="/thumbnails/clock.jpg" alt="Clock Icon" class="unified-image" />
+                    </div>
+                    <div class="desc">
+                      <a href="/projects/clock/" class="project-link">Clock</a>
+                      <span class="project-description">A Mechanical 7-Segment Display</span>
+                    </div>
+                  </div>
+    
+                  <div class="entry row">
+                    <div class="timespan">07/2023</div>
+                    <div class="ico">
+                      <div class="entry-dot"></div>
+                      <img src="/thumbnails/sudSpud.jpeg" alt="Spudnik Icon" class="unified-image" />
+                    </div>
+                    <div class="desc">
+                      <a href="projects/spudnik/" class="project-link">Spudnik</a>
+                      <span class="project-description">CanSat 2023, Rigid Origami Solar Array</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div style="padding-top: 7vh;">
+              <img src="/thumbnails/hands-cool.jpg" alt="hands" style="height: 30vh; width: auto; border-radius: 2%;">
+    
+              <p><b>Other Work</b></p>
+              <div class="entry row">
+                <div class="timespan">2024</div>
+                <div class="ico">
+                  <div class="entry-dot"></div>
+                  <img src="/thumbnails/thing.jpeg" alt="Thingiverse Icon" class="unified-image" />
+                </div>
+                <div class="desc">
+                  <a href="https://www.thingiverse.com/liminil/designs" target="_blank" rel="noopener noreferrer" class="project-link">Thingiverse</a>
+                  <span class="project-description">Where I share my 3d-prints</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+                    <!-- Commented Out Projects -->
+                    <!-- <div class="entry row">
+                        <div class="timespan">2023</div>
+                        <div class="ico">
+                            <div class="entry-dot"></div>
+                            <img src="/api/placeholder/50/50" alt="ForceField Icon" class="unified-image" />
+                        </div>
+                        <div class="desc">
+                            <a href="./forceField/" class="project-link">ForceField</a>
+                            <span class="project-description">An Impact Detecting Device for Hurling</span>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="entry row">
+                        <div class="timespan">2023</div>
+                        <div class="ico">
+                            <div class="entry-dot"></div>
+                            <img src="/api/placeholder/50/50" alt="Reflow Oven Icon" class="unified-image" />
+                        </div>
+                        <div class="desc">
+                            <a href="./reflowOven/" class="project-link">DIY PID Controlled Reflow Oven</a>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="entry row">
+                        <div class="timespan">2023</div>
+                        <div class="ico">
+                            <div class="entry-dot"></div>
+                            <img src="/api/placeholder/50/50" alt="Cat Feeder Icon" class="unified-image" />
+                        </div>
+                        <div class="desc">
+                            <a href="./catFeeder/" class="project-link">RFID Cat Feeder</a>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="entry row">
+                        <div class="timespan">2023</div>
+                        <div class="ico">
+                            <div class="entry-dot"></div>
+                            <img src="/api/placeholder/50/50" alt="Facial Recognition Icon" class="unified-image" />
+                        </div>
+                        <div class="desc">
+                            <a href="./forceField/" class="project-link">On-Device Facial Recognition</a>
+                            <span class="project-description">Door Lock</span>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="entry row">
+                        <div class="timespan">2023</div>
+                        <div class="ico">
+                            <div class="entry-dot"></div>
+                            <img src="/api/placeholder/50/50" alt="3D Scanner Icon" class="unified-image" />
+                        </div>
+                        <div class="desc">
+                            <a href="./" class="project-link">3D Scanner App</a>
+                            <span class="project-description">using Depth-Anything-V2</span>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="entry row">
+                        <div class="timespan">2023</div>
+                        <div class="ico">
+                            <div class="entry-dot"></div>
+                            <img src="/api/placeholder/50/50" alt="Clock Display Icon" class="unified-image" />
+                        </div>
+                        <div class="desc">
+                            <a href="./clock/" class="project-link">7 Segment Mechanical Clock Display</a>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="entry row">
+                        <div class="timespan">2023</div>
+                        <div class="ico">
+                            <div class="entry-dot"></div>
+                            <img src="/api/placeholder/50/50" alt="ElderCare Icon" class="unified-image" />
+                        </div>
+                        <div class="desc">
+                            <a href="./" class="project-link">ElderCare-AI</a>
+                            <span class="project-description">Non-Invasive Senior Monitoring</span>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="entry row">
+                        <div class="timespan">2023</div>
+                        <div class="ico">
+                            <div class="entry-dot"></div>
+                            <img src="/api/placeholder/50/50" alt="Wind Generation Icon" class="unified-image" />
+                        </div>
+                        <div class="desc">
+                            <a href="./" class="project-link">Micro-Level Wind Generation</a>
+                            <span class="project-description">Investigating the Viability | BTYSTE 2023</span>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="entry row">
+                        <div class="timespan">2021</div>
+                        <div class="ico">
+                            <div class="entry-dot"></div>
+                            <img src="/api/placeholder/50/50" alt="COVID-19 Icon" class="unified-image" />
+                        </div>
+                        <div class="desc">
+                            <a href="./shiningALight/" class="project-link">Shining a Light on COVID-19</a>
+                            <span class="project-description">School Cleaning Protocols | BTYSTE 2021</span>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="entry row">
+                        <div class="timespan">2023</div>
+                        <div class="ico">
+                            <div class="entry-dot"></div>
+                            <img src="/api/placeholder/50/50" alt="Bike Dynamo Icon" class="unified-image" />
+                        </div>
+                        <div class="desc">
+                            <a href="./bike-dynamo" class="project-link">Bike Dynamo Rear Light</a>
+                            <span class="project-description">& USB Charger</span>
+                        </div>
+                    </div> -->
+                
+
+    <div id="fullscreen-overlay">
+        <img id="fullscreen-image" src="" alt="">
+    </div>
+
+    <script src="/static/js/nav-loader.js"></script>
+    <script src="/static/js/image-handler.js"></script>
+</body>
+</html>
