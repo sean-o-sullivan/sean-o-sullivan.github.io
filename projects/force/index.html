@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForceField · Seán O'Sullivan</title>
+    <link rel="stylesheet" href="../../static/styles.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3CZHEVW6C');
+</script>
+
+ <style>
+.main-content {
+    position: relative;
+    padding-bottom:0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0; 
+}
+
+.column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.image-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-container {
+    position: relative;
+    width: 85%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    max-width: 800px; 
+    margin: 0 auto;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85%;
+}
+
+.image-gallery {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f0f0f0; 
+}
+
+.image-gallery img {
+    height: 30vh;
+    width: auto;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-bottom: 100vh; 
+    }
+    
+    .image-gallery {
+        position: static; 
+        margin-top: 2rem;
+    }
+}
+    </style> 
+</head>
+
+<body>
+    
+    <div id="navbar-container"></div>
+
+    <div class="main-content">
+        
+    <div class="container">
+        <div class="column text-column">
+            <header>
+                <h3>ForceField</h3>
+                <p class="subtitle"> - An Impact Detecting Sensor for Hurling</p>
+            </header>
+            <main>
+                <section>
+                    <p><b>Description</b></p>
+                During a six-week program at Dogpatch Labs' Patch Accelerator, I was the hardware engineer in a team of five developing ForceField - a wearable device and app for detecting potentially-concussive-events in hurling. Having designed PCBs but never fabricated one, I seized this opportunity and became our hardware engineer, taking responsibility for the PCB design, reflow oven construction, and 3D-printed enclosure. As part of arriving at this prototype design we spoke with GAA coaches, medics, professional players, researchers and owners of competitor companies. Our final prototype featured a custom PCB measuring linear and angular acceleration, with wireless charging and a 3D-printed enclosure that clips onto the back of a hurling helmet. The devices form a mesh WiFi network, communicating with an access point device on the sideline that transmits data to phones with our graphing app through web-sockets. We successfully tested two prototypes during a camogie match, though the graphing library proved slow. While we chose not to continue development after the program as we lived across Ireland in different life stages, the experience of bringing these devices from concept to field testing was invaluable.
+                </section>
+                
+                <section>
+                    <br>
+                    <p><b>Technical Development</b></p>
+                As the hardware engineer, I designed and fabricated our custom PCB featuring wireless charging, gyroscope and accelerometer for impact detection. I built our PID-controlled flood-lamp reflow oven for PCB assembly, and when Aisler unexpectedly delivered 2-layer boards instead of 4-layer, I manually routed power connections to make it work. Through five iterations, I posted each design to r/PrintedCircuitBoard, incorporating community feedback. With our limited budget, I had one shot at designing our board - it had to work. I worked with Texas Instruments support to verify the wireless charging circuit.
+                </section>
+
+                <section>
+                    <br>
+                    <p><b>Project Highlight</b></p>
+                My favorite moment was when we finally uploaded code to our custom PCB. The night before, I spent three hours meticulously applying solder paste between 0.5mm pitch pins to get the wireless charging circuit working. I reflowed the board and attached the coil and battery. When the charger is working you can hear a faint beeping pattern as the transmitter and receiver negotiate with each other. I nearly danced when the red charge-indicator light turned on. But the real challenge began when trying to program the ESP32-C3. After discovering our 4-layer PCB was manufactured with only 2 layers, routing missing 3.3V connections by hand, and solving a missing pull-up resistor issue, I finally got the board to transmit real-time sensor data. Seeing our custom PCB, which I'd designed, ordered and assembled, come alive in my hands was incredible.
+                </section>
+
+                <section>
+                    <br>
+                    <p><b>Team and Context</b></p>
+                Hurling is the world's fastest field sport, with over 375,000 players worldwide. Research shows that 2.23 potentially concussive events occur per inter-county hurling match, yet 77% of players displaying concussion symptoms aren't removed from play. Our team included Eoghan who developed the device firmware and React Native app, while Ellen, Bobbie, and Anastasia led outreach to GAA officials and conducted research on concussion detection. Working at Dogpatch Labs in Dublin, we faced significant constraints: a six-week timeline, €400 hardware budget, no provided workspaces, and the technical challenge of creating weather-resistant electronics that wouldn't interfere with play. We developed prototypes that cost ≈€50 per device, much more affordable than existing solutions costing €300+.
+                </section>
+
+                <section>
+                    <br>
+                    <p><b>Testing and Learnings</b></p>
+                Through Bobbie's outreach, we tested two devices in a local camogie match. Despite initial concerns from ESP32-WROOM tests, the devices had a range of ≈60-meters without external antennae. Players didn't notice the devices, which stayed secure throughout. We made plenty of mistakes along the way - there was a 30% chance boards wouldn't power on due to a redundant battery protection circuit, I mixed up capacitor values (nF vs µF), and an honest researcher told us our solution wouldn't work during a crushing Zoom call. After sitting in silence and questioning five weeks of work, we started laughing. The experience taught me that all projects have valleys of problem-solving pain, and that part is often the best.
+                </section>
+
+                <section>
+                    <br>
+                    <p><b>Links and Resources</b></p>
+                    <ul>
+                        <li><a href="https://oshwlab.com/seangerardosullivan/forcefield" target="_blank">PCB Design Files</a></li>
+                        <li><a href="https://cad.onshape.com/documents/530f5a3a055656fa8d62f986/w/c00036f93c43a1bff6f4a563/e/6adc95295e895f7e2081aa51" target="_blank">3D Printed Enclosure Files</a></li>
+                        <li><a href="https://github.com/sean-o-sullivan/reflowOven" target="_blank">Reflow Oven Code</a></li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+        <div class="column image-column">
+        <br>
+            <div class="video-container">
+                <!-- Add your main demo video here when available -->
+                <iframe src="" title="ForceField Demo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            
+<div style="text-align: left; width: 80%">
+    <span>Project developed at <a href="https://dogpatchlabs.com/" target="_blank" aria-label="Dogpatch Labs">Dogpatch Labs</a></span>
+</div>            
+        </div>
+    </div>
+        <br>
+        <section class="textIcontainer">
+    <!-- Add your gallery images here following the pattern from your clock page -->
+    <!-- Example structure for when you add images:
+    <img src="prototype.jpg" alt="ForceField Prototype" style="height: 30vh; width: auto;">
+    <img src="pcb.jpg" alt="Custom PCB" style="height: 30vh; width: auto;">
+    <img src="testing.jpg" alt="Field Testing" style="height: 30vh; width: auto;">
+    <img src="reflow-oven.jpg" alt="Custom Reflow Oven" style="height: 30vh; width: auto;">
+    -->
+        </section> 
+<script>
+  fetch('../../static/navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
+
+  window.onload = function() {
+    document.body.classList.add('loaded');
+  };
+
+  // Set up random link functionality
+  const randomLink = document.getElementById('randomLink');
+  const randomSites = [
+    'https://en.wikipedia.org/wiki/Special:Random',
+    'https://www.wikihow.com/special:randomizer'
+  ];
+
+  randomLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
+    window.open(randomSite, '_blank');
+  });
+</script>
+
+<div id="fullscreen-overlay">
+  <img id="fullscreen-image" src="" alt="">
+</div>
+
+<script src="../../static/js/nav-loader.js"></script>
+<script src="../../static/js/image-handler.js"></script>
+
+<div id="footer-container"></div>
+<script src="/static/js/footer-loader.js"></script>
+
+    </body>
+    </html>
