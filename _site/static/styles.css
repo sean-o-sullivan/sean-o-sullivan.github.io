@@ -36,6 +36,38 @@ h3 {
     transition: opacity 0s ease;
 }
 
+
+.containerX {
+  position: relative;
+  display: inline-block;
+}
+
+.containerX img {
+  height: 30vh;
+  width: auto;
+  border-radius: 2%;
+  display: block;
+}
+
+/* overlay image sits on top but is hidden */
+.containerX .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+
+/* show overlay when hovered */
+.containerX:hover .overlay {
+  opacity: 1;
+}
+
+.containerX:hover .base {
+  opacity: 0;
+}
+
+
 .grid-item a {
     text-decoration: none;
     color: #000000;
@@ -1082,7 +1114,7 @@ hr {
 }
 
 .unified-image {
-    width: 75px;
+    width: 90px;
     height: auto;
     object-fit: contain;
     border-radius: 4%;

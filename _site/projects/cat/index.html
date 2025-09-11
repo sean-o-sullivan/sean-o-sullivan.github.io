@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForceField · Seán O'Sullivan</title>
+    <link rel="stylesheet" href="../../static/styles.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3CZHEVW6C');
+</script>
+
+ <style>
+.main-content {
+    position: relative;
+    padding-bottom:0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0; 
+}
+
+.column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.image-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-container {
+    position: relative;
+    width: 85%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    max-width: 800px; 
+    margin: 0 auto;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85%;
+}
+
+.image-gallery {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f0f0f0; 
+}
+
+.image-gallery img {
+    height: 30vh;
+    width: auto;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-bottom: 100vh; 
+    }
+    
+    .image-gallery {
+        position: static; 
+        margin-top: 2rem;
+    }
+}
+    </style> 
+</head>
+
+<body>
+    
+    <div id="navbar-container"></div>
+
+    <div class="main-content">
+        
+    <div class="container">
+        <div class="column text-column">
+            <header>
+                <h3>Cat</h3>
+                <p class="subtitle"> - An RFID Scanning Feeder</p>
+            </header>
+        <main>
+    <section>
+        <p><b>Description</b></p>
+        I built an RFID-based cat feeder for our family cat, Misty, developing it over four years to solve our outdoor feeding problem. The device uses two metal gear servos to lift a hinged cover, revealing food only when Misty's microchip is detected. The cover slides along guide-rails and can't rotate backwards, preventing other animals from accessing the food. Through four major iterations, I refined the design from a bulky first attempt to the current version that logs comprehensive analytics to Google Sheets using environmental sensors. The system tracks tag-ID, time, duration, light level, temperature, humidity, pressure, and gas resistance. While the mechanical systems and environmental logging work well, a core challenge remains: cat microchips are inserted vertically—the worst orientation for RFID reading—requiring a more powerful reader for reliable operation.
+    </section>
+    
+    <section>
+        <br>
+        <p><b>Technical Development</b></p>
+        I designed and built all four versions entirely myself, modeling each in Fusion 360 and 3D printing on my modified Ender 3 Pro using about 2kg of filament per build. The current electronics include an RFID reader module with hand-wound 30awg copper coil, ESP32-WROOM dev board (replacing an RP2040 that I accidentally fried), BME680 environmental sensor, LDR for light sensing, and dual buck converters for power management. I tuned the RFID coil using a friend's oscilloscope and 100nF series capacitor, later purchasing an LC meter to optimize the RF tuning. The system connects to Google Sheets API for data logging, creating a comprehensive record of feeding patterns and environmental conditions.
+    </section>
+
+    <section>
+        <br>
+        <p><b>Project Highlight</b></p>
+        Getting the RFID reader working and watching data populate the Google Sheet was like magic. After weeks of printing, soldering and tuning the coil, seeing a successful tag read was a breath of fresh air. However, disaster struck when I programmed the Arduino RP2040 without disconnecting the power supply. The board was connected to two metal-gear servos drawing up to 1A each, plus WiFi and SD card—far exceeding the 50mA rating. It sparked and died. After half an hour of despair, I remembered finding a spare ESP32-WROOM from an old school project. I ported the code, re-soldered everything, and crucially added a jumper between the ESP32's 5V pin and secondary circuit that I'd disconnect when programming. Within five hours I went from nearly finished, to catastrophe, to getting right back on track.
+    </section>
+
+    <section>
+        <br>
+        <p><b>Design Evolution</b></p>
+        V1 (2021) mimicked our manual feeder but proved too bulky. V2 (2022) introduced a sleeker profile with basic RFID functionality and hand-tuned coil. Without an inductance meter, I adjusted windings by trial and error while testing read distance. V3 (2023) attempted automation with a feed hopper and dual auger system, but the screws frequently jammed—simpler proved better. After getting Misty chipped and testing V2.2 (2024), field testing revealed she couldn't reach the reader. This led to V4's complete redesign with simplified coil front and walk-through access. Despite better measurements and resonance capacitor adjustments, the perpendicular chip orientation remained problematic, confirming we need a stronger reader module.
+    </section>
+
+    <section>
+        <br>
+        <p><b>Challenges and Context</b></p>
+        I built this feeder because magpies, cats, and wild dogs were eating Misty's food outdoors. Commercial RFID feeders aren't weatherproof and cost hundreds of euros. Working in my bedroom with limited tools—initially a cheap soldering iron taking 15 minutes to heat—I faced significant constraints. Ireland gets rain 225 days per year, requiring weatherproofing. My 225mm³ printer build area meant careful design choices. The fundamental physics issue persists: cat microchips are inserted vertically in their necks, the worst orientation for RFID readers needing parallel alignment. Three weeks ago, a wild dog dragged our food waste bin down the driveway—the current PLA version wouldn't survive outdoors. For a lasting solution, I'm considering a completely different approach using computer vision with a small YOLO model trained on photos of Misty.
+    </section>
+
+    <section>
+        <br>
+        <p><b>Links and Resources</b></p>
+        <ul>
+            <li><a href="https://a360.co/48q1Nq7" target="_blank">CAD Design Files (All Versions)</a></li>
+            <li><a href="https://github.com/sean-o-sullivan/catFeeder" target="_blank">Arduino/ESP32 Code Repository</a></li>
+            <li><a href="https://docs.google.com/spreadsheets/d/16wtXxOQR940xx5vmyjko9YjpwGKzLTasU-3y-Wti0Eo/edit?usp=sharing" target="_blank">Data Logging Template</a></li>
+        </ul>
+    </section>
+</main>
+
+
+            </main>
+        </div>
+        <div class="column image-column">
+            <!-- <div class="video-container">
+                <iframe src="" title="ForceField Demo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div> -->
+      <img src="../../images/cat/cover.png" alt="ForceField summary photo" style="height: 45vh; width: auto;">
+      <br>
+        <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/fc86qX3Hwmg" title="catFeeder Highlight Reel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <img src="../../images/cat/feeder2-2.png" alt="oven made from floodlamp" style="height: 25vh; width: auto;">
+      <!-- <img src="../../images/force/forcb.jpeg" alt="ForceField pcb" style="height: 30vh; width: auto;"> -->
+      <br>
+          
+        </div>
+    </div>
+        <br>
+        <section class="textIcontainer">
+    <!-- Add your gallery images here following the pattern from your clock page -->
+    <!-- Example structure for when you add images:
+    <img src="prototype.jpg" alt="ForceField Prototype" style="height: 30vh; width: auto;">
+    <img src="pcb.jpg" alt="Custom PCB" style="height: 30vh; width: auto;">
+    <img src="testing.jpg" alt="Field Testing" style="height: 30vh; width: auto;">
+    <img src="reflow-oven.jpg" alt="Custom Reflow Oven" style="height: 30vh; width: auto;">
+    -->
+        </section> 
+<script>
+  fetch('../../static/navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
+
+  window.onload = function() {
+    document.body.classList.add('loaded');
+  };
+
+  // Set up random link functionality
+  const randomLink = document.getElementById('randomLink');
+  const randomSites = [
+    'https://en.wikipedia.org/wiki/Special:Random',
+    'https://www.wikihow.com/special:randomizer'
+  ];
+
+  randomLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
+    window.open(randomSite, '_blank');
+  });
+</script>
+
+<div id="fullscreen-overlay">
+  <img id="fullscreen-image" src="" alt="">
+</div>
+
+<script src="../../static/js/nav-loader.js"></script>
+<script src="../../static/js/image-handler.js"></script>
+
+<div id="footer-container"></div>
+<script src="/static/js/footer-loader.js"></script>
+
+    </body>
+    </html>
