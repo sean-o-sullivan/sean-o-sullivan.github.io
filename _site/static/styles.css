@@ -37,35 +37,40 @@ h3 {
 }
 
 
+
+
 .containerX {
   position: relative;
-  display: inline-block;
+  display: inline-block;   /* shrink-wrap to the active image */
+  border-radius: 12px;     /* your rounding */
+  overflow: hidden;        /* clip children to rounded corners */
 }
 
-.containerX img {
-  height: 30vh;
-  width: auto;
-  border-radius: 2%;
+/* All images share the same height; width adjusts per image aspect ratio */
+.containerX .frame {
+  height: 30vh;            /* constant visual height */
+  width: auto;             /* width adapts per image */
   display: block;
-}
+  user-select: none;
+  -webkit-user-drag: none;
 
-/* overlay image sits on top but is hidden */
-.containerX .overlay {
+  /* default state is stacked and non-layout-participating */
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0 auto auto 0;    /* top-left anchor */
   opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
 }
 
-
-/* show overlay when hovered */
-.containerX:hover .overlay {
+/* The visible frame participates in layout -> sizes the container */
+.containerX .frame.show {
+  position: relative;      /* now it affects container size */
+  inset: auto;             /* reset */
   opacity: 1;
+  pointer-events: auto;    /* optional */
+  z-index: 1;
 }
 
-.containerX:hover .base {
-  opacity: 0;
-}
 
 
 .grid-item a {

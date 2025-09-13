@@ -119,9 +119,14 @@
         </div>
 
         <div style="padding-top: 7vh;">
+
 <div class="containerX">
-  <img class="base" src="/thumbnails/hands-cool.jpg" alt="hands">
-  <img class="overlay" src="images/bottle.JPG" alt="bottle">
+  <img class="frame show" src="/thumbnails/hands-cool.jpg" alt="hands">
+  <img class="frame" src="images/slidesh/bracket.png" alt="bracket">
+  <img class="frame" src="images/slidesh/lathe.png" alt="lathe">
+  <img class="frame" src="images/slidesh/botl.png" alt="bottle">
+  <img class="frame" src="images/slidesh/optimal.png" alt="optimal">
+  <img class="frame" src="images/slidesh/charge.png" alt="charge">
 </div>
 
           <p><b>Other Work</b></p>
@@ -253,6 +258,27 @@
   <script src="/static/js/footer-loader.js"></script>
 
   <script>
+    
+document.querySelectorAll('.containerX').forEach(container => {
+  const frames = Array.from(container.querySelectorAll('.frame'));
+  let idx = frames.findIndex(f => f.classList.contains('show'));
+  if (idx < 0) idx = 0;
+
+  container.addEventListener('mouseenter', () => {
+    const prev = frames[idx];
+    idx = (idx + 1) % frames.length;
+    const next = frames[idx];
+
+    // Make the new one visible immediately
+    next.classList.add('show');
+
+    // Fade out the old one while it no longer controls layout
+    // (move it to absolute so it stops sizing the container)
+    prev.classList.remove('show');
+  });
+
+  // Do nothing on mouseleave — state persists on the last shown image
+});
 
     document.addEventListener('DOMContentLoaded', function() {
       const sections = document.querySelectorAll('.fullscreen');
