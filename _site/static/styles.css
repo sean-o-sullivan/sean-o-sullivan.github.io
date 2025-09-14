@@ -1029,10 +1029,6 @@ hr {
 }
 
 
-
-
-
-
 /* Fixed-height projects container */
 .projects-container {
     overflow-y: auto; /* Enables vertical scrolling */
@@ -1055,6 +1051,8 @@ hr {
   .projects-container .textcontainer {
     padding-top: 5vh; /* Reduced padding */
   }
+
+
   
   /* Responsive adjustments */
   @media (max-width: 768px) {

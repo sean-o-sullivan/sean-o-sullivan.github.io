@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wind Research · Seán O'Sullivan</title>
+    <link rel="stylesheet" href="../../static/styles.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3CZHEVW6C');
+</script>
+
+ <style>
+.main-content {
+    position: relative;
+    padding-bottom:0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0; 
+}
+
+.column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.image-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-container {
+    position: relative;
+    width: 85%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    max-width: 800px; 
+    margin: 0 auto;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85%;
+}
+
+.pdf-container {
+    position: relative;
+    width: 90%;
+    height: 70vh;
+    max-width: 800px;
+    margin: 2rem auto;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.image-gallery {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f0f0f0; 
+}
+
+.image-gallery img {
+    height: 30vh;
+    width: auto;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-bottom: 100vh; 
+    }
+    
+    .image-gallery {
+        position: static; 
+        margin-top: 2rem;
+    }
+    
+    .pdf-container {
+        height: 50vh;
+        width: 95%;
+    }
+}
+    </style> 
+</head>
+
+<body>
+    
+    <div id="navbar-container"></div>
+
+    <div class="main-content">
+        
+    <div class="container">
+        <div class="column text-column">
+            <header>
+                <h3>Wind</h3>
+                <p class="subtitle"> - Turbine Research: HAWT vs VAWT Performance Analysis</p>
+            </header>
+        <main>
+    <section>
+        <p><b>Research Overview</b></p>
+        Ireland has excellent wind resources with a capacity factor of 28.3%. During the 2023 energy crisis, I explored micro-wind generation by testing 16 turbine rotors (10 Vertical Axis: VAWT, 6 Horizontal Axis: HAWT) in wind tunnel and outdoor conditions. HAWTs outperformed VAWTs by 660% on average. HAWTs generated 34% more in laminar conditions; VAWTs 80% more in turbulent. VAWTs needed powered-start at lower laminar speeds. Scaling by 1.5x decreased HAWT performance by 27.1%, VAWT by 47.8%. The scimitar blade HAWT showed 19% average improvement (11% in turbulent, 27.3% in laminar flow). On a 500W turbine, this rotor could increase annual generation by 217kWh to 1355kWh, saving €586 yearly. With 2023's 124% electricity price surge halving payback times, this research presents a compelling case for micro-wind adoption in Ireland, where no grants currently exist for micro-wind generation.
+    </section>
+    
+    <section>
+        <br>
+        <p><b>Technical Development</b></p>
+        I designed and 3D printed 16 turbine rotors across 6 categories: Straight/Scimitar Bladed HAWTs, plus Helicoid/Darrieus/Helical/Symmetrical Airfoil VAWTs. Each category (except Symmetrical Airfoil) had 3 variations: base, double blades, and 1.5x scaled. All designs used NREL-recommended airfoils for 1-3m rotor diameter turbines: S835 (root/tip) and S833 (primary) for HAWTs; S833 for VAWTs. I created 4 motor housings with HAWT assemblies featuring rear wind vanes and internal steel ball bearings. I built 2 Arduino Data Capture Boards: one for 4 turbines' voltage outputs and anemometer wind speed, another for a 24V 500W domestic turbine. Each used voltage divider circuits, mapping to real voltage and calibrated with GeoGebra.
+    </section>
+
+    <section>
+        <br>
+        <p><b>Testing Methodology</b></p>
+        I conducted 7 comprehensive tests: 5 outdoors (1-10 m/s wind speeds) and 2 in the University of Limerick wind tunnel (1-7 m/s). HAWTs showed higher RPM with lower torque, while VAWTs exhibited opposite characteristics. VAWTs maintained rotation longer when airflow stopped, highlighting their stability in fluctuating speeds but requiring gearboxes to match HAWT output. The findings corroborated HAWT superiority in varied conditions and VAWT stability in fluctuating speeds. I used a 26% capacity factor to calculate energy increases and cost savings, comparing findings with existing VAWT vs HAWT research.
+    </section>
+
+    <section>
+        <br>
+        <p><b>Market Research & Impact</b></p>
+        I surveyed 170 adults on micro-wind generation perceptions and interest in government incentives, considering Ireland's excellent wind resources. The survey revealed clear public interest in micro-wind adoption. Following this, I contacted 20 Irish renewable companies and secured a 500W turbine sponsorship, which I tested for 15 hours. The research demonstrated that micro-wind could provide significant cost savings for Irish households, especially given the 2023 electricity price surge. Despite Ireland's ideal wind conditions and public interest, the lack of government grants for micro-wind represents a missed opportunity this research aims to address.
+    </section>
+
+    <section>
+        <br>
+        <p><b>Key Learnings</b></p>
+        Flexibility in research proved crucial. I initially planned to test rotors large enough to drive the 500W turbine directly, but soon realized this was unfeasible to 3D print. Pivoting to miniature models enabled wind tunnel testing at UL and simultaneous outdoor tests. Fortunately, our micro-scale results still corroborated existing research while highlighting potential scimitar blade designs. I discovered these observations held true even at diameter ≤30cm rotors, validating the scalability of the findings. This experience taught me the importance of adapting methodology while maintaining research rigor.
+    </section>
+
+    <section>
+        <br>
+        <p><b>Publication Journey & Research Philosophy</b></p>
+        I discovered the difference between research and technical reports when submitting to Springer Nature's Journal of Sustainable Energy Research. While they found my approach, results and 190-page report "interesting," they noted it needed major revisions. At the time, I didn't know what a research report looked like—I've had to learn what that looks like since. I chose not to refactor it as I was already deep into my next project in authorship verification. This was ultimately a personal exploration. Through this journey, I've realized I enjoy exploring fresh problems and have a strong preference for projects where I also learn something new. In short, I want to keep exploring.
+    </section>
+
+    <section>
+        <br>
+        <p><b>Conclusion</b></p>
+      <p>I presented this research at the BT Young Scientist and Technologist exhibition 2023, and I was fortunate enough to place third in my category, individual-intermediate-technology, and be awarded the GreenCoat Renewables special award.</p>
+    </section>
+
+
+    <section>
+        <br>
+        <p><b>Links and Resources</b></p>
+        <ul>
+            <li><a href="https://docs.google.com/spreadsheets/d/1WRXXRIgqStu1tDG9kdxHesjAqy9O2jfO/edit?usp=sharing&ouid=102845331985891296847&rtpof=true&sd=true" target="_blank">Test Data & Analysis</a></li>
+            <li><a href="https://a360.co/47Dd33Z" target="_blank">Motor Mount Files (HAWT & VAWT)</a></li>
+        </ul>
+    </section>
+
+            </main>
+        </div>
+        <div class="column image-column">
+            <br>
+            <br>
+        <!-- Embedded PDF viewer (self-hosted to avoid CSP blocking external iframes) -->
+        <div class="pdf-container">
+          <iframe
+            src="https://drive.google.com/file/d/1OVxLktJ669nVgpXVTkt4gdcp84fbG8zy/preview#view=FitH&toolbar=0"
+            title="Wind Research Book"
+            loading="lazy"
+            allow="fullscreen">
+          </iframe>
+        </div>
+                    <!-- YouTube video if you have one -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/wF9NeQe6TsY" 
+                        title="Wind Turbine Testing Compilation" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen></iframe>
+            </div>
+
+            <img src="../../images/wind/Stand.jpg" alt="Wind Research Book Cover" style="height: 40vh; width: auto;">
+
+                    <!-- Cover image -->
+
+        <!-- If you want to embed from Drive AND your CSP allows it, swap the iframe src above for:
+                     src="../../pdf/BTYSTE 2023 Report Book.pdf#view=FitH&toolbar=0"
+
+        https://drive.google.com/file/d/1OVxLktJ669nVgpXVTkt4gdcp84fbG8zy/preview#view=FitH&toolbar=0
+    -->
+          
+
+            
+
+
+        </div>
+    </div>
+        <br>
+        <section class="textIcontainer">
+    <!-- Gallery for additional testing images -->
+
+                <!-- Additional images -->
+            <img src="../../images/wind/Artsy (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/Beach (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/Bed (2).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/Desk (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/IMG 4054.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/onWood.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/mi.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/mi2.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/Printer (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+                        <img src="../../images/wind/Table (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+
+            <img src="../../images/wind/School Close.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+
+            <img src="../../images/wind/School Setup.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/Tunnel (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+
+            <img src="../../images/wind/Sky (2).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/Tab Squoosh.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+
+            <img src="../../images/wind/Setup Big Squoosh.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+
+            <img src="../../images/wind/Tiles.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+
+
+        </section> 
+<script>
+  fetch('../../static/navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
+
+  window.onload = function() {
+    document.body.classList.add('loaded');
+  };
+
+  // Set up random link functionality
+  const randomLink = document.getElementById('randomLink');
+  const randomSites = [
+    'https://en.wikipedia.org/wiki/Special:Random',
+    'https://www.wikihow.com/special:randomizer'
+  ];
+
+  randomLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
+    window.open(randomSite, '_blank');
+  });
+</script>
+
+<div id="fullscreen-overlay">
+  <img id="fullscreen-image" src="" alt="">
+</div>
+
+<script src="../../static/js/nav-loader.js"></script>
+<script src="../../static/js/image-handler.js"></script>
+
+<div id="footer-container"></div>
+<script src="/static/js/footer-loader.js"></script>
+
+    </body>
+    </html>
+
+             
+            
