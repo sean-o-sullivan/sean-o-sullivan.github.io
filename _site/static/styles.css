@@ -1152,7 +1152,7 @@ hr {
 
 
 html {
-    scroll-behavior: smooth !important;
+    scroll-behavior: auto  !important;
   }
   
   /* Ensure body doesn't have padding that affects scrolling */
