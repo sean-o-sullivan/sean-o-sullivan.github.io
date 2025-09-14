@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books · Seán O'Sullivan</title>
+    <link rel="stylesheet" href="../../static/styles.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P3CZHEVW6C');
+</script>
+
+ <style>
+.main-content {
+    position: relative;
+    padding-bottom:0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0; 
+}
+
+.column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.image-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-container {
+    position: relative;
+    width: 85%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    max-width: 800px; 
+    margin: 0 auto;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85%;
+}
+
+.pdf-container {
+    position: relative;
+    width: 90%;
+    height: 70vh;
+    max-width: 800px;
+    margin: 2rem auto;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.image-gallery {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f0f0f0; 
+}
+
+.image-gallery img {
+    height: 30vh;
+    width: auto;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-bottom: 100vh; 
+    }
+    
+    .image-gallery {
+        position: static; 
+        margin-top: 2rem;
+    }
+    
+    .pdf-container {
+        height: 50vh;
+        width: 95%;
+    }
+}
+    </style> 
+</head>
+
+<body>
+    
+    <div id="navbar-container"></div>
+
+    <div class="main-content">
+        
+    <div class="container">
+        <div class="column text-column">
+            <header>
+                <h3>Books</h3>
+                <p class="subtitle"> - Especially good books that I have read.</p>
+            </header>
+        <main>
+    <section>
+          <p>If you have any recommendations please <a href="mailto:seangerardosullivan@gmail.com">email me</a>.</p>
+    </section>
+
+    <section>
+        <br>
+        <!-- <p><b>Links and Resources</b></p> -->
+        <ul>
+            <li><a href="https://beej.us/guide/bgc/html/split-wide/index.html" target="_blank">Beej's Guide to C Programming</a></li>
+            <li><a href="https://www.amazon.co.uk/Structured-Computer-Organization-Andrew-Tanenbaum/dp/0132916525" target="_blank">Structured Computer Organization, 6th Edition</a></li>
+        </ul>
+    </section>
+
+            </main>
+        </div>
+    </div>>
+    
+<script>
+  fetch('../../static/navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+    });
+
+  window.onload = function() {
+    document.body.classList.add('loaded');
+  };
+
+  // Set up random link functionality
+  const randomLink = document.getElementById('randomLink');
+  const randomSites = [
+    'https://en.wikipedia.org/wiki/Special:Random',
+    'https://www.wikihow.com/special:randomizer'
+  ];
+
+  randomLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
+    window.open(randomSite, '_blank');
+  });
+</script>
+
+<div id="fullscreen-overlay">
+  <img id="fullscreen-image" src="" alt="">
+</div>
+
+<script src="../../static/js/nav-loader.js"></script>
+<script src="../../static/js/image-handler.js"></script>
+
+<div id="footer-container"></div>
+<script src="/static/js/footer-loader.js"></script>
+
+    </body>
+    </html>
+
+             
+            

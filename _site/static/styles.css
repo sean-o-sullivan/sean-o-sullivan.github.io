@@ -697,6 +697,8 @@ body {
 
 /* Main content container */
 .home-content {
+    overflow-y: auto; /* Enables vertical scrolling */
+
     width: 80%;
     height: min-content;
     margin: 0 auto;
