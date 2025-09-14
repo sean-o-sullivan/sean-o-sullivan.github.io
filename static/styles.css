@@ -448,10 +448,14 @@ body {
         .image-column {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             margin-top: 5px;
             gap: 10px;
+            flex-direction: initial;
+            align-items: center;
+            flex-wrap: wrap;
+;
           }
+
           
         .video-container {
             position: relative;
