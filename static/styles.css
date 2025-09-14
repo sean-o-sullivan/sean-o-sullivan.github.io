@@ -697,7 +697,7 @@ body {
 
 /* Main content container */
 .home-content {
-        overflow-y: auto; /* Enables vertical scrolling */
+        /* overflow-y: auto; Enables vertical scrolling */
 
     width: 80%;
     height: min-content;
@@ -925,7 +925,7 @@ hr {
         width: 50px;   /* Adjust as needed */
         height: auto;   /* Maintain aspect ratio */
         object-fit: contain;
-        border-radius: 30%; /* Example: slightly rounded corners */
+        border-radius: 20%; /* Example: slightly rounded corners */
         display: block; /* Ensures consistent layout behavior */
       }
 
@@ -1033,10 +1033,11 @@ hr {
 
 /* Fixed-height projects container */
 .projects-container {
-    overflow-y: auto; /* Enables vertical scrolling */
+    /* overflow-y: auto; Enables vertical scrolling */
 
     margin: 40px auto; 
     width: 80%; /* Matches home-content width */
+    height: fit-content;
     position: relative;
     background-color: #ffffff;
   }
@@ -1142,7 +1143,7 @@ hr {
 
 .fullscreen {
     overflow-y: auto;
-    height: 100vh; 
+    height: min-content; 
     width: 100%;
     display: flex;
     position: relative;
