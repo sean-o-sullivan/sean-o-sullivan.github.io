@@ -279,106 +279,105 @@ document.querySelectorAll('.containerX').forEach(container => {
       const navLinks = document.querySelectorAll('.nav-links a');
       
       const preferredEasing = 'aStyle'; 
-      const scrollDuration = 0.2;
+      const scrollDuration = 0.05;
       
-      // // Function to set active navigation item
-      // function setActiveNavItem() {
-      //   const scrollPosition = window.scrollY + 100;
+      // Function to set active navigation item
+      function setActiveNavItem() {
+        const scrollPosition = window.scrollY + 100;
         
-      //   sections.forEach(section => {
-      //     const sectionTop = section.offsetTop;
-      //     const sectionHeight = section.clientHeight;
-      //     const sectionId = section.getAttribute('id');
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          const sectionId = section.getAttribute('id');
           
-      //     if (scrollPosition >= sectionTop && 
-      //         scrollPosition < sectionTop + sectionHeight) {
+          if (scrollPosition >= sectionTop && 
+              scrollPosition < sectionTop + sectionHeight) {
             
-      //       navLinks.forEach(link => {
-      //         link.classList.remove('active');
-      //       });
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+            });
             
-      //       const activeLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
-      //       if (activeLink) {
-      //         activeLink.classList.add('active');
-      //       }
-      //     }
-      //   });
-      // }
+            const activeLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+            if (activeLink) {
+              activeLink.classList.add('active');
+            }
+          }
+        });
+      }
       
       // Add smooth scrolling to all navigation links
-      // navLinks.forEach(link => {
-      //   link.addEventListener('click', function(e) {
-      //     e.preventDefault();
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
           
-      //     const targetId = this.getAttribute('href').substring(1);
-      //     const targetSection = document.getElementById(targetId);
+          const targetId = this.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
           
-      //     if (targetSection) {
-      //       const navbarHeight = document.getElementById('navbar-container').offsetHeight || 0;
-      //       const targetPosition = targetSection.offsetTop - navbarHeight;
+          if (targetSection) {
+            const navbarHeight = document.getElementById('navbar-container').offsetHeight || 0;
+            const targetPosition = targetSection.offsetTop - navbarHeight;
             
-      //       // For browsers that support ScrollToOptions with behavior
-      //       if ('scrollBehavior' in document.documentElement.style) {
-      //         // Fallback to native smooth scrolling if custom easing isn't needed
-      //         if (preferredEasing === 'native') {
-      //           window.scrollTo({
-      //             top: targetPosition,
-      //             behavior: 'smooth' 
-      //           });
-      //         } else {
-      //           // Use our custom easing function
-      //           smoothScrollTo(targetPosition, scrollDuration, preferredEasing);
-      //         }
-      //       } 
-      //       // For browsers that don't support smooth scrolling natively
-      //       else {
-      //         smoothScrollTo(targetPosition, scrollDuration, preferredEasing);
-      //       }
+            // For browsers that support ScrollToOptions with behavior
+            if ('scrollBehavior' in document.documentElement.style) {
+              // Fallback to native smooth scrolling if custom easing isn't needed
+              if (preferredEasing === 'native') {
+                window.scrollTo({
+                  top: targetPosition,
+                  behavior: 'smooth' 
+                });
+              } else {
+                // Use our custom easing function
+                smoothScrollTo(targetPosition, scrollDuration, preferredEasing);
+              }
+            } 
+            // For browsers that don't support smooth scrolling natively
+            else {
+              smoothScrollTo(targetPosition, scrollDuration, preferredEasing);
+            }
             
-      //       // Set active state immediately
-      //       navLinks.forEach(link => link.classList.remove('active'));
-      //       this.classList.add('active');
-      //     }
-      //   });
-      // });
+            // Set active state immediately
+            navLinks.forEach(link => link.classList.remove('active'));
+            this.classList.add('active');
+          }
+        });
+      });
       
       // Custom smooth scrolling function with adjustable easing
-    //   function smoothScrollTo(targetPosition, duration, easingPreset = 'appleStyle') {
-    //     const startPosition = window.scrollY;
-    //     const distance = targetPosition - startPosition;
-    //     let startTime = null;
+      function smoothScrollTo(targetPosition, duration, easingPreset = 'appleStyle') {
+        const startPosition = window.scrollY;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
         
-    //     // Define different easing presets
-    //     const easingPresets = {
-    //       aStyle: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
-    //     };
+        // Define different easing presets
+        const easingPresets = {
+          aStyle: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
+        };
         
-    //     // Select the easing function based on preset
-    //     const easingFunction = easingPresets[easingPreset] || easingPresets.aStyle;
+        // Select the easing function based on preset
+        const easingFunction = easingPresets[easingPreset] || easingPresets.aStyle;
         
-    //     function animation(currentTime) {
-    //       if (startTime === null) startTime = currentTime;
-    //       const timeElapsed = currentTime - startTime;
-    //       const progress = Math.min(timeElapsed / duration, 1);
+        function animation(currentTime) {
+          if (startTime === null) startTime = currentTime;
+          const timeElapsed = currentTime - startTime;
+          const progress = Math.min(timeElapsed / duration, 1);
           
-    //       // Apply the selected easing function
-    //       const easedProgress = easingFunction(progress);
+          // Apply the selected easing function
+          const easedProgress = easingFunction(progress);
           
-    //       window.scrollTo(0, startPosition + distance * easedProgress);
+          window.scrollTo(0, startPosition + distance * easedProgress);
           
-    //       if (timeElapsed < duration) {
-    //         requestAnimationFrame(animation);
-    //       }
-    //     }
+          if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+          }
+        }
         
-    //     requestAnimationFrame(animation);
-    //   }
+        requestAnimationFrame(animation);
+      }
       
       // Set active nav item on page load and during scrolling
       setActiveNavItem();
       window.addEventListener('scroll', setActiveNavItem);
     });
-
   </script>
 </body>
 </html>

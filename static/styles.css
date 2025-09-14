@@ -697,7 +697,7 @@ body {
 
 /* Main content container */
 .home-content {
-    overflow-y: auto; /* Enables vertical scrolling */
+        overflow-y: auto; /* Enables vertical scrolling */
 
     width: 80%;
     height: min-content;
@@ -1152,7 +1152,7 @@ hr {
 
 
 html {
-    scroll-behavior: auto  !important;
+    scroll-behavior: smooth !important;
   }
   
   /* Ensure body doesn't have padding that affects scrolling */
