@@ -17,6 +17,28 @@
 </script>
 
  <style>
+
+    /* Full-bleed PDF section */
+.pdf-container {
+  position: relative;
+  width: 100vw;                         /* span entire viewport width */
+  margin-left: calc(50% - 50vw);        /* break out of centered layout */
+  margin-right: calc(50% - 50vw);
+  /* optional breathing room above/below */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.pdf-container iframe {
+  display: block;
+  width: 100%;
+  height: 70vh;                         /* nice tall canvas; tweak if you like */
+  border: 0;                            /* no border chrome */
+}
+
+/* If a tiny horizontal scrollbar appears due to 100vw incl. scrollbar width */
+html, body { overflow-x: hidden; }
+
 .main-content {
     position: relative;
     padding-bottom:0;
@@ -169,6 +191,20 @@
     </div>
         <br>
         <section class="textIcontainer">
+
+
+        <div class="pdf-container">
+          <iframe           
+            src="https://drive.google.com/file/d/1KCpnKkSxidApWcaqFsSqk-UT0bO2Xg_r/preview#view=FitH&toolbar=0"
+            title="Cleaning Research Book"
+            loading="lazy"
+            allow="fullscreen">
+          </iframe>
+        </div>
+
+
+            
+
     <!-- Add your gallery images here following the pattern from your clock page -->
     <!-- Example structure for when you add images:
     <img src="prototype.jpg" alt="ForceField Prototype" style="height: 30vh; width: auto;">
