@@ -340,6 +340,7 @@ body {
  .textcontainer {
             padding-top: 10vh;
             width: 50%;
+            text-align: left;
             float: left;
             margin-left: 15%;
   }
@@ -523,19 +524,13 @@ body {
 }
 
 
-
-
-
-
-.about-content {
+.intro-content {
     display: flex;
-    width: 85%;
-    height: min-content;
+    width: 68%; /* Overall container width */
     margin: 0 auto;
     gap: 2rem;
-    padding-top: 50px; /* Match the navbar height */
-    /* min-height: calc(100vh - 70px); */
-    position: relative;
+    padding-top: 50px;
+    align-items: center; /* Centers items vertically */
 }
 
 /* Remove floating behavior from textContainer */
@@ -554,6 +549,22 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
+.left-half {
+    flex: 0 0 60%; /* Do not grow, do not shrink, stay at 70% */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text to the left */
+}
+
+/* Image side (30%) */
+.right-half {
+    flex: 0 0 40%; /* Do not grow, do not shrink, stay at 30% */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 
 /* Adjust profile and computer images */
@@ -610,7 +621,7 @@ body {
 
 /* Ensure the paragraph is also centered */
 .left-half p {
-    text-align: center;
+    text-align: left;
     width: 100%;
     margin: 0 0 15px 0; /* Consistent margin */ 
 }
