@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pace · Seán O'Sullivan</title>
+  <meta name="description" content="Pace, a coin-sized magnetic pacing timer with a 60 LED display and charging case.">
   <link rel="stylesheet" href="../../static/styles.css">
+  <link rel="stylesheet" href="../../static/project-page.css?v=6">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
   <script>
@@ -14,7 +16,7 @@
     gtag('config', 'G-P3CZHEVW6C');
   </script>
 </head>
-<body>
+<body class="project-page">
   <div id="navbar-container"></div>
 
   <div class="container">
@@ -23,105 +25,126 @@
         <h3>Pace</h3>
         <p class="subtitle">- A Minute Timer for Swimmers</p>
       </header>
+
       <main>
         <section>
           <p><b>Description</b></p>
           <p>
-            I am developing a compact, magnet-attachable timer to assist swimmers with pacing during training and competitions, it's the size of a 1¢ coin (19mm).
+            Pace is a small timer I made after our pool closed, when I was still a competitive swimmer and wanted a way to keep pace while training alone. The PCB is smaller than a euro one-cent coin. A magnet and a ferrous disc on the back let it sit on glasses or swimming goggles.
           </p>
-        </section>
-        
-        <section>
-          <p><b>Progress</b></p>
           <p>
-            After our pool closed, I started making Pace - a goggle-mounted minute timer, the size of a dime, to help swimmers like me keep pace when training alone.<br><br>
-            <i>v1 Discrete components:</i> 8 daisy-chained shifting registers, a 1Hz pulse oscillator, and a delayed latching circuit which provides the first input. My overcomplicated design got a slating review and I despaired at how expensive it would be to make.<br><br>
-            <i>v2 Programmable:</i> STM32Lo microcontroller, controlling the LED array with a matrix driver. Due to space constraints, I switched from wireless charging to direct with a storage case. After a full redesign, ready to order, I realised that JLCPCB doesn't support buried vias. These vias alone would cost hundreds of euros. I was crushed.<br><br>
-            <i>v3:</i> now consists of two stackable boards, a significantly cheaper, simpler solution. Pace is still a 6 layer PCB, but it will be significantly less dense.<br><br>
-            Hopefully this will be the last major iteration of making Pace! □
+            Sixty LEDs run around the edge. A seconds hand moves one position every second, a minute hand advances once per lap, and a fixed north marker keeps the display readable. They appear to be on together, but the STM32L0 is charlieplexing the ring across nine GPIO lines and driving one LED at a time in one-millisecond slices. That was partly a layout decision and partly a power-budget decision for the tiny rechargeable coin cell.
           </p>
-          <br>
-          <br>
+          <p>
+            Pace lives in a printed charging case with its own battery and USB-C input. Spring-loaded pogo contacts meet the two charging pads when the timer is pressed into the insert, so the case can charge Pace without putting a connector on the timer itself.
+          </p>
         </section>
+
+        <section>
+          <p><b>Build</b></p>
+          <p>
+            I built the first two versions in the summer before my Leaving Cert. V1 used eight daisy-chained shift registers, a quartz oscillator, and a delayed latching circuit to inject the first bit. It was an elaborate way to move one light around a ring. I posted it on Reddit, got a fairly blunt review, and moved to an STM32 and LED matrix driver for v2.
+          </p>
+          <p>
+            The second review was kinder. One comment said, <a href="https://www.reddit.com/r/PrintedCircuitBoard/comments/1f08xn6/review_request_stm32_based_timer_for_swimming/" target="_blank" rel="noopener noreferrer">“It's a truly beautiful board layout. I hope it works!”</a> Another immediately asked, <a href="https://www.reddit.com/r/PrintedCircuitBoard/comments/1f08xn6/review_request_stm32_based_timer_for_swimming/" target="_blank" rel="noopener noreferrer">“What will happen if battery voltage drops under 3.4ish?”</a> Both were fair. That board reached the point of ordering before I realised its buried vias would add about €500. I never ordered it.
+          </p>
+          <p>
+            The project sat for a while. In November 2025 I picked it up again and rebuilt it rather than trying to rescue v2: a new Pace board, a separate charge board, a new case, and new firmware. The useful change was charlieplexing. Sixty LEDs only need nine bus lines, so the external matrix driver and buried-via layout disappeared while the board stayed coin-sized.
+          </p>
+          <p>
+            The board was still unpleasant to assemble. I placed parts<sup id="pace-assembly-note-ref"><a class="footnote-ref" href="#pace-assembly-note" role="doc-noteref" aria-label="See assembly footnote">†</a></sup> through two loupes taped together for roughly 10x magnification and reflowed it in an oven I had made from a halogen floodlight. I also tried casting the electronics in a resin-printed mould. The release spray did not release, so I ended up carving the board back out through fibreglass and resin. It survived.
+          </p>
+          <p>
+            The firmware uses the 32.768kHz crystal and RTC for the one-second tick, then shares the display time between the two hands and north marker. I wanted the startup to feel less like a circuit waking up, so it begins with a short random sparkle. There is no stored animation: on every boot the ADC samples the internal voltage reference 32 times, mixes the lowest four noisy bits of each reading into a seed, and feeds that into a xorshift generator. The resulting pattern is different each time, then the hands move into place and the timer starts.
+          </p>
+          <p>
+            The case went through its own set of iterations. I wanted the body and insert to work like the AirPods case I use every day: a continuous outer shell, with the insert seam hidden by the lid rather than left as a visible split around the body. That made the finished object cleaner, but it also meant fitting a charge board, battery, contacts, and wiring into a shape that had not been especially generous to any of them.
+          </p>
+          <p>
+            The charge board then behaved just well enough to be confusing. With USB connected, the blue Pace-charge LED would flicker and go out while the green case-battery LED stayed on. The boost stage and two charging paths made the readings look circular, and I had already added a flywire after modifying the board to fit the printed assembly. The fault that finally mattered was under a capacitor. I lifted it and found a paste-like bridge underneath; with the capacitor removed the short disappeared. I cleaned the pads, put the capacitor back, and the short stayed gone. The battery sat around 3.5V and the blue indicator began pulsing normally.
+          </p>
+          <p>
+            The last part was mostly mechanical soldering. I soldered the pogo pins to wires, passed the wires through holes in the case insert, heat-set the pins into place, then connected them to Pace+ and ground on the charge board. It was 3:10am when I stopped before the final two joints. By then Pace fitted the insert, the case battery was charging, and pressing the timer onto the contacts produced a voltage across the pogos. The assembly was no longer hypothetical.
+          </p>
+          <p>
+            This is the third and final version: the one being posted and shipped rather than another board waiting to be ordered. I started Pace because I swam. I do not swim now, but I have been using it to time strength, conditioning, and flexibility work instead. The use changed while the project sat; the timer did not need to.
+          </p>
+        </section>
+
+        <p class="footnote" id="pace-assembly-note" role="doc-footnote">
+          <a class="footnote-backref" href="#pace-assembly-note-ref" aria-label="Back to assembly footnote reference">†</a>
+          With a blunt 30-gauge needle balanced between both thumbs and index fingers, and my forearms resting on the desk for support, I could pick up the 01005 LEDs (0.4 × 0.2 mm) with friction alone.
+        </p>
       </main>
     </div>
-    
-    <div class="column image-column" style="margin-top:5vh;">
-      <br>
-      <p><b>V2.0 - Using STM32Lo microcontroller & LED matrix driver</b></p>
-      <img src="../../images/pace/pace-5.jpg" alt="Swimming Timer Pacer V2" style="height: 37vh; width: auto;">
-      <img src="../../images/pace/currentSchematic-2 2-2-2.jpg" alt="Current Schematic" style="height: 32vh; width: auto;">
+
+    <div class="column image-column">
+      <p><b>V3.0 - Charlieplexed timer and charging case</b></p>
+      <img class="project-lead-media" src="../../images/pace/v3-size.jpg" alt="Pace v3 held above its assembly jig">
+      <img src="../../images/pace/v3-board.jpeg" alt="Close view of the Pace v3 PCB and its ring of LEDs">
+      <img src="../../images/pace/v3-in-hand-with-coin.jpeg" alt="Working Pace v3 held beside a euro one-cent coin">
+      <img src="../../images/pace/v3-case-assembly.jpeg" alt="Pace fitted into a charging case insert during assembly">
     </div>
   </div>
 
-  <section class="textcontainer" style="padding-top:1vh;">
-    <p><b>V1.0 - Built with non-programmable discrete components</b></p>
+  <section class="textcontainer">
+    <p><b>V3.0 - Charlieplexed timer board</b></p>
   </section>
 
-  <section class="textIcontainer">
-    <img src="../../images/pace/oldie.jpg" alt="V1 Design" style="height: 45vh; width: auto;">
-    <img src="../../images/pace/oldSche.jpg" alt="V1 Schematic" style="height: 45vh; width: auto;">
+  <section class="textIcontainer project-board-triptych">
+    <img src="../../images/pace/v3-3d.png" alt="Pace v3 timer 3D board render">
+    <img src="../../images/pace/v3-pcb.png" alt="Pace v3 timer PCB layout">
+    <img src="../../images/pace/v3-main-schematic.jpeg" alt="Pace v3 main board schematic">
   </section>
 
   <section class="textcontainer">
+    <p><b>V3.0 - Universal charger</b></p>
+  </section>
+
+  <section class="textIcontainer project-board-triptych">
+    <img src="../../images/pace/v3-charger-3d.png" alt="Pace universal charger 3D board render">
+    <img src="../../images/pace/v3-charger-pcb.png" alt="Pace universal charger PCB layout">
+    <img src="../../images/pace/v3-charge-schematic.png" alt="Pace v3 charging case schematic">
+  </section>
+
+  <section class="textcontainer">
+    <p><b>V2.0 - STM32L0 and LED matrix driver</b> · <a href="https://www.reddit.com/r/PrintedCircuitBoard/comments/1f08xn6/review_request_stm32_based_timer_for_swimming/" target="_blank" rel="noopener noreferrer">Reddit review</a></p>
+  </section>
+
+  <section class="textIcontainer project-board-triptych">
+    <img src="../../images/pace/pace-5.jpg" alt="Pace v2 3D board render">
+    <img src="../../images/pace/v2-pcb.png" alt="Pace v2 PCB layout">
+    <img src="../../images/pace/currentSchematic-2 2-2-2.jpg" alt="Pace v2 schematic">
+  </section>
+
+  <section class="textcontainer">
+    <p><b>V1.0 - Discrete logic</b> · <a href="https://www.reddit.com/r/PrintedCircuitBoard/comments/1e882o2/first_pcb_review_request_swimming_timer_board/" target="_blank" rel="noopener noreferrer">Reddit review</a></p>
     <p>
-      My initial iteration used eight daisy-chained shift registers, driven by a quartz crystal oscillator. It also featured a latching circuit to create the initial 'bit' in the first register that would then cycle through and provide the cycling LED.
+      V1 used eight shift registers and a latching circuit to create the first bit that moved around the ring. The first video shows the pulse-generating latch; the second shows the daisy-chained registers.
     </p>
-    <p>
-      I ultimately decided to move away from this iteration due to its sheer complexity and production costs.
-    </p>
-    <p>
-      <b>Initial pulse-generating latching circuit:</b> This circuit provides the initial input 'bit' to the first shift register and latches to zero after the first clock pulse. The second video demonstrates daisy-chained shift registers.
-    </p>
-    
+  </section>
+
+  <section class="textIcontainer project-board-triptych">
+    <img src="../../images/pace/oldie.jpg" alt="Pace v1 3D board render">
+    <figure>
+      <img src="../../images/pace/v1-pcb.png" alt="Pace v1 PCB layout">
+      <figcaption>Please do not try review this</figcaption>
+    </figure>
+    <img src="../../images/pace/oldSche.jpg" alt="Pace v1 schematic">
+  </section>
+
+  <section class="textcontainer">
     <div class="video-container">
       <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/EGyOlwZSVYM" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/EGyOlwZSVYM" title="Pace v1 latching circuit" frameborder="0" allowfullscreen></iframe>
       </div>
       <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/kINsgQOseBI" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/kINsgQOseBI" title="Pace v1 daisy-chained shift registers" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
   </section>
 
-
-  <script>
-  fetch('../../static/navbar.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('navbar-container').innerHTML = data;
-    });
-    
-  window.onload = function() {
-    document.body.classList.add('loaded');
-  };
-
-  // Set up random link functionality
-  const randomLink = document.getElementById('randomLink');
-  const randomSites = [
-    'https://en.wikipedia.org/wiki/Special:Random',
-    'https://www.wikihow.com/special:randomizer'
-  ];
-
-  randomLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
-    window.open(randomSite, '_blank');
-  });
-</script>
-  
-
-  <div id="fullscreen-overlay">
-    <img id="fullscreen-image" src="" alt="">
-  </div>
-  
-<script src="../../static/js/nav-loader.js"></script>
-<script src="../../static/js/image-handler.js"></script>
-
-
-<div id="footer-container"></div>
-<script src="/static/js/footer-loader.js"></script>
-
-
+  <script src="../../static/js/nav-loader.js?v=2"></script>
+  <script src="/static/js/image-lightbox.js"></script>
 </body>
 </html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ogma · Seán O'Sullivan</title>
+  <meta name="description" content="Ogma, a modular flight computer for student high-powered rocketry.">
+  <link rel="stylesheet" href="../../static/styles.css">
+  <link rel="stylesheet" href="../../static/project-page.css?v=4">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P3CZHEVW6C');
+  </script>
+</head>
+<body class="project-page">
+  <div id="navbar-container"></div>
+
+  <div class="container">
+    <div class="column text-column">
+      <header>
+        <h3>Ogma</h3>
+        <p class="subtitle">- A Modular Flight Computer for High-Powered Rocketry</p>
+      </header>
+      <main>
+        <section>
+          <p><b>Description</b></p>
+          <p>
+            Ogma is the modular flight computer I lead for the University of Limerick Aeronautics Society, built for a student high-powered rocket targeting roughly 9km altitude.
+          </p>
+          <p>
+            It's split across five CAN-connected boards: Croí handles flight state, sensors, and logging; Teachtaire does LoRa and GNSS; Foinse handles power; Lámh drives the airbrakes; Pléasc handles recovery deployment. A separate groundstation receives telemetry on the ground.
+          </p>
+        </section>
+
+        <section>
+          <p><b>Progress</b></p>
+          <p>
+            I designed the architecture and lead a team of five. I specced the common power, CAN, and board interfaces, ran KiCad onboarding sessions, and ran routing sessions where we laid out boards together at a projector. I also handled the BOM, Gerber review, manufacturing, and our JLCPCB sponsorship.
+          </p>
+          <p>
+            Rev 1 worked, but it was harder to debug than it should have been. Croí needed SWD signal damping, SPI bodges, and a repaired power path. Foinse had a dead battery-ORing path that was hidden by an alternate power input covering for it. Lámh had a broken RTOS tick integration, and taught us that a servo can report successful I2C writes while still receiving no power or PWM at all downstream. Teachtaire forced us to stop being vague about the actual fitted radio module, UART handling, and packet format — all three had drifted from what the docs claimed.
+          </p>
+          <p>
+            To make bring-up faster next time, we wrote bare peripheral probes and a Python console that identifies, flashes, and diagnoses each board over SWD. Croí can stream live status over SRAM, retrieve append-only flash logs, and plot them locally. The stack now shares pinned CAN contracts, and actuator and recovery commands use explicit leases and defined safe states.
+          </p>
+          <p>
+            Current firmware builds across the whole stack and software tests pass. Hardware-in-the-loop testing, calibration, and full flight rehearsal are still underway — I'm not calling it flight-proven yet.
+          </p>
+        </section>
+
+        <section>
+          <p><b>Documentation</b></p>
+          <p>
+            Repos:
+            <a href="https://github.com/ULAS-HiPR/croi" target="_blank" rel="noopener noreferrer">Croí</a>,
+            <a href="https://github.com/ULAS-HiPR/teachtaire" target="_blank" rel="noopener noreferrer">Teachtaire</a>,
+            <a href="https://github.com/ULAS-HiPR/foinse" target="_blank" rel="noopener noreferrer">Foinse</a>,
+            <a href="https://github.com/ULAS-HiPR/lamh" target="_blank" rel="noopener noreferrer">Lámh</a>,
+            <a href="https://github.com/ULAS-HiPR/pleasc" target="_blank" rel="noopener noreferrer">Pléasc</a>,
+            <a href="https://github.com/ULAS-HiPR/gs_receiver" target="_blank" rel="noopener noreferrer">Groundstation</a>.
+          </p>
+          <p>
+            Reddit reviews:
+            <a href="https://www.reddit.com/r/PCB/comments/1qsk7kc/review_request_modular_opensource_flight_computer/" target="_blank" rel="noopener noreferrer">initial review</a>,
+            <a href="https://www.reddit.com/r/PCB/comments/1rffryq/final_review_ogma_rev_12_modular_opensource/" target="_blank" rel="noopener noreferrer">Rev 1.2 final review</a>.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <div class="column image-column">
+      <div class="pdf-container">
+        <iframe
+          src="https://drive.google.com/file/d/1rBxDRaD6AfNKRrBDZdaWVKrW2pHV3_nx/preview#view=FitH&amp;toolbar=0"
+          title="Ogma Rev 1 Engineering Learnings"
+          loading="lazy"
+          allow="fullscreen">
+        </iframe>
+      </div>
+      <img src="../../images/ogma/ogma-benchtop.png" alt="Ogma flight computer stack working on the benchtop">
+    </div>
+  </div>
+
+  <section class="textcontainer">
+    <p><b>Croí - Flight computer</b></p>
+  </section>
+
+  <section class="textIcontainer project-board-triptych">
+    <img src="../../images/ogma/croi/croi-3d.png" alt="Croí flight computer 3D board render">
+    <img src="../../images/ogma/croi/croi-pcb.png" alt="Croí flight computer PCB layout">
+    <img src="../../images/ogma/croi/croi-sch.png" alt="Croí flight computer schematic">
+  </section>
+
+  <section class="textcontainer">
+    <p><b>Teachtaire - Telemetry and GNSS</b></p>
+  </section>
+
+  <section class="textIcontainer project-board-triptych">
+    <img src="../../images/ogma/teachtaire/teachtaire-3d.png" alt="Teachtaire telemetry and GNSS 3D board render">
+    <img src="../../images/ogma/teachtaire/teachtaire-pcb.png" alt="Teachtaire telemetry and GNSS PCB layout">
+    <img src="../../images/ogma/teachtaire/teachtaire-sch.png" alt="Teachtaire telemetry and GNSS schematic">
+  </section>
+
+  <section class="textcontainer">
+    <p><b>Foinse - Power</b></p>
+  </section>
+
+  <section class="textIcontainer project-board-triptych">
+    <img src="../../images/ogma/foinse/foinse-3d.png" alt="Foinse power board 3D render">
+    <img src="../../images/ogma/foinse/foinse-pcb.png" alt="Foinse power board PCB layout">
+    <img src="../../images/ogma/foinse/foinse-sch.png" alt="Foinse power board schematic">
+  </section>
+
+  <section class="textcontainer">
+    <p><b>Lámh - Airbrakes</b></p>
+  </section>
+
+  <section class="textIcontainer project-board-triptych">
+    <img src="../../images/ogma/lamh/lamh-3d.png" alt="Lámh airbrake controller 3D board render">
+    <img src="../../images/ogma/lamh/lamh-pcb.png" alt="Lámh airbrake controller PCB layout">
+    <img src="../../images/ogma/lamh/lamh-sch.png" alt="Lámh airbrake controller schematic">
+  </section>
+
+  <section class="textcontainer">
+    <p><b>Pléasc - Recovery</b></p>
+  </section>
+
+  <section class="textIcontainer project-board-triptych">
+    <img src="../../images/ogma/pleasc/pleasc-3d.png" alt="Pléasc recovery controller 3D board render">
+    <img src="../../images/ogma/pleasc/pleasc-pcb.png" alt="Pléasc recovery controller PCB layout">
+    <img src="../../images/ogma/pleasc/pleasc-sch.png" alt="Pléasc recovery controller schematic">
+  </section>
+
+  <script src="../../static/js/nav-loader.js?v=2"></script>
+  <script src="/static/js/image-lightbox.js"></script>
+</body>
+</html>

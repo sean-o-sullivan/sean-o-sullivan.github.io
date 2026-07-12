@@ -1,0 +1,557 @@
+/* Shared responsive structure for the linked project detail pages. */
+body.project-page {
+  --project-width: 1120px;
+  --project-gutter: clamp(18px, 5vw, 48px);
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 56px 0 0 !important;
+  overflow-x: hidden;
+  opacity: 1 !important;
+  visibility: visible !important;
+  line-height: 1.65;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.project-page *,
+.project-page *::before,
+.project-page *::after {
+  box-sizing: inherit;
+}
+
+.project-page #navbar-container {
+  height: 56px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+}
+
+.project-page .nav-container {
+  width: min(100%, calc(var(--project-width) + (2 * var(--project-gutter))));
+  height: 56px;
+  padding-inline: var(--project-gutter);
+}
+
+.project-page .nav-links {
+  margin: 0;
+}
+
+.project-page .nav-links li {
+  margin: 0 0 0 20px;
+}
+
+.project-page .main-content {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.project-page .container {
+  width: min(100%, calc(var(--project-width) + (2 * var(--project-gutter))));
+  margin: 0 auto;
+  padding: clamp(72px, 10vh, 108px) var(--project-gutter) 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  align-items: start;
+  gap: clamp(36px, 6vw, 72px);
+}
+
+.project-page.text-only-page .container {
+  grid-template-columns: minmax(0, 760px);
+}
+
+.project-page .column,
+.project-page .text-column,
+.project-page .image-column {
+  float: none;
+  width: auto;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0;
+}
+
+.project-page .text-column header {
+  margin-bottom: 26px;
+}
+
+.project-page .text-column h3 {
+  margin: 0 0 2px;
+  font-size: 17px;
+}
+
+.project-page .subtitle {
+  margin: 0;
+  color: #555;
+}
+
+.project-page main,
+.project-page section,
+.project-page p,
+.project-page li {
+  max-width: 100%;
+}
+
+.project-page main section + section {
+  margin-top: 30px;
+}
+
+.project-page .footnote {
+  margin-top: 30px;
+  color: #555;
+  font-size: 0.85em;
+  line-height: 1.5;
+  scroll-margin-top: 72px;
+}
+
+.project-page .footnote-ref,
+.project-page .footnote-backref {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-page .footnote-backref {
+  margin-right: 0.25em;
+}
+
+.project-page main section > br:first-child,
+.project-page .image-column > br {
+  display: none;
+}
+
+.project-page .image-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.project-page .image-column.media-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-page .image-column > p,
+.project-page .image-column > div:not(.video-container) {
+  grid-column: 1 / -1;
+  width: 100% !important;
+  margin: 0;
+}
+
+.project-page img,
+.project-page video {
+  max-width: 100%;
+}
+
+.project-page .image-column > img,
+.project-page .image-column > video {
+  display: block;
+  width: 100% !important;
+  height: 30vh !important;
+  max-width: 100%;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 3px;
+}
+
+.project-page .textIcontainer > img,
+.project-page .textIcontainer > video {
+  display: block;
+  width: auto !important;
+  height: 30vh !important;
+  flex: 0 1 auto;
+  max-width: 100%;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 3px;
+}
+
+.project-page .textIcontainer > iframe,
+.project-page .textIcontainer > span {
+  display: block;
+  width: min(100%, calc(30vh * 16 / 9)) !important;
+  height: 30vh !important;
+  flex: 0 1 auto;
+  min-height: 0;
+  border: 0;
+}
+
+.project-page .image-column > iframe {
+  display: block;
+  grid-column: 1 / -1;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.project-page .textIcontainer > span iframe {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
+}
+
+.project-page .video-container {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  height: 30vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  aspect-ratio: auto;
+}
+
+.project-page .image-column > .project-lead-media {
+  grid-column: 1 / -1;
+  width: 100% !important;
+  height: 40vh !important;
+  max-width: 100%;
+}
+
+.project-page .image-column > .project-wide-media {
+  grid-column: 1 / -1;
+}
+
+.project-page .image-column > .process-media {
+  min-width: 0;
+  margin: 0;
+}
+
+.project-page .process-media > img {
+  display: block;
+  width: 100%;
+  height: 30vh;
+  object-fit: contain;
+  border-radius: 3px;
+}
+
+.project-page .process-media figcaption {
+  margin-top: 8px;
+  color: #555;
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+.project-page .image-column.process-gallery > img:not(.project-lead-media),
+.project-page .image-column.process-gallery .process-media > img {
+  height: 20vh !important;
+}
+
+.project-page .image-column.process-gallery > img.project-lead-media {
+  height: auto !important;
+  max-height: 40vh;
+}
+
+.project-page .image-column > .video-container.project-lead-media {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+}
+
+.project-page .video-container > iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.project-page .image-column > .video-container {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.project-page .image-column > .annotated-media {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin: 0;
+}
+
+.project-page .annotated-media > img {
+  display: block;
+  width: 100% !important;
+  height: 30vh !important;
+  object-fit: contain;
+  border-radius: 3px;
+}
+
+.project-page .annotated-media > img.project-lead-media {
+  height: 40vh !important;
+}
+
+.project-page .annotated-media figcaption {
+  margin-top: 8px;
+  color: #555;
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+.project-page .textIcontainer.analysis-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+}
+
+.project-page .textIcontainer.analysis-gallery > .annotated-media {
+  min-width: 0;
+  margin: 0;
+}
+
+.project-page .textcontainer,
+.project-page .textIcontainer {
+  float: none;
+  width: min(100%, calc(var(--project-width) + (2 * var(--project-gutter))));
+  margin: 0 auto;
+  padding: 30px var(--project-gutter) 0 !important;
+}
+
+.project-page .textIcontainer {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: start;
+  justify-content: center;
+  gap: 16px;
+  overflow: visible;
+}
+
+.project-page .textcontainer + .textIcontainer {
+  padding-top: 0 !important;
+}
+
+.project-page .project-board-triptych {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+}
+
+.project-page .project-board-triptych > img {
+  width: 100% !important;
+  height: 30vh !important;
+  object-fit: contain;
+}
+
+.project-page .project-board-triptych > figure {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 6px;
+  width: 100%;
+  height: 30vh;
+  margin: 0;
+}
+
+.project-page .project-board-triptych > figure > img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.project-page .project-board-triptych figcaption {
+  color: #555;
+  font-size: 0.85em;
+  text-align: center;
+}
+
+.project-page .textIcontainer .pdf-container {
+  flex: 0 0 100%;
+}
+
+.project-page .textcontainer .video-container {
+  width: 100%;
+  height: auto;
+  max-width: none;
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  aspect-ratio: auto;
+}
+
+.project-page .video-wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+}
+
+.project-page .video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.project-page .pdf-container {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  height: clamp(360px, 62vh, 680px) !important;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.project-page .pdf-container iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.project-page table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.project-page img[data-lightbox-ready="true"] {
+  cursor: zoom-in;
+}
+
+.image-lightbox[hidden] {
+  display: none;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: clamp(18px, 4vw, 52px);
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.image-lightbox__image {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  max-width: 94vw !important;
+  max-height: 90vh !important;
+  object-fit: contain;
+  cursor: zoom-out;
+  filter: drop-shadow(0 16px 44px rgba(0, 0, 0, 0.2));
+}
+
+.image-lightbox__close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #000;
+  font: 30px/1 Helvetica, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.project-page.lightbox-open {
+  overflow: hidden;
+}
+
+/* The Style Explorer is text plus an interactive full-width plot. */
+.project-page.visualisation-page .container {
+  display: block;
+  padding-bottom: 0;
+}
+
+.project-page.visualisation-page .text-column {
+  max-width: 680px;
+}
+
+.project-page.visualisation-page .plot-container-wrapper {
+  width: min(100%, calc(var(--project-width) + (2 * var(--project-gutter))));
+  margin: 0 auto;
+  padding: 30px var(--project-gutter) 70px;
+}
+
+.project-page.visualisation-page #plot-content {
+  position: relative;
+  width: 100%;
+  height: clamp(520px, 78vh, 860px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.project-page.visualisation-page #plot-content > div,
+.project-page.visualisation-page #plot-content .js-plotly-plot,
+.project-page.visualisation-page #plot-content .plot-container,
+.project-page.visualisation-page #plot-content .svg-container,
+.project-page.visualisation-page #plot-content .gl-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.project-page.visualisation-page .js-plotly-plot {
+  height: 100% !important;
+  touch-action: manipulation;
+}
+
+.project-page.visualisation-page .note-section {
+  margin-bottom: 36px;
+}
+
+.project-page.visualisation-page #loading-status {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1;
+  margin: 0;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+}
+
+@media (max-width: 820px) {
+  .project-page .container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .project-page .project-board-triptych {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-page .textIcontainer.analysis-gallery {
+    grid-template-columns: 1fr !important;
+  }
+
+}
+
+@media (max-width: 520px) {
+  .project-page .nav-name {
+    max-width: 42vw;
+  }
+
+  .project-page .container {
+    padding-top: 38px;
+  }
+
+  .project-page .image-column.media-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-page .textcontainer .video-container {
+    grid-template-columns: 1fr;
+  }
+
+  .project-page .pdf-container {
+    height: 480px !important;
+  }
+
+  .project-page.visualisation-page #plot-content {
+    height: 68vh;
+    min-height: 480px;
+  }
+}

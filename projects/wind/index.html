@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wind Research · Seán O'Sullivan</title>
     <link rel="stylesheet" href="../../static/styles.css">
+    <link rel="stylesheet" href="../../static/project-page.css">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
 
@@ -15,105 +16,9 @@
 
   gtag('config', 'G-P3CZHEVW6C');
 </script>
-
- <style>
-.main-content {
-    position: relative;
-    padding-bottom:0;
-}
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 0; 
-}
-
-.column {
-    flex: 1;
-    min-width: 300px;
-}
-
-.image-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.video-container {
-    position: relative;
-    width: 85%;
-    padding-bottom: 56.25%; 
-    height: 0;
-    overflow: hidden;
-    max-width: 800px; 
-    margin: 0 auto;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 85%;
-}
-
-.pdf-container {
-    position: relative;
-    width: 90%;
-    height: 70vh;
-    max-width: 800px;
-    margin: 2rem auto;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.pdf-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.image-gallery {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: #f0f0f0; 
-}
-
-.image-gallery img {
-    height: 30vh;
-    width: auto;
-    object-fit: cover;
-}
-
-@media (max-width: 768px) {
-    .main-content {
-        padding-bottom: 100vh; 
-    }
-    
-    .image-gallery {
-        position: static; 
-        margin-top: 2rem;
-    }
-    
-    .pdf-container {
-        height: 50vh;
-        width: 95%;
-    }
-}
-    </style> 
 </head>
 
-<body>
+<body class="project-page">
     
     <div id="navbar-container"></div>
 
@@ -145,7 +50,7 @@
 
     <section>
         <br>
-        <p><b>Market Research & Impact</b></p>
+        <p><b>Market Research &amp; Impact</b></p>
         I surveyed 170 adults on micro-wind generation perceptions and interest in government incentives, considering Ireland's excellent wind resources. The survey revealed clear public interest in micro-wind adoption. Following this, I contacted 20 Irish renewable companies and secured a 500W turbine sponsorship, which I tested for 15 hours. The research demonstrated that micro-wind could provide significant cost savings for Irish households, especially given the 2023 electricity price surge. Despite Ireland's ideal wind conditions and public interest, the lack of government grants for micro-wind represents a missed opportunity this research aims to address.
     </section>
 
@@ -157,7 +62,7 @@
 
     <section>
         <br>
-        <p><b>Publication Journey & Research Philosophy</b></p>
+        <p><b>Publication Journey &amp; Research Philosophy</b></p>
         I discovered the difference between research and technical reports when submitting to Springer Nature's Journal of Sustainable Energy Research. While they found my approach, results and 190-page report "interesting," they noted it needed major revisions. At the time, I didn't know what a research report looked like—I've had to learn what that looks like since. I chose not to refactor it as I was already deep into my next project in authorship verification. This was ultimately a personal exploration. Through this journey, I've realized I enjoy exploring fresh problems and have a strong preference for projects where I also learn something new. In short, I want to keep exploring.
     </section>
 
@@ -167,13 +72,12 @@
       <p>I presented this research at the BT Young Scientist and Technologist exhibition 2023, and I was fortunate enough to place third in my category, individual-intermediate-technology, and be awarded the GreenCoat Renewables special award. ▣</p>
     </section>
 
-
     <section>
         <br>
         <p><b>Links and Resources</b></p>
         <ul>
-            <li><a href="https://docs.google.com/spreadsheets/d/1WRXXRIgqStu1tDG9kdxHesjAqy9O2jfO/edit?usp=sharing&ouid=102845331985891296847&rtpof=true&sd=true" target="_blank">Test Data & Analysis</a></li>
-            <li><a href="https://a360.co/47Dd33Z" target="_blank">Motor Mount Files (HAWT & VAWT)</a></li> 
+            <li><a href="https://docs.google.com/spreadsheets/d/1WRXXRIgqStu1tDG9kdxHesjAqy9O2jfO/edit?usp=sharing&amp;ouid=102845331985891296847&amp;rtpof=true&amp;sd=true" target="_blank">Test Data &amp; Analysis</a></li>
+            <li><a href="https://a360.co/47Dd33Z" target="_blank">Motor Mount Files (HAWT &amp; VAWT)</a></li>
 
         </ul>
 
@@ -181,19 +85,19 @@
 
             </main>
         </div>
-        <div class="column image-column" style="margin-top: 5vh;">
+        <div class="column image-column">
 
         <!-- Embedded PDF viewer (self-hosted to avoid CSP blocking external iframes) -->
         <div class="pdf-container">
           <iframe
-            src="https://drive.google.com/file/d/1OVxLktJ669nVgpXVTkt4gdcp84fbG8zy/preview#view=FitH&toolbar=0"
+            src="https://drive.google.com/file/d/1OVxLktJ669nVgpXVTkt4gdcp84fbG8zy/preview#view=FitH&amp;toolbar=0"
             title="Wind Research Book"
             loading="lazy"
             allow="fullscreen">
           </iframe>
         </div>
                     <!-- YouTube video if you have one -->
-            <div class="video-container">
+            <div class="video-container project-lead-media">
                 <iframe src="https://www.youtube.com/embed/wF9NeQe6TsY" 
                         title="Wind Turbine Testing Compilation" 
                         frameborder="0" 
@@ -202,19 +106,9 @@
                         allowfullscreen></iframe>
             </div>
 
-            <img src="../../images/wind/Stand.jpg" alt="Wind Research Book Cover" style="height: 40vh; width: auto;">
+            <img src="../../images/wind/Stand.jpg" alt="Wind Research Book Cover">
 
                     <!-- Cover image -->
-
-        <!-- If you want to embed from Drive AND your CSP allows it, swap the iframe src above for:
-                     src="../../pdf/BTYSTE 2023 Report Book.pdf#view=FitH&toolbar=0"
-
-        https://drive.google.com/file/d/1OVxLktJ669nVgpXVTkt4gdcp84fbG8zy/preview#view=FitH&toolbar=0
-    -->
-          
-
-            
-
 
         </div>
     </div>
@@ -223,68 +117,33 @@
     <!-- Gallery for additional testing images -->
 
                 <!-- Additional images -->
-            <img src="../../images/wind/Artsy (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
-            <img src="../../images/wind/Beach (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
-            <img src="../../images/wind/Bed (2).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
-            <img src="../../images/wind/Desk (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
-            <img src="../../images/wind/IMG 4054.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
-            <img src="../../images/wind/onWood.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
-            <img src="../../images/wind/mi.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
-            <img src="../../images/wind/mi2.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
-            <img src="../../images/wind/Printer (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
-                        <img src="../../images/wind/Table (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/Artsy (1).jpg" alt="Wind Research Book Cover">
+            <img src="../../images/wind/Beach (1).jpg" alt="Wind Research Book Cover">
+            <img src="../../images/wind/Bed (2).jpg" alt="Wind Research Book Cover">
+            <img src="../../images/wind/Desk (1).jpg" alt="Wind Research Book Cover">
+            <img src="../../images/wind/IMG 4054.jpg" alt="Wind Research Book Cover">
+            <img src="../../images/wind/onWood.jpg" alt="Wind Research Book Cover">
+            <img src="../../images/wind/mi.jpg" alt="Wind Research Book Cover">
+            <img src="../../images/wind/mi2.jpg" alt="Wind Research Book Cover">
+            <img src="../../images/wind/Printer (1).jpg" alt="Wind Research Book Cover">
+                        <img src="../../images/wind/Table (1).jpg" alt="Wind Research Book Cover">
 
-            <img src="../../images/wind/School Close.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/School Close.jpg" alt="Wind Research Book Cover">
 
-            <img src="../../images/wind/School Setup.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
-            <img src="../../images/wind/Tunnel (1).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/School Setup.jpg" alt="Wind Research Book Cover">
+            <img src="../../images/wind/Tunnel (1).jpg" alt="Wind Research Book Cover">
 
-            <img src="../../images/wind/Sky (2).jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
-            <img src="../../images/wind/Tab Squoosh.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/Sky (2).jpg" alt="Wind Research Book Cover">
+            <img src="../../images/wind/Tab Squoosh.jpg" alt="Wind Research Book Cover">
 
-            <img src="../../images/wind/Setup Big Squoosh.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/Setup Big Squoosh.jpg" alt="Wind Research Book Cover">
 
-            <img src="../../images/wind/Tiles.jpg" alt="Wind Research Book Cover" style="height: 30vh; width: auto;">
+            <img src="../../images/wind/Tiles.jpg" alt="Wind Research Book Cover">
 
-
-        </section> 
-<script>
-  fetch('../../static/navbar.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('navbar-container').innerHTML = data;
-    });
-
-  window.onload = function() {
-    document.body.classList.add('loaded');
-  };
-
-  // Set up random link functionality
-  const randomLink = document.getElementById('randomLink');
-  const randomSites = [
-    'https://en.wikipedia.org/wiki/Special:Random',
-    'https://www.wikihow.com/special:randomizer'
-  ];
-
-  randomLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    const randomSite = randomSites[Math.floor(Math.random() * randomSites.length)];
-    window.open(randomSite, '_blank');
-  });
-</script>
-
-<div id="fullscreen-overlay">
-  <img id="fullscreen-image" src="" alt="">
-</div>
-
-<script src="../../static/js/nav-loader.js"></script>
-<script src="../../static/js/image-handler.js"></script>
-
-<div id="footer-container"></div>
-<script src="/static/js/footer-loader.js"></script>
+        </section>
+    </div>
+<script src="../../static/js/nav-loader.js?v=2"></script>
+<script src="/static/js/image-lightbox.js"></script>
 
     </body>
     </html>
-
-             
-            

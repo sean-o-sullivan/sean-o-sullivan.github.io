@@ -4,433 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home · Seán O'Sullivan</title>
+  <meta name="description" content="Seán O'Sullivan's portfolio of software, electronics, and engineering projects.">
   <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/home.css?v=10">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-P3CZHEVW6C');
   </script>
 </head>
-<body>
-  <div class="fullscreen" id="home">
-    <div id="navbar-container"></div>
+<body class="home-page">
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <span class="site-name">Seán O'Sullivan</span>
+      <a class="site-contact" href="mailto:airbags_telecom4z@icloud.com">email me</a>
+    </nav>
+  </header>
 
-    <div class="intro-content" style="padding-top: 13%;">
-      <div class="left-half">
-      <div class="textcontainer" style="width: 100%;">
-          <p><b>Hi, I'm Seán</b></p>
-          <p>Currently, I'm a 1st year student in Immersive Software Engineering at the University of Limerick. </p>            
-          <p>This site showcases my skills, projects, and other information which I find valuable. I'm always excited to connect with people building meaningful things. If you have any ideas, or any questions, please <a href="mailto:seangerardosullivan@gmail.com">email me</a>. </p>
-          <p>Interests: <i>Systems Engineering and Behavioral Psychology</i></p>
+  <main>
+    <section class="projects-section page-shell" id="projects" aria-label="Projects">
+      <div class="project-column">
+        <ol class="project-list">
+        <li class="project-entry">
+          <time datetime="2026-06">6 '26</time>
+          <div class="project-media"><img src="/thumbnails/mu.jpeg" alt="Wrapped Mu particle detector board"></div>
+          <p><a href="/projects/mu/">Mu</a><span>cosmic ray detector for a rocket</span></p>
+        </li>
+
+        <li class="project-entry">
+          <time datetime="2026-05">5 '26</time>
+          <div class="project-media"><img src="/thumbnails/ogma.jpeg" alt="Render of the Ogma modular flight computer stack"></div>
+          <p><a href="/projects/ogma/">Ogma</a><span>modular flight computer for high-powered rocketry</span></p>
+        </li>
+
+        <li class="project-entry">
+          <time datetime="2025-11">11 '25</time>
+          <div class="project-media"><img src="/thumbnails/pace.jpeg" alt="Working Pace timer held in one hand"></div>
+          <p><a href="/projects/pace/">Pace</a><span>minute timer for swimmers</span></p>
+        </li>
+
+        <li class="project-entry">
+          <time datetime="2024-09">9 '24</time>
+          <div class="project-media"><img src="/thumbnails/clouds3.jpeg" alt="Style embedding visualisation"></div>
+          <p><a href="/projects/vm/">Style</a><span>learned embedding space interactive visualisation</span></p>
+        </li>
+
+        <li class="project-entry">
+          <time datetime="2024-08">8 '24</time>
+          <div class="project-media"><img src="/thumbnails/forceT.jpg" alt="Force impact sensor"></div>
+          <p><a href="/projects/force/">Force</a><span>impact detecting sensor for hurling</span></p>
+        </li>
+
+        <li class="project-entry">
+          <time datetime="2024-07">7 '24</time>
+          <div class="project-media"><img class="project-thumbnail--natural" src="/thumbnails/cov.png" alt="Cat RFID feeder"></div>
+          <p><a href="/projects/cat/">Cat</a><span>RFID scanning feeder</span></p>
+        </li>
+
+        <li class="project-entry">
+          <time datetime="2024-05">5 '24</time>
+          <div class="project-media"><img src="/thumbnails/clock.jpg" alt="Mechanical seven-segment clock"></div>
+          <p><a href="/projects/clock/">Clock</a><span>mechanical 7-segment display</span></p>
+        </li>
+
+        <li class="project-entry">
+          <time datetime="2023-07">7 '23</time>
+          <div class="project-media"><img src="/thumbnails/sudSpud.jpeg" alt="Spudnik CanSat"></div>
+          <p><a href="/projects/spudnik/">Spudnik</a><span>CanSat with rigid origami solar array</span></p>
+        </li>
+
+        <li class="project-entry">
+          <time datetime="2023-01">1 '23</time>
+          <div class="project-media"><img src="/thumbnails/wind2.jpeg" alt="Wind turbine test setup"></div>
+          <p><a href="/projects/wind/">Wind</a><span>turbine orientation research</span></p>
+        </li>
+
+        <li class="project-entry">
+          <time datetime="2021-01">1 '21</time>
+          <div class="project-media"><img src="/thumbnails/clean.jpg" alt="Desk cleaning study"></div>
+          <p><a href="/projects/clean/">Shining</a><span>a light on desk cleaning protocols</span></p>
+        </li>
+        </ol>
       </div>
-      </div>
 
-      <div class="right-half">
-        <img src="/contact/computer.jpeg" alt="computer" class="computer-image">
-        <div class="social-icons">
-  
-          <a href="https://www.thingiverse.com/liminil/designs"
-            target="_blank" rel="noopener noreferrer"
-            aria-label="Thingiverse" class="thingiverse-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
-              <!-- Blue circle (uses currentColor) -->
-              <circle cx="12" cy="12" r="12" fill="currentColor"/>
-              <!-- White 'T' -->
-              <rect x="5" y="6" width="14" height="3" rx="1" fill="#fff"/>
-              <rect x="10" y="9" width="4" height="9" rx="1" fill="#fff"/>
-            </svg>
-          </a>
+      <aside class="other-work" aria-label="Other work">
+        <button class="work-gallery" type="button" aria-label="Show the next piece of work" title="Click to see more">
+          <img src="/thumbnails/hands-cool.jpg" alt="A selection of other design and fabrication work">
+        </button>
 
-          <a href="https://github.com/sean-o-sullivan" target="_blank" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
-          
-          <a href="https://www.hackerrank.com/profile/_seanos"
-            target="_blank" rel="noopener noreferrer" aria-label="HackerRank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
-              <!-- H (uses currentColor so it adapts to your theme) -->
-              <g fill="currentColor">
-                <rect x="1"   y="3"  width="4" height="18" rx="0.1"/>
-                <rect x="8.2" y="3"  width="4" height="18" rx="0.1"/>
-                <rect x="1"   y="10.4" width="10.4" height="3.2" rx="1.6"/>
-              </g>
-              <!-- Green square -->
-              <rect x="15" y="3" width="8" height="18" rx="0.1" fill="#000000"/>
-            </svg>
-          </a>
-
-                
-                    
-
-          <a href="https://www.linkedin.com/in/seán-o-sullivan1" target="_blank" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
-          </a>
-          
-
-          <a href="mailto:seangerardosullivan@gmail.com" aria-label="Email">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/>
-            </svg>
-          </a>       
-          
-          
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- <div style="padding-top: 50vh;"> -->
-
-  <div class="fullscreen" id="project">
-    <!-- Projects Section with Fixed Height -->
-    <div class="projects-container" style="padding-top: 2vh;">
-      <div class="home-content">
-        <div class="textcontainer" style="padding-top: 0">
-          <div class="timeline-container">
-              <br>
-            <div id="projects-list" class="container">
-              <p><b>Featured Projects</b></p>
-              <!-- Active Projects -->
-
-              <div class="entry row">
-                <div class="timespan">10/2024</div>
-                <div class="ico">
-                  <div class="entry-dot"></div>
-                  <img src="/thumbnails/pace2.jpeg" alt="Pace Icon" class="unified-image" />
-                </div>
-                <div class="desc">
-                  <a href="/projects/pace/" class="project-link">Pace</a>
-                  
-                  <span class="project-description">minute timer for swimmers</span>
-                </div>
-              </div>
-
-              <div class="entry row">
-                <div class="timespan">09/2024</div>
-                <div class="ico">
-                  <div class="entry-dot"></div>
-                  <img src="/thumbnails/clouds3.jpeg" alt="VerifyMe Icon" class="unified-image" />
-                </div>
-                <div class="desc">
-                  <a href="/projects/vm/" class="project-link">Style</a>
-                  <span class="project-description">  learned embedding space interactive visualisation</span>
-                </div>
-              </div>
-
-              <div class="entry row">
-                <div class="timespan">08/2024</div>
-                <div class="ico">
-                  <div class="entry-dot"></div>
-                  <img src="/thumbnails/forceT.jpg" alt="Force Icon" class="unified-image" />
-                </div>
-                <div class="desc">
-                  <a href="/projects/force/" class="project-link">Force</a>
-                  <span class="project-description">  impact detecting sensor for hurling</span>
-                </div>
-              </div>
-
-              <div class="entry row">
-                <div class="timespan">07/2024</div>
-                <div class="ico">
-                  <div class="entry-dot"></div>
-                  <img src="/thumbnails/cov.png" alt="Force Icon" class="unified-image" />
-                </div>
-                <div class="desc">
-                  <a href="/projects/cat/" class="project-link">Cat</a>
-                  <span class="project-description">  RFID scanning feeder</span>
-                </div>
-              </div>
-
-              <div class="entry row">
-                <div class="timespan">05/2024</div>
-                <div class="ico">
-                  <div class="entry-dot"></div>
-                  <img src="/thumbnails/clock.jpg" alt="Clock Icon" class="unified-image" />
-                </div>
-                <div class="desc">
-                  <a href="/projects/clock/" class="project-link">Clock</a>
-                  <span class="project-description">  mechanical 7-Segment display</span>
-                </div>
-              </div>
-
-              <div class="entry row">
-                <div class="timespan">07/2023</div>
-                <div class="ico">
-                  <div class="entry-dot"></div>
-                  <img src="/thumbnails/sudSpud.jpeg" alt="Spudnik Icon" class="unified-image" />
-                </div>
-                <div class="desc">
-                  <a href="projects/spudnik/" class="project-link">Spudnik</a>
-                  <span class="project-description">  CanSat with rigid origami solar array</span>
-                </div>
-              </div>
-
-              <div class="entry row">
-                <div class="timespan">01/2023</div>
-                <div class="ico">
-                  <div class="entry-dot"></div>
-                  <img src="/thumbnails/wind2.jpeg" alt="Wind Icon" class="unified-image" />
-                </div>
-                <div class="desc">
-                  <a href="projects/wind/" class="project-link">Wind</a>
-                  <span class="project-description">  turbine orientation research</span>
-                </div>
-              </div>
-
-              <div class="entry row">
-                <div class="timespan">01/2021</div>
-                <div class="ico">
-                  <div class="entry-dot"></div>
-                  <img src="/thumbnails/clean.jpg" alt="Clean Icon" class="unified-image" />
-                </div>
-                <div class="desc">
-                  <a href="projects/clean/" class="project-link">Shining</a>
-                  <span class="project-description">   a light on desk cleaning protocols</span>
-                </div>
-              </div>
-
-
-
-            </div>
-          </div>
+        <div class="project-entry other-work-entry">
+          <span aria-hidden="true"></span>
+          <div class="project-media"><img src="/thumbnails/thing.jpeg" alt="Thingiverse designs"></div>
+          <p><a href="https://www.thingiverse.com/liminil/designs" target="_blank" rel="noopener noreferrer">Thingiverse</a><span>where I share my 3D prints</span></p>
         </div>
 
-        <div style="padding-top: 11vh;">
+        <p class="other-work-link"><a href="https://github.com/sean-o-sullivan/open-mac-eq" target="_blank" rel="noopener noreferrer">open[mac]Eq</a><span>system-wide parametric EQ</span></p>
 
-<div class="containerX">
-  <img class="frame show" src="/thumbnails/hands-cool.jpg" alt="hands">
-  <img class="frame" src="images/slidesh/bracket.png" alt="bracket">
-  <img class="frame" src="images/slidesh/lathe.png" alt="lathe">
-  <img class="frame" src="images/slidesh/botl.png" alt="bottle">
-  <img class="frame" src="images/slidesh/optimal.png" alt="optimal">
-  <img class="frame" src="images/slidesh/charge.png" alt="charge">
-</div>
+      </aside>
+    </section>
+  </main>
 
-          <p><b>Other Work</b></p>
-
-          <div class="entry row">
-            <div class="timespan"></div>
-            <div class="ico">
-              <div class="entry-dot"></div>
-              <img src="/thumbnails/thing.jpeg" alt="Thingiverse Icon" class="unified-image" />
-            </div>
-            <div class="desc">
-              <a href="https://www.thingiverse.com/liminil/designs" target="_blank" rel="noopener noreferrer" class="project-link">Thingiverse</a>
-              <span class="project-description">  where I share my 3d-prints</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="fullscreen" id="useful">
-        <div class="projects-container">
-    <div class="home-content" style="margin-top: 2vh;">  
-      <div class="textcontainer" >
-        <div class="introduction">
-          <p>Below are resources which I find to be especially useful and regularly learn from.</p>
-          <p>If you have any recommendations please <a href="mailto:seangerardosullivan@gmail.com">email me</a>.</p>
-        </div>
-
-        <div class="category">
-          <h4 class="category-title">Entertainment</h4>
-          <div class="category-content">
-            <ul>
-              <li><a href="https://www.youtube.com/@LettersLive/videos" target="_blank" rel="noopener noreferrer">Letter Live</a> - actors reading engaging writing.</li>
-              <li><a href="https://www.youtube.com/@themoth" target="_blank" rel="noopener noreferrer">The Moth</a> - celebrating true storytelling.</li>
-              <li><a href="https://www.youtube.com/@vlogbrothers/videos" target="_blank" rel="noopener noreferrer">Vlogbrothers</a> - spontaneous, daily discussions about life questions, large and small.</li>
-              <li><a href="https://www.youtube.com/@theschooloflifetv/videos" target="_blank" rel="noopener noreferrer">The School of Life</a> - "Self-understanding, calm and emotional maturity."</li>
-              <li><a href="https://www.youtube.com/playlist?list=PLJtitKU0CAeijYFoPJQ9eUcxDZUrpST4n" target="_blank" rel="noopener noreferrer">Ask Adam Savage</a> - balanced and thoughtful responses to questions from his fans.</li>
-              <li><a href="https://www.youtube.com/@NewelOfKnowledge/videos" target="_blank" rel="noopener noreferrer">Newel of Knowledge</a> - playful talks on socialising, habits and psychological needs.</li>
-              <li><a href="https://www.youtube.com/@GoobieAndDoobie/videos" target="_blank" rel="noopener noreferrer">Goobie and Doobie</a> - long-form talks on health, nutrition, and culture.</li>
-
-              <li><a href="https://www.youtube.com/@aiexplained-official/videos" target="_blank" rel="noopener noreferrer">AI Explained</a> - reliable updates on developments in language models.</li>
-              <li><a href="https://youtube.com/playlist?list=PL848F2368C90DDC3D&si=uoP-5CdIAlQqj7hh" target="_blank" rel="noopener noreferrer">BIO150 with Robert Spakolsky</a> - this should be mandatory viewing for all humans.</li>
-              <li><a href="https://youtube.com/playlist?list=PLxuejeK2BP_dMJcEapPFavqaItrewjjT1&si=Sy11ejZeHCKLsIIe" target="_blank" rel="noopener noreferrer">Op Amps with Professor Fiore</a> - why aren't we taught about these earlier?</li>
-              <li><a href="https://open.spotify.com/show/04xgaUm233iT1Th8hWGDyN?si=95681a48106c4b33" target="_blank" rel="noopener noreferrer">Little Talk in Slow French</a> - the best French podcast I have found, by a country mile. Each episode is on a new and interesting topic. The speaker introduces new vocabulary in English, as needed, while continuing her discussion in French. At the end of each episode she reads her script again at a regular speed.</li>
-              
-              
-
-            </ul>
-          </div>
-        </div>
-
-        <div class="category">
-          <h4 class="category-title">Tools</h4>
-          <div class="category-content"> 
-            <ul>
-              <li><a href="https://excalidraw.com" target="_blank" rel="noopener noreferrer">Excalidraw</a> - a clean, collaborative whiteboard.</li>
-              <li><a href="https://www.linear.app/" target="_blank" rel="noopener noreferrer">Linear</a> - the best issue tracker.</li>
-              <li><a href="https://www.keybr.com/" target="_blank" rel="noopener noreferrer">Typr</a> - learn to type.</li>
-              <li><a href="https://squoosh.app" target="_blank" rel="noopener noreferrer">Squoosh.app</a> - compress images fast.</li>
-              <li><a href="https://www.semanticscholar.org/" target="_blank" rel="noopener noreferrer">SemanticScholar</a> - research tool.</li>
-
-            </ul>
-          </div>
-        </div>
-
-      </div>  
-
-    </div>
-        </div>
-  </div>
-
-  <div class="fullscreen" id="contact">
-
-  </div>
-
-
-  <!-- Fullscreen overlay for images -->
-  <div id="fullscreen-overlay">
-    <img id="fullscreen-image" src="" alt="">
-  </div>
-  <script src="/static/js/nav-loader.js"></script>
-  <script src="/static/js/image-handler.js"></script>
-
-  <div id="footer-container"></div>
-  <script src="/static/js/footer-loader.js"></script>
-
-  <script>
-
-document.querySelectorAll('.containerX').forEach(container => {
-  const frames = Array.from(container.querySelectorAll('.frame'));
-  let idx = frames.findIndex(f => f.classList.contains('show'));
-  if (idx < 0) idx = 0;
-
-  container.addEventListener('mouseenter', () => {
-    const prev = frames[idx];
-    idx = (idx + 1) % frames.length;
-    const next = frames[idx];
-
-    // Make the new one visible immediately
-    next.classList.add('show');
-
-    // Fade out the old one while it no longer controls layout
-    // (move it to absolute so it stops sizing the container)
-    prev.classList.remove('show');
-  });
-
-  // Do nothing on mouseleave — state persists on the last shown image
-});
-
-    document.addEventListener('DOMContentLoaded', function() {
-      const sections = document.querySelectorAll('.fullscreen');
-      const navLinks = document.querySelectorAll('.nav-links a');
-      
-      const preferredEasing = 'aStyle'; 
-      const scrollDuration = 99;
-      
-      // Function to set active navigation item
-      function setActiveNavItem() {
-        const scrollPosition = window.scrollY + 100;
-        
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
-          const sectionId = section.getAttribute('id');
-          
-          if (scrollPosition >= sectionTop && 
-              scrollPosition < sectionTop + sectionHeight) {
-            
-            navLinks.forEach(link => {
-              link.classList.remove('active');
-            });
-            
-            const activeLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
-            if (activeLink) {
-              activeLink.classList.add('active');
-            }
-          }
-        });
-      }
-      
-      // Add smooth scrolling to all navigation links
-      navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          const targetId = this.getAttribute('href').substring(1);
-          const targetSection = document.getElementById(targetId);
-          
-          if (targetSection) {
-            const navbarHeight = document.getElementById('navbar-container').offsetHeight || 0;
-            const targetPosition = targetSection.offsetTop - navbarHeight;
-            
-            // For browsers that support ScrollToOptions with behavior
-            if ('scrollBehavior' in document.documentElement.style) {
-              // Fallback to native smooth scrolling if custom easing isn't needed
-              if (preferredEasing === 'native') {
-                window.scrollTo({
-                  top: targetPosition,
-                  behavior: 'smooth' 
-                });
-              } else {
-                // Use our custom easing function
-                smoothScrollTo(targetPosition, scrollDuration, preferredEasing);
-              }
-            } 
-            // For browsers that don't support smooth scrolling natively
-            else {
-              smoothScrollTo(targetPosition, scrollDuration, preferredEasing);
-            }
-            
-            // Set active state immediately
-            navLinks.forEach(link => link.classList.remove('active'));
-            this.classList.add('active');
-          }
-        });
-      });
-      
-      // Custom smooth scrolling function with adjustable easing
-      function smoothScrollTo(targetPosition, duration, easingPreset = 'appleStyle') {
-        const startPosition = window.scrollY;
-        const distance = targetPosition - startPosition;
-        let startTime = null;
-        
-        // Define different easing presets
-        const easingPresets = {
-          aStyle: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
-        };
-        
-        // Select the easing function based on preset
-        const easingFunction = easingPresets[easingPreset] || easingPresets.aStyle;
-        
-        function animation(currentTime) {
-          if (startTime === null) startTime = currentTime;
-          const timeElapsed = currentTime - startTime;
-          const progress = Math.min(timeElapsed / duration, 1);
-          
-          // Apply the selected easing function
-          const easedProgress = easingFunction(progress);
-          
-          window.scrollTo(0, startPosition + distance * easedProgress);
-          
-          if (timeElapsed < duration) {
-            requestAnimationFrame(animation);
-          }
-        }
-        
-        requestAnimationFrame(animation);
-      }
-      
-      // Set active nav item on page load and during scrolling
-      setActiveNavItem();
-      window.addEventListener('scroll', setActiveNavItem);
-    });
-  </script>
+  <script src="/static/js/home.js"></script>
+  <script src="/static/js/image-lightbox.js?v=2"></script>
 </body>
 </html>
-

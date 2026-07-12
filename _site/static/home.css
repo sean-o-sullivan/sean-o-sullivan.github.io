@@ -1,0 +1,433 @@
+/* Homepage layout is intentionally isolated from legacy project-page styles. */
+.home-page {
+  --page-width: 1120px;
+  --side-padding: clamp(18px, 5vw, 42px);
+  --header-height: 56px;
+  --nav-surface: rgba(255, 255, 255, 0.94);
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow-x: hidden;
+  opacity: 1;
+  visibility: visible !important;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.home-page *,
+.home-page *::before,
+.home-page *::after {
+  box-sizing: inherit;
+}
+
+.home-page::after,
+.site-header::after {
+  content: "";
+  left: 0;
+  width: 100%;
+  height: clamp(52px, 8vh, 86px);
+  pointer-events: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.site-header::after {
+  position: absolute;
+  top: 100%;
+  background: linear-gradient(to bottom, var(--nav-surface) 0%, rgba(255, 255, 255, 0.82) 35%, rgba(255, 255, 255, 0) 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
+}
+
+.home-page::after {
+  position: fixed;
+  z-index: 8;
+  bottom: 0;
+  background: linear-gradient(to top, #fff 0%, rgba(255, 255, 255, 0.82) 35%, rgba(255, 255, 255, 0) 100%);
+  mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+}
+
+.home-page a {
+  color: #0864c7;
+}
+
+.home-page a:focus-visible,
+.home-page button:focus-visible {
+  outline: 2px solid #0864c7;
+  outline-offset: 4px;
+}
+
+.home-page img[data-lightbox-ready="true"] {
+  cursor: zoom-in;
+}
+
+.home-page .image-lightbox[hidden] {
+  display: none;
+}
+
+.home-page .image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: clamp(18px, 4vw, 52px);
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.home-page .image-lightbox__image {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  max-width: 94vw !important;
+  max-height: 90vh !important;
+  object-fit: contain;
+  cursor: zoom-out;
+  filter: drop-shadow(0 16px 44px rgba(0, 0, 0, 0.2));
+}
+
+.home-page .image-lightbox__close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #000;
+  font: 30px/1 Helvetica, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.home-page.lightbox-open {
+  overflow: hidden;
+}
+
+.page-shell {
+  width: min(100%, calc(var(--page-width) + (2 * var(--side-padding))));
+  margin-inline: auto;
+  padding-inline: var(--side-padding);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: var(--header-height);
+  background: var(--nav-surface);
+  backdrop-filter: blur(8px);
+}
+
+.site-nav {
+  width: min(100%, calc(var(--page-width) + (2 * var(--side-padding))));
+  height: 100%;
+  margin-inline: auto;
+  padding-inline: var(--side-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-nav .site-name {
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.site-nav .site-contact {
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.projects-section h1,
+.projects-section h2 {
+  margin: 0 0 16px;
+  font: inherit;
+  font-weight: 700;
+  color: #000;
+}
+
+.projects-section {
+  min-height: calc(100vh - var(--header-height));
+  padding-top: clamp(76px, 11vh, 120px);
+  padding-bottom: clamp(80px, 12vw, 140px);
+  scroll-margin-top: var(--header-height);
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(270px, 1fr);
+  align-items: start;
+  gap: clamp(56px, 6.25vw, 88px);
+}
+
+.project-column,
+.other-work {
+  min-width: 0;
+}
+
+.project-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-page .project-entry {
+  display: grid;
+  grid-template-columns: 42px 132px minmax(0, 1fr);
+  align-items: start;
+  margin: 0;
+  min-height: 136px;
+}
+
+.project-entry time,
+.project-entry > span:first-child {
+  padding: 1px 8px 0 0;
+  color: #aaa;
+  font-size: 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.project-media {
+  position: relative;
+  align-self: stretch;
+  min-height: 136px;
+  padding: 7px 0 22px 18px;
+  border-left: 2px solid #d2d2d2;
+}
+
+.project-media::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #d2d2d2;
+}
+
+.project-media::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -2px;
+  width: 2px;
+  height: 18px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff);
+}
+
+.project-media img {
+  display: block;
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  border-radius: 10px;
+  clip-path: inset(0 round 10px);
+}
+
+.project-media img.project-thumbnail--natural {
+  height: auto;
+}
+
+.project-placeholder {
+  display: block;
+  width: 110px;
+  height: 110px;
+  border-radius: 10px;
+  background: #f3f3f3;
+}
+
+.project-entry > p {
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 28px 20px;
+}
+
+.project-entry > p a {
+  font-weight: 700;
+}
+
+.project-entry > p span {
+  margin-left: 0.55em;
+}
+
+.other-work {
+  padding-top: 0;
+}
+
+.work-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, clamp(260px, 30vh, 360px));
+  aspect-ratio: 1 / 1;
+  margin: 0 0 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+}
+
+.work-gallery img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  border-radius: 12px;
+  clip-path: inset(0 round 12px);
+}
+
+.home-page .project-entry.other-work-entry {
+  grid-template-columns: 110px minmax(0, 1fr);
+}
+
+.other-work-entry > span:first-child {
+  display: none;
+}
+
+.other-work-entry .project-media {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.other-work-entry .project-media::before,
+.other-work-entry .project-media::after {
+  display: none;
+}
+
+.other-work-link {
+  margin: 8px 0 0;
+}
+
+.other-work-link span {
+  margin-left: 0.55em;
+}
+
+@media (min-width: 1200px) {
+  .page-shell,
+  .site-nav {
+    width: min(60vw, 1120px);
+    padding-inline: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .home-page {
+    --side-padding: clamp(18px, 6vw, 28px);
+  }
+
+  .projects-section {
+    padding-top: 64px;
+  }
+
+  .home-page .project-entry {
+    grid-template-columns: 42px 82px minmax(0, 1fr);
+    min-height: 94px;
+  }
+
+  .project-entry time,
+  .project-entry > span:first-child {
+    padding-right: 7px;
+    font-size: 11px;
+  }
+
+  .project-media {
+    min-height: 94px;
+    padding: 7px 0 18px 12px;
+  }
+
+  .project-media img {
+    width: 66px;
+    height: 66px;
+  }
+
+  .project-placeholder {
+    width: 66px;
+    height: 66px;
+  }
+
+  .home-page .project-entry.other-work-entry {
+    grid-template-columns: 66px minmax(0, 1fr);
+  }
+
+  .project-entry > p {
+    padding: 0 0 24px 14px;
+    line-height: 1.45;
+  }
+
+  .project-entry > p span {
+    display: block;
+    margin: 3px 0 0;
+  }
+
+  .work-gallery {
+    margin-left: 0;
+  }
+
+  .work-gallery img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 900px) {
+  .projects-section {
+    grid-template-columns: 1fr;
+    gap: 72px;
+  }
+
+  .other-work {
+    padding-top: 0;
+  }
+
+}
+
+@media (max-width: 360px) {
+  .home-page .project-entry {
+    grid-template-columns: 40px 70px minmax(0, 1fr);
+  }
+
+  .project-media {
+    padding-left: 10px;
+  }
+
+  .project-media img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .project-placeholder {
+    width: 56px;
+    height: 56px;
+  }
+
+  .home-page .project-entry.other-work-entry {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+
+  .project-entry > p {
+    padding-left: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page {
+    scroll-behavior: auto;
+  }
+}

@@ -1,6 +1,6 @@
  /* General Styles */
  body {
-    font-family: "Myriad Pro", "Helvetica Neue", Helvetica;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 13px;
     margin: 0;
     padding: 0;
@@ -1042,7 +1042,7 @@ hr {
     margin-bottom: 0;
     text-align: left;
     color: #333;
-    font-family: Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 
