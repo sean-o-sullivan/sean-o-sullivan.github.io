@@ -6,7 +6,7 @@
   <title>Ogma · Seán O'Sullivan</title>
   <meta name="description" content="Ogma, a modular flight computer for student high-powered rocketry.">
   <link rel="stylesheet" href="../../static/styles.css">
-  <link rel="stylesheet" href="../../static/project-page.css?v=4">
+  <link rel="stylesheet" href="../../static/project-page.css?v=12">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3CZHEVW6C"></script>
   <script>
@@ -42,13 +42,16 @@
             I designed the architecture and lead a team of five. I specced the common power, CAN, and board interfaces, ran KiCad onboarding sessions, and ran routing sessions where we laid out boards together at a projector. I also handled the BOM, Gerber review, manufacturing, and our JLCPCB sponsorship.
           </p>
           <p>
+            I hand-stencilled the solder paste and placed every component for Rev 1, then spent a long time hand-bodging the assembled boards into working hardware. We currently have two Croí, two Foinse, and two Teachtaire boards complete; one Lámh and one Pléasc are nearly complete, pending the correct optocouplers. It worked, but the time cost was unreasonable. Rev 2 will be ordered as fully assembled PCBAs.
+          </p>
+          <p>
             Rev 1 worked, but it was harder to debug than it should have been. Croí needed SWD signal damping, SPI bodges, and a repaired power path. Foinse had a dead battery-ORing path that was hidden by an alternate power input covering for it. Lámh had a broken RTOS tick integration, and taught us that a servo can report successful I2C writes while still receiving no power or PWM at all downstream. Teachtaire forced us to stop being vague about the actual fitted radio module, UART handling, and packet format — all three had drifted from what the docs claimed.
           </p>
           <p>
             To make bring-up faster next time, we wrote bare peripheral probes and a Python console that identifies, flashes, and diagnoses each board over SWD. Croí can stream live status over SRAM, retrieve append-only flash logs, and plot them locally. The stack now shares pinned CAN contracts, and actuator and recovery commands use explicit leases and defined safe states.
           </p>
           <p>
-            Current firmware builds across the whole stack and software tests pass. Hardware-in-the-loop testing, calibration, and full flight rehearsal are still underway — I'm not calling it flight-proven yet.
+            Current firmware builds across the whole stack and software tests pass. Hardware-in-the-loop testing, calibration, and full flight rehearsal are still underway. The next target is to fly the stack in an L1 launch around mid-August — I'm not calling it flight-proven yet.
           </p>
         </section>
 
@@ -137,5 +140,6 @@
 
   <script src="../../static/js/nav-loader.js?v=2"></script>
   <script src="/static/js/image-lightbox.js"></script>
+  <script src="/static/js/footer-loader.js?v=2"></script>
 </body>
 </html>
