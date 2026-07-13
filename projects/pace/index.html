@@ -23,10 +23,16 @@
         <section>
           <p><b>Description</b></p>
           <p>
-            Pace is a small timer I made after our pool closed, when I was still a competitive swimmer and wanted a way to keep pace while training alone. The PCB is smaller than a euro one-cent coin. A magnet and a ferrous disc on the back let it sit on glasses or swimming goggles.
+            Pace is a small timer I made after our pool closed, when I was still a competitive swimmer and wanted a way to keep pace while training alone.
           </p>
           <p>
-            Sixty LEDs run around the edge. A seconds hand moves one position every second, a minute hand advances once per lap, and a fixed north marker keeps the display readable. They appear to be on together, but the STM32L0 is charlieplexing the ring across nine GPIO lines and driving one LED at a time in one-millisecond slices. That was partly a layout decision and partly a power-budget decision for the tiny rechargeable coin cell.
+            In swimming it's hard to gauge how fast you are actually moving when you don't have someone to pace yourself against. There is the minute clock on the wall but you can only see that at the wall or during a breath. I wanted something that I could race against.
+          </p>
+          <p>
+            The PCB is smaller than a euro one-cent coin (13mm diameter). A ferrous disc on the back lets it sit on glasses or swimming goggles when you put a magnet on the other side of the glass. It also activates with the magnet.
+          </p>
+          <p>
+            Sixty LEDs run around the edge. A seconds hand moves one position every second, a minute hand advances once per lap, and a fixed north marker keeps the display readable. The quarter marks are yellow and all other LEDs are green. They appear to be on together, but the STM32L0 is charlieplexing the ring across nine GPIO lines and driving one LED at a time in one-millisecond slices. That was partly a layout decision and partly a power-budget decision for the tiny rechargeable coin cell.
           </p>
           <p>
             Pace lives in a printed charging case with its own battery and USB-C input. Spring-loaded pogo contacts meet the two charging pads when the timer is pressed into the insert, so the case can charge Pace without putting a connector on the timer itself.
@@ -45,7 +51,7 @@
             The project sat for a while. In November 2025 I picked it up again and rebuilt it rather than trying to rescue v2: a new Pace board, a separate charge board, a new case, and new firmware. The useful change was charlieplexing. Sixty LEDs only need nine bus lines, so the external matrix driver and buried-via layout disappeared while the board stayed coin-sized.
           </p>
           <p>
-            The board was still unpleasant to assemble. I placed parts<sup id="pace-assembly-note-ref"><a class="footnote-ref" href="#pace-assembly-note" role="doc-noteref" aria-label="See assembly footnote">†</a></sup> through two loupes taped together for roughly 10x magnification and reflowed it in an oven I had made from a halogen floodlight. I also tried casting the electronics in a resin-printed mould. The release spray did not release, so I ended up carving the board back out through fibreglass and resin. It survived.
+            The board was so much fun to assemble. I placed parts<sup id="pace-assembly-note-ref"><a class="footnote-ref" href="#pace-assembly-note" role="doc-noteref" aria-label="See assembly footnote">†</a></sup> through 6 loupes taped together for roughly 10× magnification and reflowed it in an oven I had made from a halogen floodlamp. It took me about 6 hours to place and in the meantime the flux for the solder paste had evaporated. So I ran a second reflow cycle with plenty flux to fix the pillow in head defects that plagued over half of the LEDs. There were many moments before and after reflowing where I looked at it wrong and 4 LEDs pinged off and then I had to replace them while hoping not to fry the rest of the board. Pace rev3 has weathered more than 20 reflow cycles. I also tried casting the electronics in a resin-printed mould. The release spray did not release, so I ended up carving the board back out through fibreglass and resin.<sup id="pace-waterproofing-note-ref"><a class="footnote-ref" href="#pace-waterproofing-note" role="doc-noteref" aria-label="See waterproofing footnote">‡</a></sup> It survived.
           </p>
           <p>
             The firmware uses the 32.768kHz crystal and RTC for the one-second tick, then shares the display time between the two hands and north marker. I wanted the startup to feel less like a circuit waking up, so it begins with a short random sparkle. There is no stored animation: on every boot the ADC samples the internal voltage reference 32 times, mixes the lowest four noisy bits of each reading into a seed, and feeds that into a xorshift generator. The resulting pattern is different each time, then the hands move into place and the timer starts.
@@ -54,13 +60,13 @@
             The case went through its own set of iterations. I wanted the body and insert to work like the AirPods case I use every day: a continuous outer shell, with the insert seam hidden by the lid rather than left as a visible split around the body. That made the finished object cleaner, but it also meant fitting a charge board, battery, contacts, and wiring into a shape that had not been especially generous to any of them.
           </p>
           <p>
-            The charge board then behaved just well enough to be confusing. With USB connected, the blue Pace-charge LED would flicker and go out while the green case-battery LED stayed on. The boost stage and two charging paths made the readings look circular, and I had already added a flywire after modifying the board to fit the printed assembly. The fault that finally mattered was under a capacitor. I lifted it and found a paste-like bridge underneath; with the capacitor removed the short disappeared. I cleaned the pads, put the capacitor back, and the short stayed gone. The battery sat around 3.5V and the blue indicator began pulsing normally.
+            The charge board then behaved just well enough to be confusing. With USB connected, the blue Pace-charge LED would flicker and go out while the green case-battery LED stayed on. The boost stage and two charging paths made the readings look circular, and I had already added a flywire after modifying the board to fit the printed assembly. The fault was under a capacitor. I lifted it and found a paste-like bridge underneath; with the capacitor removed the short disappeared. I cleaned the pads, put the capacitor back, and the short stayed gone. The battery sat around 3.5V and stayed.
           </p>
           <p>
             The last part was mostly mechanical soldering. I soldered the pogo pins to wires, passed the wires through holes in the case insert, heat-set the pins into place, then connected them to Pace+ and ground on the charge board. It was 3:10am when I stopped before the final two joints. By then Pace fitted the insert, the case battery was charging, and pressing the timer onto the contacts produced a voltage across the pogos. The assembly was no longer hypothetical.
           </p>
           <p>
-            This is the third and final version: the one being posted and shipped rather than another board waiting to be ordered. I started Pace because I swam. I do not swim now, but I have been using it to time strength, conditioning, and flexibility work instead. The use changed while the project sat; the timer did not need to.
+            This is the third and final version: the one being posted and shipped rather than another board waiting to be ordered. I started Pace because I swam. I don't swim anymore, but I have been using it to time strength, conditioning, and flexibility work instead. The use changed while the project sat; the timer did not need to.
           </p>
         </section>
 
@@ -68,15 +74,19 @@
           <a class="footnote-backref" href="#pace-assembly-note-ref" aria-label="Back to assembly footnote reference">†</a>
           With a blunt 30-gauge needle balanced between both thumbs and index fingers, and my forearms resting on the desk for support, I could pick up the 01005 LEDs (0.4 × 0.2 mm) with friction alone.
         </p>
+        <p class="footnote" id="pace-waterproofing-note" role="doc-footnote">
+          <a class="footnote-backref" href="#pace-waterproofing-note-ref" aria-label="Back to waterproofing footnote reference">‡</a>
+          In future, for waterproofing my projects I will conformally coat them with Parylene C or some equivalent, by myself, naturally :)
+        </p>
       </main>
     </div>
 
-    <div class="column image-column">
+    <div class="column image-column media-grid">
       <p><b>V3.0 - Charlieplexed timer and charging case</b></p>
-      <img class="project-lead-media" src="../../images/pace/v3-size.jpg" alt="Pace v3 held above its assembly jig">
+      <img class="project-lead-media" src="../../images/pace/v3-in-hand-with-coin.jpeg" alt="Working Pace v3 held beside a euro one-cent coin">
+      <img src="../../images/pace/v3-size.jpg" alt="Pace v3 held above its assembly jig">
       <img src="../../images/pace/v3-board.jpeg" alt="Close view of the Pace v3 PCB and its ring of LEDs">
-      <img src="../../images/pace/v3-in-hand-with-coin.jpeg" alt="Working Pace v3 held beside a euro one-cent coin">
-      <img src="../../images/pace/v3-case-assembly.jpeg" alt="Pace fitted into a charging case insert during assembly">
+      <img class="project-wide-media" src="../../images/pace/v3-case-assembly.jpeg" alt="Pace fitted into a charging case insert during assembly">
     </div>
   </div>
 

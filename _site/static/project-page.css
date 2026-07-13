@@ -303,6 +303,25 @@ body.project-page::after {
   max-height: 40vh;
 }
 
+.project-page .image-column.process-gallery .initial-test-media > img {
+  height: auto !important;
+}
+
+@media (min-width: 821px) {
+  body.project-page.mu-page {
+    --project-width: 1320px;
+  }
+
+  .project-page.mu-page .image-column.process-gallery > img:not(.project-lead-media),
+  .project-page.mu-page .image-column.process-gallery .process-media:not(.initial-test-media) > img {
+    height: clamp(200px, 23vh, 250px) !important;
+  }
+
+  .project-page.mu-page .image-column.process-gallery > img.project-lead-media {
+    max-height: 46vh;
+  }
+}
+
 .project-page .image-column > .video-container.project-lead-media {
   width: 100% !important;
   height: auto !important;
@@ -328,6 +347,27 @@ body.project-page::after {
   grid-column: 1 / -1;
   width: 100%;
   margin: 0;
+}
+
+.project-page .ogma-media-gallery > img,
+.project-page .ogma-media-gallery > video,
+.project-page .ogma-media-gallery > .annotated-media > img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.project-page .ogma-media-gallery > video {
+  max-height: 52vh;
+}
+
+.project-page .ogma-assembly-video {
+  width: 100%;
+  margin: 36px 0 0;
+}
+
+.project-page .ogma-assembly-video > .video-container {
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 .project-page .annotated-media > img {
@@ -385,6 +425,22 @@ body.project-page::after {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
+}
+
+.project-page .textIcontainer.ogma-rev1-learnings {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: stretch;
+}
+
+.project-page .textIcontainer.ogma-rev1-learnings > img,
+.project-page .ogma-rev1-learnings > .pdf-container {
+  width: 100% !important;
+  height: clamp(520px, 72vh, 760px) !important;
+}
+
+.project-page .textIcontainer.ogma-rev1-learnings > img {
+  object-fit: contain;
 }
 
 .project-page .project-board-triptych > img {
@@ -587,6 +643,15 @@ body.project-page::after {
 
   .project-page .textIcontainer.analysis-gallery {
     grid-template-columns: 1fr !important;
+  }
+
+  .project-page .textIcontainer.ogma-rev1-learnings {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-page .textIcontainer.ogma-rev1-learnings > img {
+    height: auto !important;
+    max-height: 80vh;
   }
 
 }

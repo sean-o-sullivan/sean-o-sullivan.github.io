@@ -6,7 +6,7 @@
   <title>Ogma · Seán O'Sullivan</title>
   <meta name="description" content="Ogma, a modular flight computer for student high-powered rocketry.">
   <link rel="stylesheet" href="../../static/styles.css">
-  <link rel="stylesheet" href="../../static/project-page.css?v=12">
+  <link rel="stylesheet" href="../../static/project-page.css?v=14">
 
 </head>
 <body class="project-page">
@@ -27,6 +27,9 @@
           <p>
             It's split across five CAN-connected boards: Croí handles flight state, sensors, and logging; Teachtaire does LoRa and GNSS; Foinse handles power; Lámh drives the airbrakes; Pléasc handles recovery deployment. A separate groundstation receives telemetry on the ground.
           </p>
+          <p>
+            The stack is designed to slide into a rail mount system in the avionics bay.
+          </p>
         </section>
 
         <section>
@@ -35,16 +38,16 @@
             I designed the architecture and lead a team of five. I specced the common power, CAN, and board interfaces, ran KiCad onboarding sessions, and ran routing sessions where we laid out boards together at a projector. I also handled the BOM, Gerber review, manufacturing, and our JLCPCB sponsorship.
           </p>
           <p>
-            I hand-stencilled the solder paste and placed every component for Rev 1, then spent a long time hand-bodging the assembled boards into working hardware. We currently have two Croí, two Foinse, and two Teachtaire boards complete; one Lámh and one Pléasc are nearly complete, pending the correct optocouplers. It worked, but the time cost was unreasonable. Rev 2 will be ordered as fully assembled PCBAs.
+            I hand-stencilled the solder paste and placed every component for Rev 1, then spent a long time hand-bodging the assembled boards into working hardware. We currently have two Croí, two Foinse, and two Teachtaire boards complete; one Lámh and one Pléasc are nearly complete, pending the correct optocouplers. It worked, but the time cost was totally unreasonable. Rev 2 will be ordered as fully assembled PCBAs.
           </p>
           <p>
-            Rev 1 worked, but it was harder to debug than it should have been. Croí needed SWD signal damping, SPI bodges, and a repaired power path. Foinse had a dead battery-ORing path that was hidden by an alternate power input covering for it. Lámh had a broken RTOS tick integration, and taught us that a servo can report successful I2C writes while still receiving no power or PWM at all downstream. Teachtaire forced us to stop being vague about the actual fitted radio module, UART handling, and packet format — all three had drifted from what the docs claimed.
+            Rev 1 worked, but it was harder to debug than it could have been. Croí needed SWD signal damping, SPI bodges, and a repaired power path. Foinse had a dead battery-ORing path that was hidden by an alternate power input covering for it. Lámh had a broken RTOS tick integration, and taught us that a servo can report successful I2C writes while still receiving no power or PWM at all downstream. Teachtaire forced us to stop being vague about the actual fitted radio module, UART handling, and packet format — all three had drifted from what the docs claimed.
           </p>
           <p>
             To make bring-up faster next time, we wrote bare peripheral probes and a Python console that identifies, flashes, and diagnoses each board over SWD. Croí can stream live status over SRAM, retrieve append-only flash logs, and plot them locally. The stack now shares pinned CAN contracts, and actuator and recovery commands use explicit leases and defined safe states.
           </p>
           <p>
-            Current firmware builds across the whole stack and software tests pass. Hardware-in-the-loop testing, calibration, and full flight rehearsal are still underway. The next target is to fly the stack in an L1 launch around mid-August — I'm not calling it flight-proven yet.
+            Current firmware builds across the whole stack and software tests pass. Hardware-in-the-loop testing, calibration, and full flight rehearsal are still underway. The next target is to fly the stack in an L1 launch around mid-August.
           </p>
         </section>
 
@@ -66,20 +69,48 @@
           </p>
         </section>
       </main>
+
+      <figure class="annotated-media ogma-assembly-video">
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/vmrpcgWprPM" title="Hand-placing components for Ogma Rev 1 batch 2" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <figcaption>self flagellating component placing is my pasttime</figcaption>
+      </figure>
     </div>
 
-    <div class="column image-column">
-      <div class="pdf-container">
-        <iframe
-          src="https://drive.google.com/file/d/1rBxDRaD6AfNKRrBDZdaWVKrW2pHV3_nx/preview#view=FitH&amp;toolbar=0"
-          title="Ogma Rev 1 Engineering Learnings"
-          loading="lazy"
-          allow="fullscreen">
-        </iframe>
+    <div class="column image-column ogma-media-gallery">
+      <video autoplay muted loop playsinline preload="auto" aria-label="Hypothetical render of the Ogma flight computer stack">
+        <source src="../../images/ogma/hypothetical-render.mp4" type="video/mp4">
+      </video>
+
+      <div class="video-container project-lead-media">
+        <iframe src="https://www.youtube.com/embed/WX-EqqDLjQQ" title="Ogma hardware-in-the-loop testing" frameborder="0" allowfullscreen></iframe>
       </div>
-      <img src="../../images/ogma/ogma-benchtop.png" alt="Ogma flight computer stack working on the benchtop">
+
+      <figure class="annotated-media">
+        <img src="../../images/ogma/hil-testing.jpeg" alt="Two Ogma boards connected to two STLinks during distributed hardware-in-the-loop testing">
+        <figcaption><b>Embedded HIL testing circa July 2026.</b> 2 STLinks plugged into 2 boards in a distributed stack and GPT-5.6 Sol xhigh running a testing campaign on both.</figcaption>
+      </figure>
+
+      <img src="../../images/ogma/ogma-avbay-horizontal.jpeg" alt="Ogma flight computer stack integrated into the rocket avionics bay">
     </div>
   </div>
+
+  <section class="textcontainer">
+    <p><b>Rev 1 in the avionics bay and engineering learnings</b></p>
+  </section>
+
+  <section class="textIcontainer ogma-rev1-learnings">
+    <img src="../../images/ogma/ogma-avbay-vertical.png" alt="Ogma Rev 1 mounted vertically in the rocket avionics bay beneath the terminal blocks">
+    <div class="pdf-container">
+      <iframe
+        src="https://drive.google.com/file/d/1rBxDRaD6AfNKRrBDZdaWVKrW2pHV3_nx/preview#view=FitH&amp;toolbar=0"
+        title="Ogma Rev 1 Engineering Learnings"
+        loading="lazy"
+        allow="fullscreen">
+      </iframe>
+    </div>
+  </section>
 
   <section class="textcontainer">
     <p><b>Croí - Flight computer</b></p>

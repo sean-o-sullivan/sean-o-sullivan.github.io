@@ -6,10 +6,10 @@
   <title>Mu · Seán O'Sullivan</title>
   <meta name="description" content="Mu, a standalone cosmic ray detector for a rocket.">
   <link rel="stylesheet" href="../../static/styles.css">
-  <link rel="stylesheet" href="../../static/project-page.css?v=12">
+  <link rel="stylesheet" href="../../static/project-page.css?v=13">
 
 </head>
-<body class="project-page">
+<body class="project-page mu-page">
   <div id="navbar-container"></div>
 
   <div class="container">
@@ -28,32 +28,49 @@
           <p>
             The detector is a 50x50x20mm BC-408 plastic scintillator coupled to an OnSemi MicroFC-60035 6x6mm SiPM. The SiPM is biased at about 30V, filtered through small 50 ohm resistors and local capacitors, then read by an OPA656/OPA814-class transimpedance stage sitting around a 2.5V virtual reference. The STM32 samples the output using ADC DMA into a circular buffer, watches for negative-going dips from the rolling baseline, and logs pulse records to flash: timestamp, baseline, amplitude, and a short waveform snapshot. It also logs MS5607 barometric pressure and altitude once a second, so the particle data can be lined up with the flight profile afterwards.
           </p>
+          <p>
+            The charge-sensitive preamp was initially specced with a 10MΩ feedback resistor. After reducing that to an effective resistance of roughly 264kΩ, the 330pF feedback capacitor set a decay time constant of about 87µs. The ADC samples every 10µs, so it can read the stretched pulse rather than trying to catch the original nanosecond event.
+          </p>
+          <p>
+            I reached out to Luxium Solutions and was sponsored a 50x50x50mm cube of BC-408 scintillating plastic. I cut the 50x50x20mm detector from it using the tools in the University of Limerick's workshop, then polished it using acrylic scratch remover that one of the lab technicians found. I also reached out to a former Onsemi Principal Engineer for advice on the readout circuit in the initial stages.
+          </p>
+          <p>
+            I posted our initial schematic and PCB designs onto <a href="https://www.reddit.com/r/PCB/comments/1qsk7kc/review_request_modular_opensource_flight_computer/" target="_blank" rel="noopener noreferrer">r/PCB with Ogma</a>, then posted a <a href="https://www.reddit.com/r/PCB/comments/1r2sg3w/final_review_mu_custom_sipm_muon_detector_for/" target="_blank" rel="noopener noreferrer">final Mu review</a>. Within 2 reviews of being confidently incorrect, u/Physix_R_Cool reached out with a proven TIA schematic and layout that he had used for his own SiPM projects, including at ISOLDE at CERN. He pointed out that our non-inverting OPA656 stage would delete the 5ns pulse rather than stretch it, then sent us the board files, real pulse captures, and advice on polishing, wrapping, and optically coupling the scintillator. He was also very clear that the TIA design wasn't his, he had just used it and knew it worked.
+          </p>
         </section>
 
         <section>
           <p><b>Progress</b></p>
           <p>
-            The schematic was only half the work. The physical detector fought back constantly. SiPMs are absurdly sensitive, so small light leaks through bolt holes, washers, and even the plastic battery connector were enough to saturate the readout. At one point the board sat at a normal ~48mA in darkness and jumped to 200mA under a microscope light. Covering one spot with my finger fixed it — not analogue instability, just light getting in through places I'd mentally filed under "mechanical parts" instead of "optical paths."
+            The schematic was only half the work. The physical detector fought back constantly. SiPMs are absurdly sensitive, so small light leaks through bolt holes, washers, and even the translucent Molex battery connector were enough to saturate the readout. At one point the board sat at a normal ~48mA in darkness and jumped to 200mA under a microscope light. Covering one spot with my finger fixed it, so it wasn't an analogue instability, just light getting in through gaps in the tape on the opposite side of the board.
           </p>
           <p>
             Two nights before Mach26, in my student accommodation, I filed down the four mounting bolts into a wastebin because light was leaking in around them. They had to be short enough to fully cover. I also coloured in the Molex battery connector with a black Sharpie, because the plastic was just translucent enough to act as a tiny window.
           </p>
           <p>
-            The first version of the feedback network was also too optimistic. With the real dark current of a 6x6mm SiPM, the high feedback resistance let the amplifier pull the baseline down toward the negative rail. I added shunt feedback resistors, bringing the effective feedback resistance down to roughly 264k, which kept the baseline inside the STM32's ADC range instead of relying on the MCU's clamp diodes to survive it.
+            The first version of the feedback network was also way too optimistic. We had specced a feedback resistor of 10MΩ. With the real dark current of a 6x6mm SiPM, the high feedback resistance let the amplifier pull the baseline down toward the negative rail. I added shunt feedback resistors, bringing the effective feedback resistance down to roughly 264kΩ, which kept the baseline inside the STM32's ADC range instead of relying on the MCU's clamp diodes to survive it.
           </p>
           <p>
-            There were board-level mistakes too. I had to reroute SPI data lines after a swap, and because the flash and MS5607 shared the same bus, fixing one meant checking the other. Assembly became a hands-on optics problem: file the mounting bolts, reseat the crystal, wrap the scintillator in PTFE tape, wrap the whole thing in electrical tape, test it, find another leak, repeat.
+            I had a couple board-level mistakes too. I had to reroute the SPI data lines after swapping them, and because the flash and MS5607 shared the same bus, fixing one meant flipping the other. Assembly was a hands-on optics problem: file the mounting bolts, reseat the crystal, wrap the scintillator in PTFE tape<sup id="mu-wrapping-note-ref"><a class="footnote-ref" href="#mu-wrapping-note" role="doc-noteref" aria-label="See wrapping footnote">†</a></sup>, wrap the whole thing in electrical tape, test it, find another leak, repeat. I also added some needle pin holes for accurate barometric pressure readings.
           </p>
           <p>
-            The first real capture made it worth it. Mu started recording clean negative-going charge pulses, around 18-31 events per minute across a few sessions — close enough to the rough 25/min estimate for that scintillator area at sea level that it felt like the thing had actually come alive.
+            The first real capture was great craic. I had Mu hidden behind a stack of books in a shallow opening under my desk, sitting on top of some black plastic ribs that were once used to store CD cases. It started recording clean negative-going charge pulses, around 18-31 events per minute across a few sessions, fairly close to the rough 25/min estimate for that scintillator area at sea level. I did not use any sort of optical coupling fluid, and I was very concerned about this (and I tried to source some the week before). After I calmed down, I celebrated by starting to play Zelda: Breath of the Wild at my roommate's offer.
+          </p>
+          <p>
+            I tested it a handful more times and found an issue where, on battery power, it tried initialising the flash immediately at boot and of course that would fail, so it wouldn't log. It now retries a handful of times at boot and works.
           </p>
           <p>
             It didn't get a clean run at Mach26. In the payload bay it was mounted too close to a Raspberry Pi 5 heatsink, hit around 70°C, and the scintillator expanded enough to over-compress the SiPM against the board. Afterward I could reproduce the fault by tightening and loosening the crystal screws: too much pressure bent the board and shorted it, so the cause was mechanical preload and thermal expansion, not a dead design. After reseating the detector and repairing the disturbed analogue parts, Mu came back.
           </p>
           <p>
-            Next up is a solo L1 flight in mid-August, where Mu flies as its own payload. Mach26 wasn't a failed science run so much as a lesson that a particle detector isn't just a circuit — it's an optical seal, a thermal stackup, a mechanical clamp, and a sensitive analogue front-end that doesn't appreciate living next to bolts, tape, connectors, and a hot Raspberry Pi.
+            Next up is a solo L1 flight in mid-August, where Mu flies as its own payload. Mach26 showed me that a particle detector is a lot more than just a circuit, it's an optical seal, a thermal stackup, a mechanical clamp, and a sensitive analogue front-end that doesn't appreciate living next to a hot Raspberry Pi 5 in a confined space for a couple of hours.
           </p>
         </section>
+
+        <p class="footnote" id="mu-wrapping-note" role="doc-footnote">
+          <a class="footnote-backref" href="#mu-wrapping-note-ref" aria-label="Back to wrapping footnote reference">†</a>
+          And then cut the window out, rather than just including the opening in the wrapping. The latter resulted in uneven wrapping.
+        </p>
 
         <section>
           <p><b>Documentation</b></p>
@@ -75,7 +92,11 @@
       <img src="../../images/mu/process/wrapped-board.jpeg" alt="Mu assembled with PTFE wrapping around the scintillator">
       <figure class="process-media project-wide-media">
         <img src="../../images/mu/process/payload-over-pi.png" alt="Ogma and Mu installed in the rocket payload above the Raspberry Pi 5 heatsink and fan">
-        <figcaption><b>Payload placement.</b> Mu sat directly above the Raspberry Pi 5 heatsink and fan—the heat source implicated in the post-flight mechanical short.</figcaption>
+        <figcaption><b>Payload placement.</b> Mu sat directly above the Raspberry Pi 5 heatsink and fan - the heat source implicated in the post-flight mechanical short.</figcaption>
+      </figure>
+      <figure class="process-media project-wide-media initial-test-media">
+        <img src="../../images/mu/process/initial-test.jpeg" alt="Mu's initial test setup on the desk beneath a microscope">
+        <figcaption><b>Initial test:</b> I was listening to <a href="https://www.youtube.com/watch?v=s7w-IeNR9ko&amp;list=RDs7w-IeNR9ko&amp;start_radio=1" target="_blank" rel="noopener noreferrer">The Mission's main theme</a>.</figcaption>
       </figure>
     </div>
 
