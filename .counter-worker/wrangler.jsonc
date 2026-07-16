@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "poral-discovery-counter",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-16",
+  "workers_dev": true,
+  "vars": {
+    "ALLOWED_ORIGINS": "https://sean-o-sullivan.github.io,http://127.0.0.1:4000,http://localhost:4000"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "DISCOVERY_COUNTER",
+        "class_name": "DiscoveryCounter"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["DiscoveryCounter"]
+    }
+  ]
+}

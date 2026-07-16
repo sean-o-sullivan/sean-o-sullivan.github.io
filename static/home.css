@@ -1,4 +1,10 @@
 /* Homepage layout is intentionally isolated from legacy project-page styles. */
+@property --home-edge-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .home-page {
   --page-width: 1120px;
   --side-padding: clamp(18px, 5vw, 42px);
@@ -20,6 +26,60 @@
 .home-page *::before,
 .home-page *::after {
   box-sizing: inherit;
+}
+
+.home-page::before {
+  content: "";
+  position: fixed;
+  z-index: 11;
+  inset: -24px;
+  pointer-events: none;
+  opacity: 0;
+  background: conic-gradient(
+    from var(--home-edge-angle) at 50% 50%,
+    #45dfff 0deg,
+    #8570ff 58deg,
+    #ff52bd 122deg,
+    #ffbd4d 184deg,
+    #58e9b2 246deg,
+    #4d9dff 306deg,
+    #45dfff 360deg
+  );
+  filter: blur(30px) saturate(150%) hue-rotate(0deg);
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 0 28px, transparent 45px),
+    linear-gradient(to top, #000 0 28px, transparent 45px),
+    linear-gradient(to right, #000 0 28px, transparent 45px),
+    linear-gradient(to left, #000 0 28px, transparent 45px);
+  mask-image:
+    linear-gradient(to bottom, #000 0 28px, transparent 45px),
+    linear-gradient(to top, #000 0 28px, transparent 45px),
+    linear-gradient(to right, #000 0 28px, transparent 45px),
+    linear-gradient(to left, #000 0 28px, transparent 45px);
+  animation: home-edge-flow 10s linear infinite;
+  animation-play-state: paused;
+  transition: opacity 700ms ease;
+  will-change: background-position, filter;
+}
+
+.home-page.music-is-playing::before {
+  opacity: 0.38;
+  animation-play-state: running;
+}
+
+@keyframes home-edge-flow {
+  0% {
+    --home-edge-angle: 0deg;
+    filter: blur(30px) saturate(150%) hue-rotate(0deg);
+  }
+  50% {
+    --home-edge-angle: 180deg;
+    filter: blur(36px) saturate(175%) hue-rotate(28deg);
+  }
+  100% {
+    --home-edge-angle: 360deg;
+    filter: blur(30px) saturate(150%) hue-rotate(0deg);
+  }
 }
 
 .home-page::after,
@@ -145,6 +205,158 @@
   font-size: 14px;
   text-decoration: underline;
   text-underline-offset: 0.12em;
+}
+
+.gallery-easter-egg {
+  display: grid;
+  grid-template-rows: 0fr;
+  scroll-margin-top: var(--header-height);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    grid-template-rows 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 420ms ease,
+    visibility 0s linear 900ms;
+}
+
+.gallery-easter-egg.is-visible {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    grid-template-rows 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 420ms ease,
+    visibility 0s;
+}
+
+.gallery-easter-egg__inner {
+  min-height: 0;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding-block: 0;
+  transition: padding 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-easter-egg.is-visible .gallery-easter-egg__inner {
+  padding-block: clamp(76px, 11vh, 120px) clamp(56px, 8vh, 88px);
+}
+
+.gallery-easter-egg__player {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.gallery-easter-egg__player iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-carousel {
+  width: min(100%, 980px);
+}
+
+.video-carousel__stage {
+  display: grid;
+  grid-template-columns: minmax(96px, 0.34fr) minmax(0, 1fr) minmax(96px, 0.34fr);
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+.video-carousel__preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  opacity: 0.46;
+  filter: saturate(0.72);
+  cursor: pointer;
+  transform: scale(0.9);
+  transition: opacity 180ms ease, filter 180ms ease, transform 180ms ease;
+}
+
+.video-carousel__preview:hover,
+.video-carousel__preview:focus-visible {
+  opacity: 0.82;
+  filter: saturate(1);
+  transform: scale(0.95);
+}
+
+.video-carousel__preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-carousel__controls {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.video-carousel__arrow {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #000;
+  font: 18px/30px Helvetica, Arial, sans-serif;
+  cursor: pointer;
+  transition: transform 160ms ease;
+}
+
+.video-carousel__arrow:hover,
+.video-carousel__arrow:focus-visible {
+  transform: scale(1.16);
+}
+
+.discovery-counter {
+  min-height: 48px;
+  margin-top: 8px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.discovery-counter__button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #06c;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+  cursor: pointer;
+}
+
+.discovery-counter__button:disabled {
+  color: #777;
+  cursor: default;
+}
+
+.discovery-counter__result {
+  margin: 5px 0 0;
+  color: #000;
 }
 
 .projects-section h1,
@@ -384,6 +596,15 @@
     max-height: 100%;
     object-fit: contain;
   }
+
+  .video-carousel__stage {
+    grid-template-columns: 54px minmax(0, 1fr) 54px;
+    gap: 8px;
+  }
+
+  .video-carousel__preview {
+    border-radius: 7px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -427,6 +648,20 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .home-page::before {
+    animation: none;
+    opacity: 0;
+  }
+
+  .home-page.music-is-playing::before {
+    opacity: 0.28;
+  }
+
+  .gallery-easter-egg,
+  .gallery-easter-egg__inner {
+    transition: none;
+  }
+
   .home-page {
     scroll-behavior: auto;
   }
