@@ -80,7 +80,7 @@ const initialiseYouTubePlayer = async () => {
 
     const initialVideoId = requestedVideoId;
     youtubePlayer = new YT.Player('gallery-easter-player', {
-      host: 'https://www.youtube-nocookie.com',
+      host: 'https://www.youtube.com',
       width: '100%',
       height: '100%',
       videoId: initialVideoId,
