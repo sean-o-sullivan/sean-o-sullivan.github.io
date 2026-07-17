@@ -26,10 +26,10 @@
             Mu is a small standalone particle detector built for the UL Aeronautics Society Ogma flight computer stack. The idea is to put a muon detector in a rocket and see whether the count rate changes as it climbs through less atmosphere. It doesn't need the rest of the stack: it has its own battery input, onboard flash, pressure sensor, and firmware logger, so worst case it can fly as a blackbox wrapped in electrical tape.
           </p>
           <p>
-            The detector is a 50x50x20mm BC-408 plastic scintillator coupled to an OnSemi MicroFC-60035 6x6mm SiPM. The SiPM is biased at about 30V, filtered through small 50 ohm resistors and local capacitors, then read by an OPA656/OPA814-class transimpedance stage sitting around a 2.5V virtual reference. The STM32 samples the output using ADC DMA into a circular buffer, watches for negative-going dips from the rolling baseline, and logs pulse records to flash: timestamp, baseline, amplitude, and a short waveform snapshot. It also logs MS5607 barometric pressure and altitude once a second, so the particle data can be lined up with the flight profile afterwards.
+            The detector is a 50x50x20mm BC-408 plastic scintillator coupled to an OnSemi MicroFC-60035 6x6mm SiPM. The SiPM is biased at about 30V, filtered through small 50 ohm resistors and local capacitors, then read by an OPA656/OPA814-class transimpedance stage sitting around a 2.5V virtual reference. The STM32 samples the output using ADC DMA into a circular buffer, watches for negative-going dips from the rolling baseline, and logs pulse records to flash: timestamp, baseline, amplitude, and a short waveform snapshot. It also logs MS5607 barometric pressure, temperature, and altitude once a second, so the particle data can be lined up with the flight profile afterwards.
           </p>
           <p>
-            The charge-sensitive preamp was initially specced with a 10MΩ feedback resistor. After reducing that to an effective resistance of roughly 264kΩ, the 330pF feedback capacitor set a decay time constant of about 87µs. The ADC samples every 10µs, so it can read the stretched pulse rather than trying to catch the original nanosecond event.
+            The charge-sensitive preamp was initially specced with a 10MΩ feedback resistor. After reducing that to an effective resistance of roughly 264kΩ, the 330pF feedback capacitor set a decay time constant of about 87µs. The flight firmware samples every 10µs, so it can read the stretched pulse rather than trying to catch the original nanosecond event.
           </p>
           <p>
             I reached out to Luxium Solutions and was sponsored a 50x50x50mm cube of BC-408 scintillating plastic. I cut the 50x50x20mm detector from it using the tools in the University of Limerick's workshop, then polished it using acrylic scratch remover that one of the lab technicians found. I also reached out to a former Onsemi Principal Engineer for advice on the readout circuit in the initial stages.
@@ -60,7 +60,7 @@
             I tested it a handful more times and found an issue where, on battery power, it tried initialising the flash immediately at boot and of course that would fail, so it wouldn't log. It now retries a handful of times at boot and works.
           </p>
           <p>
-            It didn't get a clean run at Mach26. In the payload bay it was mounted too close to a Raspberry Pi 5 heatsink, hit around 70°C, and the scintillator expanded enough to over-compress the SiPM against the board. Afterward I could reproduce the fault by tightening and loosening the crystal screws: too much pressure bent the board and shorted it, so the cause was mechanical preload and thermal expansion, not a dead design. After reseating the detector and repairing the disturbed analogue parts, Mu came back.
+            It didn't get a clean run at Mach26. In the payload bay it was mounted too close to a Raspberry Pi 5 heatsink, and the logged temperature around the pressure event (~45°C) was high enough that the scintillator expanded and over-compressed the SiPM against the board. Afterward I could reproduce the fault by tightening and loosening the crystal screws: too much pressure bent the board and shorted it, so the cause was mechanical preload and thermal expansion, not a dead design. After reseating the detector and repairing the disturbed analogue parts, Mu came back.
           </p>
           <p>
             Next up is a solo L1 flight in mid-August, where Mu flies as its own payload. Mach26 showed me that a particle detector is a lot more than just a circuit, it's an optical seal, a thermal stackup, a mechanical clamp, and a sensitive analogue front-end that doesn't appreciate living next to a hot Raspberry Pi 5 in a confined space for a couple of hours.
@@ -97,6 +97,9 @@
       <figure class="process-media project-wide-media initial-test-media">
         <img src="../../images/mu/process/initial-test.jpeg" alt="Mu's initial test setup on the desk beneath a microscope">
         <figcaption><b>Initial test:</b> I was listening to <a href="https://www.youtube.com/watch?v=s7w-IeNR9ko&amp;list=RDs7w-IeNR9ko&amp;start_radio=1" target="_blank" rel="noopener noreferrer">The Mission's main theme</a>.</figcaption>
+      </figure>
+      <figure class="process-media project-wide-media flight-data-media">
+        <img src="../../images/mu/postflight-pressure-temperature.png" alt="Mu post-flight pressure and MS5607 temperature plot showing about 46 degrees Celsius at minimum pressure">
       </figure>
     </div>
 

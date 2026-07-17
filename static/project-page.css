@@ -303,7 +303,8 @@ body.project-page::after {
   max-height: 40vh;
 }
 
-.project-page .image-column.process-gallery .initial-test-media > img {
+.project-page .image-column.process-gallery .initial-test-media > img,
+.project-page .image-column.process-gallery .flight-data-media > img {
   height: auto !important;
 }
 
@@ -313,7 +314,7 @@ body.project-page::after {
   }
 
   .project-page.mu-page .image-column.process-gallery > img:not(.project-lead-media),
-  .project-page.mu-page .image-column.process-gallery .process-media:not(.initial-test-media) > img {
+  .project-page.mu-page .image-column.process-gallery .process-media:not(.initial-test-media):not(.flight-data-media) > img {
     height: clamp(200px, 23vh, 250px) !important;
   }
 
