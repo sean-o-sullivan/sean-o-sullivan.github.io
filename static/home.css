@@ -378,6 +378,12 @@
   gap: clamp(56px, 6.25vw, 88px);
 }
 
+.portfolio-intro {
+  grid-column: 1 / -1;
+  margin: 0;
+  text-align: center;
+}
+
 .project-column,
 .other-work {
   min-width: 0;
