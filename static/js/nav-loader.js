@@ -1,8 +1,40 @@
 // nav-loader.js
+const loadPortfolioMusic = () => {
+    if (window.PortfolioMusic) {
+        window.PortfolioMusic.mountAll();
+        return Promise.resolve();
+    }
+
+    if (window.portfolioMusicScriptPromise) {
+        return window.portfolioMusicScriptPromise.then(() => window.PortfolioMusic?.mountAll());
+    }
+
+    window.portfolioMusicScriptPromise = new Promise((resolve, reject) => {
+        const existingScript = document.querySelector('script[data-portfolio-music-script]');
+        const script = existingScript || document.createElement('script');
+
+        const handleLoad = () => {
+            window.PortfolioMusic?.mountAll();
+            resolve();
+        };
+
+        script.addEventListener('load', handleLoad, { once: true });
+        script.addEventListener('error', reject, { once: true });
+
+        if (!existingScript) {
+            script.src = '/static/js/music-player.js?v=11';
+            script.dataset.portfolioMusicScript = '';
+            document.head.append(script);
+        }
+    });
+
+    return window.portfolioMusicScriptPromise;
+};
+
 document.addEventListener('DOMContentLoaded', async function() {
     try {
         // Attempt to fetch the navbar HTML content
-        const response = await fetch('/static/navbar.html?v=2', { cache: 'no-store' });
+        const response = await fetch('/static/navbar.html?v=6', { cache: 'no-store' });
         if (!response.ok) {
             throw new Error(`Failed to load navbar: ${response.status}`);
         }
@@ -25,6 +57,12 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
 
+        try {
+            await loadPortfolioMusic();
+        } catch (error) {
+            console.error('Music player loading error:', error);
+        }
+
         // Ensure all navbar content is loaded before showing the page
         // This prevents layout shifts and ensures smooth appearance
         window.requestAnimationFrame(() => {
@@ -37,5 +75,3 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
 });
-
-

@@ -202,6 +202,7 @@ body.project-page::after {
   max-width: 100%;
 }
 
+/* Entry-page media is evidence; rounding belongs to homepage timeline thumbnails. */
 .project-page .image-column > img,
 .project-page .image-column > video {
   display: block;
@@ -210,7 +211,7 @@ body.project-page::after {
   max-width: 100%;
   max-height: none;
   object-fit: contain;
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .project-page .textIcontainer > img,
@@ -222,7 +223,7 @@ body.project-page::after {
   max-width: 100%;
   max-height: none;
   object-fit: contain;
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .project-page .textIcontainer > iframe,
@@ -283,7 +284,7 @@ body.project-page::after {
   width: 100%;
   height: 30vh;
   object-fit: contain;
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .project-page .process-media figcaption {
@@ -376,7 +377,7 @@ body.project-page::after {
   width: 100% !important;
   height: 30vh !important;
   object-fit: contain;
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .project-page .annotated-media > img.project-lead-media {
@@ -511,7 +512,7 @@ body.project-page::after {
   margin: 0;
   overflow: hidden;
   border: 1px solid #ddd;
-  border-radius: 6px;
+  border-radius: 0;
   box-shadow: none;
 }
 
@@ -636,6 +637,16 @@ body.project-page::after {
   .project-page .container {
     grid-template-columns: 1fr;
     gap: 48px;
+  }
+
+  .project-page .mobile-project-hero {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100%;
+    max-height: 60svh;
+    margin: 0 0 32px !important;
+    object-fit: contain;
   }
 
   .project-page .project-board-triptych {

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floodlamp · Seán O'Sullivan</title>
+  <meta name="description" content="A halogen floodlamp oven built for PCB reflow and later adapted to anneal twisted-coiled polymer actuators.">
+  <link rel="stylesheet" href="../../static/styles.css?v=4">
+  <link rel="stylesheet" href="../../static/project-page.css?v=16">
+  <link rel="stylesheet" href="../../static/tooling-page.css?v=8">
+</head>
+<body class="project-page tooling-page">
+  <div id="navbar-container"></div>
+
+  <div class="container">
+    <div class="column text-column">
+      <header>
+        <h3>Floodlamp</h3>
+        <p class="subtitle">- I made a reflow &amp; annealing oven from a halogen floodlamp.</p>
+      </header>
+
+      <main>
+        <section>
+          <p><b>Summary</b></p>
+          <p>
+            This is the oven I made during the Patch Summer Accelerator in 2024. It began as a way to reflow the ForceField PCBs, then reflowed the first Pace board and was later adapted to anneal twisted-coiled polymer actuators.
+          </p>
+          <p>
+            An ESP32 reads a K-type thermocouple through a MAX6675 and time-proportions the floodlamp through a solid-state relay using QuickPID. A rotary encoder and ILI9341 screen select the process and plot requested and measured temperature. The hot surface is still roughly 300 × 300 mm of PROMATECT-H, aluminium and tape.
+          </p>
+        </section>
+
+        <section>
+          <p><b>Justification</b></p>
+          <p>
+            My group wanted to hand-assemble the ForceField boards because of the time constraints, and we did not want to wait for a hotplate. My grandfather had a halogen floodlamp and my uncle gave me a roughly 30 × 30 cm sheet of PROMATECT-H insulating board, so that's what I used.
+          </p>
+          <p>
+            I removed the lamp's glass front and laid it flat on the board. The first arrangement did not ramp adequately. I laid aluminium foil over it and the temperature immediately started climbing properly.
+          </p>
+        </section>
+
+        <section>
+          <p><b>Parts List</b></p>
+          <ul class="tooling-parts-list">
+            <li>ESP32 DOIT DevKit V1 (ESP32-WROOM)</li>
+            <li>K-type thermocouple</li>
+            <li>MAX6675 thermocouple interface</li>
+            <li>ILI9341 TFT LCD</li>
+            <li>Three-pin rotary encoder</li>
+            <li>Solid-state relay</li>
+            <li>Breadboard</li>
+            <li>Halogen floodlamp</li>
+            <li>Approximately 300 × 300 mm PROMATECT-H board</li>
+            <li>Aluminium foil / aluminium sheet</li>
+            <li>Black electrical tape</li>
+            <li>RTV silicone sealant</li>
+          </ul>
+        </section>
+
+        <section>
+          <p><b>Documentation</b></p>
+          <p>
+            Repo: <a href="https://github.com/sean-o-sullivan/reflowOven" target="_blank" rel="noopener noreferrer">reflowOven</a>.
+          </p>
+        </section>
+
+        <section>
+          <p><b>Build Log</b></p>
+
+          <div class="build-log-entry">
+            <p><b>July 2024 - first reflow</b></p>
+            <p>
+              I built the first version during Patch from the floodlamp, PROMATECT-H, foil and a breadboard controller. It was not a sealed or particularly elegant oven, but after the foil fixed the ramp it reflowed the ForceField boards within the six-week programme.
+            </p>
+          </div>
+
+          <div class="build-log-entry">
+            <p><b>October 2024 - cleanup and firmware</b></p>
+            <p>
+              I added state-indication LEDs so I could see where the oven was in the reflow cycle, then replaced the tangle of jumper wires with clean solid-core wiring. The breadboard stayed, because it wasn't finished yet.
+            </p>
+          </div>
+
+          <div class="build-log-entry">
+            <p><b>November 2025 - reflow and annealing firmware</b></p>
+            <p>
+              The repository starts late. Its first commit, on 10 November 2025, already calls the firmware v2.3.2 and contains separate <i>Reflow Board</i> and <i>Anneal Twist</i> modes. There is no earlier diff showing the moment I added annealing.
+            </p>
+            <p>
+              Reflow used a 330-second profile: 25 to 155°C over 135 seconds, a 60-second soak, 70 seconds up to 228°C, a 15-second peak, then 50 seconds down to 160°C. The settings screen exposed the preheat and peak temperatures and times. Annealing ramped from the measured starting temperature to 150°C over 60 seconds and ran for 20 minutes. Both modes plotted target and measured temperature while the controller read the thermocouple every 175 ms and drove the relay in a five-second window.
+            </p>
+            <p>
+              This version reflowed the first Pace board. The annealing mode turned the same improvised hardware into the tool I used to heat-treat twisted-coiled polymer actuators.
+            </p>
+          </div>
+
+          <div class="build-log-entry">
+            <p><b>January 2026 - repeated use and fumes</b></p>
+            <p>
+              Repeated use surfaced a problem with the original floodlamp: long, hot runs began producing a strong smell. I suspected the painted housing, but never isolated it from the tape, wiring insulation and other materials being heated. I put it in the same ventilated enclosure as my resin-printing setup and built a dedicated <a href="/tooling/fume-extraction/">fume-extraction system</a>.
+            </p>
+          </div>
+
+          <div class="build-log-entry">
+            <p><b>January 2026 - general heater and new surface</b></p>
+            <p>
+              On 7 January I moved the firmware into PlatformIO and made the annealing path less specific. <i>Anneal Twist</i> became <i>Anneal / Heater</i>: the encoder now selects a target from 20 to 250°C before starting, the default run became one hour, and the settings allow up to ten hours. It retained the 60-second ramp and live target-versus-actual graph. The reflow path stayed alongside it.
+            </p>
+            <p>
+              I used the general heater mode inside my resin-printing enclosure too. Selecting a low target gave the enclosure some background heat, instead of the floodlamp being limited to full reflow and annealing cycles.
+            </p>
+            <p>
+              I also refurbished the thermal surface. I laid a new aluminium sheet over the PROMATECT-H, secured it with new black electrical tape and sealed around the rim with RTV silicone. It was maintenance, not a clean rebuild.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="column image-column media-grid tooling-media-gallery">
+      <img class="project-lead-media" src="../../images/tooling/halogen-oven/headline.jpg" alt="Floodlamp oven, controller and two ForceField boards">
+
+      <figure class="annotated-media tooling-media-item tooling-media-wide">
+        <img src="../../images/tooling/halogen-oven/patch-2024.png" alt="Floodlamp oven, controller and team during the Patch Summer Accelerator">
+        <figcaption><b>Patch, July 2024.</b> The oven, controller and the people building with it during the accelerator.</figcaption>
+      </figure>
+
+      <figure class="annotated-media tooling-media-item">
+        <img src="../../images/tooling/halogen-oven/prototype-0-no-foil.jpg" alt="Prototype zero of the floodlamp oven without aluminium foil">
+        <figcaption><b>Prototype 0.</b> Bare PROMATECT-H did not ramp adequately.</figcaption>
+      </figure>
+
+      <figure class="annotated-media tooling-media-item">
+        <img src="../../images/tooling/halogen-oven/prototype-1-foil.jpg" alt="Prototype one of the floodlamp oven with aluminium foil">
+        <figcaption><b>Prototype 1.</b> Adding aluminium foil made the temperature climb properly.</figcaption>
+      </figure>
+
+      <figure class="annotated-media tooling-media-item tooling-media-wide">
+        <div class="tooling-media-video">
+          <iframe src="https://www.youtube.com/embed/BW0zEiI4BzY" title="Floodlamp oven controller after its October 2024 cleanup" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption><b>October 2024.</b> I added state-indication LEDs for the reflow cycle and replaced the tangle of jumper wires with clean solid-core wiring.</figcaption>
+      </figure>
+
+      <div class="video-container project-lead-media">
+        <iframe src="https://www.youtube.com/embed/_MiWoZotWU8" title="Floodlamp oven running in heater mode" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+
+      <figure class="annotated-media tooling-media-item">
+        <img src="../../images/tooling/halogen-oven/resin-enclosure-heater.jpg" alt="Floodlamp oven inside a ventilated resin-printing enclosure">
+        <figcaption><b>January 2026 - resin enclosure.</b> Heater mode gave the enclosure some background heat.</figcaption>
+      </figure>
+
+      <figure class="annotated-media tooling-media-item">
+        <img src="../../images/tooling/halogen-oven/under-lamp.jpg" alt="Aluminium heating surface and thermocouple beneath the floodlamp">
+        <figcaption><b>Under the lamp.</b> The aluminium surface, thermocouple and the PROMATECT-H beneath them.</figcaption>
+      </figure>
+
+    </div>
+  </div>
+
+  <script src="../../static/js/nav-loader.js?v=11"></script>
+  <script src="/static/js/project-page.js?v=3"></script>
+  <script src="/static/js/image-lightbox.js?v=2"></script>
+  <script src="/static/js/footer-loader.js?v=2"></script>
+</body>
+</html>

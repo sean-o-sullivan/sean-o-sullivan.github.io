@@ -6,7 +6,7 @@
 }
 
 .home-page {
-  --page-width: 1120px;
+  --page-width: 1240px;
   --side-padding: clamp(18px, 5vw, 42px);
   --header-height: 56px;
   --nav-surface: rgba(255, 255, 255, 0.94);
@@ -62,7 +62,7 @@
   will-change: background-position, filter;
 }
 
-.home-page.music-is-playing::before {
+.home-page.secret-area-discovered::before {
   opacity: 0.38;
   animation-play-state: running;
 }
@@ -112,6 +112,14 @@
 
 .home-page a {
   color: #0864c7;
+}
+
+.home-page .portfolio-audio-player__track {
+  color: #777;
+}
+
+.home-page .portfolio-audio-player__track:hover {
+  color: #333;
 }
 
 .home-page a:focus-visible,
@@ -175,6 +183,10 @@
   padding-inline: var(--side-padding);
 }
 
+.home-record {
+  position: relative;
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -193,6 +205,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .site-nav .site-name {
@@ -373,14 +386,37 @@
   padding-bottom: clamp(80px, 12vw, 140px);
   scroll-margin-top: var(--header-height);
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(270px, 1fr);
+  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 1fr));
   align-items: start;
-  gap: clamp(56px, 6.25vw, 88px);
+  column-gap: clamp(24px, 2.5vw, 40px);
+  row-gap: clamp(52px, 6vw, 82px);
+}
+
+.portfolio-introduction {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.portfolio-intro-personal {
+  margin: 0;
+  font-size: 15px;
+}
+
+.portfolio-intro {
+  margin: 12px 0 0;
+  color: #555;
+  text-align: center;
 }
 
 .project-column,
+.tooling-column,
 .other-work {
   min-width: 0;
+}
+
+.column-heading {
+  margin-bottom: 24px !important;
+  font-weight: 400 !important;
 }
 
 .project-list {
@@ -472,7 +508,12 @@
 }
 
 .other-work {
+  margin-top: 0;
   padding-top: 0;
+}
+
+.tooling-list .project-media img {
+  object-fit: cover;
 }
 
 .work-gallery {
@@ -527,12 +568,47 @@
   margin-left: 0.55em;
 }
 
-@media (min-width: 1200px) {
-  .page-shell,
-  .site-nav {
-    width: min(60vw, 1120px);
-    padding-inline: 0;
-  }
+.other-software-entry {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: start;
+  margin-top: 8px;
+}
+
+.other-software-entry time {
+  padding-top: 1px;
+  color: #aaa;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.other-software-entry .other-work-link {
+  min-width: 0;
+  margin: 0;
+}
+
+.other-software-entry .other-work-link a {
+  font-weight: 700;
+}
+
+.closing-photograph {
+  position: relative;
+  z-index: 12;
+  height: 100svh;
+  padding: 0 21px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #fff;
+}
+
+.closing-photograph img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  object-fit: contain;
 }
 
 @media (max-width: 680px) {
@@ -606,6 +682,46 @@
   }
 }
 
+@media (min-width: 901px) and (max-width: 1199px) {
+  .other-software-entry {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+
+  .other-software-entry time {
+    font-size: 11px;
+  }
+
+  .home-page .project-entry {
+    grid-template-columns: 36px 102px minmax(0, 1fr);
+    min-height: 110px;
+  }
+
+  .project-entry time,
+  .project-entry > span:first-child {
+    padding-right: 6px;
+    font-size: 11px;
+  }
+
+  .project-media {
+    min-height: 110px;
+    padding: 7px 0 18px 14px;
+  }
+
+  .project-media img,
+  .project-placeholder {
+    width: 84px;
+    height: 84px;
+  }
+
+  .project-entry > p {
+    padding-left: 14px;
+  }
+
+  .home-page .project-entry.other-work-entry {
+    grid-template-columns: 84px minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 900px) {
   .projects-section {
     grid-template-columns: 1fr;
@@ -613,12 +729,17 @@
   }
 
   .other-work {
+    margin-top: 0;
     padding-top: 0;
   }
 
 }
 
 @media (max-width: 360px) {
+  .other-software-entry {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
   .home-page .project-entry {
     grid-template-columns: 40px 70px minmax(0, 1fr);
   }
@@ -652,7 +773,7 @@
     opacity: 0;
   }
 
-  .home-page.music-is-playing::before {
+  .home-page.secret-area-discovered::before {
     opacity: 0.28;
   }
 

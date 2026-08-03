@@ -5,19 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home · Seán O'Sullivan</title>
   <meta name="description" content="Seán O'Sullivan's portfolio of software, electronics, and engineering projects.">
-  <link rel="stylesheet" href="/static/styles.css">
-  <link rel="stylesheet" href="/static/home.css?v=22">
+  <link rel="stylesheet" href="/static/styles.css?v=4">
+  <link rel="stylesheet" href="/static/home.css?v=36">
 
 </head>
 <body class="home-page">
-  <header class="site-header">
-    <nav class="site-nav" aria-label="Primary navigation">
-      <span class="site-name">Seán O'Sullivan</span>
-      <a class="site-contact" href="mailto:hi@sean-osullivan.com">email me</a>
-    </nav>
-  </header>
+  <div class="home-record">
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Primary navigation">
+        <span class="site-name">Seán O'Sullivan</span>
+        <div class="portfolio-audio-player" data-portfolio-audio-player aria-label="Music player">
+          <div class="portfolio-audio-player__ticker">
+            <a
+              class="portfolio-audio-player__track"
+              data-audio-track
+              href="https://ncs.io/onandon"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Cartoon, Jéja — On &amp; On (feat. Daniel Levi)</a>
+          </div>
+          <div class="portfolio-audio-player__controls">
+            <button data-audio-toggle type="button" aria-label="Play music" title="Play music">▶</button>
+            <button data-audio-next type="button" aria-label="Next song" title="Next song">›</button>
+            <input
+              data-audio-volume
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.33"
+              aria-label="Music volume"
+              title="Music volume"
+            >
+          </div>
+        </div>
+        <a class="site-contact" href="mailto:hi@sean-osullivan.com">email me</a>
+      </nav>
+    </header>
 
-  <main>
+    <main>
     <section class="gallery-easter-egg page-shell" id="gallery-easter-egg" aria-label="Hidden video" aria-hidden="true" inert>
       <div class="gallery-easter-egg__inner">
         <div class="video-carousel">
@@ -42,10 +68,14 @@
       </div>
     </section>
 
-    <section class="projects-section page-shell" id="projects" aria-label="Projects">
-      <p class="portfolio-intro">A chronological record of things I have built.</p>
+    <section class="projects-section page-shell" id="projects" aria-label="Work">
+      <div class="portfolio-introduction">
+        <p class="portfolio-intro-personal">I build things that would electrify ten-year-old me. Often, that means building the tools too. Luckily, I like both.</p>
+        <p class="portfolio-intro">Electronics, machines, and software, in roughly chronological order.</p>
+      </div>
 
-      <div class="project-column">
+      <div class="project-column" aria-labelledby="projects-heading">
+        <h2 class="column-heading" id="projects-heading">Projects</h2>
         <ol class="project-list">
         <li class="project-entry">
           <time datetime="2026-06">6 '26</time>
@@ -56,7 +86,7 @@
         <li class="project-entry">
           <time datetime="2026-05">5 '26</time>
           <div class="project-media"><img src="/thumbnails/ogma.jpeg" alt="Render of the Ogma modular flight computer stack"></div>
-          <p><a href="/projects/ogma/">Ogma</a><span>modular flight computer for high-powered rocketry</span></p>
+          <p><a href="/projects/ogma/">Ogma</a><span>modular flight computer for rocketry</span></p>
         </li>
 
         <li class="project-entry">
@@ -115,7 +145,43 @@
         </ol>
       </div>
 
-      <aside class="other-work" aria-label="Other work">
+      <section class="tooling-column" aria-labelledby="tooling-heading">
+        <h2 class="column-heading" id="tooling-heading">Tooling</h2>
+        <ol class="project-list tooling-list">
+          <li class="project-entry">
+            <time datetime="2026-05">5 '26</time>
+            <div class="project-media">
+              <img src="/thumbnails/sparky.jpeg" alt="Sparky, a heavily modified Ender 3 Pro">
+            </div>
+            <p><a href="/tooling/printer/">Sparky</a><span>Ender 3 Pro, gradually rebuilt</span></p>
+          </li>
+
+          <li class="project-entry">
+            <time datetime="2026-01">1 '26</time>
+            <div class="project-media">
+              <img src="/images/tooling/fume-extraction/homepage.jpeg" alt="Twin extraction ducts running from stacked workshop enclosures to the window">
+            </div>
+            <p><a href="/tooling/fume-extraction/">Extractor</a><span>window-vented fume enclosure</span></p>
+          </li>
+
+          <li class="project-entry">
+            <time datetime="2025-06">6 '25</time>
+            <div class="project-media">
+              <img src="/thumbnails/twister.jpg" alt="Twister machine, control electronics and copper carriage">
+            </div>
+            <p><a href="/tooling/twister/">Twister</a><span>machine for making tiny artificial muscles</span></p>
+          </li>
+
+          <li class="project-entry">
+            <time datetime="2024-07">7 '24</time>
+            <div class="project-media"><img src="/thumbnails/floodlamp-oven.jpg" alt="Floodlamp oven, controller and two ForceField boards"></div>
+            <p><a href="/tooling/halogen-oven/">Floodlamp</a><span>reflow &amp; annealing oven</span></p>
+          </li>
+        </ol>
+      </section>
+
+      <aside class="other-work" aria-labelledby="other-heading">
+        <h2 class="column-heading" id="other-heading">Other</h2>
         <button class="work-gallery" type="button" aria-label="Show the next piece of work" aria-controls="gallery-easter-egg" aria-expanded="false" title="Click to see more">
           <img src="/thumbnails/hands-cool.jpg" alt="A selection of other design and fabrication work">
         </button>
@@ -126,13 +192,31 @@
           <p><a href="https://www.thingiverse.com/liminil/designs" target="_blank" rel="noopener noreferrer">Thingiverse</a><span>where I share my 3D prints</span></p>
         </div>
 
-        <p class="other-work-link"><a href="https://github.com/sean-o-sullivan/open-mac-eq" target="_blank" rel="noopener noreferrer">open[mac]Eq</a><span>system-wide parametric EQ</span></p>
+        <div class="other-software-entry">
+          <time datetime="2026-07">7 '26</time>
+          <p class="other-work-link"><a href="https://github.com/sean-o-sullivan/fusion-cursor-orbit" target="_blank" rel="noopener noreferrer">Orbit</a><span>cursor-pivot orbit for Fusion</span></p>
+        </div>
 
+        <div class="other-software-entry">
+          <time datetime="2026-07">7 '26</time>
+          <p class="other-work-link"><a href="https://www.ulas-hipr.ie/" target="_blank" rel="noopener noreferrer">HiPR</a><span>rocketry team website</span></p>
+        </div>
+
+        <div class="other-software-entry">
+          <time datetime="2026-07">7 '26</time>
+          <p class="other-work-link"><a href="https://github.com/sean-o-sullivan/open-mac-eq" target="_blank" rel="noopener noreferrer">open[mac]Eq</a><span>system-wide EQ</span></p>
+        </div>
       </aside>
     </section>
-  </main>
+    </main>
+  </div>
 
-  <script src="/static/js/home.js?v=11"></script>
+  <section class="closing-photograph" aria-label="Sunlit clouds over a garden">
+    <img class="no-lightbox" src="/images/closing-sky.jpg" alt="Sunlit clouds above trees and a garden deck" loading="lazy" decoding="async">
+  </section>
+
+  <script src="/static/js/home.js?v=14"></script>
+  <script src="/static/js/music-player.js?v=11"></script>
   <script src="/static/js/image-lightbox.js?v=2"></script>
 </body>
 </html>

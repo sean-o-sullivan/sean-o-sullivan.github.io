@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pace · Seán O'Sullivan</title>
   <meta name="description" content="Pace, a coin-sized magnetic pacing timer with a 60 LED display and charging case.">
-  <link rel="stylesheet" href="../../static/styles.css">
-  <link rel="stylesheet" href="../../static/project-page.css?v=12">
+  <link rel="stylesheet" href="../../static/styles.css?v=4">
+  <link rel="stylesheet" href="../../static/project-page.css?v=16">
 
 </head>
 <body class="project-page">
@@ -51,7 +51,7 @@
             The project sat for a while. In November 2025 I picked it up again and rebuilt it rather than trying to rescue v2: a new Pace board, a separate charge board, a new case, and new firmware. The useful change was charlieplexing. Sixty LEDs only need nine bus lines, so the external matrix driver and buried-via layout disappeared while the board stayed coin-sized.
           </p>
           <p>
-            The board was so much fun to assemble. I placed parts<sup id="pace-assembly-note-ref"><a class="footnote-ref" href="#pace-assembly-note" role="doc-noteref" aria-label="See assembly footnote">†</a></sup> through 6 loupes taped together for roughly 10× magnification and reflowed it in an oven I had made from a halogen floodlamp. It took me about 6 hours to place and in the meantime the flux for the solder paste had evaporated. So I ran a second reflow cycle with plenty flux to fix the pillow in head defects that plagued over half of the LEDs. There were many moments before and after reflowing where I looked at it wrong and 4 LEDs pinged off and then I had to replace them while hoping not to fry the rest of the board. Pace rev3 has weathered more than 20 reflow cycles. I also tried casting the electronics in a resin-printed mould. The release spray did not release, so I ended up carving the board back out through fibreglass and resin.<sup id="pace-waterproofing-note-ref"><a class="footnote-ref" href="#pace-waterproofing-note" role="doc-noteref" aria-label="See waterproofing footnote">‡</a></sup> It survived.
+            The board was so much fun to assemble. I briefly explored using my Ender 3 Pro as a machine-assisted pick-and-place machine: I wrote a control script and printed a holder for a needle. It was far more time-consuming—or at least felt that way—and I was in the mood for some effort, so I put Yuki Hayashi's <i>At the Limit</i> on loop, bit the bullet, and placed everything by hand. I placed parts<sup id="pace-assembly-note-ref"><a class="footnote-ref" href="#pace-assembly-note" role="doc-noteref" aria-label="See assembly footnote">†</a></sup> through 6 loupes taped together for roughly 10× magnification and reflowed it in an oven I had made from a halogen floodlamp. It took me about 6 hours to place and in the meantime the flux for the solder paste had evaporated. So I ran a second reflow cycle with plenty flux to fix the pillow in head defects that plagued over half of the LEDs. There were many moments before and after reflowing where I looked at it wrong and 4 LEDs pinged off and then I had to replace them while hoping not to fry the rest of the board. Pace rev3 has weathered more than 20 reflow cycles. I also tried casting the electronics in a resin-printed mould. The release spray did not release, so I ended up carving the board back out through fibreglass and resin.<sup id="pace-waterproofing-note-ref"><a class="footnote-ref" href="#pace-waterproofing-note" role="doc-noteref" aria-label="See waterproofing footnote">‡</a></sup> It survived.
           </p>
           <p>
             The firmware uses the 32.768kHz crystal and RTC for the one-second tick, then shares the display time between the two hands and north marker. I wanted the startup to feel less like a circuit waking up, so it begins with a short random sparkle. There is no stored animation: on every boot the ADC samples the internal voltage reference 32 times, mixes the lowest four noisy bits of each reading into a seed, and feeds that into a xorshift generator. The resulting pattern is different each time, then the hands move into place and the timer starts.
@@ -147,7 +147,8 @@
     </div>
   </section>
 
-  <script src="../../static/js/nav-loader.js?v=2"></script>
+  <script src="../../static/js/nav-loader.js?v=11"></script>
+  <script src="/static/js/project-page.js?v=3"></script>
   <script src="/static/js/image-lightbox.js"></script>
   <script src="/static/js/footer-loader.js?v=2"></script>
 </body>

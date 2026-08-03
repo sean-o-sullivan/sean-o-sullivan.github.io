@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mu · Seán O'Sullivan</title>
   <meta name="description" content="Mu, a standalone cosmic ray detector for a rocket.">
-  <link rel="stylesheet" href="../../static/styles.css">
-  <link rel="stylesheet" href="../../static/project-page.css?v=13">
+  <link rel="stylesheet" href="../../static/styles.css?v=4">
+  <link rel="stylesheet" href="../../static/project-page.css?v=16">
 
 </head>
 <body class="project-page mu-page">
@@ -66,6 +66,10 @@
             Next up is a solo L1 flight in mid-August, where Mu flies as its own payload. Mach26 showed me that a particle detector is a lot more than just a circuit, it's an optical seal, a thermal stackup, a mechanical clamp, and a sensitive analogue front-end that doesn't appreciate living next to a hot Raspberry Pi 5 in a confined space for a couple of hours.
           </p>
         </section>
+
+        <p>
+          I also wrote the Python field console used to work with Mu. It can flash new firmware, read named blocks of the STM32's SRAM over SWD for live plots, and retrieve the external flash log through a 512-byte SRAM mailbox in contiguous chunks for local parsing and plotting.
+        </p>
 
         <p class="footnote" id="mu-wrapping-note" role="doc-footnote">
           <a class="footnote-backref" href="#mu-wrapping-note-ref" aria-label="Back to wrapping footnote reference">†</a>
@@ -134,7 +138,8 @@
     <img src="../../images/mu/mu-sch.png" alt="Mu particle detector schematic">
   </section>
 
-  <script src="../../static/js/nav-loader.js?v=2"></script>
+  <script src="../../static/js/nav-loader.js?v=11"></script>
+  <script src="/static/js/project-page.js?v=3"></script>
   <script src="/static/js/image-lightbox.js"></script>
   <script src="/static/js/footer-loader.js?v=2"></script>
 </body>

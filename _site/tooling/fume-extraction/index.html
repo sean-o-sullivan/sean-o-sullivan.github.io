@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extractor · Seán O'Sullivan</title>
+  <meta name="description" content="A window-vented extraction enclosure built for a floodlamp oven, PCB reflow and resin work.">
+  <link rel="stylesheet" href="../../static/styles.css?v=4">
+  <link rel="stylesheet" href="../../static/project-page.css?v=16">
+  <link rel="stylesheet" href="../../static/tooling-page.css?v=11">
+</head>
+<body class="project-page tooling-page twister-page extractor-page">
+  <div id="navbar-container"></div>
+
+  <div class="container">
+    <div class="column text-column">
+      <header>
+        <h3>Extractor</h3>
+        <p class="subtitle">- A window-vented fume enclosure for a bedroom workshop</p>
+      </header>
+
+      <main>
+        <section>
+          <p><b>Summary</b></p>
+          <p>
+            Extractor is the ventilation system I built around tools that were never meant to run in a bedroom. It began as one fold-out enclosure, an axial fan and a length of aluminium hose poked through a tilted-open window. It grew into two stacked enclosures and two ducts routed through printed adapters into the four trickle-vent slots at the top of the window.
+          </p>
+          <p>
+            The first major improvement was a centrifugal blower salvaged from an old iMac. The final main extractor is a much larger 12V blower in a generatively designed printed bracket. That fan also exposed the porosity of the printed outlet: it forced some exhaust through the FDM walls and around the window interface. I kept the iMac blower beside the outlet as a second-stage catcher for what escaped there.
+          </p>
+          <p>
+            Fan power did not make placement irrelevant. With only the iMac blower, putting the oven in the front-right corner and opening the enclosure zip at either the top or bottom merely changed where the fumes gathered. Moving the oven directly beneath the extractor fixed that. The larger blower let me put the oven in front of the front-left vertical zip and open that zip fully while keeping the flow inward; the iMac blower alone could not hold that opening without air and fumes spilling into the room.
+          </p>
+          <p>
+            It works well enough for reflow, annealing and resin work. I never measured face velocity, duct flow, pressure or VOC concentration, so this is a record of a useful workshop tool, not evidence of a certified ventilation system.
+          </p>
+        </section>
+
+        <section>
+          <p><b>Justification</b></p>
+          <p>
+            Long, hot runs in the <a href="/tooling/halogen-oven/">Floodlamp Oven</a> began producing a strong smell. I suspected the painted lamp housing, but never isolated it from the tape, wiring insulation, sealant and everything else being heated. Either way, annealing artificial muscles and reflowing boards needed local extraction.
+          </p>
+          <p>
+            On 10 October 2025 I bought a fold-out printer enclosure with a light and a small adjustable fan. Laid on its side, it could fit the roughly 300 × 300mm oven beside an Ender 3. A second enclosure later turned the same stack into the resin workspace I used while developing moulds for <a href="/projects/pace/">Pace</a>.
+          </p>
+          <p>
+            The awkward part was the window. A hose through a partly opened casement left a large gap for outside air to bring fumes back in. Removing the plastic cover from the room's trickle vent revealed four slots, each about 103 × 15mm and roughly 59mm deep. I decided to make those slots the exhaust port.
+          </p>
+        </section>
+
+        <section>
+          <p><b>Parts List</b></p>
+          <ul class="tooling-parts-list">
+            <li>Two fire-resistant fold-out 3D-printer enclosures</li>
+            <li>Original axial extraction fan</li>
+            <li>Two lengths of corrugated aluminium duct</li>
+            <li>Four-port printed trickle-vent manifold and removable duct adapters</li>
+            <li>BSB1012HE-HM00 centrifugal blower salvaged from an old iMac</li>
+            <li>SHLF9BMB12P2J619 12V centrifugal blower</li>
+            <li>Generatively designed FDM-printed blower bracket</li>
+            <li>12V, 10A, 120W LED-strip power supply</li>
+            <li>Co-extrusion PLA and PETG printed parts</li>
+            <li>Magnets, stainless-steel wire, heat-shrink and adhesive</li>
+          </ul>
+        </section>
+
+        <section>
+          <p><b>Build Log</b></p>
+
+          <div class="build-log-entry">
+            <p><b>The axial-fan version</b></p>
+            <p>
+              The first system was exactly as crude as it looked: one enclosure around the printer and oven, one axial fan, one hose through a tilted-open window and the curtains drawn around the remaining gap. It established that containing the process and giving the air one exit was far better than letting the room dilute everything.
+            </p>
+          </div>
+
+          <div class="build-log-entry">
+            <p><b>The iMac blower</b></p>
+            <p>
+              On 31 October I pulled a BSB1012HE-HM00 blower from an old iMac, identified power and ground among its four wires and ignored the PWM and tachometer lines. An early test produced a large spark and briefly made me think I had killed it. I had not; the supply voltage was simply too low. At 12V it moved far more air than the axial fan.
+            </p>
+            <p>
+              I printed a holder and joined the blower to the duct at roughly 45 degrees. It could pull the fabric enclosure inward. After I assembled the second box it was occasionally too effective for the immediate setup, so I stuffed the cotton gloves supplied with the enclosure into the aluminium pipe as a temporary restrictor. Elegant it was not.
+            </p>
+          </div>
+
+          <div class="build-log-entry">
+            <p><b>Making the window part of the tool</b></p>
+            <p>
+              The trickle-vent manifold took several long prints. Two mirrored halves entered all four slots; further parts merged them into the duct and used magnets so the hoses could be detached without removing the window hardware. The installed adapter reused two screws from the original vent cover.
+            </p>
+            <p>
+              It is extremely opinionated: it fits one window in one room. That was the point. The duct could rise directly from the enclosure and meet a permanent outlet instead of being crushed into an open window every time I wanted to reflow something.
+            </p>
+          </div>
+
+          <div class="build-log-entry">
+            <p><b>The enclosure was part of the duct</b></p>
+            <p>
+              The iMac blower made the extractor usable, but it still dictated the layout. With the oven in the front-right corner, opening the zip at the top or bottom only changed whether fumes gathered high or low in the enclosure. I moved the oven directly beneath the extraction point instead.
+            </p>
+            <p>
+              The larger blower changed the geometry. The oven could sit in front of the front-left vertical zip, and I could open that zip fully for make-up air while the net flow remained inward. The same opening overwhelmed the iMac blower by itself and let air spill back out.
+            </p>
+          </div>
+
+          <div class="build-log-entry">
+            <p><b>The industrial blower</b></p>
+            <p>
+              Resin work made the limits of the iMac blower obvious, so in January 2026 I ordered a much larger centrifugal unit. Its listing claimed 12V, 3.8A, 45.6W, 7500rpm, 190CFM and 65dB. I verified none of the airflow figures, but the noise specification was believable.
+            </p>
+            <p>
+              My first scan of the blower was inaccurate, so I found a matching vendor model and used Fusion's automated modelling tools to generate a bracket around it: faces to connect, bodies to avoid, then a printable result that held the outlet where the duct needed it. The first powered bench test made the assembly hover and skitter like a hockey puck.
+            </p>
+          </div>
+
+          <div class="build-log-entry">
+            <p><b>Porosity, breakage and the second fan</b></p>
+            <p>
+              The larger blower put enough pressure into the printed window receiver to force air through its porous FDM walls and around the window interface. Rather than immediately reprint and seal the whole outlet, I slung the iMac blower beside it with stainless-steel wire. Its new job was to collect that leakage, not recirculate it inside the enclosure.
+            </p>
+            <p>
+              During one resin print I lifted the tent ceiling to remove the printer lid and snapped the wired-in fan holder. I repaired and repositioned it. The ugly mounting survived because it was easy to alter when the geometry of the workspace changed.
+            </p>
+          </div>
+
+          <div class="build-log-entry">
+            <p><b>Power</b></p>
+            <p>
+              I initially ran the industrial blower from a laptop supply. It survived the first tests, then died after driving the blower for some time. I replaced it with a proper 12V, 10A, 120W supply sold for LED strips, then soldered, heat-shrunk and mounted the final wiring.
+            </p>
+            <p>
+              The large blower is loud, so it runs while I am actively working and during the purge afterwards. The iMac blower is quiet enough to leave running for longer.
+            </p>
+          </div>
+
+          <div class="build-log-entry">
+            <p><b>What it enabled</b></p>
+            <p>
+              The extractor supported the hand assembly and repeated reflow of Pace and its charge board, then became part of the resin workflow for Pace's moulds. The printer's own cover could retain vapour after the larger enclosure had cleared, so I learned to crack or remove it during the purge rather than treating the outer tent as the whole air volume.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <p><b>Current State</b></p>
+          <p>
+            The system remains part of the home workshop. It made long oven runs, PCB reflow and resin printing tolerable enough to use, but smell and visible fabric movement were my only feedback. Neither tells me the actual exposure level.
+          </p>
+          <p>
+            The larger blower revealed that a duct is not only its centreline geometry. Printed-wall porosity, seals, outlet area, make-up air, tool position and outside pressure all became part of the machine. If I rebuilt it, I would seal or remake the window manifold, add a simple face-velocity check and move the loud blower farther from the desk before adding any more motor.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <aside class="column image-column twister-story-media" aria-label="Extractor build chronology">
+      <figure class="process-media project-lead-media">
+        <img src="/images/tooling/fume-extraction/hero.jpeg" alt="Final extraction setup with two stacked enclosures and two aluminium ducts running to the window">
+        <figcaption><b>Extractor.</b> Two enclosed work zones feeding a permanent outlet through the window's trickle vents.</figcaption>
+      </figure>
+
+      <figure class="process-media twister-actuation-lead" data-video-source="hella satisfying video of me plugging in the fan and it just working and both turning on must use this.MOV" data-youtube-id="AzLXa8e25o8">
+        <div class="twister-video-embed">
+          <iframe src="https://www.youtube.com/embed/AzLXa8e25o8" title="Both Extractor Fans Starting" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption><b>23 January 2026: final start-up.</b> One plug, both fans, no ceremony.</figcaption>
+      </figure>
+
+      <figure class="process-media" data-video-source="initial system with axial fan going out my window just tilted open, funny you can see the muscle there.MOV" data-youtube-id="Gu6FQRk7vTw">
+        <div class="twister-video-embed">
+          <iframe src="https://www.youtube.com/embed/Gu6FQRk7vTw" title="Initial Axial-Fan Extraction System" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption><b>17 October 2025: axial-fan version.</b> One enclosure, one fan and a hose through a tilted-open window.</figcaption>
+      </figure>
+
+      <section class="twister-pair-gallery twister-milestone-pair" aria-label="Initial window duct and salvaged iMac blower">
+        <figure class="process-media">
+          <img src="/images/tooling/fume-extraction/axial-window.jpeg" alt="Aluminium extraction duct passing through a tilted-open window behind closed curtains">
+          <figcaption><b>17 October: the first outlet.</b> The curtains were the barrier around the gap left by the open window. I also had to squash the aluminium piping out the gap in the window, which was no fun at all.</figcaption>
+        </figure>
+
+        <figure class="process-media">
+          <img src="/images/tooling/fume-extraction/imac-spark-test.jpeg" alt="Salvaged iMac centrifugal blower spinning during its first powered bench test">
+          <figcaption><b>31 October: salvaged blower.</b> The impeller was spinning; the big spark had not killed it. The supply voltage had simply been too low.</figcaption>
+        </figure>
+      </section>
+
+      <figure class="process-media">
+        <img src="/images/tooling/fume-extraction/whole-manifold.jpeg" alt="Complete printed window outlet with four trickle-vent branches, merged passages and a round magnetic duct receiver">
+        <figcaption><b>9 November: complete outlet assembly.</b> All four vent-slot branches, both merges and the magnetic duct receiver before installation.</figcaption>
+      </figure>
+
+      <section class="twister-pair-gallery twister-milestone-pair" aria-label="Installed window manifold and iMac-blower oven layout">
+        <figure class="process-media">
+          <img src="/images/tooling/fume-extraction/window-manifold.jpeg" alt="Printed manifold fitted into the four trickle-vent slots and retained by the original cover screws">
+          <figcaption><b>10 November: fitted outlet.</b> Two original vent-cover screws hold the custom manifold to this particular window.</figcaption>
+        </figure>
+
+        <figure class="process-media">
+          <img src="/images/tooling/fume-extraction/imac-layout.jpeg" alt="Floodlamp oven positioned directly below the iMac extraction blower inside the enclosure">
+          <figcaption><b>14 November: positioning mattered.</b> Moving the oven out of the front-right corner and directly under the fan stopped fumes collecting at one end of the enclosure.</figcaption>
+        </figure>
+      </section>
+
+      <figure class="process-media" data-video-source="reflowing pace in oven with extractor.MOV" data-youtube-id="tFXUOArj9lc">
+        <div class="twister-video-embed">
+          <iframe src="https://www.youtube.com/embed/tFXUOArj9lc" title="Reflowing Pace With the Extractor" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption><b>24 November: Pace reflow.</b> The oven and controller running inside the extracted workspace.</figcaption>
+      </figure>
+
+      <section class="twister-pair-gallery twister-milestone-pair" aria-label="5 January 2026 resin-printing setup and broken fan holder">
+        <figure class="process-media" data-video-source="during one resin print try i snapped the holder for the fan as it was secured to frame with steel wire and i was lifting cthe tent ceiling while taking off the lid of prntier.MOV" data-youtube-id="28U19mp07TE">
+          <div class="twister-video-embed">
+            <iframe src="https://www.youtube.com/embed/28U19mp07TE" title="Broken Extractor Fan Holder" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <figcaption><b>5 January 2026: collateral damage.</b> Lifting the tent roof to clear the resin-printer lid snapped the wire-secured fan holder.</figcaption>
+        </figure>
+
+        <figure class="process-media">
+          <img src="/images/tooling/fume-extraction/resin-cleaning.jpeg" alt="Resin-print cleaning tools and curing station arranged inside the enclosure">
+          <figcaption><b>5 January: resin cleaning.</b> The second enclosure became the contained dirty-work area as well as the printer chamber.</figcaption>
+        </figure>
+      </section>
+
+      <section class="twister-pair-gallery twister-cad-gallery" aria-label="Industrial blower bracket design and installation">
+        <figure class="process-media">
+          <img src="/images/tooling/fume-extraction/industrial-blower-cad.png" alt="Fusion model of the industrial blower inside a generatively designed mounting bracket">
+          <figcaption><b>12 January: bracket model.</b> A vendor model replaced my inaccurate scan before the automated bracket study.</figcaption>
+        </figure>
+
+        <figure class="process-media">
+          <img src="/images/tooling/fume-extraction/industrial-blower-bracket.jpeg" alt="Industrial centrifugal blower held in the white printed generative bracket">
+          <figcaption><b>13 January: printed bracket.</b> The strange-looking structure held the heavy blower while leaving its inlet and outlet clear.</figcaption>
+        </figure>
+      </section>
+
+      <section class="twister-pair-gallery twister-milestone-pair" aria-label="13 January 2026 industrial-blower tests">
+        <figure class="process-media" data-video-source="first test, it started hovering like a hockey puck.MOV" data-youtube-id="DuQnabENe6A">
+          <div class="twister-video-embed">
+            <iframe src="https://www.youtube.com/embed/DuQnabENe6A" title="First Industrial-Blower Test" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <figcaption><b>13 January: first powered test.</b> The blower and bracket started hovering across the desk like a hockey puck.</figcaption>
+        </figure>
+
+        <figure class="process-media" data-video-source="had to fill the alu pipe with the cotton gloves that came to put together the second box as the mac fan was a little too good.MOV" data-youtube-id="YMWeSCXWtuA">
+          <div class="twister-video-embed">
+            <iframe src="https://www.youtube.com/embed/YMWeSCXWtuA" title="Restricting the Salvaged iMac Blower" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <figcaption><b>13 January: crude throttling.</b> Cotton gloves stuffed into the aluminium duct restrained the iMac blower after I added the second enclosure.</figcaption>
+        </figure>
+      </section>
+
+      <figure class="process-media">
+        <img src="/images/tooling/fume-extraction/final-window-fans.jpeg" alt="Two extraction fans slung beside the twin duct outlets at the window">
+        <figcaption><b>14 January: second-stage capture.</b> The iMac blower catches air pressed through the porous print and around the window outlet.</figcaption>
+      </figure>
+
+      <figure class="process-media twister-emphasis" data-video-source="first successful usage of the system with the first resin print, use this instead of the photo where i say this and probably should just be one row to itself.MOV" data-youtube-id="x924z00OqBo">
+        <div class="twister-video-embed">
+          <iframe src="https://www.youtube.com/embed/x924z00OqBo" title="First Resin Print With the Extractor" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption><b>15 January: first resin run.</b> The complete resin workflow working inside the stacked enclosure.</figcaption>
+      </figure>
+
+      <figure class="process-media">
+        <img src="/images/tooling/fume-extraction/power-supply.jpeg" alt="Final 12V 10A LED-strip supply installed beside the enclosure">
+        <figcaption><b>23 January: proper supply.</b> The laptop supply eventually died under the industrial blower; this 12V, 10A unit replaced it.</figcaption>
+      </figure>
+    </aside>
+  </div>
+
+  <script src="../../static/js/nav-loader.js?v=11"></script>
+  <script src="/static/js/project-page.js?v=3"></script>
+  <script src="/static/js/image-lightbox.js?v=2"></script>
+  <script src="/static/js/footer-loader.js?v=2"></script>
+</body>
+</html>

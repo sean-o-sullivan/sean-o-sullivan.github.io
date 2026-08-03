@@ -44,9 +44,11 @@ const ordinal = number => {
   return `${formatted}${({ 1: 'st', 2: 'nd', 3: 'rd' })[number % 10] || 'th'}`;
 };
 
-const setMusicPlaying = playing => {
-  homePage?.classList.toggle('music-is-playing', playing);
-};
+window.addEventListener('portfolio-music-state', event => {
+  if (event.detail?.playing && youtubePlayerReady) {
+    youtubePlayer.pauseVideo();
+  }
+});
 
 const loadYouTubeApi = () => {
   if (window.YT?.Player) return Promise.resolve(window.YT);
@@ -106,14 +108,12 @@ const initialiseYouTubePlayer = async () => {
           }
         },
         onStateChange: event => {
-          setMusicPlaying(event.data === YT.PlayerState.PLAYING);
-        },
-        onError: () => setMusicPlaying(false)
+          const playing = event.data === YT.PlayerState.PLAYING;
+          if (playing) window.PortfolioMusic?.pause();
+        }
       }
     });
-  } catch {
-    setMusicPlaying(false);
-  }
+  } catch {}
 };
 
 const renderCarousel = () => {
@@ -127,7 +127,6 @@ const renderCarousel = () => {
   requestedVideoId = active.id;
 
   if (youtubePlayerReady && loadedVideoId !== requestedVideoId) {
-    setMusicPlaying(false);
     loadedVideoId = requestedVideoId;
     youtubePlayer.loadVideoById(requestedVideoId);
     youtubePlayer.getIframe().title = active.title;
@@ -154,10 +153,12 @@ const showVideo = index => {
 const revealEasterEgg = () => {
   if (!easterEgg || easterEgg.classList.contains('is-visible')) return;
 
+  if (window.PortfolioMusic?.isPlaying()) window.PortfolioMusic.pause();
   renderCarousel();
   easterEgg.removeAttribute('inert');
   easterEgg.setAttribute('aria-hidden', 'false');
   easterEgg.classList.add('is-visible');
+  homePage?.classList.add('secret-area-discovered');
   gallery?.setAttribute('aria-expanded', 'true');
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
