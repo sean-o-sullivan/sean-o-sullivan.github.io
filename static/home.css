@@ -577,7 +577,7 @@
 
 .closing-photograph {
   position: relative;
-  z-index: 12;
+  z-index: 7;
   height: 100svh;
   padding: 0 21px;
   display: grid;

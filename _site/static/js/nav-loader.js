@@ -50,6 +50,48 @@ const mountEdgeBlurs = () => {
     });
 };
 
+const initProjectNavbarReveal = (navContainer) => {
+    if (!document.body.classList.contains('project-page')) return;
+
+    const navHeight = 56;
+    let lastScrollY = Math.max(0, window.scrollY);
+    let reveal = Math.max(0, navHeight - lastScrollY);
+    let scheduled = false;
+
+    const render = () => {
+        document.body.style.setProperty('--project-nav-reveal', `${reveal}px`);
+    };
+
+    const update = () => {
+        scheduled = false;
+
+        const scrollY = Math.max(0, window.scrollY);
+        const delta = scrollY - lastScrollY;
+
+        if (scrollY === 0) {
+            reveal = navHeight;
+        } else {
+            reveal = Math.min(navHeight, Math.max(0, reveal - delta));
+        }
+
+        lastScrollY = scrollY;
+        render();
+    };
+
+    const scheduleUpdate = () => {
+        if (scheduled) return;
+        scheduled = true;
+        window.requestAnimationFrame(update);
+    };
+
+    render();
+    navContainer.addEventListener('focusin', () => {
+        reveal = navHeight;
+        render();
+    });
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+};
+
 document.addEventListener('DOMContentLoaded', async function() {
     mountEdgeBlurs();
 
@@ -69,6 +111,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         
         // Insert the navbar HTML
         navContainer.innerHTML = navHTML;
+        initProjectNavbarReveal(navContainer);
         
         // Handle active state for current page in navigation
         const currentPath = window.location.pathname;
