@@ -1,3 +1,5 @@
+@import url("/static/edge-blur.css?v=9");
+
 /* Homepage layout is intentionally isolated from legacy project-page styles. */
 @property --home-edge-angle {
   syntax: "<angle>";
@@ -9,7 +11,7 @@
   --page-width: 1240px;
   --side-padding: clamp(18px, 5vw, 42px);
   --header-height: 56px;
-  --nav-surface: rgba(255, 255, 255, 0.94);
+  --nav-surface: rgba(255, 255, 255, 0.82);
   box-sizing: border-box;
   min-width: 0;
   padding: 0 !important;
@@ -80,34 +82,6 @@
     --home-edge-angle: 360deg;
     filter: blur(30px) saturate(150%) hue-rotate(0deg);
   }
-}
-
-.home-page::after,
-.site-header::after {
-  content: "";
-  left: 0;
-  width: 100%;
-  height: clamp(52px, 8vh, 86px);
-  pointer-events: none;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.site-header::after {
-  position: absolute;
-  top: 100%;
-  background: linear-gradient(to bottom, var(--nav-surface) 0%, rgba(255, 255, 255, 0.82) 35%, rgba(255, 255, 255, 0) 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
-}
-
-.home-page::after {
-  position: fixed;
-  z-index: 8;
-  bottom: 0;
-  background: linear-gradient(to top, #fff 0%, rgba(255, 255, 255, 0.82) 35%, rgba(255, 255, 255, 0) 100%);
-  mask-image: linear-gradient(to top, #000 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 100%);
 }
 
 .home-page a {
@@ -188,13 +162,22 @@
 }
 
 .site-header {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 10;
   width: 100%;
   height: var(--header-height);
+  background: transparent;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
   background: var(--nav-surface);
-  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  backdrop-filter: blur(12px) saturate(120%);
 }
 
 .site-nav {
@@ -206,6 +189,7 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
+  z-index: 2;
 }
 
 .site-nav .site-name {

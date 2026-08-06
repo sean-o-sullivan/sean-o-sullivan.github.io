@@ -31,7 +31,28 @@ const loadPortfolioMusic = () => {
     return window.portfolioMusicScriptPromise;
 };
 
+const mountEdgeBlurs = () => {
+    if (!document.body.classList.contains('project-page')) return;
+
+    ['top', 'bottom'].forEach(edge => {
+        if (document.querySelector(`[data-edge-blur="${edge}"]`)) return;
+
+        const blur = document.createElement('div');
+        blur.className = `edge-blur edge-blur--${edge}`;
+        blur.dataset.edgeBlur = edge;
+        blur.setAttribute('aria-hidden', 'true');
+
+        for (let layer = 0; layer < 6; layer += 1) {
+            blur.append(document.createElement('span'));
+        }
+
+        document.body.append(blur);
+    });
+};
+
 document.addEventListener('DOMContentLoaded', async function() {
+    mountEdgeBlurs();
+
     try {
         // Attempt to fetch the navbar HTML content
         const response = await fetch('/static/navbar.html?v=6', { cache: 'no-store' });

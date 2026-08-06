@@ -1,0 +1,133 @@
+.edge-blur {
+  position: fixed;
+  left: 0;
+  z-index: 8;
+  width: 100%;
+  height: clamp(52px, 8vh, 86px);
+  pointer-events: none;
+}
+
+.edge-blur--top {
+  top: 0;
+  transform: scaleY(-1);
+  transform-origin: center;
+}
+
+.edge-blur--bottom {
+  bottom: 0;
+}
+
+.edge-blur > span,
+.edge-blur::before,
+.edge-blur::after {
+  position: absolute;
+  inset: 0;
+  -webkit-backdrop-filter: blur(var(--blur-radius));
+  backdrop-filter: blur(var(--blur-radius));
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent var(--mask-start),
+    #000 var(--mask-full-start),
+    #000 var(--mask-full-end),
+    transparent var(--mask-end)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent var(--mask-start),
+    #000 var(--mask-full-start),
+    #000 var(--mask-full-end),
+    transparent var(--mask-end)
+  );
+}
+
+.edge-blur::before {
+  content: "";
+  z-index: 1;
+  --blur-radius: 0.5px;
+  --mask-start: 0%;
+  --mask-full-start: 12.5%;
+  --mask-full-end: 25%;
+  --mask-end: 37.5%;
+}
+
+.edge-blur > span:nth-child(1) {
+  z-index: 2;
+  --blur-radius: 1px;
+  --mask-start: 12.5%;
+  --mask-full-start: 25%;
+  --mask-full-end: 37.5%;
+  --mask-end: 50%;
+}
+
+.edge-blur > span:nth-child(2) {
+  z-index: 3;
+  --blur-radius: 2px;
+  --mask-start: 25%;
+  --mask-full-start: 37.5%;
+  --mask-full-end: 50%;
+  --mask-end: 62.5%;
+}
+
+.edge-blur > span:nth-child(3) {
+  z-index: 4;
+  --blur-radius: 4px;
+  --mask-start: 37.5%;
+  --mask-full-start: 50%;
+  --mask-full-end: 62.5%;
+  --mask-end: 75%;
+}
+
+.edge-blur > span:nth-child(4) {
+  z-index: 5;
+  --blur-radius: 8px;
+  --mask-start: 50%;
+  --mask-full-start: 62.5%;
+  --mask-full-end: 75%;
+  --mask-end: 87.5%;
+}
+
+.edge-blur > span:nth-child(5) {
+  z-index: 6;
+  --blur-radius: 16px;
+  --mask-start: 62.5%;
+  --mask-full-start: 75%;
+  --mask-full-end: 87.5%;
+  --mask-end: 100%;
+}
+
+.edge-blur > span:nth-child(6) {
+  z-index: 7;
+  --blur-radius: 24px;
+  --mask-start: 75%;
+  --mask-full-start: 87.5%;
+  --mask-full-end: 100%;
+  --mask-end: 112.5%;
+}
+
+.edge-blur::after {
+  content: "";
+  z-index: 8;
+  --blur-radius: 32px;
+  --mask-start: 87.5%;
+  --mask-full-start: 100%;
+  --mask-full-end: 112.5%;
+  --mask-end: 125%;
+}
+
+.project-page .edge-blur > span:nth-child(6) {
+  --blur-radius: 32px;
+}
+
+.project-page .edge-blur::after {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 8%,
+    rgba(255, 255, 255, 0.12) 38%,
+    rgba(255, 255, 255, 0.68) 76%,
+    #fff 100%
+  );
+}

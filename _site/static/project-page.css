@@ -1,12 +1,14 @@
+@import url("/static/edge-blur.css?v=9");
+
 /* Shared responsive structure for the linked project detail pages. */
 body.project-page {
   --project-width: 1120px;
   --project-gutter: clamp(18px, 5vw, 48px);
-  --nav-surface: rgba(255, 255, 255, 0.94);
+  --nav-surface: rgba(255, 255, 255, 0.82);
   box-sizing: border-box;
   min-width: 0;
   margin: 0 !important;
-  padding: 56px 0 0 !important;
+  padding: 0 !important;
   overflow-x: hidden;
   opacity: 1 !important;
   visibility: visible !important;
@@ -21,41 +23,12 @@ body.project-page {
 }
 
 .project-page #navbar-container {
+  position: relative;
+  top: auto;
+  left: auto;
   height: 56px;
   background: var(--nav-surface);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.project-page #navbar-container::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: clamp(52px, 8vh, 86px);
-  pointer-events: none;
-  background: linear-gradient(to bottom, var(--nav-surface) 0%, rgba(255, 255, 255, 0.82) 35%, rgba(255, 255, 255, 0) 100%);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
-}
-
-body.project-page::after {
-  content: "";
-  position: fixed;
-  z-index: 8;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: clamp(52px, 8vh, 86px);
-  pointer-events: none;
-  background: linear-gradient(to top, #fff 0%, rgba(255, 255, 255, 0.82) 35%, rgba(255, 255, 255, 0) 100%);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  mask-image: linear-gradient(to top, #000 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+  transition: none;
 }
 
 .project-page .nav-container {
