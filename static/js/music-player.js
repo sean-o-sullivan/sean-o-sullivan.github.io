@@ -31,6 +31,12 @@
     }
   ];
 
+  const isFreshHandoff = handoffAt => {
+    if (!Number.isFinite(handoffAt)) return false;
+    const age = Date.now() - handoffAt;
+    return age >= 0 && age <= HANDOFF_MAX_AGE_MS;
+  };
+
   const readState = () => {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -50,7 +56,7 @@
       return {
         index: ((index % tracks.length) + tracks.length) % tracks.length,
         time,
-        playing: typeof saved?.playing === 'boolean' ? saved.playing : true,
+        playing: typeof saved?.playing === 'boolean' ? saved.playing : false,
         volume,
         volumeWasSet,
         handoffAt,
@@ -60,7 +66,7 @@
       return {
         index: 0,
         time: 0,
-        playing: true,
+        playing: false,
         volume: DEFAULT_VOLUME,
         volumeWasSet: false,
         handoffAt: null,
@@ -74,6 +80,7 @@
   const navigationEntry = performance.getEntriesByType?.('navigation')?.[0];
   const initialHandoffAt = state.handoffAt ??
     (navigationEntry?.type === 'back_forward' ? state.hiddenAt : null);
+  const initialShouldPlay = state.playing && isFreshHandoff(initialHandoffAt);
   const mountedPlayers = new Set();
   let pendingTime = state.time;
   let wantsPlayback = state.playing;
@@ -329,6 +336,8 @@
 
     const restoredState = readState();
     const restoredHandoffAt = restoredState.handoffAt ?? restoredState.hiddenAt;
+    const restoredShouldPlay =
+      restoredState.playing && isFreshHandoff(restoredHandoffAt);
     handoffRequested = false;
     state.volume = restoredState.volume;
     state.volumeWasSet = restoredState.volumeWasSet;
@@ -336,7 +345,7 @@
     loadTrack(
       restoredState.index,
       restoredState.time,
-      restoredState.playing,
+      restoredShouldPlay,
       restoredHandoffAt
     );
   });
@@ -411,5 +420,5 @@
   };
 
   mountAll();
-  loadTrack(state.index, state.time, state.playing, initialHandoffAt);
+  loadTrack(state.index, state.time, initialShouldPlay, initialHandoffAt);
 })();

@@ -22,7 +22,7 @@ const loadPortfolioMusic = () => {
         script.addEventListener('error', reject, { once: true });
 
         if (!existingScript) {
-            script.src = '/static/js/music-player.js?v=13';
+            script.src = '/static/js/music-player.js?v=14';
             script.dataset.portfolioMusicScript = '';
             document.head.append(script);
         }
