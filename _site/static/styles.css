@@ -229,6 +229,10 @@ nav {
     cursor: pointer;
 }
 
+.portfolio-audio-player__controls [data-audio-next] {
+    font-size: 18px;
+}
+
 .portfolio-audio-player__controls button:hover,
 .portfolio-audio-player__controls button:focus-visible {
     background: rgba(0, 0, 0, 0.07);
