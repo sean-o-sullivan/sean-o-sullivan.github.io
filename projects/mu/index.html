@@ -29,6 +29,9 @@
             The detector is a 50x50x20mm BC-408 plastic scintillator coupled to an OnSemi MicroFC-60035 6x6mm SiPM. The SiPM is biased at about 30V, filtered through small 50 ohm resistors and local capacitors, then read by an OPA656/OPA814-class transimpedance stage sitting around a 2.5V virtual reference. The STM32 samples the output using ADC DMA into a circular buffer, watches for negative-going dips from the rolling baseline, and logs pulse records to flash: timestamp, baseline, amplitude, and a short waveform snapshot. It also logs MS5607 barometric pressure, temperature, and altitude once a second, so the particle data can be lined up with the flight profile afterwards.
           </p>
           <p>
+            <b>Replication warning:</b> the Rev 1 schematic has the MicroFC-60035 SiPM polarity reversed. Do not reproduce that connection as drawn; check the anode and cathode against the Onsemi datasheet and correct it before fabrication.
+          </p>
+          <p>
             The charge-sensitive preamp was initially specced with a 10MΩ feedback resistor. After reducing that to an effective resistance of roughly 264kΩ, the 330pF feedback capacitor set a decay time constant of about 87µs. The flight firmware samples every 10µs, so it can read the stretched pulse rather than trying to catch the original nanosecond event.
           </p>
           <p>
@@ -135,7 +138,10 @@
   <section class="textIcontainer project-board-triptych">
     <img src="../../images/mu/mu-3d.png" alt="Mu particle detector 3D board render">
     <img src="../../images/mu/mu-pcb.png" alt="Mu particle detector PCB layout">
-    <img src="../../images/mu/mu-sch.png" alt="Mu particle detector schematic">
+    <figure>
+      <img src="../../images/mu/mu-sch.png" alt="Mu particle detector Rev 1 schematic with a known reversed SiPM polarity">
+      <figcaption><b>Replication warning.</b> The SiPM polarity is reversed in this Rev 1 schematic; correct it before fabrication.</figcaption>
+    </figure>
   </section>
 
   <script src="../../static/js/nav-loader.js?v=22"></script>
