@@ -29,7 +29,10 @@
             The detector is a 50x50x20mm BC-408 plastic scintillator coupled to an OnSemi MicroFC-60035 6x6mm SiPM. The SiPM is biased at about 30V, filtered through small 50 ohm resistors and local capacitors, then read by an OPA656/OPA814-class transimpedance stage sitting around a 2.5V virtual reference. The STM32 samples the output using ADC DMA into a circular buffer, watches for negative-going dips from the rolling baseline, and logs pulse records to flash: timestamp, baseline, amplitude, and a short waveform snapshot. It also logs MS5607 barometric pressure, temperature, and altitude once a second, so the particle data can be lined up with the flight profile afterwards.
           </p>
           <p>
-            <b>Replication warning:</b> the Rev 1 schematic has the MicroFC-60035 SiPM polarity reversed. Do not reproduce that connection as drawn; check the anode and cathode against the Onsemi datasheet and correct it before fabrication.
+            <b>Replication warning:</b> the Rev 1 board has the MicroFC-60035 SiPM footprint nets backwards. On an existing board, U3 must be mounted 180 degrees from the orientation indicated by the footprint's pin-1 marker. This puts SiPM pin 3 (cathode) on PCB pad 1, the filtered HV-bias node, and pin 1 (anode) on PCB pad 3, the U5 inverting-input node. Pins 2 (fast output) and 4 (no connect) then exchange two unused PCB pads.
+          </p>
+          <p>
+            The footprint also ties centre pad 5 to AGND, although <a href="https://www.onsemi.com/download/data-sheet/pdf/microc-series-d.pdf" target="_blank" rel="noopener noreferrer">Onsemi specifies it as no connect and recommends leaving the paddle unsoldered and floating</a>. I got around that by putting a tiny piece of Blu Tack on the PCB beneath pad 5, keeping the centre paddle off the board, then attaching the sensor to four small solder balls around the outside. It worked, but a respin should fix the pin 1/pin 3 net mapping and leave pad 5 floating rather than preserving either workaround.
           </p>
           <p>
             The charge-sensitive preamp was initially specced with a 10MΩ feedback resistor. After reducing that to an effective resistance of roughly 264kΩ, the 330pF feedback capacitor set a decay time constant of about 87µs. The flight firmware samples every 10µs, so it can read the stretched pulse rather than trying to catch the original nanosecond event.
@@ -140,7 +143,7 @@
     <img src="../../images/mu/mu-pcb.png" alt="Mu particle detector PCB layout">
     <figure>
       <img src="../../images/mu/mu-sch.png" alt="Mu particle detector Rev 1 schematic with a known reversed SiPM polarity">
-      <figcaption><b>Replication warning.</b> The SiPM polarity is reversed in this Rev 1 schematic; correct it before fabrication.</figcaption>
+      <figcaption><b>Rev 1 assembly correction.</b> Mount U3 180 degrees from the footprint's pin-1 orientation: pin 3 (cathode) then reaches the filtered HV node and pin 1 (anode) reaches U5's inverting input. Pad 5 should be unsoldered and floating; the working board used a tiny piece of Blu Tack beneath the centre paddle and four solder balls around the outside.</figcaption>
     </figure>
   </section>
 
