@@ -23,13 +23,13 @@
         <section>
           <p><b>Summary</b></p>
           <p>
-            Twister is a four-axis machine I made to fabricate very small copper-wrapped twisted-and-coiled polymer actuators. These are artificial muscles made by twisting nylon under tension, wrapping it in fine copper wire and then forcing it to coil back over itself. Passing current through the copper heats the nylon, causing the finished muscle to contract.
+            Twister is a four-axis machine I made to fabricate very small copper-wrapped twisted-and-coiled polymer actuators. These are artificial muscles made by twisting nylon under tension, wrapping it in fine copper wire and then forcing it to coil back over itself. Passing current through the copper heats and softens the nylon, causing the finished muscle to contract.
           </p>
           <p>
             I built it for an idea I call Wisp, a tiny flapping-tail aircraft inspired by <a href="https://fabacademy.org/2022/labs/kitakagaya/students/yusuke-takahashi/projects/final-project/" target="_blank" rel="noopener noreferrer">Yusuke Takahashi's flyers</a>. The actuator options available at that scale were not particularly appealing: dielectric actuators required kilovolts, piezoelectric ceramics were brittle, pneumatics needed external pumps and magnetic actuators depended on an external field. TCPAs could be driven from a battery, but their major limitation was getting heat back out of the nylon.
           </p>
           <p>
-            My working hypothesis was that making the fibres much thinner would improve their cooling because surface area falls more slowly than volume as something is scaled down. The practical problem was making actuators that small consistently enough to test the idea.
+            My working hypothesis was that making the fibres much thinner would improve their cooling because surface area falls more slowly than volume as something is scaled down. I needed a way to make actuators that small consistently enough to test it.
           </p>
           <p>
             TL;DR: I saw <a href="https://www.youtube.com/watch?v=iMMGfzYXwAU" target="_blank" rel="noopener noreferrer">this design</a> and thought I could make my own scrappy version (<a href="https://doi.org/10.1109/ISAM.2016.7750715" target="_blank" rel="noopener noreferrer">paper</a>; <a href="http://iskanderus.ru/amt-core" target="_blank" rel="noopener noreferrer">portfolio page</a>).
@@ -48,7 +48,7 @@
             <li>Optionally wind the supercoil around a mandrel and anneal it again to make an ultracoil.</li>
           </ol>
           <p>
-            The machine eventually produced more than twenty single-ply actuators, several two-ply actuators and at least one three-ply candidate. It also identified the next real manufacturing problem: when three or more strands were combined, the bundle could snap into the supercoil so violently that it broke the 0.05mm copper wire.
+            The machine produced more than twenty single-ply actuators, several two-ply actuators and at least one three-ply candidate. With three or more strands, the bundle could snap into the supercoil so violently that it broke the 0.05mm copper wire.
           </p>
         </section>
 
@@ -67,7 +67,7 @@
             The desired result was for the black boundary to remain straight while both motors rotated. Within a few minutes it had become a pink-and-black spiral. The two open-loop motors were drifting apart badly enough that any copper laid onto the precursor would bunch, unwrap or change its tension as it travelled.
           </p>
           <p>
-            RPM mismatch meant unusable wrapping, and that was enough to justify the full machine. At 11:56pm on 4 June 2025, the night before sitting my Leaving Certificate Engineering exam and English Paper 2, I pressed order on roughly €102 of motors, linear bearings, stainless-steel guide rods, lead screws and the other parts required to settle the question properly (I had run the feasibility test the Friday before). Crazy times.
+            The motors could not wrap copper evenly without feedback. At 11:56pm on 4 June 2025, the night before sitting my Leaving Certificate Engineering exam and English Paper 2, I pressed order on roughly €102 of motors, linear bearings, stainless-steel guide rods, lead screws and the other parts required to settle the question properly (I had run the feasibility test the Friday before). Crazy times.
           </p>
         </section>
 
@@ -122,7 +122,7 @@
               A double knot was enough to form a reliable loop in the fine nylon. Each twist head had a tiny loop of solid-core wire wrapped around it as a spring retainer. I could lift the wire loop, pass the knotted nylon loop underneath and around the head, then release it while tying the other end.
             </p>
             <p>
-              It looked insignificant beside the motors and lead screws, but it made loading repeated specimens far less annoying. Small fixtures like this were the difference between a machine that technically moved and one that I could actually use to make twenty actuators.
+              It looked insignificant beside the motors and lead screws, but it made loading repeated specimens far less annoying.
             </p>
           </div>
 
@@ -135,17 +135,17 @@
               The original control script also grew into roughly 1,800 lines containing homing, position control, synchronisation and the complete fabrication sequence. At one stage it printed that pretwisting had reached 100% while both heads continued rotating until I unplugged the machine. Another wrapping run crashed because <code>twist1_start</code> had never been defined.
             </p>
             <p>
-              I used language models to write much of this control software. That made implementation fast, but it did not make the first implementation correct. I still had to decide what the machine needed to do, structure the process, observe the actual motion, identify why it disagreed with the terminal and repeatedly reduce the problem until each axis behaved.
+              I used language models to write much of this control software. That made implementation fast. The first implementation was still wrong. I had to decide what the machine needed to do, structure the process, observe the actual motion, identify why it disagreed with the terminal and repeatedly reduce the problem until each axis behaved.
             </p>
             <p>
-              The useful change was splitting the machine into independently testable systems: twist-head synchronisation, copper translation and tension-carriage motion. I proved each one separately before composing them as non-blocking operations.
+              I split the machine into independently testable systems: twist-head synchronisation, copper translation and tension-carriage motion. I tested each one separately before combining them as non-blocking operations.
             </p>
           </div>
 
           <div class="build-log-entry">
             <p><b>QuadQuad2</b></p>
             <p>
-              I eventually found the QuadQuad2, a tiny four-channel quadrature decoder sold by an independent maker on Tindie. Instead of asking the Pico to service every encoder edge, the decoder accumulated each motor's count and direction and let the Pico poll the results over SPI.
+              I found the QuadQuad2, a tiny four-channel quadrature decoder sold by an independent maker on Tindie. The decoder accumulated each motor's count and direction and let the Pico poll the results over SPI instead of servicing every edge itself.
             </p>
             <p>
               I contacted the maker to explain that I was building a small desktop machine and ordered one board. He sent two. One was sufficient to read all four axes.
@@ -154,7 +154,7 @@
               The configured conversion is 4,200 counts per motor-output revolution: seven encoder pulses, a 150:1 gearbox and four quadrature edges per pulse. Both lead screws are treated as moving one millimetre per revolution.
             </p>
             <p>
-              Offloading the encoders was the change that allowed the machine to run at useful speed while retaining closed-loop position information.
+              With the encoder counting offloaded, the machine could run at useful speed while retaining closed-loop position information.
             </p>
           </div>
 
@@ -167,7 +167,7 @@
               During one early run I requested a 0.20mm pitch and achieved something closer to 1.09mm. In others, the copper carriage gradually moved ahead of the wrap point. That pulled the wire sideways, made the spool jerk and eventually caused the conductor to slip or unwind. Running the carriage slowly exposed jerky low-speed motor control and occasionally tripped the cheap driver boards. Running it faster made the guide outrun the copper.
             </p>
             <p>
-              The facing orientation of the twist heads also made language such as "same direction" and "opposite direction" surprisingly unhelpful. Motor direction, encoder sign and the physical rotation experienced by the strand weren't expressed in the same coordinate system. I eventually defined each operation by its physical result: either add twist to the precursor or rotate the complete precursor as one body.
+              The facing orientation of the twist heads also made language such as "same direction" and "opposite direction" surprisingly unhelpful. Motor direction, encoder sign and the physical rotation experienced by the strand weren't expressed in the same coordinate system. I defined each operation by its physical result: either add twist to the precursor or rotate the complete precursor as one body.
             </p>
             <p>
               A small sacrificial strip of masking tape fixed the start of the copper to the nylon. Once several turns were present, friction held the rest of the wrap in place.
@@ -193,13 +193,13 @@
           <div class="build-log-entry">
             <p><b>Motor and driver failures</b></p>
             <p>
-              The inexpensive motor drivers were nominally rated for about 1.5A but became unreliable much nearer 1A. Increasing twist speed exposed that quickly. I eventually gave the two high-speed twist motors separate drivers rather than asking one board to carry both.
+              The inexpensive motor drivers were nominally rated for about 1.5A but became unreliable much nearer 1A. Increasing twist speed exposed that quickly. I gave each high-speed twist motor its own driver.
             </p>
             <p>
               One twist motor later jammed. I initially assumed that I had damaged its gearbox, pulled the assembly apart and discovered that WD-40 had fouled the motor brushes instead. I cleaned the motors with isopropyl alcohol and obtained PTFE lubricant for future use.
             </p>
             <p>
-              The repair tore apart one of the printed motor mounts. I rebuilt it using two-part epoxy and reprinted the twist head. The repaired bracket was not as clean as the original generative-design part, but it worked.
+              The repair tore apart one of the printed motor mounts. I rebuilt it using two-part epoxy and reprinted the twist head. The repaired bracket was rougher than the original generative-design part, but it worked.
             </p>
           </div>
         </section>
@@ -216,7 +216,7 @@
             The actuators were annealed in the <a href="/tooling/halogen-oven/">Floodlamp Oven</a>, generally around 150°C for twenty to twenty-five minutes. Fifty-cent coins occasionally restrained the ends during annealing to keep the specimens from sagging.
           </p>
           <p>
-            One early single-ply supercoil visibly contracted far more than I expected. My notes estimate roughly half a second to contract, two seconds to relax and more than 40% apparent contraction. I had no synchronized displacement, force, current or temperature recording, so I do not regard those numbers as performance data. They record the moment it became obvious that the actuator genuinely moved.
+            One early single-ply supercoil visibly contracted far more than I expected. My notes estimate roughly half a second to contract, two seconds to relax and more than 40% apparent contraction. I had no synchronized displacement, force, current or temperature recording, so those numbers are not performance data.
           </p>
           <p>
             An elastic-return jig later produced more repeatable cycling. My notes put it around 0.8Hz with roughly ±5% visible movement, again without a calibrated load or displacement trace. Blowing air over the muscle made it cool noticeably faster.
@@ -234,7 +234,7 @@
             At my smaller scale, the first ultracoil was mechanically stiff and electrically easy to destroy. It moved slightly, then burned open when I increased its drive voltage and pulse length without having logged its resistance, current or temperature.
           </p>
           <p>
-            That experiment did not prove that ultracoils could not work. It proved that my tiny specimen and drive method were not controlled well enough to answer the question.
+            The ultracoil experiment was inconclusive. My tiny specimen and drive method were not controlled well enough to tell whether the geometry worked.
           </p>
         </section>
 
@@ -253,7 +253,7 @@
             Three-ply fabrication exposed a more serious failure. When the composite reached its supercoil nucleation point, it could snap into the coiled state with enough mechanical violence to break the 0.05mm copper wire. That failure happened repeatedly. I believe one three-ply sample survived fabrication, but I did not electrically or mechanically test it.
           </p>
           <p>
-            This mattered because multi-ply bundles looked like the most direct route to greater force. The process was becoming strongest at the same moment it became capable of destroying its own conductor.
+            Multi-ply bundles looked like the most direct route to greater force, but the stronger precursor was also capable of destroying its own conductor.
           </p>
           <p>
             That conductor-fracture problem, the difficulty of controlling initial tension and the growing friction around annealing and extraction were the main reasons I parked the work in September 2025.
@@ -263,52 +263,52 @@
         <section>
           <p><b>Current State</b></p>
           <p>
-            Twister answered the first question. It showed that I could repeatedly pretwist fine nylon, wrap it in 0.05mm copper, form supercoils and make electrically actuated specimens with visible contraction.
+            I could repeatedly pretwist fine nylon, wrap it in 0.05mm copper, form supercoils and make electrically actuated specimens with visible contraction.
           </p>
           <p>
-            It did not produce a fully measured actuator recipe. The machine had no load cell, motor-current sensing, automatic resistance measurement or specimen-temperature measurement. I deliberately used the same approximate starting length and tuned the process empirically, accepting failed specimens while I established whether fabrication at this scale was possible.
+            I did not produce a fully measured actuator recipe. The machine had no load cell, motor-current sensing, automatic resistance measurement or specimen-temperature measurement. I deliberately used the same approximate starting length and tuned the process empirically, accepting failed specimens while I established whether fabrication at this scale was possible.
           </p>
           <p>
-            The next controller is designed around bounded motion, heartbeat shutdown, explicit faults, telemetry and a 50Hz non-blocking state machine. It also treats initial nylon tension as a variable that must be measured rather than assumed. The proposed method is to pluck the loaded precursor, estimate its fundamental frequency and infer initial tension from the string equation. That controller exists in software but has not yet been commissioned on the hardware.
+            The next controller is designed around bounded motion, heartbeat shutdown, explicit faults, telemetry and a 50Hz non-blocking state machine. It measures initial nylon tension instead of assuming it. The proposed method is to pluck the loaded precursor, estimate its fundamental frequency and infer initial tension from the string equation. That controller exists in software but has not yet been commissioned on the hardware.
           </p>
           <p>
             For now, the older machine and its scripts are still what actually makes the actuators, and they still need the same hands-on supervision they always did.
           </p>
           <p>
-            By the time the project paused, the open question was no longer "Can I make tiny artificial muscles?" It had narrowed to something more specific and more useful: how much initial tension was actually present, how much force and stroke each ply count produced, how quickly a loaded specimen could cool, and how to prevent a stronger multi-ply precursor from snapping its own conductor.
+            By the time the project paused, I knew I could make tiny artificial muscles. I still needed to measure the initial tension, force and stroke from each ply count, the cooling time under load, and how to stop a stronger multi-ply precursor from snapping its own conductor.
           </p>
           <p>
-            That was the machine's job. It turned an idea about a tiny aircraft into a fabrication process, and then turned that process into specific failures I could measure next.
+            Twister turned an idea about a tiny aircraft into a fabrication process, then gave me specific failures to measure next.
           </p>
         </section>
 
         <section>
           <p><b>Future Thoughts</b></p>
           <p>
-            As of July 2026, while typing this up, I do not expect to build another Twister for the foreseeable future. The current machine can make a supercoil in roughly six minutes without the copper-wrapping step, or about fifteen minutes with copper. The next high-leverage question is not how to twist faster; it is whether the conductor can be added after the mechanical forming is finished.
+            As of July 2026, while typing this up, I do not expect to build another Twister for the foreseeable future. The current machine can make a supercoil in roughly six minutes without the copper-wrapping step, or about fifteen minutes with copper. I want to find out whether the conductor can be added after the mechanical forming is finished.
           </p>
           <p>
-            The PTUNA paper used 0.5mm nylon precursors and 0.16mm copper. My nylon was 0.15mm. When every linear dimension of an object doubles, its surface area grows by four while its volume grows by eight, so reducing the precursor diameter improves the surface-area-to-volume ratio available for cooling. Under the small loads I actually tried, my muscles generally relaxed in roughly three to five seconds, but they did not produce much useful force. These were bench observations rather than instrumented measurements. The natural next comparison is therefore between bundles of many small supercoils and PTUNA-like multi-ply muscles, followed by applying the conductor after forming rather than before it.
+            The PTUNA paper used 0.5mm nylon precursors and 0.16mm copper. My nylon was 0.15mm. When every linear dimension of an object doubles, its surface area grows by four while its volume grows by eight, so reducing the precursor diameter improves the surface-area-to-volume ratio available for cooling. Under the small loads I actually tried, my muscles generally relaxed in roughly three to five seconds and did not produce much useful force. These were bench observations rather than instrumented measurements. I want to compare bundles of many small supercoils with PTUNA-like multi-ply muscles, then test conductors applied after forming.
           </p>
           <p>
-            While working on Twister, I bought milligram scales and obtained a PASCO force meter so that I could characterise the finished muscles. I did not use them to turn unreliable specimens into a performance table. At this scale I was still struggling to keep the 0.05mm copper continuous through supercoil formation, and the published work made it clear that parallel-twisted multi-ply assemblies were the more useful direction. Those were precisely the specimens most likely to snap their copper before I could test them.
+            While working on Twister, I bought milligram scales and obtained a PASCO force meter so that I could characterise the finished muscles. The specimens were not reliable enough for a useful performance table. At this scale I was still struggling to keep the 0.05mm copper continuous through supercoil formation, and the published work pointed towards parallel-twisted multi-ply assemblies. Those specimens were also the most likely to snap their copper before I could test them.
           </p>
           <p>
-            The order of work now is deliberate: first delete copper wrapping from the fabrication process; then plate completed supercoils and parallel-twisted assemblies in batches; then characterise the repeatable plated muscles with the scales and force meter. Improving the process comes before quantifying it.
+            My July plan was to remove copper wrapping from fabrication, plate completed supercoils and parallel-twisted assemblies in batches, then characterise the repeatable plated muscles with the scales and force meter.
           </p>
           <ul>
             <li>
-              <b>Tollens-family electroless silver.</b> Plate the completed muscle rather than wrapping it in 0.05mm copper first. That removes the copper carriage, pitch and sag from fabrication, replaces the circle-to-circle contact between the copper and nylon with a near-conformal heater, and avoids asking a hair-thin wire to survive violent multi-ply supercoil formation. Finished muscles could be loaded onto hooks in batches and moved through cleaning, activation, fresh silver and rinse baths. Holding the muscles under slight extension between the hooks would open the turns enough to reduce capillary wicking between them and let the solutions and rinse reach more of the surface. If that works, the same station could plate many parallel-twisted assemblies at once rather than making them one conductor wrap at a time. I have a spare rescued Ender 3 Pro that could become the motion platform for that process.
+              <b>Tollens-family electroless silver.</b> Plate the completed muscle after forming it. That removes the copper carriage, pitch and sag from fabrication, replaces the circle-to-circle contact between the copper and nylon with a near-conformal heater, and keeps the hair-thin wire out of violent multi-ply supercoil formation. Finished muscles could be loaded onto hooks in batches and moved through cleaning, activation, fresh silver and rinse baths. Holding the muscles under slight extension between the hooks would open the turns enough to reduce capillary wicking between them and let the solutions and rinse reach more of the surface. If the coating works, the same station could plate many parallel-twisted assemblies at once. I have a spare rescued Ender 3 Pro that could become the motion platform for that process.
             </li>
             <li>
               <b>Conductive coatings more broadly.</b> The processes I have been working from either wrap the nylon in magnet wire roughly one-third of its diameter, or begin with nylon that has already been plated and then damage that coating during intense pretwisting and supercoiling. I want to compare conductors applied to the finished muscle instead: resistance, adhesion, added mass, heating uniformity, cooling rate and survival through repeated cycling. Silver paint is the quickest control before committing to an electroless process.
             </li>
             <li>
-              <b>Parylene C.</b> If a surface-silver heater works, adjacent turns and bundled muscles may short against one another. A thin Parylene coating could isolate and protect the conductor, but it would also add thermal resistance and would have to survive repeated cycling. I would test it after the silver works rather than assume that the coating comes for free.
+              <b>Parylene C.</b> If a surface-silver heater works, adjacent turns and bundled muscles may short against one another. A thin Parylene coating could isolate and protect the conductor. It would also add thermal resistance and would have to survive repeated cycling, so I would test it after the silver works.
             </li>
           </ul>
           <p>
-            This changes what Twister needs to be. Rather than replacing the whole machine, I can use the one I have to belt out supercoils, load them onto a common fixture, and move the fragile electrical fabrication to a process that happens after the violence is over.
+            If the coating works, I can keep the current Twister for making supercoils, load them onto a common fixture, and add the fragile conductor after the violent forming step is over.
           </p>
         </section>
 
@@ -330,6 +330,13 @@
           </div>
           <figcaption><b>26 July 2026: archive.</b> The surviving muscles, attachment experiments, jigs and glider prototypes laid out together before being packed away. The initial muscles are denoted M3, M4 and onwards from right to left.</figcaption>
         </figure>
+
+        <section>
+          <p><b>Addendum — 12 August 2026</b></p>
+          <p>
+            After looking at the process again, I will make one more three-ply PTNA before trying the coating work. I still form PTNA supercoils by hand, after pretwisting and storing three separate strands, so the three-ply process is much more demanding than a single-ply run. I will slow the transition down and record it. I may also tune the relative motion of the two heads over time so the machine forms the supercoil itself very slowly. If the copper survives, I will anneal and characterise the PTNA before trying the PTUNA ultracoil. If it breaks again, I will consider applying the conductor after forming.
+          </p>
+        </section>
       </main>
     </div>
 
@@ -406,7 +413,7 @@
         <div class="twister-video-embed">
           <iframe src="https://www.youtube.com/embed/QC2rzlridmg" title="The Machine Assembled" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <figcaption><b>13 June: assembly.</b> Printed brackets, steel rails, linear bearings and M6 lead screws became one compact machine.</figcaption>
+        <figcaption><b>13 June: assembly.</b> The printed brackets held the steel rails, linear bearings and M6 lead screws together.</figcaption>
       </figure>
 
       <section class="twister-pair-gallery twister-milestone-pair" aria-label="Final frame fitting and lead-screw homing">
@@ -481,14 +488,14 @@
           <div class="twister-video-embed">
             <iframe src="https://www.youtube.com/embed/gTu1rB1rh9c" title="First Automated Supercoiling Attempt" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
-          <figcaption><b>22 June: first supercoil attempt.</b> Coordinating twist with inward carriage travel did not survive its first run.</figcaption>
+          <figcaption><b>22 June: first supercoil attempt.</b> The coordinated twist and inward carriage motion failed on its first run.</figcaption>
         </figure>
 
         <figure class="process-media" data-video-source="15-07 back from france and castlegregory and kerry with vengence, and other dates/first real slow full copper wrap done and it looks great.MOV">
           <div class="twister-video-embed">
             <iframe src="https://www.youtube.com/embed/M06CF6ZxCd4" title="First Repeatable Copper Wrap" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
-          <figcaption><b>15 July: repeatability before speed.</b> Slowing the machine down produced the first wrap I trusted.</figcaption>
+          <figcaption><b>15 July: copper wrapping.</b> Slowing the machine down produced the first wrap I trusted.</figcaption>
         </figure>
       </section>
 
@@ -496,7 +503,7 @@
         <div class="twister-video-embed">
           <iframe src="https://www.youtube.com/embed/SdwABSJhC64" title="Hand-Supercoiling a Copper-Wrapped Precursor" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <figcaption><b>16 July: separating the questions.</b> Hand-supercoiling proved that the wrapped precursor itself could form correctly.</figcaption>
+        <figcaption><b>16 July: hand supercoiling.</b> The wrapped precursor formed correctly by hand.</figcaption>
       </figure>
 
       <section class="twister-pair-gallery twister-milestone-pair" aria-label="Copper-spool winding and actuator annealing">
@@ -539,7 +546,7 @@
       <section class="twister-pair-gallery twister-milestone-pair" aria-label="QuadQuad2 integration and useful-speed copper wrapping">
         <figure class="process-media">
           <img src="/images/tooling/twister/quadquad-electronics.jpeg" alt="Twister control electronics after the QuadQuad2 decoder was added">
-          <figcaption><b>12 August: QuadQuad2.</b> Encoder counting moved off the Pico and all four axes became readable at useful speed.</figcaption>
+          <figcaption><b>12 August: QuadQuad2.</b> The QuadQuad2 counted the encoders and let the Pico read all four axes at useful speed.</figcaption>
         </figure>
 
         <figure class="process-media" data-video-source="15-07 back from france and castlegregory and kerry with vengence, and other dates/shorter and better video of the first good copper wrap.MOV">
@@ -643,7 +650,7 @@
           <div class="twister-video-embed">
             <iframe src="https://www.youtube.com/embed/cShpl0C_Iig" title="Three-Ply Supercoil Snaps" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
-          <figcaption><b>17 September: the stopping point.</b> The multi-ply precursor snapped into its supercoil hard enough to break the 0.05mm copper.</figcaption>
+          <figcaption><b>17 September: conductor break.</b> The multi-ply precursor snapped into its supercoil hard enough to break the 0.05mm copper.</figcaption>
         </figure>
       </section>
 
@@ -651,7 +658,7 @@
         <div class="twister-video-embed">
           <iframe src="https://www.youtube.com/embed/eR3M_Dc59SI" title="Copper-Wrapped Three-Ply Artificial Muscle Under a Microscope" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <figcaption><b>21 September: under the scope.</b> The gaps and fragility of the wound conductor explain why coating the finished geometry is attractive.</figcaption>
+        <figcaption><b>21 September: under the scope.</b> The wound conductor had large gaps and looked extremely fragile beside the nylon strands.</figcaption>
       </figure>
 
       <section class="twister-pair-gallery twister-milestone-pair" aria-label="Continuity testing and project pause">
@@ -664,7 +671,7 @@
           <div class="twister-video-embed">
             <iframe src="https://www.youtube.com/embed/PNd6ktpp8pg" title="The Final Three-Ply Artificial Muscle" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
-          <figcaption><b>10 October: pause.</b> Fabrication worked; reliable conduction through multi-ply formation did not.</figcaption>
+          <figcaption><b>10 October: pause.</b> The three-ply supercoil formed, but its conductor was unreliable.</figcaption>
         </figure>
       </section>
 
