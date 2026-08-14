@@ -196,6 +196,8 @@
   color: #000;
   text-decoration: none;
   font-size: 14px;
+  font-weight: normal;
+  margin: 0;
 }
 
 .site-nav .site-contact {

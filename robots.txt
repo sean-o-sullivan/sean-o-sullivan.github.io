@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_site/
+
+Sitemap: https://sean-osullivan.com/sitemap.xml
