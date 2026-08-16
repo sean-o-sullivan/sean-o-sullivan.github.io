@@ -386,6 +386,7 @@ body.project-page {
 }
 
 .project-page .ogma-media-gallery > video {
+  width: min(100%, 52vh) !important;
   max-height: 52vh;
 }
 
