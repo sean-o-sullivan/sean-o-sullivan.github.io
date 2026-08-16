@@ -455,6 +455,10 @@ body.project-page {
   background: #f5f5f5;
 }
 
+.project-page .flight-media-grid figcaption {
+  text-align: center;
+}
+
 .project-page .ogma-flight-gallery > .annotated-media > img {
   height: clamp(240px, 34vh, 380px) !important;
 }
