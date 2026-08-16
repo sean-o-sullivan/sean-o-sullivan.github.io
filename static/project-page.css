@@ -1,4 +1,4 @@
-@import url("/static/edge-blur.css?v=9");
+@import url("/static/edge-blur.css?v=10");
 
 /* Shared responsive structure for the linked project detail pages. */
 body.project-page {
@@ -29,7 +29,15 @@ body.project-page {
   left: auto;
   z-index: 100;
   height: 56px;
+  background: transparent;
+  pointer-events: none;
+  transform: none;
+}
+
+.project-page #navbar-container > nav {
+  height: 56px;
   background: #fff;
+  pointer-events: auto;
   transform: translateY(calc(var(--project-nav-reveal) - 56px));
 }
 
@@ -188,8 +196,7 @@ body.project-page {
 }
 
 /* Entry-page media is evidence; rounding belongs to homepage timeline thumbnails. */
-.project-page .image-column > img,
-.project-page .image-column > video {
+.project-page .image-column > img {
   display: block;
   width: 100% !important;
   height: 30vh !important;
@@ -199,8 +206,18 @@ body.project-page {
   border-radius: 0;
 }
 
-.project-page .textIcontainer > img,
-.project-page .textIcontainer > video {
+.project-page .image-column > video {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: min(70vh, 720px);
+  margin-inline: auto;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+.project-page .textIcontainer > img {
   display: block;
   width: auto !important;
   height: 30vh !important;
@@ -209,6 +226,30 @@ body.project-page {
   max-height: none;
   object-fit: contain;
   border-radius: 0;
+}
+
+.project-page .textIcontainer > video {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  flex: 0 1 auto;
+  max-width: 100%;
+  max-height: min(70vh, 720px);
+  margin-inline: auto;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+.project-page .native-video {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(70vh, 720px);
+  margin-inline: auto;
+  object-fit: contain;
+  border-radius: 0;
+  background: #000;
 }
 
 .project-page .textIcontainer > iframe,
@@ -238,13 +279,14 @@ body.project-page {
 }
 
 .project-page .video-container {
-  position: relative;
+  display: grid;
   width: 100%;
   max-width: none;
-  height: 30vh;
+  height: auto;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  place-items: center;
+  overflow: visible;
   aspect-ratio: auto;
 }
 
@@ -312,7 +354,7 @@ body.project-page {
 .project-page .image-column > .video-container.project-lead-media {
   width: 100% !important;
   height: auto !important;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: auto;
 }
 
 .project-page .video-container > iframe {
@@ -327,7 +369,7 @@ body.project-page {
   grid-column: 1 / -1;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: auto;
 }
 
 .project-page .image-column > .annotated-media {
@@ -354,7 +396,7 @@ body.project-page {
 
 .project-page .ogma-assembly-video > .video-container {
   height: auto;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: auto;
 }
 
 .project-page .annotated-media > img {
@@ -385,6 +427,89 @@ body.project-page {
 .project-page .textIcontainer.analysis-gallery > .annotated-media {
   min-width: 0;
   margin: 0;
+}
+
+.project-page .textIcontainer.flight-media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.project-page .flight-media-grid > .annotated-media {
+  min-width: 0;
+  margin: 0;
+}
+
+.project-page .flight-media-grid > .flight-media-wide {
+  grid-column: 1 / -1;
+}
+
+.project-page .flight-media-grid video {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(58vh, 620px);
+  margin-inline: auto;
+  object-fit: contain;
+  background: #f5f5f5;
+}
+
+.project-page .ogma-flight-gallery > .annotated-media > img {
+  height: clamp(240px, 34vh, 380px) !important;
+}
+
+.project-page .textIcontainer.mu-flight-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: start;
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.project-page .mu-flight-split > * {
+  min-width: 0;
+}
+
+.project-page .mu-flight-split > .mu-ogma-bridge {
+  margin: 0;
+}
+
+.project-page .mu-flight-side {
+  display: grid;
+  min-width: 0;
+  gap: 16px;
+}
+
+.project-page .mu-flight-side > .annotated-media {
+  min-width: 0;
+  margin: 0;
+}
+
+.project-page .mu-flight-recovery-video video {
+  max-height: min(52vh, 520px);
+}
+
+.project-page .mu-ogma-bridge > img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+.project-page .textIcontainer.ogma-flight-report {
+  display: block;
+}
+
+.project-page .ogma-flight-report > .pdf-container {
+  height: clamp(620px, 84vh, 920px) !important;
+}
+
+.project-page .textIcontainer.mu-flight-plotbook {
+  display: block;
+}
+
+.project-page .mu-flight-plotbook > .pdf-container {
+  height: clamp(620px, 84vh, 920px) !important;
 }
 
 .project-page .textcontainer,
@@ -474,11 +599,12 @@ body.project-page {
 }
 
 .project-page .video-wrapper {
-  position: relative;
+  display: grid;
   width: 100%;
   height: auto;
   padding: 0;
-  aspect-ratio: 16 / 9;
+  place-items: center;
+  aspect-ratio: auto;
 }
 
 .project-page .video-wrapper iframe {
@@ -487,6 +613,21 @@ body.project-page {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.project-page .video-wrapper > video,
+.project-page .video-container > video {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.project-page .textIcontainer > .native-video-shell {
+  display: grid;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  place-items: center;
 }
 
 .project-page .pdf-container {
@@ -639,6 +780,14 @@ body.project-page {
   }
 
   .project-page .textIcontainer.analysis-gallery {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-page .textIcontainer.flight-media-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-page .textIcontainer.mu-flight-split {
     grid-template-columns: 1fr !important;
   }
 

@@ -56,10 +56,18 @@ const initProjectNavbarReveal = (navContainer) => {
     const navHeight = 56;
     let lastScrollY = Math.max(0, window.scrollY);
     let reveal = Math.max(0, navHeight - lastScrollY);
+    let renderedReveal = null;
     let scheduled = false;
 
     const render = () => {
-        document.body.style.setProperty('--project-nav-reveal', `${reveal}px`);
+        const nextReveal = `${reveal}px`;
+
+        if (nextReveal !== renderedReveal) {
+            renderedReveal = nextReveal;
+            document.body.style.setProperty('--project-nav-reveal', nextReveal);
+        }
+
+        document.dispatchEvent(new Event('project-nav-position'));
     };
 
     const update = () => {

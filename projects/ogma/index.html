@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://sean-osullivan.com/projects/ogma/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../static/styles.css?v=4">
-  <link rel="stylesheet" href="../../static/project-page.css?v=27">
+  <link rel="stylesheet" href="../../static/project-page.css?v=34">
 
 </head>
 <body class="project-page">
@@ -49,7 +49,7 @@
             We wrote bare peripheral probes and a Python console that identifies, flashes, and diagnoses each board over SWD. Croí can stream live status over SRAM, retrieve append-only flash logs, and plot them locally. The stack now shares pinned CAN contracts, and actuator and recovery commands use explicit leases and defined safe states.
           </p>
           <p>
-            Current firmware builds across the whole stack and software tests pass. Hardware-in-the-loop testing, calibration, and full flight rehearsal are still underway. The next target is to fly the stack in an L1 launch around mid-August.
+            On 15 August 2026, Croí, Foinse, Lámh and Teachtaire flew together in an L1 rocket, with Mu beside them as a separate payload. The stack returned live groundstation telemetry and a valid onboard flight log. The flight record and full report are below.
           </p>
         </section>
 
@@ -74,19 +74,25 @@
 
       <figure class="annotated-media ogma-assembly-video">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/vmrpcgWprPM" title="Hand-placing components for Ogma Rev 1 batch 2" frameborder="0" allowfullscreen></iframe>
+          <video class="native-video" controls playsinline preload="none" poster="/images/video/ogma/hand-placing-components-for-ogma-rev-1-batch-2-vmrpcgWprPM.jpg" width="854" height="480" aria-label="Hand-placing components for Ogma Rev 1 batch 2">
+            <source src="/images/video/ogma/hand-placing-components-for-ogma-rev-1-batch-2-vmrpcgWprPM.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+          </video>
         </div>
         <figcaption>self flagellating component placing is my pasttime</figcaption>
       </figure>
     </div>
 
     <div class="column image-column ogma-media-gallery">
-      <video autoplay muted loop playsinline preload="auto" aria-label="Hypothetical render of the Ogma flight computer stack">
+      <video class="native-video" autoplay muted loop playsinline preload="auto" poster="/images/ogma/hypothetical-render-poster.jpg" width="480" height="480" aria-label="Hypothetical render of the Ogma flight computer stack">
         <source src="../../images/ogma/hypothetical-render.mp4" type="video/mp4">
       </video>
 
       <div class="video-container project-lead-media">
-        <iframe src="https://www.youtube.com/embed/WX-EqqDLjQQ" title="Ogma hardware-in-the-loop testing" frameborder="0" allowfullscreen></iframe>
+        <video class="native-video" controls playsinline preload="none" poster="/images/video/ogma/ogma-hardware-in-the-loop-testing-WX-EqqDLjQQ.jpg" width="1280" height="720" aria-label="Ogma hardware-in-the-loop testing">
+          <source src="/images/video/ogma/ogma-hardware-in-the-loop-testing-WX-EqqDLjQQ.mp4" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
       </div>
 
       <figure class="annotated-media">
@@ -98,16 +104,97 @@
     </div>
   </div>
 
-  <section class="textcontainer">
-    <p><b>Rev 1 in the avionics bay and engineering learnings</b></p>
+  <section class="textcontainer ogma-flight-closure">
+    <p><b>Rev 1 flight, 15 August 2026</b></p>
+    <p>
+      Ogma flew as a four-board stack: Croí, Foinse, Lámh and Teachtaire. Pléasc stayed on the ground because its optocouplers and full bring-up were not finished. The stack reached READY, obtained a GPS fix, streamed live data through the flight and wrote Croí's onboard flash log.
+    </p>
+    <p>
+      Croí detected liftoff, burnout and apogee. It measured a peak Kalman altitude of 778.55m and commanded the attached servo to 45° from T+2.126s until T+5.072s. The groundstation captured 18,986 decoded CAN frames over 828 seconds. The longest packet gap around the flight was 0.736s, and we kept the LoRa link through launch and recovery.
+    </p>
+    <p>
+      Croí reset 14.976 seconds after liftoff, while Mu still measured roughly 696m relative altitude. A 26.68g and 1,670°/s event appeared 1.042 seconds before the reset. It may be related, but the cause is unknown. Croí recalibrated and later returned to READY over LoRa. MAIN and LANDED were never reached in the recovered onboard run.
+    </p>
+    <p>
+      The onboard log proves the 45° and stow commands. Servo current rose to 386mA, 204mA and 265mA during that window. There was no position sensor, so the data cannot prove the shaft angle or mechanical travel.
+    </p>
+    <p>
+      Ogma Rev 1 closes here. Rev 2 has to address the aloft reset, field-bypassed battery connector, hand-bodged boards, loose SWD leads and uncommitted flight source. The full report includes both plotbooks and the requirements for the next stack.
+    </p>
   </section>
 
-  <section class="textIcontainer ogma-rev1-learnings">
-    <img src="../../images/ogma/ogma-avbay-vertical.png" alt="Ogma Rev 1 mounted vertically in the rocket avionics bay beneath the terminal blocks">
+  <section class="textIcontainer flight-media-grid" aria-label="Ogma Rev 1 flight videos">
+    <figure class="annotated-media flight-media-wide">
+      <video class="native-video" controls playsinline preload="none" poster="/images/ogma/flight-2026-08-15/preflight-stack-walkthrough-poster.jpg" width="1280" height="720" aria-label="Walkthrough of the Ogma board stack before launch">
+        <source src="../../images/ogma/flight-2026-08-15/preflight-stack-walkthrough.mp4" type="video/mp4">
+      </video>
+      <figcaption><b>Final fit.</b> The four Ogma boards and Mu arranged inside the printed nosecone rail before the drive north.</figcaption>
+    </figure>
+    <figure id="l1-flight" class="annotated-media">
+      <video class="native-video" controls playsinline preload="none" poster="/images/ogma/flight-2026-08-15/final-assembly-poster.jpg" width="480" height="854" aria-label="Seán joining the two rocket sections on the launch rail">
+        <source src="../../images/ogma/flight-2026-08-15/final-assembly.mp4" type="video/mp4">
+      </video>
+      <figcaption><b>Final assembly.</b> Joining and taping the two rocket sections together on the rail.</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <video class="native-video" controls playsinline preload="none" poster="/images/ogma/flight-2026-08-15/launch-poster.jpg" width="1280" height="2276" aria-label="Ogma Rev 1 launch">
+        <source src="../../images/ogma/flight-2026-08-15/launch.mp4" type="video/mp4">
+      </video>
+      <figcaption><b>Launch.</b> The flight record begins at Croí's POWERED transition.</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <video class="native-video" controls playsinline preload="none" poster="/images/ogma/flight-2026-08-15/groundstation-pan-poster.jpg" width="1280" height="2276" aria-label="Groundstation team following Ogma telemetry after launch">
+        <source src="../../images/ogma/flight-2026-08-15/groundstation-pan.mp4" type="video/mp4">
+      </video>
+      <figcaption><b>Groundstation.</b> The receiver kept feeding Ogma Console while the rocket was out of sight.</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <video class="native-video" controls playsinline preload="none" poster="/images/ogma/flight-2026-08-15/recovery-laugh-poster.jpg" width="480" height="854" aria-label="Seán returning with the recovered rocket sections">
+        <source src="../../images/ogma/flight-2026-08-15/recovery-laugh.mp4" type="video/mp4">
+      </video>
+      <figcaption><b>Recovery.</b> I came back holding both sections and laughing. The data survived too.</figcaption>
+    </figure>
+  </section>
+
+  <section class="textIcontainer analysis-gallery ogma-flight-gallery" aria-label="Ogma Rev 1 flight assembly and evidence">
+    <figure class="annotated-media">
+      <img src="../../images/ogma/flight-2026-08-15/preflight-stack-close.jpeg" alt="Four-board Ogma stack installed in its printed nosecone rail before launch">
+      <figcaption><b>Four-board stack.</b> Croí, Teachtaire, Foinse and Lámh installed in the printed rail.</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/ogma/flight-2026-08-15/post-recovery-broken-stack.jpeg" loading="lazy" decoding="async" alt="Ogma stack recovered inside its broken printed nosecone assembly">
+      <figcaption><b>After recovery.</b> The printed housing was broken, but the four boards remained together inside it.</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/ogma/flight-2026-08-15/launch-dashboard.png" alt="Ogma groundstation telemetry dashboard covering launch, flight and Croí reset">
+      <figcaption><b>Live telemetry.</b> Flight state, altitude, speed, acceleration, rotation, current and radio data.</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/ogma/flight-2026-08-15/phase-distributions.png" alt="Violin plots of Ogma sensor distributions by detected flight phase">
+      <figcaption><b>Detected phases.</b> Sensor distributions across READY, POWERED, COASTING, DROGUE and the post-reset run.</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/ogma/flight-2026-08-15/power-and-actuator.png" alt="Ogma servo-current telemetry aligned with the commanded deployment angle">
+      <figcaption><b>Servo evidence.</b> The logged command and current response, without a position measurement.</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/ogma/flight-2026-08-15/final-pre-reset-window.png" alt="Croí onboard sensor record in the final seconds before its aloft reset">
+      <figcaption><b>Before reset.</b> Croí's last onboard samples and the candidate shock event.</figcaption>
+    </figure>
+  </section>
+
+  <section class="textcontainer ogma-flight-report-links">
+    <p><b>Full Rev 1 flight closure</b></p>
+    <p>
+      <a href="https://drive.google.com/file/d/1rBxDRaD6AfNKRrBDZdaWVKrW2pHV3_nx/view" target="_blank" rel="noopener noreferrer">Open or download the 57-page report</a>. It includes the full groundstation telemetry plotbook and Croí onboard-flash plotbook at the end.
+    </p>
+  </section>
+
+  <section class="textIcontainer ogma-flight-report">
     <div class="pdf-container">
       <iframe
         src="https://drive.google.com/file/d/1rBxDRaD6AfNKRrBDZdaWVKrW2pHV3_nx/preview#view=FitH&amp;toolbar=0"
-        title="Ogma Rev 1 Engineering Learnings"
+        title="Ogma Rev 1 flight closure report"
         loading="lazy"
         allow="fullscreen">
       </iframe>
@@ -164,7 +251,7 @@
     <img src="../../images/ogma/pleasc/pleasc-sch.png" alt="Pléasc recovery controller schematic">
   </section>
 
-  <script src="../../static/js/nav-loader.js?v=22"></script>
+  <script src="../../static/js/nav-loader.js?v=25"></script>
   <script src="/static/js/project-page.js?v=3"></script>
   <script src="/static/js/image-lightbox.js"></script>
   <script src="/static/js/footer-loader.js?v=2"></script>

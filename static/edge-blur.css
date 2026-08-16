@@ -1,4 +1,7 @@
 .edge-blur {
+  --edge-surface-before: #fff;
+  --edge-surface-after: #fff;
+  --edge-surface-cut: 100%;
   position: fixed;
   left: 0;
   z-index: 8;
@@ -121,13 +124,25 @@
 .project-page .edge-blur::after {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
-  -webkit-mask-image: none;
-  mask-image: none;
-  background: linear-gradient(
+  -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 8%,
-    rgba(255, 255, 255, 0.12) 38%,
-    rgba(255, 255, 255, 0.68) 76%,
-    #fff 100%
+    rgba(0, 0, 0, 0.12) 38%,
+    rgba(0, 0, 0, 0.68) 76%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 8%,
+    rgba(0, 0, 0, 0.12) 38%,
+    rgba(0, 0, 0, 0.68) 76%,
+    #000 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    var(--edge-surface-before) 0%,
+    var(--edge-surface-before) var(--edge-surface-cut),
+    var(--edge-surface-after) var(--edge-surface-cut),
+    var(--edge-surface-after) 100%
   );
 }
