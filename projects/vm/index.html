@@ -1,118 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Style Explorer · Seán O'Sullivan</title>
-    <meta name="description" content="An interactive 3D visualisation of 4,493 stylometric embeddings produced by an authorship-verification model.">
-    <link rel="canonical" href="https://sean-osullivan.com/projects/vm/">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="../../static/styles.css?v=6">
-    <link rel="stylesheet" href="../../static/project-page.css?v=38">
-    <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
-
-    <script src="/static/js/nav-loader.js?v=26"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/static/js/theme-init.js?v=1"></script>
+  <title>VerifyMe · Seán O'Sullivan</title>
+  <meta name="description" content="VerifyMe, the authorship-verification project that won BT Young Scientist 2024, placed second at EUCYS 2024, and received two awards at Regeneron ISEF 2025.">
+  <link rel="canonical" href="https://sean-osullivan.com/projects/vm/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../static/styles.css?v=7">
+  <link rel="stylesheet" href="../../static/project-page.css?v=47">
+  <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
 </head>
-<body class="project-page visualisation-page">
-    <div id="navbar-container"></div>
+<body class="project-page verifyme-page">
+  <div id="navbar-container"></div>
 
-    
-    <div class="main-content">
-        <div class="container">
-            <div class="column text-column">
-                <header>
-                    <h3>Style Explorer</h3>
-                    <p class="subtitle"> - Learned Embedding Space Interactive Visualisation</p>
-                </header>
-                <main>
-                    <section>
-                        <p><b>Description</b></p>
-                        <p>This graph contains 4,493, samples written by 995 authors from The Project Gutenberg Corpus. Each ≈10K characters.</p>
-                        <p>This plot includes both the training and testing author partitions of the corpus.*</p>
-                        <p>Each point represents a cleaned text passage that was converted into a stylometric embedding, normalized, and processed through my authorship verification model. The embeddings were then reduced to three dimensions using UMAP, resulting in the plot you see.  ▣</p>
-                    </section>
-                    <section class="note-section">
-                        <p><b>Note:</b> Click the dropdown to colour samples by author.</p>
-                    </section>
-                </main>
-            </div>
-        </div>
+  <div class="container">
+    <div class="column text-column">
+      <header>
+        <h3>VerifyMe</h3>
+        <p class="subtitle">- Authorship Verification in the Post-ChatGPT Era</p>
+      </header>
+
+      <main>
+        <section>
+          <p><b>Description</b></p>
+          <p>
+            VerifyMe asks whether a new piece of writing fits with samples already known to be from one person.
+          </p>
+          <p>
+            I started it in 2023 as a universal AI-text detector. GPT-4 made the weakness in that idea obvious before I got far. A detector built around one model's fingerprints could expire with the next release. An English teacher gave me a better question: teachers already notice when a submission does not sound like the student. I could compare the writing with the person without first having to recognise every machine that might have produced it.
+          </p>
+          <p>
+            VerifyMe grew from that question: given several known samples from one writer, does a new sample belong with them?
+          </p>
+        </section>
+
+        <section>
+          <p><b>V1 · BT Young Scientist 2024</b></p>
+          <p>
+            V1 reduced each text to 58 measurements of vocabulary, punctuation, sentence structure and other writing habits, then compared pairs with a transformer-based model. The 98-page report recorded about 85% accuracy on BAWE and 75% on Reuters50-50. In a separate experiment, it accepted 91.6% of the target writer's real work and rejected 83.7% of GPT-4 attempts to imitate them.
+          </p>
+          <p>
+            V1 won the <a href="https://www.gov.ie/en/department-of-education/press-releases/minister-for-education-norma-foley-congratulates-se%C3%A1n-osullivan-on-winning-the-2024-bt-young-scientist-and-technology-exhibition/" target="_blank" rel="noopener noreferrer">2024 BT Young Scientist &amp; Technologist of the Year award</a>.
+          </p>
+          <p>
+            I later found a problem in the deployment code's pair classifier. Each answer sat inside a batch of 1,024: one real comparison and 1,023 unrelated fillers. Part of the BatchNorm path was still behaving in training mode, so those fillers could change the result. I removed the classifier from V2.
+          </p>
+        </section>
+
+        <section>
+          <p><b>V2 · EUCYS 2024 and ISEF 2025</b></p>
+          <p>
+            I rebuilt the project for the European Union Contest for Young Scientists. V2 used 112 features and new preprocessing, removed the pair classifier, and learned a 256-dimensional embedding with a twin transformer and triplet loss. A match was now measured by the distance between two samples in that space. One archived V2 view shows how Gutenberg authors clustered in the learned space.
+          </p>
+          <p>
+            The V2 report gave BAWE an AUC of 0.950 and Project Gutenberg 0.9715. VerifyMe took <a href="https://eucyskatowice2024.eu/winners/" target="_blank" rel="noopener noreferrer">Second Prize at EUCYS 2024</a>, together with the EUCYS prize to attend Regeneron ISEF. At ISEF 2025, it received the <a href="https://www.societyforscience.org/press-release/regeneron-isef-2025-full-awards/" target="_blank" rel="noopener noreferrer">Fourth Award in Technology Enhances the Arts</a> and an <a href="https://www.societyforscience.org/press-release/regeneron-isef-2025-special-awards-winners/" target="_blank" rel="noopener noreferrer">HP Second Award</a>. Together they were worth $3,000.
+          </p>
+          <p>
+            Each V2 triplet used a randomly chosen sample from another author. Random samples were enough to learn broad separation between writers, but the training never went looking for the nearest impostors in the embedding space. Once most random writers became easy to tell apart, the difficult cases contributed very little to training. Hard-negative mining came next.
+          </p>
+        </section>
+
+        <section>
+          <p><b>V3 and V4 · Rebuilding the learning system</b></p>
+          <p>
+            V3 removed the hand-built measurements entirely. The new character-level sequence model learned directly from raw text. During the rebuild, I found a masking bug that had admitted self-pairs to the negative set. I fixed the mask, then spent several runs finding out what the objective was actually rewarding.
+          </p>
+          <p>
+            By V4, the hard-negative mining was finally doing what I intended. The system periodically rebuilt a FAISS nearest-neighbour graph over author centroids and used the nearest writers in embedding space to assemble each batch. This kept training focused on the writers the model still confused, instead of filling batches with random authors it could already separate. Within those batches, Run 9 applied canonical relative pair mining, removed pairs the model had already solved, and normalised the positive and negative sides separately. BAWE and Gutenberg both improved over the earlier runs, but transfer between the domains stayed weak.
+          </p>
+          <p>
+            I then tried the same learning method on Market-1501, a person re-identification dataset. Across 15 jobs, the canonical mining transferred, while VerifyMe's prototype/query episode structure did not carry over as well: training on all sample pairs performed better. I folded that result into a modality-agnostic MetricEngine, with authorship verification as one application.
+          </p>
+        </section>
+
+        <section>
+          <p><b>Public life</b></p>
+          <p>
+            VerifyMe took me much further into public life than I expected. At the <a href="https://pmi-ireland.org/national-conference-2024" target="_blank" rel="noopener noreferrer">Project Management Institute Ireland National Conference</a>, I presented “VerifyMe and the State of Authorship Verification”. I gave evidence on AI in post-primary education to the <a href="https://data.oireachtas.ie/ie/oireachtas/debateRecord/joint_committee_on_education_further_and_higher_education_research_innovation_and_science/2024-07-09/debate/mul%40/main.pdf" target="_blank" rel="noopener noreferrer">Oireachtas education committee</a>. At Farmleigh, I took part in the working-group process for the Department's <a href="https://www.gov.ie/en/department-of-further-and-higher-education-research-innovation-and-science/publications/building-irelands-scientific-future-a-summit-for-vision-and-progress/" target="_blank" rel="noopener noreferrer">Building Ireland's Scientific Future summit</a> and spoke about matching talented students with real work experience. The Department also maintains a <a href="https://www.gov.ie/en/department-of-further-and-higher-education-research-innovation-and-science/biographies/se%C3%A1n-osullivan/" target="_blank" rel="noopener noreferrer">gov.ie biography</a>.
+          </p>
+          <p>
+            I served as <a href="https://www.ilovelimerick.ie/2024-limerick-st-patricks-day/" target="_blank" rel="noopener noreferrer">Grand Marshal of Limerick's 2024 St Patrick's Day parade</a> and presented with the other Coláiste Chiaráin finalists at a <a href="https://epistem.ie/wp-content/uploads/2024/12/EPISTEM-Winter-Newsletter-2024.pdf" target="_blank" rel="noopener noreferrer">University of Limerick EPI·STEM seminar</a>. I later returned to the RDS to help open the 2025 exhibition beside President Michael D. Higgins. In November 2025, Cormac Byrne included my portrait in <a href="https://www.cbphoto.ie/gallery.php?section=faces2025" target="_blank" rel="noopener noreferrer"><i>Faces of Limerick: Chapter 2</i></a>, exhibited at Fitzgerald's Woodlands House Hotel &amp; Spa in Adare. Later application material lists more than 20 engagements; a teacher's reference puts the number at about 30. I never kept a complete list.
+          </p>
+          <p>
+            At the <a href="https://www.yste.ie/2025/01/08/up-and-atom/" target="_blank" rel="noopener noreferrer">BT Ireland Executive Leaders Forum</a> on the morning the 2025 exhibition opened, I spoke about how difficult it can be for students to get their first experience of STEM work. In fourth year, I had sent long emails to Analog Devices looking for an opportunity and heard nothing back. People at the forum later helped arrange one for me. I was grateful. It also left me wondering how many students never reach a room where somebody can help.
+          </p>
+        </section>
+
+        <section>
+          <p><b>Putting it down</b></p>
+          <p>
+            I kept VerifyMe off this portfolio because every unresolved result felt like work I still owed the project. Since V2, I have removed the handcrafted representation, rebuilt the training method, fixed the hard-negative mining and tested it on another modality. The training got better. Authorship verification still felt unfinished.
+          </p>
+          <p>
+            After the BT awards, Leonard Hobbs told my parents that VerifyMe was clever, but “a point in time thing”. No one knew what AI would become. I think he was right.
+          </p>
+          <p>
+            I have spent a lot of time reading about and testing AI-content detection. In my own tests, Undetectable.ai, QuillBot and other paraphrasers stripped away the surface signals used by conventional detectors. I used to describe AI detection as chasing a moving target. Authorship verification is chasing one too.
+          </p>
+          <p>
+            In recent tests, GPT-3.5, GPT-4o and GPT-5.2 imitations entered the calibrated writing region for the requested author at mean rates of 32.5%, 41.4% and 51.3%. The model had been trained on Project Gutenberg and did not transfer well to BAWE. Three model generations and two very different corpora are nowhere near enough to turn that pattern into a scaling law.
+          </p>
+          <p>
+            In August 2026, Dad sent me an article about making AI writing sound human. I replied: “Any work that people do to show how AI is different to human writing at any given moment in time will be used by researchers to make it better at writing like a person. It will continue to approach that.”
+          </p>
+          <p>
+            It is a race to the bottom. I would rather use the tools than spend my life fighting them.
+          </p>
+        </section>
+
+        <section>
+          <p><b>Acknowledgements</b></p>
+          <p>
+            Ms Farrell and Mr O’Sullivan guided and encouraged me throughout the project. Dr Brian Clancy at MIC pointed me towards the BAWE corpus. Paul Wynne, Jason O’Shaughnessy and Jeff Mccann at Dell Ireland gave me access to the virtual machine I used to build V2. Emma Redmond and Colin Jarvis at OpenAI provided the API credits I used to develop V2.
+          </p>
+          <p>
+            The project also depended on the teachers who spoke to me about generative AI in their classrooms, the researchers whose work in deep learning and stylometry I built on, and the people who created BAWE and Reuters50-50. Researchers at OpenAI also shaped how I thought about AI-content detection through their work and public writing. The European Commission, the University of Silesia and the Polish Children’s Fund hosted EUCYS 2024 in Katowice.
+          </p>
+          <p>
+            My family and friends supported me through all of it. My parents drove me all over the country for the talks, meetings and events that followed. I could not have done any of that without them.
+          </p>
+          <p>
+            I am incredibly grateful to everyone who helped me and for all the doors this project opened. I promise I will use it well.
+          </p>
+          <p class="verifyme-gallery-jump"><a href="#gallery">skip to the gallery ↓</a></p>
+        </section>
+
+        <section>
+          <p><b>Archive</b></p>
+          <ul>
+            <li><a href="https://www.gov.ie/en/department-of-education/press-releases/minister-for-education-norma-foley-congratulates-se%C3%A1n-osullivan-on-winning-the-2024-bt-young-scientist-and-technology-exhibition/" target="_blank" rel="noopener noreferrer">BT Young Scientist 2024 award record</a></li>
+            <li><a href="https://eucyskatowice2024.eu/verifyme-a-new-approach-to-authorship-attribution-in-the-post-chatgpt-era/" target="_blank" rel="noopener noreferrer">EUCYS 2024 project record</a></li>
+            <li><a href="https://drive.google.com/file/d/1cZDezFJf2AaxBTYTCQe0gzDB5m-T0qaA/view" target="_blank" rel="noopener noreferrer">EUCYS 2024 research report</a></li>
+            <li><a href="https://abstracts.societyforscience.org/Home/PrintPdf?projectId=26197" target="_blank" rel="noopener noreferrer">Regeneron ISEF 2025 abstract</a></li>
+          </ul>
+        </section>
+      </main>
     </div>
 
-    <div class="plot-container-wrapper">
-        <div id="plot-content">
-            <p id="loading-status">Loading plot...</p>
-        </div>
+    <div class="column image-column media-grid">
+      <p><b>BT Young Scientist &amp; Technologist of the Year, 12 January 2024</b></p>
+      <figure class="annotated-media">
+        <img class="project-lead-media" src="../../images/verifyme/btyste-2024-award.jpg" alt="Seán holding the BT Young Scientist trophy on the awards stage">
+        <figcaption>Photograph by Fennell Photography.</figcaption>
+      </figure>
+      <figure class="process-media project-wide-media verifyme-comparison-media">
+        <img src="../../images/verifyme/authorship-verification-vs-ai-content-detection.png" alt="Viridis heatmap comparing VerifyMe authorship verification with seven AI content detectors across GPT-3.5, GPT-4 Turbo, GPT-4o and human writing">
+        <figcaption>Figure 18.8 from the ISEF report: authorship verification versus AI-content detection.</figcaption>
+      </figure>
+
+      <p><b>Two versions of the system</b></p>
+      <figure class="process-media">
+        <img src="../../images/verifyme/v1-sample-report.png" alt="VerifyMe V1 sample authorship report with a similarity score and 58 feature plots">
+        <figcaption>V1 used 58 engineered features and a pair classifier.</figcaption>
+      </figure>
+      <figure class="process-media">
+        <img src="../../thumbnails/clouds.jpeg" alt="Clusters in VerifyMe's learned Gutenberg authorship embedding space">
+        <figcaption>V2’s Gutenberg authors formed neighbourhoods in the learned embedding space.</figcaption>
+      </figure>
+      <figure class="process-media project-wide-media">
+        <img src="../../images/verifyme/isef-2025-quad-chart.png" alt="VerifyMe quad chart presented at Regeneron ISEF 2025">
+        <figcaption>Regeneron ISEF 2025, project TECA020.</figcaption>
+      </figure>
+
+      <p><b>More from the archive</b></p>
+      <figure class="process-media project-wide-media verifyme-archive-media">
+        <img src="../../images/verifyme/v1-public-demo.png" alt="The original blue and turquoise VerifyMe public demo website" loading="lazy" decoding="async">
+        <figcaption>The public V1 demo · preserved in the ISEF retrospective</figcaption>
+      </figure>
+      <figure class="process-media project-wide-media verifyme-archive-media">
+        <img src="../../images/verifyme/v1-curriculum-learning-effects.png" alt="Heatmap showing positive and negative effects of V1 curriculum learning across authorship datasets" loading="lazy" decoding="async">
+        <figcaption>V1 report · curriculum learning helped some cases and damaged others</figcaption>
+      </figure>
+      <figure class="process-media">
+        <img src="../../images/verifyme/btyste-2024-atu-award.jpg" alt="Seán receiving the Atlantic Technological University special award at BTYSTE 2024" loading="lazy" decoding="async">
+        <figcaption>Atlantic Technological University Award · BTYSTE 2024</figcaption>
+      </figure>
+      <figure class="process-media">
+        <img src="../../images/verifyme/btyste-2024-with-teacher.jpg" alt="Seán holding the BT Young Scientist trophy beside his teacher" loading="lazy" decoding="async">
+        <figcaption>With my teacher after the overall result</figcaption>
+      </figure>
+      <figure class="process-media project-wide-media verifyme-archive-media">
+        <img src="../../images/verifyme/btyste-2024-stage-selfie.jpg" alt="A selfie on the BTYSTE awards stage with Seán holding the overall trophy" loading="lazy" decoding="async">
+        <figcaption>One last photograph from the awards stage</figcaption>
+      </figure>
     </div>
+  </div>
 
-    <script>
-      function executeScripts(element) {
-        Array.from(element.getElementsByTagName('script')).forEach(oldScript => {
-          const newScript = document.createElement('script');
+  <section class="textcontainer" id="style-explorer">
+    <p><b>V4 Style Explorer</b></p>
+    <p>
+      V4’s Gutenberg embeddings form an archipelago running from technical manuals through nonfiction and fiction to science fiction. The explorer places one centroid for each of 14,675 authors into three dimensions with UMAP. Use the dropdown to colour the landscape by genre or author.
+    </p>
+    <p>
+      If you choose “Author index”, the colour shows each author’s position in the alphabetically sorted corpus; it carries no ranking or performance meaning.
+    </p>
+  </section>
 
-          Array.from(oldScript.attributes).forEach(attribute => {
-            newScript.setAttribute(attribute.name, attribute.value);
-          });
+  <div class="plot-container-wrapper">
+    <div id="plot-content">
+      <p id="loading-status">Loading plot...</p>
+    </div>
+  </div>
 
-          newScript.textContent = oldScript.textContent;
-          oldScript.replaceWith(newScript);
+  <section class="textcontainer verifyme-gallery-heading" id="gallery">
+    <p><b>Gallery</b></p>
+  </section>
+
+  <section class="textIcontainer analysis-gallery verifyme-engagement-gallery" aria-label="VerifyMe competitions and public engagements">
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/isef-2025-project-booth.jpg" loading="lazy" decoding="async" alt="Seán standing beside his VerifyMe display at Regeneron ISEF 2025">
+      <figcaption>Regeneron ISEF 2025 · VerifyMe stand TECA020</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/pmi-ireland-2024-stage.jpg" loading="lazy" decoding="async" alt="Seán presenting VerifyMe at the PMI Ireland National Conference in 2024">
+      <figcaption>PMI Ireland National Conference · 23 April 2024</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/bt-executive-leaders-forum-2025.jpg" loading="lazy" decoding="async" alt="Seán speaking on stage at the 2025 BT Ireland Executive Leaders Forum">
+      <figcaption>BT Ireland Executive Leaders Forum · 8 January 2025</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/rte-interview-btyste-2025.jpg" loading="lazy" decoding="async" alt="Seán being interviewed by RTÉ at BTYSTE 2025">
+      <figcaption>An RTÉ interview at BTYSTE 2025</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/oireachtas-2024.jpg" loading="lazy" decoding="async" alt="Seán at the Houses of the Oireachtas before giving evidence on AI in post-primary education">
+      <figcaption>Houses of the Oireachtas · 9 July 2024</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/reellife-science-2024.jpg" loading="lazy" decoding="async" alt="Seán on stage with a ReelLIFE SCIENCE award recipient in November 2024">
+      <figcaption>Guest speaker at ReelLIFE SCIENCE · November 2024</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/dublin-tech-summit-2024.jpg" loading="lazy" decoding="async" alt="Seán outside Dublin Tech Summit 2024">
+      <figcaption>Dublin Tech Summit 2024</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/europol-the-hague.jpg" loading="lazy" decoding="async" alt="Seán at Europol headquarters in The Hague">
+      <figcaption>Europol · The Hague</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/etbi-event.jpg" loading="lazy" decoding="async" alt="Seán receiving a presentation at an Education and Training Boards Ireland event">
+      <figcaption>Education and Training Boards Ireland</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/with-sister-stan.jpg" loading="lazy" decoding="async" alt="Seán with Sister Stanislaus Kennedy">
+      <figcaption>With Sister Stanislaus Kennedy</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/television-interview-2024.jpg" loading="lazy" decoding="async" alt="Seán during a television interview after the 2024 BT Young Scientist win">
+      <figcaption>A television interview after the BT win</figcaption>
+    </figure>
+    <figure class="annotated-media">
+      <img src="../../images/verifyme/gallery/colaiste-chiarain-homecoming-2024.jpg" loading="lazy" decoding="async" alt="Seán holding the BTYSTE trophy during a welcome-back event at Coláiste Chiaráin">
+      <figcaption>Back at Coláiste Chiaráin after BTYSTE 2024</figcaption>
+    </figure>
+  </section>
+
+  <script>
+    function executeScripts(element) {
+      Array.from(element.getElementsByTagName('script')).forEach(oldScript => {
+        const newScript = document.createElement('script');
+
+        Array.from(oldScript.attributes).forEach(attribute => {
+          newScript.setAttribute(attribute.name, attribute.value);
         });
-      }
 
-      function resizePlot() {
-        const container = document.getElementById('plot-content');
-        const plot = container?.querySelector('.js-plotly-plot');
+        newScript.textContent = oldScript.textContent;
+        oldScript.replaceWith(newScript);
+      });
+    }
 
-        if (!container || !plot || !window.Plotly) return;
+    function resizePlot() {
+      const container = document.getElementById('plot-content');
+      const plot = container?.querySelector('.js-plotly-plot');
 
-        window.Plotly.relayout(plot, {
-          width: container.clientWidth,
-          height: container.clientHeight
-        });
-      }
+      if (!container || !plot || !window.Plotly) return;
 
-      async function loadPlot() {
-        const container = document.getElementById('plot-content');
-        const loadingStatus = document.getElementById('loading-status');
-
-        try {
-          const response = await fetch('plot.html', { cache: 'no-store' });
-
-          if (!response.ok) {
-            throw new Error(`HTTP error: ${response.status}`);
+      const compactLayout = window.matchMedia('(max-width: 820px)').matches;
+      const darkTheme = document.documentElement.dataset.theme === 'dark';
+      const plotTheme = darkTheme
+        ? {
+            background: '#111111',
+            surface: '#1c1c1c',
+            text: '#f2f2f2',
+            muted: '#b7b7b7',
+            line: '#3b3b3b',
+            grid: '#303030'
           }
+        : {
+            background: '#ffffff',
+            surface: '#ffffff',
+            text: '#000000',
+            muted: '#555555',
+            line: '#cfcfcf',
+            grid: '#e2e2e2'
+          };
 
-          const data = await response.text();
+      window.Plotly.relayout(plot, {
+        width: container.clientWidth,
+        height: container.clientHeight,
+        showlegend: !compactLayout,
+        paper_bgcolor: plotTheme.background,
+        plot_bgcolor: plotTheme.background,
+        'font.color': plotTheme.text,
+        'title.font.color': plotTheme.text,
+        'scene.bgcolor': plotTheme.background,
+        'scene.xaxis.color': plotTheme.muted,
+        'scene.yaxis.color': plotTheme.muted,
+        'scene.zaxis.color': plotTheme.muted,
+        'scene.xaxis.gridcolor': plotTheme.grid,
+        'scene.yaxis.gridcolor': plotTheme.grid,
+        'scene.zaxis.gridcolor': plotTheme.grid,
+        'scene.xaxis.zerolinecolor': plotTheme.line,
+        'scene.yaxis.zerolinecolor': plotTheme.line,
+        'scene.zaxis.zerolinecolor': plotTheme.line,
+        'legend.bgcolor': 'rgba(0, 0, 0, 0)',
+        'legend.font.color': plotTheme.text,
+        'updatemenus[0].bgcolor': plotTheme.surface,
+        'updatemenus[0].bordercolor': plotTheme.line,
+        'updatemenus[0].font.color': plotTheme.text,
+        'hoverlabel.bgcolor': plotTheme.surface,
+        'hoverlabel.bordercolor': plotTheme.line,
+        'hoverlabel.font.color': plotTheme.text,
+        'margin.l': compactLayout ? 10 : 0,
+        'margin.r': compactLayout ? 10 : 0,
+        'margin.t': 60,
+        'margin.b': 0,
+        'scene.domain.x': [0, 1],
+        'scene.domain.y': [0, 1]
+      });
+    }
 
-          if (!data.trim()) {
-            throw new Error('Plot file is empty');
-          }
+    async function loadPlot() {
+      const container = document.getElementById('plot-content');
+      const loadingStatus = document.getElementById('loading-status');
 
-          container.innerHTML = data;
-          executeScripts(container);
+      try {
+        const response = await fetch('plot.html', { cache: 'no-store' });
 
-          requestAnimationFrame(() => requestAnimationFrame(resizePlot));
-        } catch (error) {
-          loadingStatus.textContent = 'The plot could not be loaded.';
-          console.error(error);
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
         }
-      }
 
-      if (window.Plotly) {
-        document.addEventListener('DOMContentLoaded', loadPlot);
-      } else {
-        const plotlyScript = document.createElement('script');
-        plotlyScript.src = 'https://cdn.plot.ly/plotly-2.35.0.min.js';
-        plotlyScript.onload = loadPlot;
-        document.head.appendChild(plotlyScript);
-      }
+        const data = await response.text();
 
-      window.addEventListener('resize', resizePlot, { passive: true });
-    </script>
-  <script src="/static/js/project-page.js?v=3"></script>
-  <script src="/static/js/image-lightbox.js"></script>
+        if (!data.trim()) {
+          throw new Error('Plot file is empty');
+        }
+
+        container.innerHTML = data;
+        executeScripts(container);
+
+        requestAnimationFrame(() => requestAnimationFrame(resizePlot));
+      } catch (error) {
+        loadingStatus.textContent = 'The plot could not be loaded.';
+        console.error(error);
+      }
+    }
+
+    if (window.Plotly) {
+      document.addEventListener('DOMContentLoaded', loadPlot);
+    } else {
+      const plotlyScript = document.createElement('script');
+      plotlyScript.src = 'https://cdn.plot.ly/plotly-2.35.0.min.js';
+      plotlyScript.onload = loadPlot;
+      document.head.appendChild(plotlyScript);
+    }
+
+    window.addEventListener('resize', resizePlot, { passive: true });
+    document.addEventListener('portfolio-theme-change', resizePlot);
+  </script>
+  <script src="../../static/js/nav-loader.js?v=27"></script>
+  <script src="/static/js/project-page.js?v=11"></script>
+  <script src="/static/js/image-lightbox.js?v=2"></script>
   <script src="/static/js/footer-loader.js?v=2"></script>
-
 </body>
 </html>

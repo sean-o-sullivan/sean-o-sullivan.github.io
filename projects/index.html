@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/js/theme-init.js?v=1"></script>
     <title>Projects · Seán O'Sullivan</title>
-    <link rel="stylesheet" href="/static/styles.css?v=6">
+    <link rel="stylesheet" href="/static/styles.css?v=7">
     <style>
         .row {
             display: grid;
@@ -17,13 +18,13 @@
             font-size: 14px;
             text-align: right;
             margin-right: 5px;
-            color: #bbb;
+            color: var(--theme-faint);
         }
 
         .ico {
             grid-column: span 1;
             vertical-align: top;
-            border-left: 2px solid #cfcfcf;
+            border-left: 2px solid var(--theme-line);
             position: relative;
             padding-left: 15px;
         }
@@ -43,8 +44,8 @@
             width: 10px;
             height: 10px;
             border-radius: 7px;
-            background-color: #cfcfcf;
-            border: 2px solid white;
+            background-color: var(--theme-line);
+            border: 2px solid var(--theme-bg);
         }
 
         .unified-image {
@@ -57,7 +58,7 @@
         }
 
         .project-link {
-            color: #0864c7;
+            color: var(--theme-link);
             text-decoration: underline;
             font-weight: bold;
         }
@@ -100,11 +101,11 @@
                     <div class="timespan">07/2024</div>
                     <div class="ico">
                       <div class="entry-dot"></div>
-                      <img src="/thumbnails/clouds3.jpeg" alt="VerifyMe Icon" class="unified-image" />
+                      <img src="/thumbnails/verifyme.jpg" alt="Seán holding the BT Young Scientist trophy for VerifyMe" class="unified-image" />
                     </div>
                     <div class="desc">
-                      <a href="/projects/vm/" class="project-link">Style</a>
-                      <span class="project-description">Learned Embedding Space Interactive Visualisation</span>
+                      <a href="/projects/vm/" class="project-link">VerifyMe</a>
+                      <span class="project-description">Authorship Verification After ChatGPT</span>
                     </div>
                   </div>
     
@@ -280,7 +281,7 @@
         <img id="fullscreen-image" src="" alt="">
     </div>
 
-    <script src="/static/js/nav-loader.js?v=26"></script>
+    <script src="/static/js/nav-loader.js?v=27"></script>
     <script src="/static/js/image-handler.js"></script>
 </body>
 </html>

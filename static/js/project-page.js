@@ -71,11 +71,11 @@
       }
 
       const darkSurface = getComputedStyle(closure).backgroundColor || 'rgb(0, 0, 0)';
-      const lightSurface = 'rgb(255, 255, 255)';
+      const pageSurface = () => getComputedStyle(document.body).backgroundColor || 'rgb(255, 255, 255)';
       let scheduled = false;
 
       const surfaceAt = (y, darkRects) => (
-        darkRects.some((rect) => y >= rect.top && y < rect.bottom) ? darkSurface : lightSurface
+        darkRects.some((rect) => y >= rect.top && y < rect.bottom) ? darkSurface : pageSurface()
       );
 
       const renderEdge = (edgeBlur, darkRects) => {
@@ -176,6 +176,7 @@
       window.addEventListener('resize', schedule, { passive: true });
       window.addEventListener('load', schedule, { once: true });
       document.addEventListener('project-nav-position', render);
+      document.addEventListener('portfolio-theme-change', schedule);
 
       if ('ResizeObserver' in window) {
         const resizeObserver = new ResizeObserver(schedule);

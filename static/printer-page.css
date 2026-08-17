@@ -36,7 +36,7 @@
 
 .printer-page .printer-previous {
   margin-top: 36px;
-  color: #777;
+  color: var(--theme-faint);
   font-size: 0.86em;
   line-height: 1.5;
 }
