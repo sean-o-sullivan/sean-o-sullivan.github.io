@@ -193,7 +193,7 @@
 .twister-page .twister-archive figcaption {
   margin-top: 8px;
   color: #555;
-  font-size: 0.85em;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -246,7 +246,7 @@
   color: #fff;
   background: rgba(0, 0, 0, 0.7);
   content: "YouTube upload pending";
-  font-size: 0.68rem;
+  font-size: 12px;
   letter-spacing: 0.02em;
 }
 
@@ -290,6 +290,7 @@
   border-top: 1px solid #1b100d;
   color: #e8e4dc;
   background: var(--twister-night);
+  font-size: 13px;
   isolation: isolate;
 }
 

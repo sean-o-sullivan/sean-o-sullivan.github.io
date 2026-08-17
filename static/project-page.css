@@ -84,7 +84,7 @@ body.project-page {
 .project-page .project-footer p {
   margin: 0;
   color: #000;
-  font: 14px/1.6 Helvetica, Arial, sans-serif;
+  font: 15px/1.6 Helvetica, Arial, sans-serif;
   text-align: center;
 }
 
@@ -130,7 +130,7 @@ body.project-page {
 
 .project-page .text-column h3 {
   margin: 0 0 2px;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 .project-page .subtitle {
@@ -317,7 +317,7 @@ body.project-page {
 .project-page .process-media figcaption {
   margin-top: 8px;
   color: #555;
-  font-size: 0.85em;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -415,7 +415,7 @@ body.project-page {
 .project-page .annotated-media figcaption {
   margin-top: 8px;
   color: #555;
-  font-size: 0.85em;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -457,6 +457,7 @@ body.project-page {
 }
 
 .project-page .flight-media-grid figcaption {
+  color: #000;
   text-align: center;
 }
 
@@ -584,7 +585,7 @@ body.project-page {
 
 .project-page .project-board-triptych figcaption {
   color: #555;
-  font-size: 0.85em;
+  font-size: 12px;
   text-align: center;
 }
 
