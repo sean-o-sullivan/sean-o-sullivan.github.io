@@ -4,6 +4,10 @@
 
   const storageKey = 'sean-portfolio-theme';
   const root = document.documentElement;
+  const systemPreference = typeof window.matchMedia === 'function'
+    ? window.matchMedia('(prefers-color-scheme: dark)')
+    : null;
+  let followsSystem = true;
 
   const readStoredTheme = () => {
     try {
@@ -15,6 +19,7 @@
   };
 
   const currentTheme = () => root.dataset.theme === 'dark' ? 'dark' : 'light';
+  const systemTheme = () => systemPreference?.matches ? 'dark' : 'light';
 
   const sync = (scope = document) => {
     const theme = currentTheme();
@@ -38,6 +43,8 @@
     root.style.colorScheme = nextTheme;
 
     if (persist) {
+      followsSystem = false;
+
       try {
         window.localStorage.setItem(storageKey, nextTheme);
       } catch (error) {
@@ -54,7 +61,20 @@
     }
   };
 
-  apply(readStoredTheme() || 'light', { notify: false });
+  const storedTheme = readStoredTheme();
+  followsSystem = storedTheme === null;
+  apply(storedTheme || systemTheme(), { notify: false });
+
+  const handleSystemPreference = (event) => {
+    if (!followsSystem) return;
+    apply(event.matches ? 'dark' : 'light');
+  };
+
+  if (systemPreference?.addEventListener) {
+    systemPreference.addEventListener('change', handleSystemPreference);
+  } else {
+    systemPreference?.addListener(handleSystemPreference);
+  }
 
   document.addEventListener('click', (event) => {
     const target = event.target instanceof Element
@@ -67,13 +87,30 @@
 
   window.addEventListener('storage', (event) => {
     if (event.key !== storageKey) return;
-    apply(event.newValue === 'dark' ? 'dark' : 'light');
+
+    const nextStoredTheme = event.newValue === 'dark' || event.newValue === 'light'
+      ? event.newValue
+      : null;
+
+    followsSystem = nextStoredTheme === null;
+    apply(nextStoredTheme || systemTheme());
   });
 
   window.PortfolioTheme = {
     get: currentTheme,
     set: (theme) => apply(theme, { persist: true }),
     toggle: () => apply(currentTheme() === 'dark' ? 'light' : 'dark', { persist: true }),
+    reset: () => {
+      followsSystem = true;
+
+      try {
+        window.localStorage.removeItem(storageKey);
+      } catch (error) {
+        // Following the system still works when storage is unavailable.
+      }
+
+      apply(systemTheme());
+    },
     sync
   };
 })();
