@@ -200,3 +200,29 @@
     initialiseTwisterEdgeSurfaces();
   }
 })();
+
+(() => {
+  const initialiseOgmaThemeMedia = () => {
+    const lightVideo = document.querySelector('.ogma-hypothetical-render--light');
+    if (!(lightVideo instanceof HTMLVideoElement)) return;
+
+    const syncPlayback = () => {
+      const darkTheme = document.documentElement.dataset.theme === 'dark';
+
+      if (darkTheme) {
+        lightVideo.pause();
+      } else {
+        lightVideo.play().catch(() => {});
+      }
+    };
+
+    document.addEventListener('portfolio-theme-change', syncPlayback);
+    syncPlayback();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialiseOgmaThemeMedia, { once: true });
+  } else {
+    initialiseOgmaThemeMedia();
+  }
+})();
