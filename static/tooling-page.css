@@ -70,10 +70,6 @@
   background: #000;
 }
 
-body.project-page.twister-page {
-  --project-width: 1240px;
-}
-
 .twister-page .twister-story-media {
   gap: clamp(30px, 5vh, 58px);
 }

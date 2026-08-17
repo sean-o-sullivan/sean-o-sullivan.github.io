@@ -2,7 +2,7 @@
 
 /* Shared responsive structure for the linked project detail pages. */
 body.project-page {
-  --project-width: 1120px;
+  --project-width: 1240px;
   --project-gutter: clamp(18px, 5vw, 48px);
   --project-nav-reveal: 56px;
   --nav-surface: rgba(255, 255, 255, 0.82);
@@ -335,10 +335,6 @@ body.project-page {
 }
 
 @media (min-width: 821px) {
-  body.project-page.mu-page {
-    --project-width: 1320px;
-  }
-
   .project-page.mu-page .image-column.process-gallery > img:not(.project-lead-media),
   .project-page.mu-page .image-column.process-gallery .process-media:not(.initial-test-media):not(.flight-data-media) > img {
     height: clamp(200px, 23vh, 250px) !important;
