@@ -43,42 +43,14 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/static/styles.css?v=5">
-  <link rel="stylesheet" href="/static/home.css?v=46">
+  <link rel="stylesheet" href="/static/styles.css?v=6">
+  <link rel="stylesheet" href="/static/home.css?v=47">
 
 </head>
 <body class="home-page">
   <div class="home-record">
     <header class="site-header">
-      <nav class="site-nav" aria-label="Primary navigation">
-        <h1 class="site-name">Seán O'Sullivan</h1>
-        <div class="portfolio-audio-player" data-portfolio-audio-player aria-label="Music player">
-          <div class="portfolio-audio-player__ticker">
-            <a
-              class="portfolio-audio-player__track"
-              data-audio-track
-              href="https://ncs.io/onandon"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Cartoon, Jéja — On &amp; On (feat. Daniel Levi)</a>
-          </div>
-          <div class="portfolio-audio-player__controls">
-            <button data-audio-toggle type="button" aria-label="Play music" title="Play music">▶</button>
-            <button data-audio-next type="button" aria-label="Next song" title="Next song">›</button>
-            <input
-              data-audio-volume
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value="0.33"
-              aria-label="Music volume"
-              title="Music volume"
-            >
-          </div>
-        </div>
-        <a class="site-contact" href="mailto:hi@sean-osullivan.com">email me</a>
-      </nav>
+      <div id="navbar-container"></div>
     </header>
     <div class="edge-blur edge-blur--top" aria-hidden="true">
       <span></span>
@@ -270,7 +242,7 @@
   </section>
 
   <script src="/static/js/home.js?v=14"></script>
-  <script src="/static/js/music-player.js?v=14"></script>
+  <script src="/static/js/nav-loader.js?v=26"></script>
   <script src="/static/js/image-lightbox.js?v=2"></script>
 </body>
 </html>

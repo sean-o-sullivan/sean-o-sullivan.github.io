@@ -1,4 +1,4 @@
-.printer-page {
+body.project-page.printer-page {
   --project-width: 1180px;
 }
 

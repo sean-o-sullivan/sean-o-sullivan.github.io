@@ -70,7 +70,7 @@
   background: #000;
 }
 
-.twister-page {
+body.project-page.twister-page {
   --project-width: 1240px;
 }
 

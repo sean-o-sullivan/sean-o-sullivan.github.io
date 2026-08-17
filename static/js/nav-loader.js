@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     try {
         // Attempt to fetch the navbar HTML content
-        const response = await fetch('/static/navbar.html?v=6', { cache: 'no-store' });
+        const response = await fetch('/static/navbar.html?v=7', { cache: 'no-store' });
         if (!response.ok) {
             throw new Error(`Failed to load navbar: ${response.status}`);
         }
@@ -120,9 +120,26 @@ document.addEventListener('DOMContentLoaded', async function() {
         // Insert the navbar HTML
         navContainer.innerHTML = navHTML;
         initProjectNavbarReveal(navContainer);
-        
+
         // Handle active state for current page in navigation
         const currentPath = window.location.pathname;
+        const isHome = currentPath === '/' || currentPath === '/index.html';
+        const primaryLink = navContainer.querySelector('#nav-home');
+
+        if (isHome && primaryLink) {
+            primaryLink.href = 'mailto:hi@sean-osullivan.com';
+            primaryLink.textContent = 'email me';
+            primaryLink.id = 'nav-contact';
+
+            const navName = navContainer.querySelector('.nav-name');
+            if (navName && navName.tagName !== 'H1') {
+                const heading = document.createElement('h1');
+                heading.className = navName.className;
+                heading.textContent = navName.textContent;
+                navName.replaceWith(heading);
+            }
+        }
+
         document.querySelectorAll('.nav-links a').forEach(link => {
             if (link.getAttribute('href') === currentPath) {
                 link.classList.add('active');

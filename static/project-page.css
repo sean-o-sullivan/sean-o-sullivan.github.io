@@ -52,9 +52,7 @@ body.project-page {
 }
 
 .project-page .nav-container {
-  width: min(100%, calc(var(--project-width) + (2 * var(--project-gutter))));
   height: 56px;
-  padding-inline: var(--project-gutter);
 }
 
 .project-page .nav-links {
