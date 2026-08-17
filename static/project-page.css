@@ -397,6 +397,23 @@ body.project-page {
   max-height: 52vh;
 }
 
+.project-page .ogma-media-gallery > .ogma-hypothetical-render {
+  width: min(100%, 52vh) !important;
+  height: auto !important;
+  max-height: 52vh;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.project-page .ogma-media-gallery > .ogma-hypothetical-render--dark,
+html[data-theme="dark"] .project-page .ogma-media-gallery > .ogma-hypothetical-render--light {
+  display: none;
+}
+
+html[data-theme="dark"] .project-page .ogma-media-gallery > .ogma-hypothetical-render--dark {
+  display: block;
+}
+
 .project-page .ogma-assembly-video {
   width: 100%;
   margin: 36px 0 0;
