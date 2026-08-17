@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/js/theme-init.js?v=1"></script>
     <title>Books · Seán O'Sullivan</title>
-    <link rel="stylesheet" href="../../static/styles.css?v=6">
+    <link rel="stylesheet" href="../../static/styles.css?v=7">
 
  <style>
 .main-content {
@@ -54,7 +55,7 @@
     height: 70vh;
     max-width: 800px;
     margin: 2rem auto;
-    border: 2px solid #ddd;
+    border: 2px solid var(--theme-line);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -76,7 +77,7 @@
     justify-content: center;
     gap: 1rem;
     padding: 1rem;
-    background-color: #f0f0f0; 
+    background-color: var(--theme-surface-soft);
 }
 
 .image-gallery img {
@@ -162,7 +163,7 @@
   <img id="fullscreen-image" src="" alt="">
 </div>
 
-<script src="../../static/js/nav-loader.js?v=26"></script>
+<script src="../../static/js/nav-loader.js?v=27"></script>
 <script src="../../static/js/image-handler.js"></script>
 
 <div id="footer-container"></div>

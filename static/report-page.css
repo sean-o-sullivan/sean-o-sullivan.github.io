@@ -84,7 +84,7 @@ body.report-project-page {
 
 .report-project-page .report-jump a,
 .report-project-page .report-download a {
-  color: #0864c7;
+  color: var(--theme-link);
   text-decoration: underline;
   text-underline-offset: 0.12em;
 }
@@ -130,7 +130,7 @@ body.report-project-page {
 
   .report-project-page .mobile-report-project-intro .subtitle {
     margin: 0;
-    color: #555;
+    color: var(--theme-muted);
   }
 
   .report-project-page .report-document {

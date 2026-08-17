@@ -1,6 +1,6 @@
 .edge-blur {
-  --edge-surface-before: #fff;
-  --edge-surface-after: #fff;
+  --edge-surface-before: var(--theme-bg, #fff);
+  --edge-surface-after: var(--theme-bg, #fff);
   --edge-surface-cut: 100%;
   position: fixed;
   left: 0;

@@ -188,7 +188,7 @@
 .twister-page .twister-story-media figcaption,
 .twister-page .twister-archive figcaption {
   margin-top: 8px;
-  color: #555;
+  color: var(--theme-muted);
   font-size: 12px;
   line-height: 1.5;
 }
@@ -565,8 +565,8 @@
 }
 
 .twister-project-page #navbar-container {
-  --twister-nav-surface-before: #fff;
-  --twister-nav-surface-after: #fff;
+  --twister-nav-surface-before: var(--theme-nav-solid);
+  --twister-nav-surface-after: var(--theme-nav-solid);
   --twister-nav-surface-cut: 100%;
   isolation: isolate;
 }
@@ -592,6 +592,7 @@
 
 .twister-project-page #navbar-container:is(.twister-navbar--adaptive, .twister-navbar--dark) .nav-name,
 .twister-project-page #navbar-container:is(.twister-navbar--adaptive, .twister-navbar--dark) .nav-container a,
+.twister-project-page #navbar-container:is(.twister-navbar--adaptive, .twister-navbar--dark) .nav-theme-toggle,
 .twister-project-page #navbar-container:is(.twister-navbar--adaptive, .twister-navbar--dark) .portfolio-audio-player,
 .twister-project-page #navbar-container:is(.twister-navbar--adaptive, .twister-navbar--dark) .portfolio-audio-player__controls button {
   color: #fff;
@@ -698,7 +699,7 @@
 
 .twister-page .twister-archive-header p {
   margin: 6px 0 0;
-  color: #555;
+  color: var(--theme-muted);
 }
 
 .twister-page .twister-archive-group + .twister-archive-group {

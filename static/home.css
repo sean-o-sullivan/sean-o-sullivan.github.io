@@ -1,4 +1,4 @@
-@import url("/static/edge-blur.css?v=9");
+@import url("/static/edge-blur.css?v=11");
 
 /* Homepage layout is intentionally isolated from legacy project-page styles. */
 @property --home-edge-angle {
@@ -11,7 +11,7 @@
   --page-width: 1240px;
   --side-padding: clamp(18px, 5vw, 42px);
   --header-height: 56px;
-  --nav-surface: rgba(255, 255, 255, 0.82);
+  --nav-surface: var(--theme-nav-surface);
   box-sizing: border-box;
   min-width: 0;
   padding: 0 !important;
@@ -86,14 +86,14 @@
 
 .home-page main a,
 .home-page .gallery-easter-egg a {
-  color: #0864c7;
+  color: var(--theme-link);
 }
 
 .home-page main a:focus-visible,
 .home-page main button:focus-visible,
 .home-page .gallery-easter-egg a:focus-visible,
 .home-page .gallery-easter-egg button:focus-visible {
-  outline: 2px solid #0864c7;
+  outline: 2px solid var(--theme-link);
   outline-offset: 4px;
 }
 
@@ -112,7 +112,7 @@
   display: grid;
   place-items: center;
   padding: clamp(18px, 4vw, 52px);
-  background: rgba(255, 255, 255, 0.42);
+  background: var(--theme-overlay);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -137,7 +137,7 @@
   padding: 0;
   border: 0;
   background: transparent;
-  color: #000;
+  color: var(--theme-text);
   font: 30px/1 Helvetica, Arial, sans-serif;
   cursor: pointer;
 }
@@ -230,7 +230,7 @@
   border: 0;
   border-radius: 10px;
   overflow: hidden;
-  background: #fff;
+  background: var(--theme-surface);
 }
 
 .gallery-easter-egg__player iframe {
@@ -260,7 +260,7 @@
   border: 0;
   border-radius: 10px;
   overflow: hidden;
-  background: #fff;
+  background: var(--theme-surface);
   opacity: 0.46;
   filter: saturate(0.72);
   cursor: pointer;
@@ -296,7 +296,7 @@
   padding: 0;
   border: 0;
   background: transparent;
-  color: #000;
+  color: var(--theme-text);
   font: 18px/30px Helvetica, Arial, sans-serif;
   cursor: pointer;
   transition: transform 160ms ease;
@@ -320,7 +320,7 @@
   padding: 0;
   border: 0;
   background: transparent;
-  color: #06c;
+  color: var(--theme-link);
   font: inherit;
   text-decoration: underline;
   text-underline-offset: 0.12em;
@@ -328,13 +328,13 @@
 }
 
 .discovery-counter__button:disabled {
-  color: #777;
+  color: var(--theme-faint);
   cursor: default;
 }
 
 .discovery-counter__result {
   margin: 5px 0 0;
-  color: #000;
+  color: var(--theme-text);
 }
 
 .projects-section h1,
@@ -342,7 +342,7 @@
   margin: 0 0 16px;
   font: inherit;
   font-weight: 700;
-  color: #000;
+  color: var(--theme-text);
 }
 
 .projects-section {
@@ -369,7 +369,7 @@
 
 .portfolio-intro {
   margin: 12px 0 0;
-  color: #555;
+  color: var(--theme-muted);
   text-align: center;
 }
 
@@ -401,7 +401,7 @@
 .project-entry time,
 .project-entry > span:first-child {
   padding: 1px 8px 0 0;
-  color: #aaa;
+  color: var(--theme-faint);
   font-size: 13px;
   text-align: left;
   white-space: nowrap;
@@ -412,7 +412,7 @@
   align-self: stretch;
   min-height: 136px;
   padding: 7px 0 22px 18px;
-  border-left: 2px solid #d2d2d2;
+  border-left: 2px solid var(--theme-line);
 }
 
 .project-media::before {
@@ -422,9 +422,9 @@
   left: -8px;
   width: 14px;
   height: 14px;
-  border: 2px solid #fff;
+  border: 2px solid var(--theme-bg);
   border-radius: 50%;
-  background: #d2d2d2;
+  background: var(--theme-line);
 }
 
 .project-media::after {
@@ -434,7 +434,7 @@
   left: -2px;
   width: 2px;
   height: 18px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff);
+  background: linear-gradient(to bottom, transparent, var(--theme-bg));
 }
 
 .project-media img {
@@ -450,12 +450,16 @@
   height: auto;
 }
 
+.project-media img.project-thumbnail--cover {
+  object-fit: cover;
+}
+
 .project-placeholder {
   display: block;
   width: 110px;
   height: 110px;
   border-radius: 10px;
-  background: #f3f3f3;
+  background: var(--theme-surface-soft);
 }
 
 .project-entry > p {
@@ -542,7 +546,7 @@
 
 .other-software-entry time {
   padding-top: 1px;
-  color: #aaa;
+  color: var(--theme-faint);
   font-size: 13px;
   white-space: nowrap;
 }
@@ -564,7 +568,7 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: #fff;
+  background: var(--theme-bg);
 }
 
 .closing-photograph img {

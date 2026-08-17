@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     try {
         // Attempt to fetch the navbar HTML content
-        const response = await fetch('/static/navbar.html?v=7', { cache: 'no-store' });
+        const response = await fetch('/static/navbar.html?v=8', { cache: 'no-store' });
         if (!response.ok) {
             throw new Error(`Failed to load navbar: ${response.status}`);
         }
@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         
         // Insert the navbar HTML
         navContainer.innerHTML = navHTML;
+        window.PortfolioTheme?.sync(navContainer);
         initProjectNavbarReveal(navContainer);
 
         // Handle active state for current page in navigation
