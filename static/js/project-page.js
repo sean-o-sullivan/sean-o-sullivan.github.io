@@ -21,8 +21,10 @@
     : `${window.location.pathname}/`;
   const heroDetails = mobileHeroes[path];
   const header = document.querySelector('.text-column > header, .mobile-report-project-intro');
+  const storyMedia = document.querySelector('.container > .image-column');
+  const hasLeadStoryMedia = storyMedia?.querySelector('.project-lead-media');
 
-  if (!heroDetails || !header) return;
+  if (!heroDetails || !header || hasLeadStoryMedia) return;
 
   const mobileLayout = window.matchMedia('(max-width: 820px)');
   let hero = null;
@@ -52,6 +54,163 @@
   }
 
   syncHeroPosition();
+})();
+
+(() => {
+  const initialiseMobileStoryMedia = () => {
+    const source = document.querySelector('.container > .image-column');
+    const header = document.querySelector('.text-column > header');
+    const main = document.querySelector('.text-column > main');
+
+    if (!source || !header || !main) return;
+
+    const sourceChildren = Array.from(source.children)
+      .filter((child) => child.tagName !== 'BR');
+
+    if (!sourceChildren.length) return;
+
+    const records = sourceChildren.map((node) => {
+      const marker = document.createComment('mobile-story-media');
+      node.before(marker);
+      return { node, marker };
+    });
+
+    const entries = [];
+    let pendingLabels = [];
+
+    sourceChildren.forEach((node) => {
+      if (node.matches('p')) {
+        pendingLabels.push(node);
+        return;
+      }
+
+      entries.push({
+        media: node,
+        nodes: [node, ...pendingLabels]
+      });
+      pendingLabels = [];
+    });
+
+    if (pendingLabels.length && entries.length) {
+      entries[entries.length - 1].nodes.push(...pendingLabels);
+    }
+
+    if (!entries.length) return;
+
+    const isSectionLabel = (element) => {
+      if (element.tagName !== 'P') return false;
+      if (element.parentElement?.firstElementChild !== element) return false;
+      if (element.children.length !== 1) return false;
+      return element.firstElementChild?.matches('b, strong') ?? false;
+    };
+
+    const storyTargets = Array.from(main.querySelectorAll('section p, section blockquote, section ul, section ol'))
+      .filter((element) => !element.matches('.footnote') && !isSectionLabel(element));
+    const fallbackTargets = Array.from(main.querySelectorAll(':scope > section'));
+    const targets = storyTargets.length ? storyTargets : fallbackTargets;
+
+    if (!targets.length) return;
+
+    const contextualClasses = Array.from(source.classList)
+      .filter((className) => className !== 'column' && className !== 'image-column');
+    const mobileLayout = window.matchMedia('(max-width: 820px)');
+    const slots = [];
+    let active = false;
+
+    const createSlot = (target, lead = false) => {
+      const slot = document.createElement('div');
+      slot.classList.add('image-column', 'mobile-story-media', ...contextualClasses);
+      if (lead) slot.classList.add('mobile-story-media--lead');
+      target.insertAdjacentElement('afterend', slot);
+      slots.push(slot);
+      return slot;
+    };
+
+    const findExplicitTarget = (entry) => {
+      const selector = entry.media.dataset.mobileAfter;
+      if (!selector) return null;
+
+      try {
+        return main.querySelector(selector);
+      } catch (error) {
+        console.warn(`Invalid mobile story selector: ${selector}`);
+        return null;
+      }
+    };
+
+    const mount = () => {
+      if (active) return;
+      active = true;
+      source.classList.add('mobile-story-source--emptied');
+      source.setAttribute('aria-hidden', 'true');
+
+      const leadEntry = entries.find((entry) => (
+        entry.media.matches('.project-lead-media') ||
+        entry.media.querySelector('.project-lead-media')
+      ));
+
+      if (leadEntry) {
+        const leadSlot = createSlot(header, true);
+        leadEntry.nodes.forEach((node) => leadSlot.append(node));
+      }
+
+      const remainingEntries = entries.filter((entry) => entry !== leadEntry);
+      const targetSlots = new Map();
+
+      remainingEntries.forEach((entry, index) => {
+        const explicitTarget = findExplicitTarget(entry);
+        const proportionalIndex = Math.min(
+          targets.length - 1,
+          Math.floor(((index + 0.5) * targets.length) / remainingEntries.length)
+        );
+        const target = explicitTarget || targets[proportionalIndex];
+        let slot = targetSlots.get(target);
+
+        if (!slot) {
+          slot = createSlot(target);
+          targetSlots.set(target, slot);
+        }
+
+        entry.nodes.forEach((node) => slot.append(node));
+      });
+    };
+
+    const restore = () => {
+      if (!active) return;
+      active = false;
+
+      records.forEach(({ node, marker }) => {
+        marker.parentNode?.insertBefore(node, marker.nextSibling);
+      });
+
+      slots.splice(0).forEach((slot) => slot.remove());
+      source.classList.remove('mobile-story-source--emptied');
+      source.removeAttribute('aria-hidden');
+    };
+
+    const sync = () => {
+      if (mobileLayout.matches) {
+        mount();
+      } else {
+        restore();
+      }
+    };
+
+    if (mobileLayout.addEventListener) {
+      mobileLayout.addEventListener('change', sync);
+    } else {
+      mobileLayout.addListener(sync);
+    }
+
+    window.addEventListener('resize', sync, { passive: true });
+    sync();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialiseMobileStoryMedia, { once: true });
+  } else {
+    initialiseMobileStoryMedia();
+  }
 })();
 
 (() => {

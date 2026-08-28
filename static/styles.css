@@ -230,6 +230,10 @@ nav {
     color: var(--theme-text);
     background: transparent;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .nav-theme-toggle:hover,
@@ -240,6 +244,18 @@ nav {
 .nav-theme-toggle:focus-visible {
     outline: 1px solid var(--theme-faint);
     outline-offset: 2px;
+}
+
+.nav-theme-toggle:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+}
+
+@media (hover: none) {
+    .nav-theme-toggle:hover,
+    .nav-theme-toggle:active {
+        background: transparent;
+    }
 }
 
 .nav-theme-toggle__icon,

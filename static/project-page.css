@@ -875,6 +875,55 @@ html[data-theme="dark"] .project-page .ogma-media-gallery > .ogma-hypothetical-r
     gap: 48px;
   }
 
+  .project-page .container > .mobile-story-source--emptied {
+    display: none;
+  }
+
+  .project-page .mobile-story-media {
+    width: 100%;
+    margin: 30px 0 34px !important;
+    gap: 16px;
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-page .mobile-story-media--lead {
+    margin: 0 0 34px !important;
+  }
+
+  .project-page .mobile-story-media > img,
+  .project-page .mobile-story-media > video,
+  .project-page .mobile-story-media > .project-lead-media,
+  .project-page .mobile-story-media > .project-wide-media,
+  .project-page .mobile-story-media > figure > img,
+  .project-page .mobile-story-media .process-media > img,
+  .project-page .mobile-story-media .annotated-media > img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 72svh;
+    object-fit: contain;
+  }
+
+  .project-page .mobile-story-media video,
+  .project-page .mobile-story-media .native-video {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100%;
+    max-height: 72svh;
+    margin-inline: auto;
+  }
+
+  .project-page .mobile-story-media > p {
+    grid-column: 1 / -1;
+    margin: -6px 0 0;
+    color: var(--theme-muted);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .project-page .mobile-story-media figure {
+    min-width: 0;
+  }
+
   .project-page .mobile-project-hero {
     display: block;
     width: 100% !important;
