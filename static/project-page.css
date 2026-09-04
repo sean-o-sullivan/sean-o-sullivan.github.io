@@ -489,6 +489,19 @@ html[data-theme="dark"] .project-page .ogma-media-gallery > .ogma-hypothetical-r
   height: clamp(240px, 34vh, 380px) !important;
 }
 
+.project-page .ogma-routing-session {
+  width: min(100%, 640px);
+  margin: 24px auto 0;
+}
+
+.project-page .ogma-routing-session > img {
+  height: auto !important;
+}
+
+.project-page .ogma-routing-session figcaption {
+  text-align: center;
+}
+
 .project-page .textIcontainer.mu-flight-split {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
