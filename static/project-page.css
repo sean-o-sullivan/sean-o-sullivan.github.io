@@ -502,6 +502,24 @@ html[data-theme="dark"] .project-page .ogma-media-gallery > .ogma-hypothetical-r
   text-align: center;
 }
 
+.project-page .textIcontainer.ogma-bodge-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-page .ogma-bodge-comparison > .annotated-media {
+  min-width: 0;
+  margin: 0;
+}
+
+.project-page .ogma-bodge-comparison > .annotated-media > img {
+  height: clamp(320px, 48vh, 520px) !important;
+}
+
+.project-page .ogma-bodge-comparison figcaption {
+  text-align: center;
+}
+
 .project-page .textIcontainer.mu-flight-split {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
@@ -969,6 +987,15 @@ html[data-theme="dark"] .project-page .ogma-media-gallery > .ogma-hypothetical-r
 
   .project-page .textIcontainer.flight-media-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  .project-page .textIcontainer.ogma-bodge-comparison {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .project-page .ogma-bodge-comparison > .annotated-media > img {
+    height: auto !important;
   }
 
   .project-page .textIcontainer.mu-flight-split {
