@@ -21,7 +21,7 @@
 }
 .pace-page :is(.pace-story-media, .pace-media-continuation) .native-video {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
   max-height: 560px;
   object-fit: contain;
