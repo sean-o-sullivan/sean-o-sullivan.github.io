@@ -29,7 +29,7 @@
   let lastLayout = '';
   const pack = () => {
     // Reparenting a fullscreen video makes the browser leave fullscreen.
-    if (document.fullscreenElement || document.webkitFullscreenElement ||
+    if (window.PortfolioFullscreen?.isTransitioning() || document.fullscreenElement || document.webkitFullscreenElement ||
         Array.from(document.querySelectorAll('video')).some(video => video.webkitDisplayingFullscreen)) return;
 
     if (!desktop.matches) {
@@ -69,11 +69,7 @@
       lastLayout = '';
       schedule();
     });
-    document.addEventListener('fullscreenchange', schedule);
-    document.addEventListener('webkitfullscreenchange', schedule);
-    document.querySelectorAll('video').forEach(video => {
-      video.addEventListener('webkitendfullscreen', schedule);
-    });
+    document.addEventListener('portfolio-fullscreen-restored', pack);
     new ResizeObserver(schedule).observe(text);
     document.fonts?.ready.then(schedule);
     schedule();

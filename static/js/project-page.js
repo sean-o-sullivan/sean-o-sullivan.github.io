@@ -1,4 +1,156 @@
 (() => {
+  const savedViews = new WeakMap();
+  let session = null;
+  let pendingRestore = null;
+  let recoveryTimer;
+  let recoveryFrame;
+  let frame;
+  let viewFrame;
+
+  const viewport = () => `${window.innerWidth}:${window.innerHeight}`;
+  const snapshot = (media) => ({
+    media,
+    x: window.scrollX,
+    y: window.scrollY,
+    top: media.getBoundingClientRect().top,
+    viewport: viewport()
+  });
+  const remember = (event) => {
+    if (session?.exiting) session.cancelScroll = true;
+    if (pendingRestore) pendingRestore.cancelScroll = true;
+    const media = event.target.closest?.('video, iframe');
+    if (media && !session) savedViews.set(media, snapshot(media));
+  };
+  // Capture before native controls can scroll or resize the document.
+  document.addEventListener('pointerdown', remember, true);
+  document.addEventListener('keydown', remember, true);
+
+  // Native control clicks are not exposed as DOM pointer events in every browser.
+  const rememberView = () => {
+    cancelAnimationFrame(viewFrame);
+    viewFrame = requestAnimationFrame(() => {
+      if (session || (pendingRestore && !pendingRestore.cancelScroll)) return;
+      document.querySelectorAll('video, iframe').forEach(media => savedViews.set(media, snapshot(media)));
+    });
+  };
+  window.addEventListener('scroll', rememberView, { passive: true });
+  window.addEventListener('resize', rememberView, { passive: true });
+  document.addEventListener('DOMContentLoaded', rememberView);
+  rememberView();
+
+  const begin = (media) => {
+    if (session?.media === media && !session.exiting) return;
+    cancelAnimationFrame(frame);
+    cancelAnimationFrame(recoveryFrame);
+    clearTimeout(recoveryTimer);
+    pendingRestore = null;
+    const saved = savedViews.get(media) || snapshot(media);
+    session = { ...saved, exiting: false, cancelScroll: false };
+  };
+  const finish = () => {
+    const saved = session;
+    session = null;
+    pendingRestore = saved;
+    // Responsive placement must finish before the reading position is restored.
+    document.dispatchEvent(new Event('portfolio-fullscreen-restored'));
+    frame = requestAnimationFrame(() => {
+      if (pendingRestore !== saved) return;
+      if (session || saved.cancelScroll || !saved.media.isConnected) {
+        pendingRestore = null;
+        return;
+      }
+      saved.media.focus?.({ preventScroll: true });
+      restorePosition();
+      // Native focus/scroll restoration can arrive after fullscreenchange and resize.
+      recoveryTimer = setTimeout(() => {
+        if (pendingRestore === saved) pendingRestore = null;
+        rememberView();
+      }, 1500);
+    });
+  };
+  const restorePosition = () => {
+    const saved = pendingRestore;
+    if (!saved || saved.cancelScroll || !saved.media.isConnected) return;
+    const y = viewport() === saved.viewport
+      ? saved.y
+      : window.scrollY + saved.media.getBoundingClientRect().top - saved.top;
+    const top = Math.max(0, Math.min(y, document.documentElement.scrollHeight - window.innerHeight));
+    if (Math.abs(window.scrollY - top) > 1 || Math.abs(window.scrollX - saved.x) > 1) {
+      window.scrollTo({ left: saved.x, top, behavior: 'instant' });
+    }
+  };
+  window.addEventListener('scroll', () => {
+    if (!pendingRestore || pendingRestore.cancelScroll) return;
+    cancelAnimationFrame(recoveryFrame);
+    recoveryFrame = requestAnimationFrame(restorePosition);
+  }, { passive: true });
+  const settle = () => {
+    if (!session?.exiting) return;
+    const now = performance.now();
+    const size = viewport();
+    if (size !== session.exitViewport) {
+      session.exitViewport = size;
+      session.lastResize = now;
+    }
+    // Some browsers clear fullscreen a second before restoring the window size.
+    // A changed orientation may never return to the original dimensions.
+    const returned = size === session.viewport;
+    if ((returned || now - session.exitStarted >= 2000) && now - session.lastResize >= 180) {
+      finish();
+    } else {
+      frame = requestAnimationFrame(settle);
+    }
+  };
+  const end = () => {
+    if (!session || session.exiting) return;
+    session.exiting = true;
+    session.exitStarted = performance.now();
+    session.lastResize = session.exitStarted;
+    session.exitViewport = viewport();
+    frame = requestAnimationFrame(settle);
+  };
+  const changed = () => {
+    const element = document.fullscreenElement || document.webkitFullscreenElement;
+    if (element) {
+      const media = element.matches('video, iframe') ? element : element.querySelector('video, iframe');
+      if (media) begin(media);
+    } else {
+      end();
+    }
+  };
+  document.addEventListener('fullscreenchange', changed, true);
+  document.addEventListener('webkitfullscreenchange', changed, true);
+  document.addEventListener('webkitbeginfullscreen', event => begin(event.target), true);
+  document.addEventListener('webkitendfullscreen', end, true);
+
+  const resized = () => {
+    if (session?.exiting) session.lastResize = performance.now();
+  };
+  window.addEventListener('resize', resized, { passive: true });
+  window.visualViewport?.addEventListener('resize', resized, { passive: true });
+  const cancelScroll = () => {
+    if (session?.exiting) session.cancelScroll = true;
+    if (pendingRestore) pendingRestore.cancelScroll = true;
+  };
+  window.addEventListener('wheel', cancelScroll, { passive: true });
+  window.addEventListener('touchmove', cancelScroll, { passive: true });
+  window.addEventListener('hashchange', cancelScroll);
+  window.addEventListener('popstate', cancelScroll);
+  document.addEventListener('keydown', event => {
+    if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) cancelScroll();
+  });
+  window.addEventListener('pagehide', () => {
+    cancelAnimationFrame(frame);
+    cancelAnimationFrame(viewFrame);
+    cancelAnimationFrame(recoveryFrame);
+    clearTimeout(recoveryTimer);
+    session = null;
+    pendingRestore = null;
+  });
+  window.PortfolioFullscreen = { isTransitioning: () => Boolean(session) };
+})();
+
+(() => {
   const mobileHeroes = {
     '/projects/mu/': ['/thumbnails/mu.jpeg', 'Wrapped Mu particle detector board'],
     '/projects/ogma/': ['/thumbnails/ogma.jpeg', 'Render of the Ogma modular flight computer stack'],
@@ -30,6 +182,7 @@
   let hero = null;
 
   const syncHeroPosition = () => {
+    if (window.PortfolioFullscreen.isTransitioning()) return;
     if (mobileLayout.matches) {
       if (!hero) {
         hero = document.createElement('img');
@@ -54,6 +207,7 @@
   }
 
   syncHeroPosition();
+  document.addEventListener('portfolio-fullscreen-restored', syncHeroPosition);
 })();
 
 (() => {
@@ -190,8 +344,7 @@
 
     const sync = () => {
       // Fullscreen may cross the mobile breakpoint; keep the playing node in place.
-      if (document.fullscreenElement || document.webkitFullscreenElement ||
-          Array.from(document.querySelectorAll('video')).some(video => video.webkitDisplayingFullscreen)) return;
+      if (window.PortfolioFullscreen.isTransitioning()) return;
 
       if (mobileLayout.matches) {
         mount();
@@ -207,11 +360,7 @@
     }
 
     window.addEventListener('resize', sync, { passive: true });
-    document.addEventListener('fullscreenchange', sync);
-    document.addEventListener('webkitfullscreenchange', sync);
-    document.querySelectorAll('video').forEach(video => {
-      video.addEventListener('webkitendfullscreen', sync);
-    });
+    document.addEventListener('portfolio-fullscreen-restored', sync);
     sync();
   };
 
