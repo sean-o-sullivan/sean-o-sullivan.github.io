@@ -44,6 +44,7 @@
 .pace-page .pace-polarised-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
   gap: 12px;
 }
 .pace-page .pace-polarised-tile {
@@ -57,11 +58,7 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
   object-fit: contain;
-}
-.pace-page .pace-polarised-tile:last-child img {
-  aspect-ratio: 16 / 9;
 }
 .pace-page .pace-polarised-tile span {
   position: absolute;
