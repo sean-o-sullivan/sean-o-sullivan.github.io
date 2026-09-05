@@ -44,7 +44,7 @@
 .pace-page .pace-polarised-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
+  align-items: end;
   gap: 12px;
 }
 .pace-page .pace-polarised-tile {
