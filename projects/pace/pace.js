@@ -25,14 +25,24 @@
   source.after(continuation);
 
   const desktop = window.matchMedia('(min-width: 821px)');
-  let scheduled = false;
+  let scheduled;
+  let lastLayout = '';
   const pack = () => {
-    scheduled = false;
+    // Reparenting a fullscreen video makes the browser leave fullscreen.
+    if (document.fullscreenElement || document.webkitFullscreenElement ||
+        Array.from(document.querySelectorAll('video')).some(video => video.webkitDisplayingFullscreen)) return;
+
     if (!desktop.matches) {
       // The shared script owns inline placement and restores nodes on desktop.
+      lastLayout = '';
       continuation.hidden = true;
       return;
     }
+
+    const textRect = text.getBoundingClientRect();
+    const layout = [window.innerWidth, window.innerHeight, textRect.height, source.clientWidth].join(':');
+    if (layout === lastLayout) return;
+    lastLayout = layout;
 
     records.forEach(({ node, marker }) => {
       if (node.parentElement === continuation) marker.after(node);
@@ -49,12 +59,21 @@
     continuation.hidden = false;
   };
   const schedule = () => {
-    if (scheduled) return;
-    scheduled = true;
-    requestAnimationFrame(pack);
+    // Let viewport changes settle before moving media between columns.
+    clearTimeout(scheduled);
+    scheduled = setTimeout(() => requestAnimationFrame(pack), 150);
   };
   const initialise = () => {
     window.addEventListener('resize', schedule, { passive: true });
+    desktop.addEventListener('change', () => {
+      lastLayout = '';
+      schedule();
+    });
+    document.addEventListener('fullscreenchange', schedule);
+    document.addEventListener('webkitfullscreenchange', schedule);
+    document.querySelectorAll('video').forEach(video => {
+      video.addEventListener('webkitendfullscreen', schedule);
+    });
     new ResizeObserver(schedule).observe(text);
     document.fonts?.ready.then(schedule);
     schedule();

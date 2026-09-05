@@ -133,3 +133,10 @@
     gap: 24px;
   }
 }
+
+.pace-page video.native-video:is(:fullscreen, :-webkit-full-screen) {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none;
+  max-height: none;
+}

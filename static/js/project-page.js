@@ -189,6 +189,10 @@
     };
 
     const sync = () => {
+      // Fullscreen may cross the mobile breakpoint; keep the playing node in place.
+      if (document.fullscreenElement || document.webkitFullscreenElement ||
+          Array.from(document.querySelectorAll('video')).some(video => video.webkitDisplayingFullscreen)) return;
+
       if (mobileLayout.matches) {
         mount();
       } else {
@@ -203,6 +207,11 @@
     }
 
     window.addEventListener('resize', sync, { passive: true });
+    document.addEventListener('fullscreenchange', sync);
+    document.addEventListener('webkitfullscreenchange', sync);
+    document.querySelectorAll('video').forEach(video => {
+      video.addEventListener('webkitendfullscreen', sync);
+    });
     sync();
   };
 
