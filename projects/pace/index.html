@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../../static/styles.css?v=8">
   <link rel="stylesheet" href="../../static/project-page.css?v=49">
 
-  <link rel="stylesheet" href="pace.css?v=7">
+  <link rel="stylesheet" href="pace.css?v=8">
 </head>
 <body class="project-page pace-page">
   <div id="navbar-container"></div>
@@ -35,7 +35,7 @@
         <section>
         <p><b>Build</b></p>
         <p><b>The first two boards</b></p>
-        <p>I started Pace towards the end of the Patch Summer Accelerator in 2024, in the summer before my Leaving Cert. V1 used eight daisy-chained shift registers, a quartz oscillator, and a delayed latching circuit to inject the first bit. It was an elaborate way to move one light around a ring. I posted it on Reddit, got a fairly blunt review, and moved to an STM32 and LED matrix driver for v2.</p>
+        <p id="pace-early-boards" class="pace-board-anchor">I started Pace towards the end of the Patch Summer Accelerator in 2024, in the summer before my Leaving Cert. <a href="#pace-v1-board">V1</a> used eight daisy-chained shift registers, a quartz oscillator, and a delayed latching circuit to inject the first bit. It was an elaborate way to move one light around a ring. I posted it on Reddit, got a fairly blunt review, and moved to an STM32 and LED matrix driver for <a href="#pace-v2-board">v2</a>.</p>
         <p>The second review was kinder. One comment said, <a href="https://www.reddit.com/r/PrintedCircuitBoard/comments/1f08xn6/review_request_stm32_based_timer_for_swimming/" target="_blank" rel="noopener noreferrer">“It's a truly beautiful board layout. I hope it works!”</a> Another immediately asked, <a href="https://www.reddit.com/r/PrintedCircuitBoard/comments/1f08xn6/review_request_stm32_based_timer_for_swimming/" target="_blank" rel="noopener noreferrer">“What will happen if battery voltage drops under 3.4ish?”</a> Both were fair. That board reached the point of ordering before I realised its buried vias would add about €500. I never ordered it.</p>
         <p id="pace-first-boards">The project sat for a while. In October 2025, once I had the space, I came back to finish it. I rebuilt the main board, charge board, case, and firmware. Charlieplexing let me remove the external matrix driver and route sixty LEDs across nine bus lines. The final board still needed eight layers, but the buried-via design was gone.</p>
         <p><b>Turning an Ender 3 into a placement machine</b></p>
@@ -94,6 +94,7 @@
         <p>I have a working, repeatedly repaired prototype. I have not measured final battery life, long-term charge retention, clock drift, or waterproofing.</p>
         <p>For a while I considered a small Kickstarter and making a batch. I later decided that I did not want to take on assembling fifty more. I wanted to finish the one I used, show how I made it, and move on.</p>
         <p>I started Pace because I swam. I don't swim anymore, but I have been using it to time strength, conditioning, and flexibility work instead.</p>
+        <p><a href="https://www.reddit.com/r/PCB/comments/1w80zdc/update_i_finally_finished_the_13mm_swimming_timer/" target="_blank" rel="noopener noreferrer">The finished timer, and a thank-you to r/PCB.</a></p>
         </section>
         <p class="footnote" id="pace-assembly-note" role="doc-footnote"><a class="footnote-backref" href="#pace-assembly-note-ref" aria-label="Back to assembly footnote reference">†</a> With a blunt 30-gauge needle balanced between both thumbs and index fingers, and my forearms resting on the desk for support, I could pick up the 01005 LEDs (0.4 × 0.2mm) with friction alone.</p>
         <p class="footnote" id="pace-waterproofing-note" role="doc-footnote"><a class="footnote-backref" href="#pace-waterproofing-note-ref" aria-label="Back to waterproofing footnote reference">‡</a> I considered having Pace coated with Parylene C and might still do it. If I make another wearable like this, I'd probably have it coated that way.</p>
@@ -152,8 +153,8 @@
     <img src="../../images/pace/v3-charge-schematic.png" alt="Pace v3 charging case schematic">
   </section>
 
-  <section class="textcontainer">
-    <p><b>V2.0 - STM32L0 and LED matrix driver</b> · <a href="https://www.reddit.com/r/PrintedCircuitBoard/comments/1f08xn6/review_request_stm32_based_timer_for_swimming/" target="_blank" rel="noopener noreferrer">Reddit review</a></p>
+  <section class="textcontainer pace-board-anchor" id="pace-v2-board">
+    <p><b>V2.0 - STM32L0 and LED matrix driver</b> · <a href="https://www.reddit.com/r/PrintedCircuitBoard/comments/1f08xn6/review_request_stm32_based_timer_for_swimming/" target="_blank" rel="noopener noreferrer">Reddit review</a> · <a href="#pace-early-boards">Back to the build</a></p>
   </section>
 
   <section class="textIcontainer project-board-triptych">
@@ -162,8 +163,8 @@
     <img src="../../images/pace/currentSchematic-2 2-2-2.jpg" alt="Pace v2 schematic">
   </section>
 
-  <section class="textcontainer">
-    <p><b>V1.0 - Discrete logic</b> · <a href="https://www.reddit.com/r/PrintedCircuitBoard/comments/1e882o2/first_pcb_review_request_swimming_timer_board/" target="_blank" rel="noopener noreferrer">Reddit review</a></p>
+  <section class="textcontainer pace-board-anchor" id="pace-v1-board">
+    <p><b>V1.0 - Discrete logic</b> · <a href="https://www.reddit.com/r/PrintedCircuitBoard/comments/1e882o2/first_pcb_review_request_swimming_timer_board/" target="_blank" rel="noopener noreferrer">Reddit review</a> · <a href="#pace-early-boards">Back to the build</a></p>
     <p>
       V1 used eight shift registers and a latching circuit to create the first bit that moved around the ring. These simulations show the pulse-generating latch, then a two-register test of the daisy chain.
     </p>

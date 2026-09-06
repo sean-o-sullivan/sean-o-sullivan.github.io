@@ -1,3 +1,7 @@
+.pace-page .pace-board-anchor {
+  scroll-margin-top: calc(72px + clamp(52px, 8vh, 86px));
+}
+
 .pace-page .pace-story-media {
   gap: clamp(30px, 5vh, 58px);
 }
@@ -125,6 +129,11 @@
   }
 }
 @media (max-width: 520px) {
+  .pace-page .container {
+    /* Keep the title below the existing navigation blur. */
+    padding-top: calc(clamp(52px, 8vh, 86px) + 16px);
+  }
+
   .pace-page .pace-media-pair {
     grid-template-columns: 1fr;
     gap: 24px;
