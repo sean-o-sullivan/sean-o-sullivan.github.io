@@ -61,7 +61,10 @@
   const schedule = () => {
     // Let viewport changes settle before moving media between columns.
     clearTimeout(scheduled);
-    scheduled = setTimeout(() => requestAnimationFrame(pack), 150);
+    scheduled = setTimeout(() => requestAnimationFrame(() => {
+      pack();
+      document.dispatchEvent(new Event('portfolio-media-layout'));
+    }), 150);
   };
   const initialise = () => {
     window.addEventListener('resize', schedule, { passive: true });

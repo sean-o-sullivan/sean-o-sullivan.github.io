@@ -1,3 +1,67 @@
+// Caption titles double as stable media permalinks.
+(() => {
+  const initialise = () => {
+    if (!document.querySelector('figcaption b, figcaption strong')) return;
+    document.querySelectorAll('figure').forEach(figure => {
+      const title = figure.querySelector('figcaption b, figcaption strong');
+      const media = figure.querySelector('video, img, iframe, audio');
+      if (!title || !media || title.querySelector('a, button')) return;
+      const src = media.querySelector('source')?.getAttribute('src') || media.getAttribute('src');
+      if (!src) return;
+      const stem = new URL(src, location.href).pathname.split('/').pop().replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9_-]+/g, '-');
+      const base = `${media.tagName === 'VIDEO' ? 'video' : 'media'}-${stem}`;
+      if (!figure.id) {
+        let id = base;
+        let suffix = 2;
+        while (document.getElementById(id)) id = `${base}-${suffix++}`;
+        figure.id = id;
+      }
+      figure.classList.add('shareable-media');
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'media-copy-link';
+      button.textContent = title.textContent;
+      button.title = 'Copy link to this media';
+      button.setAttribute('aria-label', `Copy link: ${title.textContent}`);
+      const status = document.createElement('span');
+      status.className = 'media-share-status';
+      status.setAttribute('role', 'status');
+      title.replaceWith(button);
+      button.append(status);
+      let timer;
+      button.addEventListener('click', async () => {
+        const url = new URL(location.pathname, location.origin);
+        url.hash = figure.id;
+        try {
+          await navigator.clipboard.writeText(url.href);
+          status.textContent = 'Copied';
+        } catch {
+          window.prompt('Copy this media link:', url.href);
+        }
+        clearTimeout(timer);
+        timer = setTimeout(() => { status.textContent = ''; }, 2500);
+      });
+    });
+    const scrollToMedia = () => {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target?.classList.contains('shareable-media')) target.scrollIntoView({ block: 'start' });
+    };
+    let pending = !!location.hash;
+    const settle = () => { if (pending) requestAnimationFrame(scrollToMedia); };
+    // Reflow can relocate media during initial responsive placement.
+    document.addEventListener('portfolio-media-layout', settle);
+    window.addEventListener('load', settle, { once: true });
+    document.fonts?.ready.then(settle);
+    ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(type => {
+      window.addEventListener(type, () => { pending = false; }, { once: true, passive: true });
+    });
+    window.addEventListener('hashchange', scrollToMedia);
+    settle();
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialise, { once: true });
+  else initialise();
+})();
+
 (() => {
   const savedViews = new WeakMap();
   let session = null;
