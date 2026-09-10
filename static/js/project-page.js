@@ -1,11 +1,12 @@
 // Caption titles double as stable media permalinks.
 (() => {
   const initialise = () => {
-    if (!document.querySelector('figcaption b, figcaption strong')) return;
+    if (!document.querySelector('figcaption')) return;
     document.querySelectorAll('figure').forEach(figure => {
-      const title = figure.querySelector('figcaption b, figcaption strong');
+      const caption = figure.querySelector('figcaption');
+      const title = caption?.querySelector('b, strong') || caption;
       const media = figure.querySelector('video, img, iframe, audio');
-      if (!title || !media || title.querySelector('a, button')) return;
+      if (!title || !title.textContent.trim() || !media || title.querySelector('a, button')) return;
       const src = media.querySelector('source')?.getAttribute('src') || media.getAttribute('src');
       if (!src) return;
       const stem = new URL(src, location.href).pathname.split('/').pop().replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9_-]+/g, '-');
@@ -20,13 +21,15 @@
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'media-copy-link';
+      if (title === caption) button.style.fontWeight = 'inherit';
       button.textContent = title.textContent;
       button.title = 'Copy link to this media';
       button.setAttribute('aria-label', `Copy link: ${title.textContent}`);
       const status = document.createElement('span');
       status.className = 'media-share-status';
       status.setAttribute('role', 'status');
-      title.replaceWith(button);
+      if (title === caption) caption.replaceChildren(button);
+      else title.replaceWith(button);
       button.append(status);
       let timer;
       button.addEventListener('click', async () => {
