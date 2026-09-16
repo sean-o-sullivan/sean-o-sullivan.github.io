@@ -176,6 +176,9 @@ if (gallery) {
 
   gallery.addEventListener('click', () => {
     currentImage = (currentImage + 1) % galleryImages.length;
+    // The carousel now owns this image; don't let a pending initial upgrade replace it.
+    delete image.dataset.imageVariants;
+    delete image.dataset.originalSrc;
     [image.src, image.alt] = galleryImages[currentImage];
 
     if (currentImage === 0) revealEasterEgg();

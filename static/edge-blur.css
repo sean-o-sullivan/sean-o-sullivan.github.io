@@ -1,3 +1,47 @@
+/* Keep layered blur off long writeups to avoid scroll-paint stalls. */
+body:not(.home-page) .edge-blur {
+  display: none !important;
+}
+
+/* Four overlapping bands per edge; keep the original height and peak blur. */
+.home-page .edge-blur::before,
+.home-page .edge-blur::after,
+.home-page .edge-blur > span:nth-child(n + 5) {
+  display: none;
+}
+
+.home-page .edge-blur > span:nth-child(1) {
+  --blur-radius: 1px;
+  --mask-start: 0%;
+  --mask-full-start: 25%;
+  --mask-full-end: 50%;
+  --mask-end: 75%;
+}
+
+.home-page .edge-blur > span:nth-child(2) {
+  --blur-radius: 4px;
+  --mask-start: 25%;
+  --mask-full-start: 50%;
+  --mask-full-end: 75%;
+  --mask-end: 100%;
+}
+
+.home-page .edge-blur > span:nth-child(3) {
+  --blur-radius: 12px;
+  --mask-start: 50%;
+  --mask-full-start: 75%;
+  --mask-full-end: 100%;
+  --mask-end: 125%;
+}
+
+.home-page .edge-blur > span:nth-child(4) {
+  --blur-radius: 32px;
+  --mask-start: 75%;
+  --mask-full-start: 100%;
+  --mask-full-end: 125%;
+  --mask-end: 150%;
+}
+
 .edge-blur {
   --edge-surface-before: var(--theme-bg, #fff);
   --edge-surface-after: var(--theme-bg, #fff);

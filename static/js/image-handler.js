@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const tempImage = new Image();
                     tempImage.onload = () => {
                         // Once image is loaded, update the fullscreen view
-                        fullscreenImg.src = this.src;
+                        fullscreenImg.src = this.dataset.originalSrc || this.src;
                         fullscreenImg.alt = this.alt;
                         loadingIndicator.style.display = 'none';
                         overlay.style.display = 'flex';
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     };
                     
                     // Start loading the image
-                    tempImage.src = this.src;
+                    tempImage.src = this.dataset.originalSrc || this.src;
                 });
             });
             

@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const open = (image) => {
     previouslyFocused = image;
-    enlargedImage.src = image.currentSrc || image.src;
+    enlargedImage.src = image.dataset.originalSrc || image.currentSrc || image.src;
     enlargedImage.alt = image.alt || '';
     overlay.hidden = false;
     document.body.classList.add('lightbox-open');
