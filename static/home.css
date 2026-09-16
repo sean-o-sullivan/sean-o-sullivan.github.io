@@ -1,5 +1,3 @@
-@import url("/static/edge-blur.css?v=11");
-
 /* Homepage layout is intentionally isolated from legacy project-page styles. */
 @property --home-edge-angle {
   syntax: "<angle>";
