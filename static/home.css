@@ -24,6 +24,11 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
+/* The homepage is already visible before navigation and music finish loading. */
+.home-page.content-loaded {
+  animation: none;
+}
+
 .home-page *,
 .home-page *::before,
 .home-page *::after {
