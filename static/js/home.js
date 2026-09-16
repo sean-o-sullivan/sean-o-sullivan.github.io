@@ -20,11 +20,12 @@ const discoveryResult = document.querySelector('.discovery-counter__result');
 const carouselVideos = [
   { id: 'mBqu09YMTPs', title: 'Baden Powell - Valsa sem nome' },
   { id: '4VlZ3OiRReM', title: 'Jacob Collier - Keyscape Sessions' },
-  { id: 'RtvImndxZn8', title: 'Radiohead - Daydreaming' },
+  { id: 'HAJCDaSW44I', title: 'Radiohead - Daydreaming' },
   { id: 'D0Kw7C6LtoY', title: "Victor Wooten - Isn't She Lovely" },
   { id: 'HAi1pn3kBqE', title: 'I. S. Bach - Toccata and Fugue in D minor' },
   { id: '-GRwcKlyfp4', title: 'Cory Wong - Meditation (Live at Brooklyn Steel)' },
   { id: 'LRoBmXcHgb0', title: 'The Smoothest Sax Solo' },
+  { id: 'lGSNlgNcIN8', title: "I'm Dying Mother" },
   { id: 'RxZSP1Dc78Q', title: 'Montserrat Caballé - O mio babbino caro' }
 ];
 let activeVideo = 3;
