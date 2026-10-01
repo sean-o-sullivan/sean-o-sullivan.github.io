@@ -12,7 +12,7 @@ const loadProjectWake = async () => {
     });
 
     // Use the homepage's exact renderer and tuning, in dependency order.
-    for (const src of ['/static/js/fluid-field.js?v=1', '/static/js/cursor-ripple.js?v=4']) {
+    for (const src of ['/static/js/fluid-field.js?v=1', '/static/js/cursor-ripple.js?v=5']) {
         await new Promise((resolve, reject) => {
             const script = document.createElement('script');
             script.src = src;

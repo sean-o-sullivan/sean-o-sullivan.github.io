@@ -296,6 +296,51 @@ test('other browsers get blur clipped to contours of the same field, never url()
   }
 });
 
+test('blur clears within a second of stopping while refraction and eddies continue', () => {
+  const page = setup();
+  const colours = () => page.nodes().filter(node => node.tagName === 'feFlood')
+    .map(node => node.getAttribute('flood-color').match(/\d+/g).map(Number));
+  const peakBlur = () => Math.max(0, ...colours().map(rgb => rgb[2]));
+  page.sweep(100, 1100, 400);
+  page.tick();
+  assert.ok(peakBlur() > 200, 'deliberate strokes keep the existing blur strength');
+  for (let k = 0; k < 60; k++) page.tick(1000 / 60);
+  assert.ok(peakBlur() <= 8, `blur map should be nearly clear: ${peakBlur()}/255`);
+  assert.ok(colours().some(([r, g]) => Math.abs(r - 128) + Math.abs(g - 128) > 6),
+    'the moving water still refracts the page');
+  assert.ok(page.visible().some(node => node.tagName === 'canvas'), 'surface light continues');
+  assert.ok(page.contexts[0].heights.some(h => Math.abs(h) > 0.01), 'eddy heights remain');
+  page.sweep(1050, 200, 350);
+  page.tick();
+  assert.ok(peakBlur() > 200, 'a new stroke can disturb the page again');
+});
+
+test('fallback blur also clears within a second without cutting off the light layer', () => {
+  const page = setup({ chromium: false });
+  page.sweep(100, 1100, 400);
+  page.tick();
+  const soft = page.body.children.filter(node => node.className.includes('cursor-wake--soft'));
+  assert.ok(soft.some(node => !node.hidden));
+  for (let k = 0; k < 60; k++) page.tick(1000 / 60);
+  assert.ok(soft.every(node => node.hidden), 'fallback blur has cleared');
+  assert.ok(page.visible().some(node => node.tagName === 'canvas'), 'eddies keep their light');
+  page.sweep(1050, 200, 350);
+  page.tick();
+  assert.ok(soft.some(node => !node.hidden), 'a new stroke restores local blur');
+});
+
+test('slow continuous movement does not repeatedly release the blur between pointer samples', () => {
+  const page = setup();
+  page.sweep(100, 700, 400);
+  for (let k = 0; k < 20; k++) {
+    page.move(700 + k * 2, 400);
+    page.tick(75);
+  }
+  const blues = page.nodes().filter(node => node.tagName === 'feFlood')
+    .map(node => Number(node.getAttribute('flood-color').match(/\d+/g)[2]));
+  assert.ok(Math.max(...blues) > 80, 'moving strokes are not treated as idle');
+});
+
 test('one frame at a time, and the loop stops itself once the water is still', () => {
   const page = setup();
   page.sweep(100, 1100, 400);

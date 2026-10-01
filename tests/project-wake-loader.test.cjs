@@ -39,7 +39,7 @@ for (const pathname of ['/projects/mu/', '/projects/ogma/', '/tooling/twister/']
         appended[1].events.load();
         await Promise.resolve();
         assert.equal(appended.length, 3);
-        assert.equal(appended[2].src, '/static/js/cursor-ripple.js?v=4');
+        assert.equal(appended[2].src, '/static/js/cursor-ripple.js?v=5');
         for (const element of appended.slice(1)) assert.ok(homepage.includes(`src="${element.src}"`));
         appended[2].events.load();
         await finished;

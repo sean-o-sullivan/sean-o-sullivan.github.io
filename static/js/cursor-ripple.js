@@ -51,6 +51,7 @@
   const SURFACE_LIFT = 0.00004; // px of surface height per unit pressure
   const SURFACE_RESPONSE = 0.08; // s; smooth pressure pulses between pointer events
   const FLOW_RESPONSE = 0.045;   // s; keep slow, pixel-quantised movement continuous
+  const BLUR_RELEASE = 0.24;     // s; clear the text before the current settles
 
   const clamp = (value, min, max) => value < min ? min : value > max ? max : value;
   const smooth = t => t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t);
@@ -60,6 +61,7 @@
   let size = { w: 0, h: 0 };
   let raf = 0;
   let lastNow = 0;
+  let blurIdle = 0;
   let scroll = { x: 0, y: 0 };
   let last = null;              // last pointer sample in the current stroke
   const pending = [];
@@ -239,7 +241,7 @@
 
     return {
       nodes: [svg, surface],
-      draw(f, water) {
+      draw(f, water, blurGain) {
         const { nx, ny, h } = f;
         const { w: vw, h: vh } = size;
         const key = `${vw}x${vh}`;
@@ -270,7 +272,7 @@
             }
             const r = Math.round(clamp(128 + sx / n * scale, 0, 255));
             const g = Math.round(clamp(128 + sy / n * scale, 0, 255));
-            const b = Math.round(clamp(sb / n * 255, 0, 255));
+            const b = Math.round(clamp(sb / n * 255 * blurGain, 0, 255));
             if (Math.abs(r - 128) < 3 && Math.abs(g - 128) < 3 && b < 8) continue;
             blocks.push([i, j, r, g, b, Math.abs(r - 128) + Math.abs(g - 128) + b * 0.25]);
           }
@@ -410,13 +412,13 @@
 
     return {
       nodes: surfaces,
-      draw(f, water) {
+      draw(f, water, blurGain) {
         const d = water.offset;
         const cells = f.nx * f.ny;
         if (!weights || weights.length !== cells) weights = new Float32Array(cells);
         for (let c = 0; c < cells; c++) {
           const m = Math.sqrt(d[c * 3] * d[c * 3] + d[c * 3 + 1] * d[c * 3 + 1]) / DISPLACE_MAX;
-          weights[c] = Math.max(m, d[c * 3 + 2] * 0.6);
+          weights[c] = Math.max(m, d[c * 3 + 2] * 0.6) * blurGain;
         }
         levels.forEach((level, k) => {
           const path = contour(f, level);
@@ -618,6 +620,7 @@ void main() {
     stop();
     pending.length = 0;
     last = null;
+    blurIdle = 0;
     surface = null;
     if (field) field.clear();
     hideLayers();
@@ -634,13 +637,15 @@ void main() {
     field.translate(sx - scroll.x, sy - scroll.y);
     if (sx !== scroll.x || sy !== scroll.y) surface = null;
     scroll = { x: sx, y: sy };
+    blurIdle = pending.length ? 0 : blurIdle + Math.max(0, dt);
+    const blurGain = Math.exp(-Math.max(0, blurIdle - STROKE_GAP / 1000) / BLUR_RELEASE);
     for (const s of pending) field.stir(s[0], s[1], s[2], s[3], s[4]);
     pending.length = 0;
     const moving = field.step(dt);
     if (moving) {
       const { content, light } = ensureLayers();
       const water = shape(field, dt);
-      if (content) content.draw(field, water);
+      if (content) content.draw(field, water, blurGain);
       if (light) light.draw(field, water);
       raf = requestAnimationFrame(frame);
     } else {
