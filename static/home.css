@@ -149,6 +149,7 @@
   overflow: hidden;
 }
 
+.home-page .nav-container,
 .page-shell {
   width: min(100%, calc(var(--page-width) + (2 * var(--side-padding))));
   margin-inline: auto;
@@ -157,6 +158,17 @@
 
 .home-record {
   position: relative;
+}
+
+.home-footer {
+  padding-bottom: 36px;
+  color: var(--theme-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.home-footer p {
+  margin: 0;
 }
 
 .site-header {
@@ -340,6 +352,43 @@
   color: var(--theme-text);
 }
 
+.home-opening {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  column-gap: clamp(40px, 7vw, 100px);
+  align-items: center;
+  position: relative;
+  padding-block: clamp(32px, 5vh, 56px) 40px;
+}
+
+.home-opening__copy {
+  max-width: 440px;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.home-opening__copy p {
+  margin: 0 0 20px;
+}
+
+.home-opening__copy p:last-child {
+  margin-bottom: 0;
+}
+
+.home-opening__photograph {
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+  max-width: 480px;
+  justify-self: end;
+}
+
+.home-opening__photograph img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .projects-section h1,
 .projects-section h2 {
   margin: 0 0 16px;
@@ -350,7 +399,7 @@
 
 .projects-section {
   min-height: calc(100vh - var(--header-height));
-  padding-top: clamp(76px, 11vh, 120px);
+  padding-top: clamp(32px, 4vh, 48px);
   padding-bottom: clamp(80px, 12vw, 140px);
   scroll-margin-top: var(--header-height);
   display: grid;
@@ -563,28 +612,6 @@
   font-weight: 700;
 }
 
-.closing-photograph {
-  position: relative;
-  z-index: 7;
-  height: 100svh;
-  padding: 0 21px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  background: var(--theme-bg);
-}
-
-.closing-photograph img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: 960px;
-  max-height: 72svh;
-  min-width: 0;
-  min-height: 0;
-  object-fit: contain;
-}
-
 @media (max-width: 680px) {
   .home-page {
     --side-padding: clamp(18px, 6vw, 28px);
@@ -697,7 +724,25 @@
 }
 
 @media (max-width: 900px) {
+  .home-opening {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0;
+    padding-block: 48px 24px;
+  }
+
+  .home-opening__copy {
+    max-width: none;
+  }
+
+  .home-opening__photograph {
+    margin: 28px auto 0;
+  }
+
   .projects-section {
+    padding-top: 40px;
     grid-template-columns: 1fr;
     gap: 72px;
   }

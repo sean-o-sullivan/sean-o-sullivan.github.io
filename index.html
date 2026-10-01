@@ -50,7 +50,8 @@
   }
   </script>
   <link rel="stylesheet" href="/static/styles.css?v=8">
-  <link rel="stylesheet" href="/static/home.css?v=50">
+  <link rel="stylesheet" href="/static/home.css?v=58">
+  <link rel="stylesheet" href="/static/cursor-wake.css?v=1">
 
   <script defer src="/static/js/progressive-images.js?v=1"></script>
 </head>
@@ -61,6 +62,21 @@
     </header>
 
     <main>
+    <section class="home-opening page-shell" aria-label="About Seán">
+      <div class="home-opening__copy">
+        <p>I'm Seán!</p>
+        <p>I study Immersive Software Engineering at the University of Limerick. I'm currently on an internship at Analog Devices.</p>
+        <p>I also lead the electronics department in UL's rocketry team.</p>
+        <p>I get through a lot of audiobooks, usually while my hands are busy, and I like talking with people about the things they care about.</p>
+        <p>I love Weetabix, blustery days and the sound of a cello.</p>
+        <p>I think we've barely explored the good things we could make with the technology we already have.</p>
+        <p>Building something you care about? <a href="mailto:hi@sean-osullivan.com">I'd love to hear about it</a>.</p>
+      </div>
+      <figure class="home-opening__photograph">
+        <img class="no-lightbox" src="/images/optimized/e4979518bda716a28c4b-800.webp" srcset="/images/optimized/e4979518bda716a28c4b-400.webp 400w, /images/optimized/e4979518bda716a28c4b-800.webp 800w, /images/optimized/e4979518bda716a28c4b-1600.webp 1600w" sizes="(max-width: 536px) calc(100vw - 48px), 480px" alt="A path beneath dense branches at night, with lights shining through the leaves" width="4032" height="3024" loading="eager" fetchpriority="high" decoding="async">
+      </figure>
+    </section>
+
     <section class="gallery-easter-egg page-shell" id="gallery-easter-egg" aria-label="Hidden video" aria-hidden="true" inert>
       <div class="gallery-easter-egg__inner">
         <div class="video-carousel">
@@ -237,14 +253,15 @@
       </aside>
     </section>
     </main>
+    <footer class="home-footer page-shell">
+      <p>You are now aware of your breathing — ha!</p>
+    </footer>
   </div>
 
-  <section class="closing-photograph" aria-label="Night beneath the trees">
-    <img class="no-lightbox" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDMyIiBoZWlnaHQ9IjMwMjQiIHZpZXdCb3g9IjAgMCA0MDMyIDMwMjQiPjxpbWFnZSB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBocmVmPSJkYXRhOmltYWdlL3dlYnA7YmFzZTY0LFVrbEdSaVlCQUFCWFJVSlFWbEE0SUJvQkFBQVFDUUNkQVNwQUFEQUFQeVYrc2xPdUo2UWlyVlp0c2NBa2lXVUEwTXlCZlQvM2wxb2VMV1NPNTFSRjNRNFZwVC9QVzFZdW53Y25aMWVITk03NGZMY2V2QlZVUXB0SThKR0tQbkw0RUdqK0FUZ0EvdnJwLy83N1M2THR0TUpGMUVsU0FHWFFIaHFoc3IvTWFJTmg1cFRlaHQxSk9POW95eHNEV002b09QQURWSVROalphRWlwSk5oYjcweVNKWG1ULzhjdDZ6MFdGOUJiMjBRdHBXY2drSWZjM3R6SHp6cFU2Q25semswUzZrcDduYTJDUTg4QTdkMzVzYTJObXBJdDJ6SWEwQkR2T3ArV0FDZDhVTDhWVFUxZkRWWkw5VXRmMHo2SXJ5andtUkZSdXErSHNUM0JuTllLLythNFFiZ0xkZU1Rdi9wY1BwUHE0M0wyY2Y1YzJiZFIrVXVVMVdEcTVJYW54Wkxqb2JkNUFBNnlaNHpUa0FBQUE9Ii8+PC9zdmc+" alt="A path beneath dense branches at night, with lights shining through the leaves" width="4032" height="3024" loading="eager" decoding="async" data-original-src="/images/closing-night.jpg" data-image-ratio="4032 / 3024" data-image-variants="[{&quot;width&quot;:400,&quot;src&quot;:&quot;/images/optimized/e4979518bda716a28c4b-400.webp&quot;},{&quot;width&quot;:800,&quot;src&quot;:&quot;/images/optimized/e4979518bda716a28c4b-800.webp&quot;},{&quot;width&quot;:1600,&quot;src&quot;:&quot;/images/optimized/e4979518bda716a28c4b-1600.webp&quot;}]">
-  </section>
-
   <script src="/static/js/home.js?v=14"></script>
-  <script src="/static/js/nav-loader.js?v=27"></script>
+  <script src="/static/js/fluid-field.js?v=1"></script>
+  <script src="/static/js/cursor-ripple.js?v=4"></script>
+  <script src="/static/js/nav-loader.js?v=29"></script>
   <script src="/static/js/image-lightbox.js?v=2"></script>
 </body>
 </html>

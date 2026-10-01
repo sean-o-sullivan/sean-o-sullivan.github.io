@@ -1,4 +1,28 @@
 // nav-loader.js
+const loadProjectWake = async () => {
+    if (!/^\/(projects|tooling)(\/|$)/.test(window.location.pathname)) return;
+
+    await new Promise((resolve, reject) => {
+        const stylesheet = document.createElement('link');
+        stylesheet.rel = 'stylesheet';
+        stylesheet.href = '/static/cursor-wake.css?v=1';
+        stylesheet.addEventListener('load', resolve, { once: true });
+        stylesheet.addEventListener('error', reject, { once: true });
+        document.head.append(stylesheet);
+    });
+
+    // Use the homepage's exact renderer and tuning, in dependency order.
+    for (const src of ['/static/js/fluid-field.js?v=1', '/static/js/cursor-ripple.js?v=4']) {
+        await new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.addEventListener('load', resolve, { once: true });
+            script.addEventListener('error', reject, { once: true });
+            document.head.append(script);
+        });
+    }
+};
+
 const loadPortfolioMusic = () => {
     if (window.PortfolioMusic) {
         window.PortfolioMusic.mountAll();
@@ -82,6 +106,8 @@ const initProjectNavbarReveal = (navContainer) => {
 };
 
 document.addEventListener('DOMContentLoaded', async function() {
+    // Decorative loading must never delay navigation or the page itself.
+    loadProjectWake().catch(error => console.warn('Water effect loading error:', error));
 
     try {
         // Attempt to fetch the navbar HTML content
@@ -107,10 +133,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         const isHome = currentPath === '/' || currentPath === '/index.html';
         const primaryLink = navContainer.querySelector('#nav-home');
 
-        if (isHome && primaryLink) {
-            primaryLink.href = 'mailto:hi@sean-osullivan.com';
-            primaryLink.textContent = 'email me';
-            primaryLink.id = 'nav-contact';
+        if (isHome) {
+            primaryLink?.closest('li')?.remove();
 
             const navName = navContainer.querySelector('.nav-name');
             if (navName && navName.tagName !== 'H1') {
