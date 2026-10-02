@@ -149,7 +149,6 @@
   overflow: hidden;
 }
 
-.home-page .nav-container,
 .page-shell {
   width: min(100%, calc(var(--page-width) + (2 * var(--side-padding))));
   margin-inline: auto;
@@ -387,6 +386,15 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+.home-opening__photograph img[data-theme-photo] {
+  display: none;
+}
+
+:root:not([data-theme="dark"]) .home-opening__photograph img[data-theme-photo="light"],
+:root[data-theme="dark"] .home-opening__photograph img[data-theme-photo="dark"] {
+  display: block;
 }
 
 .projects-section h1,

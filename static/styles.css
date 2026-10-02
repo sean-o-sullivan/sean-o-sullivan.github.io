@@ -176,10 +176,11 @@ nav {
 }
 
 .nav-container {
+    --nav-gutter: clamp(18px, 5vw, 42px);
     box-sizing: border-box;
-    width: min(100%, calc(1240px + (2 * clamp(18px, 5vw, 48px))));
+    width: min(100%, calc(1240px + (2 * var(--nav-gutter))));
     height: 56px;
-    padding-inline: clamp(18px, 5vw, 48px);
+    padding-inline: var(--nav-gutter);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -187,6 +188,11 @@ nav {
     z-index: 9999;
   }
 
+@media (max-width: 680px) {
+    .nav-container {
+        --nav-gutter: clamp(18px, 6vw, 28px);
+    }
+}
 
 .nav-name {
     font-size: 15px;
@@ -204,7 +210,7 @@ nav {
 }
 
 .nav-links li {
-    margin-left: 20px;
+    margin: 0 0 0 20px;
 }
 
 .nav-links li:first-child {
