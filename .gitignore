@@ -1,3 +1,9 @@
 *.pdf
 _site/
 .jekyll-cache/
+
+# macOS folder metadata
+.DS_Store
+
+# Local media-selection notes (not for publication)
+tooling/*/MEDIA_*.md
