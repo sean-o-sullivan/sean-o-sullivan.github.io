@@ -27,6 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(overlay);
 
   let previouslyFocused = null;
+  let openCount = 0;
+
+  // The largest prepared WebP is far smaller than the original upload; fall back
+  // to the original only for images that have no prepared variants.
+  const bestSource = (image) => {
+    try {
+      const variants = JSON.parse(image.dataset.imageVariants || '[]');
+      if (variants.length) return variants[variants.length - 1].src;
+    } catch (_) { /* Malformed variants: use the original. */ }
+    return image.dataset.originalSrc || image.currentSrc || image.src;
+  };
 
   const close = () => {
     if (overlay.hidden) return;
@@ -38,7 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const open = (image) => {
     previouslyFocused = image;
-    enlargedImage.src = image.dataset.originalSrc || image.currentSrc || image.src;
+    const shown = image.currentSrc || image.src;
+    const best = bestSource(image);
+    const thisOpen = ++openCount;
+    // Show what the page already decoded straight away, then sharpen in place.
+    enlargedImage.src = shown;
+    if (best && best !== shown) {
+      const upgrade = new Image();
+      upgrade.decoding = 'async';
+      upgrade.onload = () => {
+        if (!overlay.hidden && thisOpen === openCount) enlargedImage.src = best;
+      };
+      upgrade.src = best;
+    }
     enlargedImage.alt = image.alt || '';
     overlay.hidden = false;
     document.body.classList.add('lightbox-open');

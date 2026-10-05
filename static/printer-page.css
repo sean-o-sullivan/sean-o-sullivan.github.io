@@ -57,7 +57,9 @@
 
 .printer-page .printer-portrait-media {
   display: block;
+  /* The turntable GIF is only 420 px wide; keep it small enough to stay crisp. */
   width: 100% !important;
+  max-width: 320px;
   height: auto !important;
   max-height: 82vh;
   object-fit: contain;
