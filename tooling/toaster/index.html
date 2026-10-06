@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/static/js/theme-init.js?v=2"></script>
+  <title>Toaster · Seán O'Sullivan</title>
+  <meta name="description" content="A quartz toaster oven with a touchscreen controller, programmable heating profiles and a generatively designed bracket.">
+  <link rel="canonical" href="https://sean-osullivan.com/tooling/toaster/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/styles.css?v=8">
+  <link rel="stylesheet" href="/static/project-page.css?v=50">
+  <link rel="stylesheet" href="/static/tooling-page.css?v=28">
+  <link rel="stylesheet" href="/static/toaster-page.css?v=5">
+</head>
+<body class="project-page tooling-page toaster-page">
+  <div id="navbar-container"></div>
+  <div class="container">
+    <div class="column text-column">
+      <header>
+        <h3>Toaster</h3>
+        <p class="subtitle">- PCB reflow and programmable annealing.</p>
+      </header>
+      <main>
+        <section>
+          <p><b>Summary</b></p>
+          <p id="summary">Toaster is a 10-litre, 1000 W oven with two quartz heating elements, one at the top and one at the bottom. I fitted it with an ESP32 touchscreen, a thermocouple and a solid-state relay for PCB reflow and annealing. It reflowed its first board on 6 October 2026.</p>
+        </section>
+        <section id="motivation">
+          <p><b>Motivation</b></p>
+          <p>I already use a hotplate for most of my boards. The <a href="/tooling/halogen-oven/">Floodlamp Oven</a> had reflowed boards and annealed actuators. I kept it intact, but wanted a few improvements in this oven:</p>
+          <ul class="tooling-parts-list toaster-motivations" id="purpose">
+            <li>A steadier heating response. The floodlamp lost heat readily, and the temperature spread around its single halogen bulb was hard to judge.</li>
+            <li>Room for larger boards. <a href="/projects/ogma/">Ogma 1</a>'s 60 × 60 mm boards were at the limit of my 56 × 56 mm MHP30-style hotplate; one Teachtaire board had cold joints at the hotplate edge. Ogma 2 will be larger, and I wanted hand assembly to remain an option.</li>
+            <li>Double-sided PCB assembly, with clearance underneath for components.</li>
+            <li>Less fiddly loading: a compact enclosure with a rack I can slide boards onto.</li>
+            <li>A glass door so I can see the board and thermocouple with the oven closed, and film more complex boards reflowing.</li>
+            <li>Less outgassing from the oven itself. I eventually needed a whole <a href="/tooling/fume-extraction/">extraction system</a> to use the floodlamp comfortably in my room.</li>
+          </ul>
+        </section>
+        <section>
+          <p><b>Fitting around the oven</b></p>
+          <p id="bracket">I wanted the electronics visible. I used Fusion's generative-design tools again, as I had for <a href="/tooling/twister/">Twister's frame</a> and <a href="/tooling/printer/">Sparky's camera holder</a>. The white bracket curves around the corner of the oven, holding the display at the front and the thermocouple board and spare cable along the side.</p>
+          <p id="dial-fit">The bracket press-fits over the two existing dials, holding the temperature dial at maximum and the timer on. I did not need to alter the dial mechanisms. The controller switches the oven's supply through the SSR; the original thermostat and independent thermal cutoff remain in the circuit.</p>
+          <p id="assembly">I mounted the relay low on the side, where the body stayed cool during the initial tests. The low-voltage wiring runs outside the oven, and USB-C powers the controller. The thermocouple lead slips through the door gap.</p>
+        </section>
+        <section>
+          <p><b>The touchscreen</b></p>
+          <p id="interface">I wanted it to look like a tool. The interface borrows its colours and pixel graphics from <i>Marathon</i>: dark surfaces, acid green for reflow, pink for annealing and a red Stop button. I directed the behaviour and used Codex to write the firmware and LVGL interface, then checked it on the hardware.</p>
+          <p id="reflow-ui">The firmware has SnPb and SAC305 reflow profiles with ramp, soak, peak and cooling stages. The run screen shows measured PCB temperature, target, elapsed time and heater demand, with a live trace underneath. Lead-free operation is still locked pending its higher-temperature checks.</p>
+          <p id="anneal-ui">Annealing has three dials: temperature, soak time and ramp rate. The screen estimates how long the ramps will take. The same rate is requested on the way down; the controller can add heat to slow cooling, but the oven has no active cooling system. Holding the little bulb and sliding up brightens the screen. Sliding down dims it. The brightness is remembered between boots. The screen sleeps when left in a menu.</p>
+        </section>
+        <section>
+          <p><b>Getting it running</b></p>
+          <p id="first-tests">A bad solder joint on a MAX31855 data-out header broke the SPI connection; resoldering the pin from the top of the board restored continuity. I later squeezed the thermocouple bundle tightly enough to break a conductor. A replacement probe worked. I attached its bead to a spare <a href="/projects/mu/">Mu PCB</a> on the rack for tuning, so the controller was responding to the board rather than a probe hanging in the air.</p>
+          <p id="control">PID tuning and USB logging are built into the firmware. Probe faults, overtemperature and run timeouts turn the heater command off.</p>
+        </section>
+        <section>
+          <p><b>First reflow</b></p>
+          <p id="kapton">My cheap Kapton tape used to burn in the floodlamp oven wherever it touched the thermocouple's fibreglass sleeve. It doesn't burn in this one, which makes me think the floodlamp had some sharp local hot spots. It also means I can tape the sleeve down and bend it so the bead presses into the board on its own.</p>
+          <p id="first-run">The first real board was a Mu PCB with SMD291AXT5 leaded paste on one side. The trial profile ramps to 150°C at 1°C/s, soaks for 60 seconds, then ramps to 205°C at 1.2°C/s and holds for 20 seconds. The heater is capped at 50% for now, and at that power the oven couldn't keep up with either ramp. On the way to the peak the board fell 45°C behind the target. It still soaked at 146–150°C, peaked at 203°C and spent about two minutes above 183°C, where leaded solder melts.</p>
+          <p id="cooling">When the heater switched off I cracked the door open, and the board was back below 183°C within a minute.</p>
+          <p id="result">The 0 Ω resistors I threw down came out looking good, and so did the rest of the board.</p>
+          <p id="other-side">I did not reflow the other side of Mu, because I want to be surprised when I actually have to assemble a two-sided board. I will likely raise the board slightly on spare copies, and those are in a box right now. Also, I have laundry to do.</p>
+        </section>
+        <section>
+          <p><b>Parts List</b></p>
+          <ul class="tooling-parts-list" id="parts">
+            <li><a href="https://cdn.cecotec.cloud/media/files/baketoast-1090-black_user_manual.pdf" target="_blank" rel="noopener noreferrer">Cecotec Bake&amp;Toast 1090</a>, 10L / 1000W, top and bottom quartz elements</li>
+            <li>Freenove FNK0104B ESP32-S3 board with 2.8-inch capacitive touchscreen</li>
+            <li>MAX31855 K-type thermocouple interface</li>
+            <li>Fibreglass-insulated K-type bead thermocouple</li>
+            <li>SSR-40DA solid-state relay</li>
+            <li>USB-C controller power</li>
+            <li>Generatively designed printed bracket</li>
+            <li>Wire, connectors, fasteners and cable restraints</li>
+            <li>Original rack, thermostat and thermal cutoff</li>
+          </ul>
+          <p><a href="https://github.com/sean-o-sullivan/toaster" target="_blank" rel="noopener noreferrer">Firmware repository</a></p>
+        </section>
+      </main>
+    </div>
+    <aside class="column image-column toaster-media" aria-label="Toaster photographs and interface">
+      <figure class="process-media project-lead-media" id="toaster-assembled">
+        <img src="/images/tooling/toaster/running.jpg" alt="The black oven mid-reflow, its quartz elements glowing through the glass door beside the touchscreen in its white printed bracket" width="1800" height="900" fetchpriority="high">
+        <figcaption><b>Toaster.</b> Preheating, with the quartz elements glowing through the door.</figcaption>
+      </figure>
+      <figure class="process-media toaster-demo" id="toaster-first-reflow" data-mobile-after="#summary">
+        <video class="native-video" controls playsinline preload="none" poster="/images/tooling/toaster/first-reflow.jpg" width="1280" height="720" aria-label="The oven cooling after its first reflow, then the door opening on the reflowed Mu board and its probe">
+          <source src="/images/tooling/toaster/first-reflow.mp4" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+        <figcaption><b>6 October: first reflow.</b> Cooling past 119°C, then a look at the Mu board and its probe. Silent clip.</figcaption>
+      </figure>
+      <section class="toaster-pair toaster-cad" data-mobile-after="#bracket" aria-label="Bracket design">
+        <figure class="process-media" id="toaster-cad-layout">
+          <img src="/images/tooling/toaster/layout-cad.jpg" alt="Simplified CAD volumes showing the oven corner, two dials, display and side-mounted electronics" loading="lazy">
+          <figcaption><b>Attachment points.</b> The dials and components placed around a simplified oven body.</figcaption>
+        </figure>
+        <figure class="process-media" id="toaster-generative">
+          <img src="/images/tooling/toaster/generative-options.jpg" alt="Fusion generative-design setup with red keep-out geometry around the oven and display" loading="lazy">
+          <figcaption><b>Volumes to avoid.</b> Connecting the mounting faces without enclosing the electronics.</figcaption>
+        </figure>
+      </section>
+      <section class="toaster-pair" data-mobile-after="#bracket" aria-label="Generated bracket and printed part">
+        <figure class="process-media toaster-cad" id="toaster-bracket-model">
+          <img src="/images/tooling/toaster/bracket-cad.jpg" alt="The curved two-part bracket isolated in Fusion" loading="lazy">
+          <figcaption><b>The bracket.</b> Two loops over the dials, with arms reaching around the corner.</figcaption>
+        </figure>
+        <figure class="process-media" id="toaster-printed">
+          <img src="/images/tooling/toaster/printed.jpg" alt="White bracket parts on the build plate of the modified Ender 3 Pro" loading="lazy">
+          <figcaption><b>Off the printer.</b> Made on <a href="/tooling/printer/">Sparky</a>.</figcaption>
+        </figure>
+      </section>
+      <section class="toaster-pair" data-mobile-after="#dial-fit" aria-label="Bare bracket and fitted controller">
+        <figure class="process-media" id="toaster-first-fit">
+          <img src="/images/tooling/toaster/first-fit.jpg" alt="The printed bracket pressed onto the oven dials before fitting the display" loading="lazy">
+          <figcaption><b>Bare bracket.</b> Press-fitted over the two original dials.</figcaption>
+        </figure>
+        <figure class="process-media" id="toaster-cable-fit">
+          <span class="toaster-fitted-frame"><img src="/images/tooling/toaster/assembled.jpg" alt="The same bracket with the touchscreen, thermocouple board and bundled lead fitted around the oven" loading="lazy" width="1800" height="1350"></span>
+          <figcaption><b>Everything fitted.</b> Display at the front, thermocouple board and spare lead along the side.</figcaption>
+        </figure>
+      </section>
+      <figure class="process-media" id="toaster-side" data-mobile-after="#assembly">
+        <img src="/images/tooling/toaster/side-layout.jpg" alt="Side view of the oven showing the exposed low-voltage controller and relay mounted near the lower rear corner" loading="lazy" width="1800" height="1350">
+        <figcaption><b>Outside the oven.</b> Display, thermocouple interface, cable and relay. Assembly-stage photograph with the relay terminal covers open.</figcaption>
+      </figure>
+      <section class="toaster-pair" data-mobile-after="#first-tests" aria-label="Controller assembly and probe placement">
+        <figure class="process-media" id="toaster-wiring">
+          <img src="/images/tooling/toaster/assembly.jpg" alt="Controller board and wiring laid out beside the oven during assembly" loading="lazy">
+          <figcaption><b>Wiring it together.</b> The controller before it went onto the bracket.</figcaption>
+        </figure>
+        <figure class="process-media" id="toaster-probe">
+          <img src="/images/tooling/toaster/probe-and-rack.jpg" alt="Open oven door and rack beside the fitted display, with the thermocouple lead passing into the chamber" loading="lazy">
+          <figcaption><b>Into the chamber.</b> The thermocouple passes through the door gap.</figcaption>
+        </figure>
+      </section>
+      <figure class="process-media" id="toaster-first-test" data-mobile-after="#control">
+        <video class="native-video" controls playsinline preload="none" poster="/images/tooling/toaster/early-test.jpg" width="1280" height="720" aria-label="An early 100 degree test with the previous touchscreen interface">
+          <source src="/images/tooling/toaster/early-test.mp4" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+        <figcaption><b>First heat.</b> An early test around 100°C, before the interface redesign. Silent clip.</figcaption>
+      </figure>
+      <section class="toaster-pair" data-mobile-after="#first-run" aria-label="Loading the board and the first reflow ramp">
+        <figure class="process-media" id="toaster-loaded">
+          <img src="/images/tooling/toaster/loaded.jpg" alt="Open oven with a Mu PCB on the rack and the thermocouple sleeve taped with Kapton and bent down onto the board" width="1800" height="1350" loading="lazy">
+          <figcaption><b>Loaded.</b> The sleeve taped with Kapton and bent so the bead sits on the board.</figcaption>
+        </figure>
+        <figure class="process-media" id="toaster-lagging">
+          <img src="/images/tooling/toaster/lagging.jpg" alt="Touchscreen during the ramp to peak reading 159.2 degrees against a 203.4 degree target" width="1800" height="1350" loading="lazy">
+          <figcaption><b>Lagging.</b> On the way to the peak, 44°C behind the target at half power.</figcaption>
+        </figure>
+      </section>
+      <section id="toaster-interface" data-mobile-after="#anneal-ui" aria-label="Touchscreen walkthrough">
+        <p class="toaster-ui-heading"><b>On the touchscreen</b><span>Actual LVGL renders at 240 × 320. Demonstration values, not recorded process results. Tap any screen to enlarge.</span></p>
+        <div class="toaster-ui-grid">
+          <figure class="process-media" id="screen-home"><img src="/images/tooling/toaster/ui/home.png" alt="Home screen with temperature, trend, mode selection and the brightness bulb" width="240" height="320" loading="lazy"><figcaption><b>01 / Home.</b> Temperature and mode selection.</figcaption></figure>
+          <figure class="process-media" id="screen-profiles"><img src="/images/tooling/toaster/ui/profiles.png" alt="SnPb and SAC305 profile menu with the lead-free profile still locked" width="240" height="320" loading="lazy"><figcaption><b>02 / Profiles.</b> SnPb and SAC305.</figcaption></figure>
+          <figure class="process-media" id="screen-ramp"><img src="/images/tooling/toaster/ui/ramp.png" alt="Reflow preheat screen showing measured temperature, target and live graph" width="240" height="320" loading="lazy"><figcaption><b>03 / Ramp.</b> Target and measured temperature.</figcaption></figure>
+          <figure class="process-media" id="screen-soak"><img src="/images/tooling/toaster/ui/soak.png" alt="Reflow soak screen with progress and Stop control" width="240" height="320" loading="lazy"><figcaption><b>04 / Soak.</b> Hold temperature before the peak.</figcaption></figure>
+          <figure class="process-media" id="screen-peak"><img src="/images/tooling/toaster/ui/peak.png" alt="Reflow peak stage and its measured-temperature trace" width="240" height="320" loading="lazy"><figcaption><b>05 / Peak.</b> The high-temperature stage.</figcaption></figure>
+          <figure class="process-media" id="screen-cooling"><img src="/images/tooling/toaster/ui/cooling.png" alt="Reflow cooling screen with heater output off" width="240" height="320" loading="lazy"><figcaption><b>06 / Cool.</b> Heater off; temperature still visible.</figcaption></figure>
+          <figure class="process-media" id="screen-anneal-dials"><img src="/images/tooling/toaster/ui/anneal-dials.png" alt="Three pink rotary dials in a triangle set annealing temperature, soak time and ramp rate, with time estimates below" width="240" height="320" loading="lazy"><figcaption><b>07 / Anneal.</b> Three dials, three settings.</figcaption></figure>
+          <figure class="process-media" id="screen-anneal-review"><img src="/images/tooling/toaster/ui/anneal-review.png" alt="Annealing program review before holding Start" width="240" height="320" loading="lazy"><figcaption><b>08 / Review.</b> Check the program before starting.</figcaption></figure>
+          <figure class="process-media" id="screen-anneal-cooling"><img src="/images/tooling/toaster/ui/anneal-cooling.png" alt="Annealing ramp-down screen following a falling temperature target" width="240" height="320" loading="lazy"><figcaption><b>09 / Ramp down.</b> The same requested rate on the way back.</figcaption></figure>
+        </div>
+      </section>
+    </aside>
+  </div>
+  <script src="/static/js/nav-loader.js?v=27"></script>
+  <script src="/static/js/project-page.js?v=16"></script>
+  <script src="/static/js/image-lightbox.js?v=2"></script>
+  <script src="/static/js/footer-loader.js?v=2"></script>
+</body>
+</html>

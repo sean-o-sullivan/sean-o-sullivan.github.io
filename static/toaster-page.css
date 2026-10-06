@@ -1,0 +1,125 @@
+.toaster-page .toaster-media {
+  gap: 44px;
+}
+.toaster-page .toaster-motivations li + li {
+  margin-top: 8px;
+}
+.toaster-page .toaster-media figure {
+  margin: 0;
+}
+.toaster-page .toaster-media .project-lead-media {
+  height: auto !important;
+  margin-bottom: 0;
+}
+.toaster-page .toaster-media .toaster-demo {
+  margin-bottom: clamp(26px, 4vh, 48px);
+}
+.toaster-page .toaster-media .process-media > img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 0;
+}
+.toaster-page .toaster-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+.toaster-page .toaster-pair .process-media > img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.toaster-page .toaster-fitted-frame {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.toaster-page .toaster-fitted-frame > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  border-radius: 0;
+  transform: scale(1.25);
+  transform-origin: 50% 8%;
+}
+.toaster-page .toaster-cad .process-media > img,
+.toaster-page .process-media.toaster-cad > img {
+  object-fit: contain;
+  background: #292929;
+}
+.toaster-page .toaster-film-space {
+  display: grid;
+  place-content: center;
+  aspect-ratio: 16 / 10;
+  padding: 32px;
+  border: 1px solid var(--theme-muted);
+  color: var(--theme-muted);
+  text-align: center;
+}
+.toaster-page .toaster-film-space p {
+  margin: 3px 0;
+  font-size: 13px;
+}
+.toaster-page .toaster-film-space .toaster-play {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+.toaster-page .toaster-media .native-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #0b0e11;
+}
+.toaster-page .toaster-ui-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 20px;
+}
+.toaster-page .toaster-media .toaster-ui-grid img {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  image-rendering: auto;
+}
+.toaster-page .image-lightbox__image[src*="/toaster/ui/"] {
+  width: 480px !important;
+  max-width: min(94vw, 67.5vh) !important;
+  image-rendering: pixelated;
+}
+.toaster-page .toaster-ui-grid figcaption {
+  font-size: 11px;
+}
+.toaster-page .toaster-ui-heading {
+  margin: 0 0 18px;
+  font-size: 13px;
+}
+.toaster-page .toaster-ui-heading span {
+  display: block;
+  margin-top: 5px;
+  color: var(--theme-muted);
+  font-size: 12px;
+}
+.toaster-page .toaster-preview-note {
+  padding-left: 14px;
+  border-left: 2px solid var(--theme-muted);
+  color: var(--theme-muted);
+  font-size: 12px;
+}
+.toaster-page .toaster-media a,
+.toaster-page .toaster-preview-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+@media (max-width: 820px) {
+  .toaster-page .toaster-media .project-lead-media { margin-bottom: 0; }
+  .toaster-page .toaster-media { gap: 28px; }
+  .toaster-page .toaster-ui-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .toaster-page .toaster-ui-grid img { max-height: none; }
+  .toaster-page .toaster-pair { gap: 12px; }
+  .toaster-page .toaster-film-space { aspect-ratio: 16 / 10; padding: 22px; }
+}
